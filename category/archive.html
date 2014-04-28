@@ -1,0 +1,17 @@
+---
+layout: default
+title: 日事日毕日清日高
+description: "黑传说的日志大全"
+categories: category
+---
+<h1>日事日毕日清日高</h1>
+<section class="tag-archive">
+<div class="post">
+    <ul class="nav-post">
+      {% for post in site.posts %}
+      <li><span>{{ post.date | date: '%Y-%m-%d' }}</span><a href="{{ post.url }}">{{ post.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+</div>
+</section>
