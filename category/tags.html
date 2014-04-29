@@ -6,10 +6,10 @@ categories: category;
 
 <h1>话题</h1>
 
-<section class="tag-archive">
-  <div class="tag-cloud">
+<section class="subject-archive">
+  <div class="subject-vision">
     {% for tag in site.tags %}
-    <a href="/category/tags.html#{{ tag[0] }}-ref" id="{{ forloop.index }}" class="__tag">{{ tag[0] }}</a><sup>{{ tag.size }}</sup>
+    <a href="/category/tags.html#{{ tag[0] }}-ref" id="{{ forloop.index }}" class="tag-vision">{{ tag[0] }}</a><sup>{{ tag.size }}</sup>
     {% endfor %}
   </div>
   <script type="text/javascript">
@@ -34,11 +34,11 @@ categories: category;
   </script>
 </section>
 
-<section class="tag-archive">
+<section class="subject-archive">
 <div class="post">
     {% for category in site.tags %}
-    <div class="tag">
-      <h3 class="tag-subject" id="{{ category[0] }}-ref">
+    <div class="subject">
+      <h3 class="subject-head" id="{{ category[0] }}-ref">
         {{ category[0] | join: "/" }}
       </h3>
 

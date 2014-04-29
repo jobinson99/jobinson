@@ -5,31 +5,22 @@ description: "分类查看"
 categories: category
 ---
 <h1>分类查看</h1>
-<section class="tag-archive">
-  <div class="tag-cloud">
-  {% assign categories_list = site.categories %}
-  {% if categories_list.first[0] == null %}
-    {% for category in categories_list %}
-      <a href="{{ BASE_PATH }}{{ site.JB.categories_path }}#{{ category }}-ref">
-        {{ category | join: "/" }}
-      </a><sup>{{ site.categories[category].size }}</sup>
-    {% endfor %}
-  {% else %}
-    {% for category in categories_list %}
-      <a href="{{ BASE_PATH }}{{ site.JB.categories_path }}#{{ category[0] }}-ref" rel="category">
-        {{ category[0] | join: "/" }}
-      </a><sup>{{ category[1].size }}</sup>
-    {% endfor %}
-  {% endif %}
-  {% assign categories_list = nil %}
+<section class="subject-archive">
+  <div class="subject-vision">
+      {% for category in site.categories %}
+        <a href="/category/categories.html#{{ category[0] }}-ref">
+        {{ category[0] | join: "/" }}</a>
+        <sup>{{ category.size }}</sup>
+      {% endfor %}
+ </ul>
   </div>
 </section>
 
-<section class="tag-archive">
+<section class="subject-archive">
   <div class="post">
     {% for category in site.categories %}
-    <div class="tag">
-      <h3 class="tag-subject" id="{{ category[0] }}-ref">
+    <div class="subject">
+      <h3 class="subject-head" id="{{ category[0] }}-ref">
         {{ category[0] | join: "/" }}
       </h3>
         

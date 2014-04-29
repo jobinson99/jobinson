@@ -1,5 +1,7 @@
 name: 黑传说——乌抵天明
 markdown: redcarpet
+redcarpet:
+    extensions: [tables, underline, strikethrough]
 pygments: true
 
 # 生成相关 lsi: true

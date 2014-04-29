@@ -645,7 +645,7 @@ a:visited {
 a,
 post-tag a,
 sup,
-__tag {
+.tag-vision {
     -webkit-transition: all 0.4s ease-in-out;
     -moz-transition: all 0.4s ease-in-out;
     -o-transition: all 0.4s ease-in-out;
@@ -679,7 +679,7 @@ article a:active {
     border: 6px solid gold;
 }
 article a:visited {
-    color: #dcdcdc;
+    color: #585858;
     background: rgba(232, 232, 249, 0.75);
     border: 1px solid rgba(232, 232, 249, 0.75);
 }
@@ -710,7 +710,7 @@ li:hover {
 p code,
 li code {
     padding: 0 5px;
-    color: #585858;
+    color: gray;
     background-color: #eef;
     
     border-left: 5px solid #c3c3c3;
@@ -722,8 +722,8 @@ li code:hover {
     color: black;
     
     background: rgba(238,238,255,0.5);
-    border-left: 5px solid #6C71C4;
-    border-right: 5px solid #6c71c4;
+    border-left: 5px solid #dcdcdc;
+    border-right: 5px solid #dcdcdc;
 
 }
 
@@ -765,12 +765,13 @@ pre:hover {
 .linenr {    
     color: #cccccc;
     margin: 0 0 -20px -20px;
+    padding: 2px 0;
     position: relative;
     display: block;
     left: 15px;
     width: 99%;
-    text-align: center;
-    border-bottom: 1px solid white;
+    text-align: right;
+    border-bottom: 1px solid #F5F4E0;
 }
 .lineno:hover,
 .linenr:hover {
@@ -785,12 +786,17 @@ pre:hover {
 /* :::: 表格 :::: */
 
 table {
-
+    border-top: 3px solid #c3c3c3;
+    border-bottom: 3px solid #c3c3c3;
+    box-shadow: 0 0 10px #c3c3c3;
+    -moz-box-shadow: 0 0 10px #c3c3c3;
+    -webkit-box-shadow: 0 0 10px #c3c3c3;
 }
 
 th {
     background: #6C71C4;
     color: white;
+    padding: 10px;
 }
 
 th:hover {
@@ -799,11 +805,13 @@ th:hover {
 }
 
 th, td {
-
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
 }
 
 td {
     background-color: #F5F4E0;
+    padding: 5px;
 }
 
 td:hover {
@@ -817,18 +825,23 @@ td:hover {
 /*
 /*****************************************************************************/
 .post-tag a,
-.__tag {
+.tag-vision {
     color: black;
 
 }
 .post-tag a:hover,
-.__tag:hover {
+.tag-vision:hover {
     background-color: #E0E0FF;
 }
 
-.tag-cloud {
+.subject-archive {
+
+}
+.subject-vision {
     
 }
+
+
 
 
 /* :::: 其他 :::: */
@@ -1014,8 +1027,9 @@ nav {
     display: block;
     position: fixed;
     bottom: 8%;
-    left: 0;
-
+    left: -50px;
+    font-size: 85%;
+    
     max-height: 80%;
     min-height: 40%;
     width: 350px;
@@ -1030,10 +1044,13 @@ nav li,
 .nav-resource li,
 .nav-post li {
     padding: 0;
+    border-bottom: 1px solid #cdcdcd;
 }
 nav li a {
     display: block;
     padding: 10px 20px;
+    background: #E0E0FF;
+    color: black;
 }
 
 nav li a:hover,
@@ -1183,7 +1200,7 @@ footer .contact {
 }
 
 footer .contact a {
-
+    color: gray;
 }
 footer .contact a:hover {
 
