@@ -572,6 +572,7 @@ h6:hover {
 h1 {
     text-align: center;
     padding: 20px 0;
+    margin: 0;
 }
 h2,
 h3,
@@ -590,6 +591,7 @@ h6 {
 
 .abstract {
     padding: 20px;
+    margin-top: 0;
     background-color: #C0FFC0;
     border-bottom: 1px solid #DCDCDC;
     border-top: 1px solid #DCDCDC;
@@ -868,23 +870,53 @@ hr {
 /*****************************************************************************/
 /* 统一的设定：大小，展现方式，位置，反馈，屏幕大小 */
 
-.left-bottom-hook,right-bottom-hook,left-middle-hook,right-middle-hook,left-top-hook,right-top-hook {
+.left-bottom-hook,.right-bottom-hook,.left-middle-hook,.right-middle-hook,.left-top-hook,.right-top-hook {
     width: 50px;
     height: 50px;
     display: block;
     position: fixed;
+    z-index: 8000;
 }
-.left-bottom-hook:hover,right-bottom-hook:hover,left-middle-hook:hover,right-middle-hook:hover,left-top-hook:hover,right-top-hook:hover {
+.left-bottom-hook:hover,.right-bottom-hook:hover,.left-middle-hook:hover,.right-middle-hook:hover,.left-top-hook:hover,.right-top-hook:hover {
     transition: all 0.8s ease-out;
     -moz-transition: all 0.8s ease-out;
     -webkit-transition: all 0.8s ease-out;
     -o-transition: all 0.8s ease-out;
 }
 
+.activate {
+    -moz-transform: scale(0.75);
+    -webkit-transform: scale(0.75);
+    -o-transform: scale(0.75);
+    -ms-transform: scale(0.75);
+}
+
 @media all and (max-width: 36em) {
     .left-bottom-hook {
     }
 }
+
+.left-middle-hook,.right-middle-hook,.left-top-hook,.right-top-hook {
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid #ffffff;
+    border-radius: 50px;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    box-shadow: 0 0 40px #dcdcdc;
+    -moz-box-shadow: 0 0 40px #dcdcdc;
+    -webkit-box-shadow: 0 0 40px #dcdcdc;
+
+}
+
+.left-middle-hook:hover,.right-middle-hook:hover,.left-top-hook:hover,.right-top-hook:hover {
+    -moz-transform: scale(1.5);
+    -webkit-transform: scale(1.5);
+    box-shadow: 0 0 70px gold;
+    -moz-box-shadow: 0 0 70px gold;
+    -webkit-box-shadow: 0 0 70px gold;
+}
+
+
 
 /* 左下角锚点 */
 
@@ -925,10 +957,10 @@ hr {
 
 /* 右下角锚点 */
 .right-bottom-hook {
-    right: -28px; 
-    bottom: -28px;
+    right: -27px; 
+    bottom: -27px;
     float: right;
-    background-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.5);
     border: 1px solid #ffffff;
     border-radius: 50px;
     -moz-border-radius: 50px;
@@ -945,125 +977,32 @@ hr {
     -webkit-box-shadow: 0 0 70px gold;
 }
 
-.activate {
-    -moz-transform: scale(0.75);
-    -webkit-transform: scale(0.75);
-    -o-transform: scale(0.75);
-    -ms-transform: scale(0.75);
-}
-
 /* 左中锚点 */
 .left-middle-hook {
     top: 60%;
     left: -28px;
     float: left;
-    background: rgba(255, 255, 255, 0.5);
-    border: 1px solid #ffffff;
-    border-radius: 50px;
-    -moz-border-radius: 50px;
-    -webkit-border-radius: 50px;
-    box-shadow: 0 0 40px #dcdcdc;
-    -moz-box-shadow: 0 0 40px #dcdcdc;
-    -webkit-box-shadow: 0 0 40px #dcdcdc;
 }
 
-.left-middle-hook:hover {
-    -moz-transform: scale(1.5);
-    -webkit-transform: scale(1.5);
-    box-shadow: 0 0 70px gold;
-    -moz-box-shadow: 0 0 70px gold;
-    -webkit-box-shadow: 0 0 70px gold;
-}
-
-.activate {
-    -moz-transform: scale(0.75);
-    -webkit-transform: scale(0.75);
-    -o-transform: scale(0.75);
-    -ms-transform: scale(0.75);
-}
 /* 右中锚点 */
 .right-middle-hook {
     top: 60%;
     right: -28px;
     float: right;
-    background-color: rgba(255, 255, 255, 0.75);
-    border: 1px solid #ffffff;
-    border-radius: 50px;
-    -moz-border-radius: 50px;
-    -webkit-border-radius: 50px;
-    box-shadow: 0 0 40px #dcdcdc;
-    -moz-box-shadow: 0 0 40px #dcdcdc;
-    -webkit-box-shadow: 0 0 40px #dcdcdc;
 }
 
-.right-middle-hook:hover {
-    -moz-transform: scale(1.5);
-    -webkit-transform: scale(1.5);
-    box-shadow: 0 0 70px gold;
-    -moz-box-shadow: 0 0 70px gold;
-    -webkit-box-shadow: 0 0 70px gold;
-}
-
-.activate {
-    -moz-transform: scale(0.75);
-    -webkit-transform: scale(0.75);
-    -o-transform: scale(0.75);
-    -ms-transform: scale(0.75);
-}
 /* 左上锚点 */
 .left-top-hook {
     top: -28px;
     left: -28px;
     float: left;
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 1px solid #ffffff;
-    border-radius: 50px;
-    -moz-border-radius: 50px;
-    -webkit-border-radius: 50px;
-    box-shadow: 0 0 40px #dcdcdc;
-    -moz-box-shadow: 0 0 40px #dcdcdc;
-    -webkit-box-shadow: 0 0 40px #dcdcdc;
 }
 
-.left-top-hook:hover {
-    -moz-transform: scale(1.5);
-    -webkit-transform: scale(1.5);
-    box-shadow: 0 0 70px gold;
-    -moz-box-shadow: 0 0 70px gold;
-    -webkit-box-shadow: 0 0 70px gold;
-}
-.activate {
-    -moz-transform: scale(0.75);
-    -webkit-transform: scale(0.75);
-    -o-transform: scale(0.75);
-    -ms-transform: scale(0.75);
-}
 /* 右上锚点 */
 .right-top-hook {
     top: -28px;
     right: -28px;
     float: right;
-    background-color: rgba(255, 255, 255, 0.75);
-    border: 1px solid #ffffff;
-    border-radius: 50px;
-    -moz-border-radius: 50px;
-    -webkit-border-radius: 50px;
-    box-shadow: 0 0 40px #dcdcdc;
-    -moz-box-shadow: 0 0 40px #dcdcdc;
-    -webkit-box-shadow: 0 0 40px #dcdcdc;
-}
-.right-top-hook:hover {
-    -moz-transform: scale(1.5);
-    -webkit-transform: scale(1.5);
-    box-shadow: 0 0 70px gold;
-    -moz-box-shadow: 0 0 70px gold;
-    -webkit-box-shadow: 0 0 70px gold;
-}
-.activate {
-    -moz-transform: scale(0.75);
-    -webkit-transform: scale(0.75);
-    -o-transform: scale(0.75);
-    -ms-transform: scale(0.75);
 }
 
 /*****************************************************************************/
@@ -1221,9 +1160,12 @@ nav li a:hover,
 /*****************************************************************************/
 footer {
     font-size: 80%;
+    color: gray;
     background-color: rgba(50,50,50,0.8);
     margin-top: 5em;
-
+    width:100%;
+    position: absolute;
+    
     box-shadow: 0px 0 55px #000000;
     -moz-box-shadow: 0px 0 55px #000000;
     -webkit-box-shadow: 0px 0 55px #000000;
@@ -1237,6 +1179,7 @@ footer:hover {
 footer .contact {
     float: left;
     width: 250px;
+    padding: 3px 5px;
 }
 
 footer .contact a {
