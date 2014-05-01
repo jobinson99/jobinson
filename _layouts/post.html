@@ -2,11 +2,24 @@
 layout: default
 ---
 <header>
-  <h1>{{ page.title }}</h1>
 
-  {% if page.description %}<p class="abstract"><b>摘要：</b><br/>{{page.description}}</p>{% endif %}
+  <h1 id="{{ page.title }}">{{ page.title }}</h1>
 
-  <p class="meta">创建时间：{{ page.date | date: '%Y-%m-%d' }}</p>
+  {% if page.description %}
+  <p class="abstract"><b>摘要：</b><br/>{{page.description}}</p>
+  {% endif %}
+
+  <p class="meta"> 
+  {% if page.categories.size != 0 %}
+<span class="categories">
+归类：
+  {% for cat in page.categories %}
+  <a href="/category/categories.html#{{ cat }}-ref">【{{ cat }}】</a>
+  {% endfor %}
+</span>
+{% endif %} 
+
+  创建时间：{{ page.date | date: '%Y-%m-%d' }}</p>
 </header>
 
 <div class="post">
@@ -19,6 +32,7 @@ layout: default
   <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
   <!-- UY END -->
 
+  <p><a href="#{{ page.title }}">从头看</a></p>
 </div>
 
 <!--上一篇 话题 下一篇-->
@@ -26,26 +40,26 @@ layout: default
 
   {% if page.previous %}
   <div class="post-pre">
-    <a class="pull-right" href="{{ page.previous.url }}" rel="bookmark">上一篇：{{ page.previous.title | truncatewords:5 }}</a>
+    <a href="{{ page.previous.url }}">上一篇：{{ page.previous.title | truncatewords:5 }}</a>
   </div>
   {% endif %}
   
+  {% if page.tags.size != 0 %}
   <div class="post-tag">
+  话题：
     {% for tag in page.tags %}
-    【<a href="/category/tags.html#{{tag}}-ref">{{tag}}</a>】
-    <sup>{{ tag.size }}</sup>
-    &nbsp;
+    <a href="/category/tags.html#{{tag}}-ref">{{tag}}</a>&nbsp; |
     {% endfor %}
   </div>
-
+{% endif %} 
+  
   {% if page.next %}
   <div class="post-next">
-    <a href="{{ page.next.url }}" rel="bookmark">下一篇：{{ page.next.title | truncatewords:5 }}</a>
+    <a href="{{ page.next.url }}">下一篇：{{ page.next.title | truncatewords:5 }}</a>
   </div>
   {% endif %}
 </div>
 <!--上一篇 话题 下一篇 END-->
-
 
 
 

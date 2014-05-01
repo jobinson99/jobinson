@@ -10,3 +10,7 @@ include:
 # 样式选择
 themes: /themes/atlas
 
+# 简化插入图片设置
+img_url: /static/images
+
+

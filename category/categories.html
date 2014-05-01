@@ -24,7 +24,7 @@ categories: category
         {{ category[0] | join: "/" }}
       </h3>
         
-      <ul class="nav-post">
+      <ul class="post-list">
         {% for post in category[1] %}
             
         <li><span>{{ post.date | date: "%Y-%m-%d" }}</span>
