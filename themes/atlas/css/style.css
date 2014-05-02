@@ -518,27 +518,10 @@ body {
 /*
 /*****************************************************************************/
 
-/* :::: 文章双屏显示 :::: */
-@media all and (min-width: 50em) {
-    .post {
-        column-count: 2;
-	-moz-column-count: 2;
-	-webkit-column-count: 2;
-
-        column-rule: 1px solid white;
-	-moz-column-rule: 1px solid white;
-	-webkit-column-rule: 1px solid white;
-        
-        column-gap: 35px;
-	-moz-column-gap: 35px;
-	-webkit-column-gap: 35px;
-    }
-}
-
 /* :::: 反馈设置 :::: */
 
 h1,h2,h3,h4,h5,h6,p,li,
-p code,li code,pre,th,td,blockquote,footer
+p code,li code,pre,th,td,blockquote,aside,footer
 {
     -webkit-transition: all 1s ease-in-out;
     -moz-transition: all 1s ease-in-out;
@@ -862,10 +845,11 @@ sup:hover {
 }
 
 blockquote {
-    background: #BBBBFF;
+    background: #FDF7F7;
     font-size: 90%;
 
     padding: 5px 5px 5px 5px;
+    border-left: 5px solid #BBBBFF;
 }
 
 blockquote:hover {
@@ -880,6 +864,10 @@ figure {
 }
 figcaption {
 
+}
+
+img {
+    max-width: 600px;
 }
 
 /*****************************************************************************/
@@ -1194,9 +1182,16 @@ dialog {
 /*****************************************************************************/
 
 aside {
+    background: #C0FFC0;
+    font-size: 90%;
 
+    padding: 5px 5px 5px 5px;
+    border-left: 5px solid black;
 }
 
+aside:hover {
+    background: #FDF7F7;
+}
 
 /*****************************************************************************/
 /*
