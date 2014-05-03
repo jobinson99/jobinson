@@ -866,7 +866,7 @@ figcaption {
 
 }
 
-img {
+article img {
     max-width: 600px;
 }
 
@@ -1202,7 +1202,7 @@ footer {
     font-size: 80%;
     color: gray;
     background-color: rgba(50,50,50,0.8);
-    margin-top: 5em;
+    margin-top: 1em;
     width:100%;
     position: absolute;
     
