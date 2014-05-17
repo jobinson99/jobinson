@@ -1,8 +1,19 @@
-name: 黑传说——乌抵天明
-markdown: redcarpet
-redcarpet:
-    extensions: [tables, underline, strikethrough]
-pygments: true
+# Site settings
+title: 黑传说——乌抵天明
+email: gmail for jobinson99
+description: "黑传说的学习笔记"
+baseurl: ""
+url: "http://jobinson.tk"
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+relative_permalinks: true
+
+future: true
+
+# 语法高亮
+highlighter: pygments
 
 include:
 - .nojekyll

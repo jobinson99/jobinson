@@ -1,11 +1,12 @@
 ---
-layout: post
+layout: page
 title:  "黑传说之传说"
 date:   1980-03-28 00:00:00
 description: "黑传说的简短介绍"
 categories: category
 tags: [说明, 百出, 匪夷所思, 诡异, 革新, 建设, 生产, 创意设计]
 lastmod: 2014-04-24
+permalink: /about/
 ---
 
 ![黑传说](/static/atlas.png)
