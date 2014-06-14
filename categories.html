@@ -3,15 +3,16 @@ layout: page
 title: 分类查看
 description: "分类查看"
 categories: category
----
+permalink: /分类列表/
+--- 
 
 <section class="subject-archive">
   <div class="subject-vision">
   <ul>
     {% for category in site.categories %}
-    <li><a href="/categories/#{{ category[0] }}-ref">
+    <li><a href="/分类列表/#{{ category[0] }}-ref">
       {{ category[0] | join: "/" }}</a>
-    <sup>{{ category.size }}</sup></li>
+    <sup>{{ category[1].size }}</sup></li>
     {% endfor %}
  </ul>
   </div>
@@ -37,3 +38,4 @@ categories: category
     {% endfor %}
   </div>
 </section>
+

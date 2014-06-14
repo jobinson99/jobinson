@@ -1,49 +1,33 @@
 ---
 layout: page
 title: 话题
-categories: category;
-permalink: /tags/
+description: "按话题查看"
+categories: category
+permalink: /话题列表/
 ---
 
 <section class="subject-archive">
+
   <div class="subject-vision">
+
     {% for tag in site.tags %}
-    <a href="/tags/#{{ tag[0] }}-ref" id="{{ forloop.index }}" class="tag-vision">{{ tag[0] }}</a>
-    <sup>{{ tag.size }}</sup>
+    <a href="/话题列表/#{{tag[0]}}-ref" id="{{ forloop.index }}" class="tag-vision">{{ tag[0] }}</a>
+    <sup>{{tag[1].size}}</sup>
     {% endfor %}
+    
   </div>
-  <script type="text/javascript">
-   $(function() {
-      var minFont = 12.0,
-          maxFont = 36.0,
-          diffFont = maxFont - minFont,
-          size = 0;
-       
-      {% assign max = 1.0 %}
-      {% for tag in site.tags %}
-         {% if tag[1].size > max %}
-            {% assign max = tag[1].size %}
-         {% endif %}
-      {% endfor %}
-            
-      {% for tag in site.tags %}
-         size = (Math.log({{ tag[1].size }}) / Math.log({{ max }})) * diffFont + minFont;
-         $("#{{ forloop.index }}").css("font-size", size + "px");
-      {% endfor %}
-   });
-  </script>
 </section>
 
 <section class="subject-archive">
 <div class="post">
-    {% for category in site.tags %}
+    {% for tag in site.tags %}
     <div class="subject">
-      <h3 class="subject-head" id="{{ category[0] }}-ref">
-        {{ category[0] | join: "/" }}
+      <h3 class="subject-head" id="{{ tag[0] }}-ref">
+        {{ tag[0] | join: "/" }}
       </h3>
 
       <ul class="post-list">
-        {% for post in category[1] %}
+        {% for post in tag[1] %}
         <li><span class="post-date">{{ post.date | date: '%Y-%m-%d' }}</span>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></li>
         {% endfor %}
@@ -52,5 +36,11 @@ permalink: /tags/
     {% endfor %}
 </div>
 </section>
+
+
+
+
+
+
 
 

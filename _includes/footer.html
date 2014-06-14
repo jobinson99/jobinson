@@ -1,30 +1,36 @@
-<footer>
-  <div class="contact">
-    <p>©2014版权所有：黑传说</p>
-    <p>欢迎转载，请注明出处并保留原文链接</p>
-  </div>
-  <div class="contact">
-    <p>{{ site.title }}</p>
-    <p>玄鸟负日，光明万丈</p>
-  </div>
-  <div class="contact">
-  
-    <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
-    <p class="rss-subscribe"><a href="{{ "/feed.xml" | prepend: site.baseurl }}">戳此处关注我</a></p>
-    
-  </div>
-  <div class="contact">
-    <p>致谢： <br>
+<footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2014版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接</span>
+    </li>
+    <li>
+    <span>{{ site.title }}——{{ site.description }}</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:{{ site.email }}">{{ site.email }}</a></span>
+    <span><a href="{{ "/feed.xml" | prepend: site.baseurl }}">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+    <span>致谢： <br>
       <a href="http://www.github.com">github</a>，
       <a href="http://jekyllrb.com/">jekyll</a>，
-      <a href="http://johnmacfarlane.net/pandoc/index.html">pandoc</a>，以及一切对本人有帮助的人！
-    </p>
-    <p><a href="https://github.com/jobinson99">我的开发仓库</a></p>
+      <a href="http://johnmacfarlane.net/pandoc/index.html">pandoc</a>，以及一切对本人有帮助的人！</span>
+    <span>
     <!--百度统计-->    
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F2a77ebf34b2ca66c11e75764c6e1bfaa' type='text/javascript'%3E%3C/script%3E"));
 </script>
-
-  </div>
+</span>
+    </li>     
+</ul>
 </footer>
+
+    <script type="text/javascript" src="{{ site.themes | prepend: site.baseurl }}/javascript/modules/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="{{ site.themes | prepend: site.baseurl }}/javascript/modules/jquery.js"></script>
+    <script type="text/javascript" src="{{ site.themes | prepend: site.baseurl }}/javascript/outliner.js"></script>
+    <script type="text/javascript" src="{{ site.themes | prepend: site.baseurl }}/javascript/toc.js"></script>
+    
