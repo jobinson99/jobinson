@@ -19,7 +19,7 @@ permalink: /分类列表/
 </section>
 
 <section class="subject-archive">
-  <div class="post">
+
     {% for category in site.categories %}
     <div class="subject">
       <h3 class="subject-head" id="{{ category[0] }}-ref">
@@ -29,13 +29,16 @@ permalink: /分类列表/
       <ul class="post-list">
         {% for post in category[1] %}
         
-        <li><span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
-          <a href="{{ post.url }}">{{ post.title }}</a></li>
+        <li>
+          <a href="{{ post.url }}">{{ post.title }}
+<span class="post-date">{{ post.date | date: "%Y-%m-%d" }}</span>
+          </a>
+        </li>
         
         {% endfor %}
       </ul>
     </div>
     {% endfor %}
-  </div>
+
 </section>
 
