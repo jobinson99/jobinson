@@ -13,16 +13,17 @@
     <!--上一篇 话题 下一篇-->
     {% if page.previous %}
     <div class="post-pre">
-      <a class="pull-right" href="{{ page.previous.url }}">◀前篇◁{{ page.previous.title | truncatewords:5 }}</a>
+      <a class="pull-right" href="{{ page.previous.url }}">◁前<br>{{ page.previous.title | truncatewords:5 }}◀篇</a>
     </div>
     {% endif %}
     
      <!--回到头部-->
-    <div class="back-top"><a href="#{{ page.title }}">△从头再看▲</a></div> 
+    <div class="back-top"><a href="#{{ page.title }}">△
+    <br>回头▲再看</a></div> 
     
     {% if page.next %}
     <div class="post-next">
-    <a href="{{ page.next.url }}">▷后篇▶{{ page.next.title | truncatewords:5 }}</a>
+    <a href="{{ page.next.url }}">后▷<br>篇▶{{ page.next.title | truncatewords:5 }}</a>
     </div>
     {% endif %}
     
@@ -36,3 +37,4 @@
 
 
 </div>
+

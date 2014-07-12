@@ -12,6 +12,9 @@ relative_permalinks: true
 
 future: true
 
+# 分页
+paginate: 5
+
 # 语法高亮
 highlighter: pygments
 
