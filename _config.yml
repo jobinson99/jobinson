@@ -18,8 +18,7 @@ future: true
 # 语法高亮
 highlighter: pygments
 
-include:
-- .nojekyll
+
 
 # 样式选择
 themes: /themes/atlas
