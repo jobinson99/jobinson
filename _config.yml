@@ -3,7 +3,7 @@ title: 黑传说
 email: gmail for jobinson99
 description: "乌抵天明"
 baseurl: ""
-url: "http://jobinson.tk"
+url: "http://jobinson.ga"
 
 # Build settings
 markdown: kramdown
@@ -18,7 +18,8 @@ future: true
 # 语法高亮
 highlighter: pygments
 
-
+include:
+- .nojekyll
 
 # 样式选择
 themes: /themes/atlas
