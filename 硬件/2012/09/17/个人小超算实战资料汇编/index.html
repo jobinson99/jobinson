@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>【个人小超算】实战资料汇编</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/%E7%A1%AC%E4%BB%B6/2012/09/17/%E4%B8%AA%E4%BA%BA%E5%B0%8F%E8%B6%85%E7%AE%97%E5%AE%9E%E6%88%98%E8%B5%84%E6%96%99%E6%B1%87%E7%BC%96/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="【个人小超算】实战资料汇编">【个人小超算】实战资料汇编</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>摘要：</b><br/>个人小超算实战资料汇编</p>
+      
+
+      
+      <p class="post-tag"><b>话题：</b>
+        
+        <a href="/话题列表/#小超算-ref">小超算
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#树莓派-ref">树莓派
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#阵列-ref">阵列
+        <sup>1</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#硬件-ref">硬件</a>
+        
+      </span>
+      
+      
+      创建时间：2012-09-17
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <p><strong>说明：</strong></p>
+
+<ol>
+  <li>本人极度讨厌中英文混夹，因为会增加理解难度，对读者极不友好，阅读体验差。所以，所有词汇全部中文化</li>
+  <li>第一次出现的中文名词都附带原英文，不喜欢翻译的，可以自动替换之。</li>
+  <li>版权：本文放弃所有版权，可以任意分发修改</li>
+</ol>
+
+<p>致歉：总是做事比翻译快，等哪天有空，再完成翻译吧……</p>
+
+<h2 id="section">前言</h2>
+
+<h3 id="section-1">一、名词介绍</h3>
+
+<p>1、<strong>草根计算机群</strong>或者叫<strong>草根计算机阵列</strong>(英文名为Beowulf cluster，也就是装逼的人说的“贝奥武夫机群”)，是一种使用廉价个人电脑硬件组装而成的并行计算机集群，具有极好的性能/价格比，比较典型的大规模使用是谷歌的服务器。</p>
+
+<p><strong>注：</strong>这个集群在国内流行，一般认为是因为大家在研究谷歌成功经验的时候，发现其性能极高而又极其廉价的硬件系统，而开始获得比较广泛的关注和普及。其实国内早就有人这样做，不过都被人鄙视，觉得太粗陋。</p>
+
+<p>2、<strong>个人小超算</strong>，或者叫小超算/小机群/小集群（英文名为Microwulf Cluster）：主要是个人使用，注重性价比、高性能、可快速增减部件。一般提供高于260亿次的性能。</p>
+
+<h3 id="section-2">二、发展历史：</h3>
+
+<p>最早于1994年美航局（全称美国航天局，英文缩写NASA）的唐纳德?贝克尔等人所开发。</p>
+
+<h3 id="section-3">三、方式</h3>
+
+<ol>
+  <li><strong>硬件来源</strong>：使用普通个人电脑主机等非专业用于服务器的硬件设备。现在为了性能、价格、体积、散热等问题，会利用廉价手机或掌机、盒式电脑之类的硬件。</li>
+  <li>操作系统：运行你牛叉（Linux）或者博系统（BSD）——原因嘛，主要是驱动支持的问题</li>
+  <li>硬件互连方式：各个组成单元（也就是节点或者分支电脑）之间通过<strong>高速网线连接。</strong></li>
+  <li>软件互联：沟通方式通过小型局域网（协议使用TCP/IP）连接</li>
+  <li>软件系统：
+    <ul>
+      <li>网络连接驱动程序：局域网相关的组网程序</li>
+      <li>分布式计算所需驱动程序：<a href="http://www.mcs.anl.gov/research/projects/mpi/">通用信道(Message Passing Interface=MPI)</a>  和 <a href="http://en.wikipedia.org/wiki/Parallel_Virtual_Machine">并行虚拟机（Parallel Virtual Machine =PVM ）</a></li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="section-4">四、追求：</h3>
+
+<ol>
+  <li>
+    <p><strong>追求</strong>：更便宜、运算速度更快，更小化。</p>
+  </li>
+  <li>
+    <p><strong>衡量单位</strong>：元/亿次(英文为： $/Gflops=美元/giga floating point operations per second =美元/每秒10亿 (=10^9) 次的浮点运算——此处全部换算为中文的每秒亿次，而不是每秒十亿次)</p>
+  </li>
+  <li>
+    <p><strong>节能</strong></p>
+  </li>
+  <li>
+    <p><strong>大小，这个主要要看主板和芯片：</strong> 基本要求是小型，可方便搬动。</p>
+  </li>
+</ol>
+
+<h3 id="section-5">五、衡量参照物：</h3>
+
+<p>1、<strong>价格参考：</strong></p>
+
+<ul>
+  <li>卡尔文学院2007年实现的标准：4.8美元/亿次。</li>
+  <li>南安普敦大学的超小型超算的标准是（体积上有很大的压缩）：10美元/亿次</li>
+</ul>
+
+<p>2、<strong>性能参考：</strong></p>
+
+<p>2013年全球最快的大型超算：广州超算中心的天河二号（Tianhe-2），
+  + 节点：16,000个
+  + 架构：
+    + 运算用：中央处理器（两颗×12核）+协处理器（三颗×57核），
+    + 前端任务调度用：FT-1500（4096颗×16核）
+  + 性能：峰值计算速度（Rpeak）每秒5.49亿亿次、持续计算速度（Rmax）每秒3.39亿亿次双精度浮点运算
+  + 内存：每个节点拥有64GB主存，而每个Xeon Phi协处理器板载8GB内存，故每节点共88GB内存
+  + 连接：光电混合传输技术（Optoelectronics Hybrid Transport Technology），使用自制的TH Express-2主干拓扑结构网络连接，以13个大型路由器通过576个连接端口以光电传输介质与各个运算节点互联，控制器名为NRC，使用90纳米制程，单个控制器的数据吞吐量2.56Tbps，终端网络接口使用名为NIC的控制器，以PCI-E 2.0接口链接，数据传送速率6.36GB/s。
+  + 能耗：整机功耗17,808千瓦，在搭载水冷散热系统以后，功耗将达到24兆瓦，每瓦性能为1.901GFLOPS，不及IBM红杉每瓦2.177GFLOPS
+  + 造价：1亿美元
+  + 占地：720平方米</p>
+
+<ul>
+  <li>普通电脑的性能：</li>
+  <li>苹果电脑性能：</li>
+  <li>显卡：Videocore 4 的图芯在用于通用计算时的理论值240亿次。</li>
+  <li>HD7970 已经可以提供 9470亿次的计算量，近似于 40 块 Videocore 4 所能提供的理论计算值总和。</li>
+  <li>普通手机的性能：小米2为638.889百万次</li>
+  <li>卡尔文大学实现的标准：260亿次</li>
+</ul>
+
+<h2 id="section-6">第一部分、个人电脑阵列</h2>
+
+<p><a href="http://www.calvin.edu/~adams/research/microwulf/">此部分原文来自卡尔文学院的Joel Adams</a></p>
+
+<h3 id="section-7">一、作者简介：</h3>
+
+<p>乔尔 亚当斯 （Joel Adams）是卡尔文 学院（Calvin College）计算机科学（computer science）教授，1988年获得在匹次堡大学获得博士学位，主要研究超算的内部连接，是几本计算机编程教材的作者，两次获得Fulbright Scholar (毛里求斯1998, 冰岛 2005).</p>
+
+<p>缇姆 布伦姆（Tim Brom）是卡耐基大学计算机科学的研究生，2007年五月在卡尔文 学院获得计算机科学学士学位。</p>
+
+<h3 id="section-8">二、说明：</h3>
+
+<p><strong>此小超算运算超过260亿次，价格少于2500美元，重量少于31磅，外观规格为11” x 12” x 17”——刚好够小，足够放在桌面上或者柜子里上。</strong></p>
+
+<p>更新：2007年8月1日，这个小超算已经可以用1256美元构建成，使得其性价比达到4.8美元/亿次——这样的话，可以增加更多的芯片，以提升性能，让其更接近21世纪初的超算性能。</p>
+
+<p>此小超算是由卡尔文学院的计算机系统教授乔尔 亚当斯和助教 缇姆 布伦姆设计和构建。</p>
+
+<p>下面是原文的目录，可点击查看：</p>
+
+<ul>
+  <li><a href="http://www.calvin.edu/~adams/research/microwulf/design/">设计</a></li>
+  <li><a href="http://www.calvin.edu/~adams/research/microwulf/budget/">硬件信息</a></li>
+  <li><a href="http://www.calvin.edu/~adams/research/microwulf/sys/microwulf_notes.pdf">软件系统构建说明</a></li>
+  <li><a href="http://www.calvin.edu/~adams/research/microwulf/photos/">效果图片</a></li>
+  <li><a href="http://www.calvin.edu/~adams/research/microwulf/performance/">性能</a></li>
+  <li><a href="http://www.calvin.edu/~adams/research/microwulf/compEff/">计算效率</a></li>
+  <li><a href="http://www.calvin.edu/~adams/research/microwulf/PPR/">价格效率</a></li>
+  <li><a href="http://www.calvin.edu/~adams/research/microwulf/power/">功耗</a></li>
+  <li><a href="http://www.calvin.edu/~adams/research/microwulf/news/">新闻报道</a></li>
+  <li><a href="http://www.calvin.edu/~adams/research/microwulf/related/">相关系统</a></li>
+</ul>
+
+<h3 id="section-9">三、介绍</h3>
+
+<p>作为一个典型的超算用户，我原先需要到计算中心排队，而且要限定使用的计算资源。这个对于开发新的分布式软件来说，很麻烦。所以呢，我需要一个自己的，梦想中的小超算是可以小到放在我的桌面上，就像普通个人电脑一样。只需要普通的电源，不需要特殊的冷切装置就可以在室温下运行……</p>
+
+<p>2006年末, 两个硬件发展，让我这个梦想接近了现实：</p>
+
+<ul>
+  <li>多核普及</li>
+  <li>千兆局域网相关硬件普及</li>
+</ul>
+
+<p>于是我就设想了一个小型的，4个节点，使用多核芯片，每个节点使用高速网线连接。</p>
+
+<p>2006年秋天, 卡尔文学院计算机系给了我们一笔小钱——就是2500美元，去构建这么一个系统，我们当时设定的目标：</p>
+
+<ul>
+  <li>费用少于2500美元——这样一般人都能负担得起，可以促进普及。</li>
+  <li>足够小，适合放在我的桌面上，适合放到旅行箱里。</li>
+  <li>要够轻，可以手提，然后带到我的汽车里。</li>
+  <li>性能强劲，测试结果至少要200亿次：
+    <ul>
+      <li>用于个人研究,</li>
+      <li>用于我教授的高性能运算课程,</li>
+      <li>用于专业论坛讲授、高中讲演等,</li>
+    </ul>
+  </li>
+  <li>只需要一根电源线，使用普通的120伏电源。</li>
+  <li>可在室温下运行。</li>
+</ul>
+
+<p>据我们参考了当时所知的一些小型超算，或者是性价比不错的超算，主要是下面几个：</p>
+
+<ul>
+  <li><a href="http://littlefe.net/">Little Fe</a></li>
+  <li><a href="http://www.linuxjournal.com/article/8177">The Ultimate Linux Lunchbox</a></li>
+</ul>
+
+<p>下面是历年的性价比之王：</p>
+
+<ul>
+  <li>2005: Kronos</li>
+  <li>2003: KASY0</li>
+  <li>2002: Green Destiny</li>
+  <li>2001: The Stone Supercomputer</li>
+  <li>2000: KLAT2</li>
+  <li>2000: bunyip</li>
+  <li>1998: Avalon </li>
+</ul>
+
+<p>在同一时间，还有其他更廉价或者是更具性价比的超算集群，不过这些记录都在2007年被改变了，最具性价比的就是下文介绍的小超算（2007年一月，9.41美元/亿次），而其记录半年后就被自己打破（2007年8月 4.784美元/亿次）。</p>
+
+<h3 id="section-10">架构设计：</h3>
+
+<p>个人小超算一般做法是使用多核芯片，集中安装到一个小的空间里，集中供电。</p>
+<aside>嗯，如果能自己烧制主板，体积上应该可以做得更小——树莓派的主板体积很小，就是芯片不给力，所以需要那么多片才能达到2007年用普通电脑芯片实现的性能。</aside>
+
+<p>1960年代末，吉恩 庵达郝乐（Gene Amdahl）提出了一个设计准则，叫 “庵达赫乐法则”（Amdahl’s Other Law），大意是：</p>
+
+<blockquote>
+  <p>为了兼容性考虑， 下面几个特性应该相同：</p>
+
+  <ul>
+    <li>每片芯片的频率</li>
+    <li>每根内存大小</li>
+    <li>每处带宽</li>
+  </ul>
+</blockquote>
+
+<p><strong>高性能计算一般有三个瓶颈：芯片运算速度，运算所需内存，吞吐带宽。</strong> 本小超算里面，带宽主要是指网络带宽。我们预算是2500美元，在设定了每核内存量，每核的带宽之后，其中芯片运算速度当然是越快越好。</p>
+
+<ol>
+  <li>
+    <p>内部使用千兆网络（GigE），则意味着我们的带宽只有1Gbps，如果要更快的，可以使用比如Myrinet，不过那会超预算了，此处核心1吉赫兹+每核1吉B内存+1吉bps，嗯，看起来比较完美，哈哈。最终决定是2.0GHz的双核芯片，每核1GB内存</p>
+  </li>
+  <li>
+    <p>芯片，使用AMD Athlon 64 X2 3800 AM2+ CPUs. 2007年一月时每片价格$165 ，这种2.0GHz的双核芯片，是当时可以找到的性价比最好的。 (2007年8月就更便宜了，每片只有$65.00)。一共用了4块。</p>
+  </li>
+  <li>
+    <p>为了尽量减少体积，主板选用的是微星小型一体机主板：MSI Micro-ATX。此主板特点是小(9.6” × 8.2”) ，并且有一个AM2 socket，可支持AMD的Athlon多核芯片。其实如果有条件的话，更应该做的是使用AMD的四核Athlon64 CPU替代这个双核，而这系统恰好还不用改。</p>
+
+    <p>To do so, we use motherboards with a smaller form-factor (和 Little Fe一样) than the usual ATX size, and we space them using threaded rods (like this cluster) and scrap plexiglass, to minimize “packaging” costs.</p>
+  </li>
+  <li>
+    <p>此主板上已经嵌有一个千兆网卡，还有一个PCI-e扩展插槽，在PCI-e插槽插入另一块网卡（41美元），用于平衡芯片运算速度和网络带宽。这样，四块主板总共就有内嵌的4个网卡，外加PCI-e插槽的4张网卡，一共8个网络通道，用网线把它们都连接到8口路由器（100美元）上。</p>
+
+    <p>Our intent was to provide sufficient bandwidth for each core to have its own GigE channel, to make our system less imbalanced with respect to CPU speed (two x 2 GHz cores) and network bandwidth (two x 1 Gbps adaptors). This arrangement also let us experiment with channel bonding the two adaptors, experiment with HPL using various MPI libraries using one vs two NICs, experiment with using one adaptor for “computational” traffic and the other for “administrative/file-service” traffic, and so on.)</p>
+  </li>
+  <li>
+    <p>每块主板插了两根内存，共2G，这8G内存消耗了预算的40%！！</p>
+  </li>
+  <li>
+    <p>为了更小化，本小超算没有使用机箱，而是一个完全非封闭的外架，像Little Fe 和 <a href="http://www.clustercompute.com/">这些集群</a>，把主板直接安装到有机玻璃上面，然后用几根小铁杆撑起来，并连接成一立体状。——</p>
+  </li>
+</ol>
+<aside>这个架子一般的五金店应该可以制造，用导热性好的铝/铁当托盘，整机的热分布会好点，也有利于集中散热，或者借助散热片</aside>
+
+<p>最底部是两片有机玻璃隔开的一个夹层，放着8口路由，光驱，还有250GB的硬盘。</p>
+
+<p>结构图如下：</p>
+
+<p><img src="/staitc/images/个人小超算实战资料汇编/小超算架构.png" alt="小超算的硬件结构" /></p>
+
+<p>图一: Schematic of Microwulf
+我们这小超算的硬件结构</p>
+
+<p>如图所示，最顶层的下方放着一块主板，而中间层则两面都放主板，底层则上方放主板，这样做的目的是尽可能减少高度。</p>
+
+<p>另外，它们距离也不能太近，PCI-e和风扇的高度不一，为了减少高度，两块对着的主板放置的时候使它们错开，最终两块相对着的主板最高部分的间距为 0.5”，每块主板间的间距为6”，如图所示：</p>
+
+<p><img src="/static/images/个人小超算实战资料汇编/主板间距.jpg" alt="主板间距" /></p>
+
+<p>图二: Closeup of Microwulf’s Tower
+主板之间的距离</p>
+
+<p>(说明：这些主板还有一个单独 PCI-e x16插槽，以后想提升性能的时候，可以插上一块GPU）</p>
+
+<p>电源：350瓦的电源供电（每块主板一个），使用双面胶固定在有机玻璃上，电源插座放在最上面的有机玻璃上，如图所示：</p>
+
+<p><img src="/static/images/个人小超算实战资料汇编/电源和风扇.jpg" alt="电源和风扇" />
+Figure Three: Closeup of Microwulf’s Power Supplies
+本小超算的电源和风扇</p>
+
+<p>(此处用胶水固定硬盘、光驱、路由器)</p>
+
+<p>最靠近夹层的底部主板作为“主节点”——主控主板，接有硬盘、光驱（可选）等，系统启动/关机/重启的时候也是从这个部分操作。其他的主板当作“分支节点”，使用网络启动方式(PXE方式)启动。</p>
+
+<p>对最底部的主控主板做特殊设置，接上一块250GB硬盘，并且作为启动分区。插入光驱，主要是用于安装初始系统。</p>
+
+<aside>现在都不需要了，直接用优盘做系统安装盘吧……</aside>
+
+<p>插入另一块网卡10/100 NIC到PCI插槽中，用于连接外部网络。</p>
+
+<p>顶部三个节点都是无硬盘的，通过NFS 使用主控版上的 250 GB硬盘。</p>
+
+<p>下图显示了本小超算各个部分的连接关系（节点0为重心，连接了硬盘、光驱、以及连接外部的接口，内部中心为千兆路由，用于连接其他节点）：</p>
+
+<p><img src="/static/images/个人小超算实战资料汇编/节点模型.png" alt="节点模型" /></p>
+
+<p>Microwulf schematic节点模型</p>
+
+<p>说明：每个节点都有两条独立的通讯线路。</p>
+
+<p>风扇：To accomplish this, we decided to purchase four Zalman 120mm case fans ($8 each) and grills ($1.50 each).一共四个风扇，两个送风，两个出风。如图：</p>
+
+<p><img src="/static/images/个人小超算实战资料汇编/四个风扇.jpg" alt="四个风扇" /></p>
+
+<p>目前效果还不错，运转状态下，测到的温度只比室温高4度。</p>
+
+<p>统一一处的电源供应。</p>
+
+<p>操作系统使用的是有奔头（Ubuntu Linux）</p>
+
+<p>软件：开源通用信道（Open MPI）将自动识别每个节点的网络适配器，并让它们之间组成一个圆环型的信息交流系统。为帮助 开源通用信道 识别收发端，把 内置的网卡配置为 192.168.2.x ，插PCI-e的网卡配置为192.168.3.x 。</p>
+
+<p>价格参考（2007年一月）：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>部件</th>
+      <th>产品名称</th>
+      <th>单价</th>
+      <th>数量</th>
+      <th>总价</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>主板</td>
+      <td>微星 K9N6PGM-F MicroATX</td>
+      <td>$80.00</td>
+      <td>4</td>
+      <td>$320.00</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>芯片</td>
+      <td>威盛Athlon 64 X2 3800+ AM2 CPU</td>
+      <td>$165.00</td>
+      <td>4</td>
+      <td>$660.00</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>内存</td>
+      <td>金士顿 DDR2-667 1GByte RAM</td>
+      <td>$124.00</td>
+      <td>8</td>
+      <td>$992.00</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>电源</td>
+      <td>Echo Star 325W MicroATX Power Supply</td>
+      <td>$19.00</td>
+      <td>4</td>
+      <td>$76.00</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>网卡</td>
+      <td>Intel PRO/1000 PT PCI-Express NIC (节点连接路由)</td>
+      <td>$41.00</td>
+      <td>4</td>
+      <td>$164.00</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>网卡</td>
+      <td>Intel PRO/100 S PCI NIC (主控主板连接外部网络)</td>
+      <td>$15.00</td>
+      <td>1</td>
+      <td>$15.00</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>路由器</td>
+      <td>Trendware TEG-S80TXE 8-port Gigabit Ethernet Switch</td>
+      <td>$75.00</td>
+      <td>1</td>
+      <td>$75.00</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>硬盘 	希捷7200转 250GB SATA硬盘</td>
+      <td>$92.00</td>
+      <td>1</td>
+      <td>$92.00</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>光驱</td>
+      <td>Liteon SHD-16S1S 16X</td>
+      <td>$19.00</td>
+      <td>1</td>
+      <td>$19.00</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>冷切系统</td>
+      <td>Zalman ZM-F3 120mm Case Fans</td>
+      <td>$8.00</td>
+      <td>4</td>
+      <td>$32.00</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>风扇</td>
+      <td>Generic NET12 Fan Grill (120mm)</td>
+      <td>$1.50  + shipping</td>
+      <td>4</td>
+      <td>$10.00</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>硬件支架</td>
+      <td>36” x 0.25” threaded rods</td>
+      <td>$1.68</td>
+      <td>3</td>
+      <td>$5.00</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>硬件固定</td>
+      <td>Lots of 0.25” nuts and washers</td>
+      <td> </td>
+      <td> </td>
+      <td>$10.00</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>机箱或外壳</td>
+      <td>12” x 11”</td>
+      <td>有机玻璃(是我们物理实验室的废品)</td>
+      <td>$0.00</td>
+      <td>4</td>
+      <td>$0.00</td>
+    </tr>
+    <tr>
+      <td>总价</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>$2,470.00</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>非必须的硬件</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>部件</th>
+      <th>产品名称</th>
+      <th>单价</th>
+      <th>数量</th>
+      <th>总价</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>KVM Switch</td>
+      <td>Linkskey LKV-S04ASK</td>
+      <td>$50.00</td>
+      <td>1</td>
+      <td>$50.00</td>
+    </tr>
+    <tr>
+      <td>总价</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td>$50.00</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>除了技术支持还有硬件加固 (购买自Lowes), 风扇和转接器购买自 <a href="http://newegg.com">新蛋</a>, 其他都购买自（量多有折扣，呵呵）：</p>
+
+<blockquote>
+  <p>N F P Enterprises
+1456 10 Mile Rd NE
+Comstock Park, MI 49321-9666
+(616) 887-7385</p>
+</blockquote>
+
+<p>这样省来省去的，总造价就控制在2500美元以下了，平均$308.75每核。</p>
+
+<p>2007年8月配件价格：</p>
+
+<p>各个部件的价格下降很快。芯片、内存、网络、硬盘等，都降了好多价格。2007年8月在 新蛋（Newegg） 中的价格：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>部件</th>
+      <th>产品名称</th>
+      <th>单价</th>
+      <th>数量</th>
+      <th>总价</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>主板</td>
+      <td>微星K9N6PGM-F MicroATX</td>
+      <td>$50.32</td>
+      <td>4</td>
+      <td>$201.28</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>芯片</td>
+      <td>威盛　Athlon 64 X2 3800+ AM2 CPU</td>
+      <td>$65.00</td>
+      <td>4</td>
+      <td>$260.00</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>内存</td>
+      <td>Corsair DDR2-667 2 x 1GByte RAM</td>
+      <td>$75.99</td>
+      <td>4</td>
+      <td>$303.96</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>电源</td>
+      <td>LOGISYS Computer PS350MA MicroATX 350W Power Supply</td>
+      <td>$24.53</td>
+      <td>4</td>
+      <td>$98.12</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>网卡</td>
+      <td>Intel PRO/1000 PT PCI-Express NIC (节点连接路由)</td>
+      <td> </td>
+      <td>$34.99</td>
+      <td>4</td>
+      <td>$139.96</td>
+    </tr>
+    <tr>
+      <td>网卡</td>
+      <td>Intel PRO/100 S PCI NIC (主控主板连接外部网络)</td>
+      <td>$15.30</td>
+      <td>1</td>
+      <td>$15.30</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>路由器</td>
+      <td>SMC SMCGS8 10/100/1000Mbps 8-port Unmanaged Gigabit Switch</td>
+      <td>$47.52</td>
+      <td>1</td>
+      <td>$47.52</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>硬盘</td>
+      <td>希捷7200转 250GB SATA 硬盘</td>
+      <td>$64.99</td>
+      <td>1</td>
+      <td>$64.99</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>光驱</td>
+      <td>Liteon SHD-16S1S 16X</td>
+      <td>$23.83</td>
+      <td>1</td>
+      <td>$23.83</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>制冷设备</td>
+      <td>Zalman ZM-F3 120mm Case Fans</td>
+      <td>$14.98</td>
+      <td>4</td>
+      <td>$59.92</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>风扇</td>
+      <td>Generic NET12 Fan Grill (120mm)</td>
+      <td>$6.48</td>
+      <td>4</td>
+      <td>$25.92</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>硬件支架</td>
+      <td>36” x 0.25” threaded rods</td>
+      <td>$1.68</td>
+      <td>3</td>
+      <td>$5.00</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>硬件加固</td>
+      <td>Lots of 0.25” nuts and washers</td>
+      <td> </td>
+      <td> </td>
+      <td>$10.00</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>机箱或外壳</td>
+      <td>12” x 11”</td>
+      <td>有机玻璃（来自物理实验室的废物）</td>
+      <td>$0.00</td>
+      <td>4</td>
+      <td>$0.00</td>
+    </tr>
+    <tr>
+      <td>总价</td>
+      <td> </td>
+      <td> </td>
+      <td>$1,255.80</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>(现在价格应该更低了!而且性能方面应该更强悍了！！！)</p>
+
+<p>2007年8月，这个性价比已经达到了4.784美元/亿次，突破5美元/亿次！！！！！</p>
+
+<p>性耗比则保持不变。</p>
+
+<p>如果融合价格、性能、功耗，则每百万次/瓦/美元为0.04645，是原来的小超算两倍。美元/瓦/百万次为 73,255，也是原来的两倍。</p>
+
+<h3 id="section-11">构建配置：</h3>
+
+<p><a href="http://www.calvin.edu/%7Eadams/research/microwulf/sys/microwulf_notes.pdf">软件系统构建说明</a>，有详细的介绍文件下载——建议想自己构建的人下载下来，然后按照其说明，逐步完成。</p>
+
+<blockquote>
+  <p>细节是魔鬼</p>
+</blockquote>
+
+<p>首先是<strong>选用哪个你牛叉发行版</strong> ：曾经一度使用Gentoo，但后来觉得gentoo太消耗能量了（包括系统管理员的精力和系统的耗电），后来试了试有奔头，一开始安装的桌面是6.10版本，其内核是2.6.17，但美中不足的是he on-board NIC的驱动需要到2.6.18才内置，所以一开始两个月，我们的小超算就用的7.04的测试版（内核是2.6.20），直到最后稳定版发行就换了稳定版。</p>
+
+<p>在其他三个计算节点上，安装的是有奔头的服务器版，因为它们不需要桌面功能。</p>
+
+<p>也就是： <strong>有奔头桌面版+3个有奔头服务器版</strong></p>
+
+<p><strong>集群管理软件</strong>： 试过一些集群管理软件：<a href="http://www.rocksclusters.org/wordpress/">ROCKS</a>, <a href="http://oscar.openclustergroup.org/">Oscar</a>, 和 <a href="http://warewulf.lbl.gov/cgi-bin/trac.cgi">Warewulf</a>，但ROCKS和Oscar不支持无盘的节点；Warewulf工作良好，但因为本小超算实在太小，目前看不出其优势来。因为<a href="http://www.linuxclustersinstitute.org/Linux-HPC-Revolution/Archive/PDF06/35-Cope_J_final.pdf">这篇论文</a>，曾经想使用iSCSI；不过为了尽快让我们的集群运行起来，还是决定使用 <em>NFSroot</em>，因为其配置非常简单，只需要修改 <code>/etc/initramfs.conf</code> ，让其生成一个启动用内存镜像（initial ramdisk） that does NFSroot and then setting up DHCP/TFTP/PXELinux on the head node, as you would for any diskless boot situation.</p>
+
+<p><strong>网络配置</strong>：we gave each onboard NIC an address on a 192.168.2.x subnet, and gave each PCI-e NIC an address on a 192.168.3.x subnet. Then we routed the NFS traffic over the 192.168.2.x subnet, to try to separate “administrative” traffic from computational traffic. It turns out that OpenMPI will use both network interfaces (see below), so this served to spread communication across both NICs.</p>
+
+<p>One of the problems we encountered is that the on-board NICs (Nvidia) present soem difficulties. After our record setting run (see the next section) we started to have trouble with the on-board NIC. After a little googling, we added the following option to the forcedeth module options:</p>
+
+<pre><code>forcedeth max_interrupt_work=35
+</code></pre>
+
+<p>The problem got better, but didn’t go away. Originally we had the onboard Nvidia GigE adaptor mounting the storage. Unfortunately, when the Nvidia adaptor started to act up, it reset itself, killing the NFS mount and hanging the “compute” nodes. We’re still working on fully resolving this problem, but it hasn’t kept us from benchmarking Microwulf.</p>
+
+<p><strong>效果图：</strong>直接点击上面目录连接，可查看</p>
+
+<p>性能表现：
+所获得的性能表现</p>
+
+<p>Once Microwulf was built and functioning it’s fairly obvious that we wanted to find out how ‘fast’ it was. Fast can have many meanings, depending upon your definition. But since the HPL benchmark is the standard used for the Top500 list, we decided to use it as our first measure of performance. </p>
+
+<p>本超算安装 Ubuntu当时的开发版（gcc-4.1.2），并编译安装了Open MPI和MPICH。
+Initially we used OpenMPI as our MPI library of choice and we had both GigE NICs configured (the on-board adaptor and the Intel PCI-e NIC that was in the x16 PCIe slot).
+Then we built the GOTO BLAS library, and HPL, the High Performance Linpack benchmark.</p>
+
+<p>The Goto BLAS library built fine, but when we tried to build HPL (which uses BLAS), we got a linking error indicating that someone had left a function named main() in a module named main.f in /usr/lib/libgfortranbegin.a. This conflicted with main() in HPL. Since a library should not need a main() function, we used ar to remove the offending module from /usr/lib/libgfortranbegin.a, after which everything built as expected.</p>
+
+<p>Next, we started to experiment with the various parameters for running HPL - primarily problem size and process layout. We varied PxQ between {1x8, 2x4}, varied NB between {100, 120, 140, 160, 180, 200}, and used increasing values of N (problem size) until we ran out of memory. As an example of the tests we did, Figure Six below is a plot of the HPL performance in GFLOPS versus the problem size N.
+Figure Six: Microwulf Results for HPL WR00R2R24 (NB=160)
+Figure Six: Microwulf Results for HPL WR00R2R24 (NB=160)</p>
+
+<p>For Figure Six we chose PxQ=2x4, NB=160, and varied N from a very small number up to 30,000. Notice that above N=10,000, Microwulf achieves 20 GLFOPS, and with N greater than 25,000, it exceeds 25 GFLOPS. Anything above N=30,000 produced “out of memory” errors.</p>
+
+<p>此小超算测试获得峰值性能 26.25 GFLOPS，其理论上的峰值性能是32 GLFOPS. (Eight cores x 2 GHz x 2 double-precision units per core.)，也就是说此超算对硬件的最大利用率可达82%。 
+注意：此高利用率是因为使用了Open MPI，which will use both GigE interfaces. It will round-robin data transfers over the various interfaces unless you explicitly tell it to just use certain interfaces.</p>
+
+<p>It’s important to note that this performance occurred using the default system and Ethernet settings. In particular, we did not tweak any of Ethernet parameters mentioned in Doug Eadline and Jeff Layton’s article on cluster optimization. We were basically using “out of the box” settings for these runs.</p>
+
+<p>To assess how well our NICs were performing, Tim did some followup HPL runs, and used netpipe to gauge our NICs latency. Netpipe reported 16-20 usecs (microseconds) latency on the onboard NICs, and 20-25 usecs latency on the PCI-e NICs, which was lower (better) than we were expecting.</p>
+
+<p>As a check on performance we also tried another experiment. We channel bonded the two GigE interfaces to produce, effectively, a single interface. We then used MPICH2 with the channel bonded interface and used the same HPL parameters we found to be good for Open-MPI. The best performance we achieved was 24.89 GLOPS (77.8% efficiency). So it looks like Open MPI and multiple interfaces beats MPICH2 and a bonded interface.</p>
+
+<p>Another experiment we tried was to use Open MPI and just the PCI-e GigE NIC. Using the same set of HPL parameters we have been using we achieved a performance of 26.03 GFLOPS (81.3% efficiency). 
+This is fairly close to the performance we obtained when using both interfaces. This suggests that the on-board NIC isn’t doing as much work as we thought.</p>
+
+<p>下面看看历年最强500超算里面的本小超算性能方面的排名：</p>
+
+<pre><code>1993年11月: #6
+1994年11月: #12
+1995年11月: #31
+1996年11月: #60
+1997年11月: #122
+1998年11月: #275
+1999年6月: #439
+1999年11月: 被踢出名单了
+</code></pre>
+
+<p>1993年11月，本小超算可以排名世界第6。1999年6月，排名为第439，相比于一般超算放在一个大大的机房里，而且需要众多芯片，这个4片、8芯的集群，只有11” x 12” x 17”，能有如此表现，很不错了。</p>
+
+<blockquote>
+  <p>更进一步挖掘下这个列表：
+1993年11月的排名中，排在第五位的超算是用了512片核芯的Thinking Machines CM-5/512，运算速度达到300亿次。本小超算的4核相当于当年的512核啊，哈哈。</p>
+</blockquote>
+
+<blockquote>
+  <p>1996年11月，此小超算排在第60位，下一个是用了256片核芯的Cray T3D MC256-8，现在8核的性能都超过11年前的256核了，
+此处还没说价格差异呢，T3D花费了上百万美元！</p>
+</blockquote>
+
+<p>超算性能一般以每秒浮算次数（flops）来衡量。早期超算使用百万次来衡量，随着硬件飞跃，十亿次已经是很落后的指标了，现在都流行用万亿次，甚至千万亿次来表示了。
+(Mflops: 106 flops  Gflops: 109 flops  Tflops: 1012 flops Pflops: 1015 flops ）。</p>
+
+<p>另外，需要注意区分：</p>
+
+<ul>
+  <li>峰值性能：理论上最大的性能表现</li>
+  <li>测量性能：用检测软件检测出来的性能表现</li>
+</ul>
+
+<p>一般计算机生产商会标示峰值，但实际检测一般只有峰值的50%-60%左右。</p>
+
+<p>另一个要注意的是精度，一般高性能运算都是用的双精度，所以不可混淆了单精度和双精度运算。</p>
+
+<p>The standard benchmark (i.e., used by the top500.org supercomputer list) for measuring supercomputer performance is high performance Linpack (aka HPL), a program that exercises and reports a supercomputer’s double-precision floating point performance. To install and run HPL, you must first install a version of the Basic Linear Algebra Subprograms (BLAS) libraries, since HPL depends on them.</p>
+
+<p>In March 2007, we benchmarked Microwulf using HPL and Goto BLAS. After compiling and installing each package, we ran the standard, double-precision version of HPL, varying its parameter values as follows: We varied PxQ between {1x8, 2x4}; varied NB between {100, 120, 140, 160, 180, 200}; and used increasing values of N, starting with 1,000. For the following parameter values:</p>
+
+<pre><code>PxQ = 2x4; NB = 160; N = 30,000
+</code></pre>
+
+<p>HPL reported 26.25 Gflops on its WR00R2R4 operation. Microwulf also exceeded 26 Gflops on other operations, but 26.25 Gflops was our maximum.</p>
+
+<p>在最强500超算中，1996年的Cray T3D-256也才达到253亿次，所以我们这个260亿次的性能，是足够用来做很多事情的了。</p>
+
+<p>Since we benchmarked Microwulf, Advanced Clustering Technologies has published a convenient web-based calculator that removes much of the trial and error from tuning HPL.</p>
+
+<h3 id="section-12">价能比：</h3>
+
+<p>本小超算价格 $2470，性能26.25 Gflops，其性价比为 $94.10/Gflop或者是少于$0.10/Mflop，这是第一个性价比突破$100/Gflop的超算。</p>
+
+<p>下面列表可作为参考，了解下这个性价比的意义:</p>
+
+<p>In 1976, the Cray-1 cost more than 8 million dollars and had a peak (theoretical maximum) performance of 250 Mflops, making its PPR more than $32,000/Mflop. Since peak performance exceeds measured performance, its PPR using measured performance (estimated at 160 Mflops) would be much higher.</p>
+
+<p>In 1985, the Cray-2 cost more than 17 million dollars and had a peak performance of 3.9 Gflops, making its PPR more than $4,350/Mflop ($4,358,974/Gflop).</p>
+
+<p>1997年，打败西方象棋世界冠军卡斯帕罗夫的 IBM 深蓝。价格是5百万美元，性能是113.8亿次，其性价比是43936.7美元/亿次</p>
+
+<p>In 2003, the U. of Kentucky’s Beowulf cluster KASY0 cost $39,454 to build, and produced 187.3 Gflops on the double-precision version of HPL, giving it a PPR of about $210/Gflop.
+Also in 2003, the University of Illinois at Urbana-Champaign’s National Center for Supercomputing Applications built the PS 2 Cluster for about $50,000. No measured performance numbers are available; which isn’t surprising, since the PS-2 has no hardware support for double precision floating point operations. 
+This cluster’s theoretical peak performance is about 500 Gflops (single-precision); however, one study showed that the PS-2’s double-precision performance took over 17 times as long as its single-precision performance. Even using the inflated single-precision peak performance value, its PPR is more than $100/Gflop; it’s measured double-precision performance is probably more than 17 times that.</p>
+
+<p>In 2004, Virginia Tech built System X, which cost 5.7 million dollars, and produced 12.25 Tflops of measured performance, giving it a PPR of about $465/Gflop.</p>
+
+<p>In 2007, Sun’s Sparc Enterprice M9000 with a base price of $511,385, produced 1.03 Tflops of measured performance, making its PPR more than $496/Gflop. (The base price is for the 32 cpu model, the benchmark was run using a 64 cpu model, which is presumably more expensive.) </p>
+
+<p>$9.41/亿次，我们的小超算可以说是超算里面性价比最好的一个了，不过呢，还没法提供千万亿次的运算，若有需要，或许可以突破这个价格限制，让性能方面获得更大的提升。</p>
+
+<h3 id="section-13">效能 - 世界记录　功耗：</h3>
+
+<p>以2007年一月的价格，本小超算用了2470美元，获得262.5亿次的运算速度，平均9.41美元／亿次。这个已经成为新的世界纪录了。</p>
+
+<p>另外，节能方面的事情最近也比较敏感，电能比（耗电量/性能）也需要测量下了，性耗比对集群是非常重要的，尤其是成片的集群（比如谷歌的服务器场）。本小超算我们测试了下，</p>
+
+<ul>
+  <li>待机需要消耗250瓦（平均30瓦每核），</li>
+  <li>运行是需要消耗450瓦，</li>
+</ul>
+
+<p>算了下运行时的性耗比就是1.714瓦/亿次。</p>
+
+<p>对比下其他的超算。</p>
+
+<p>专门进行节能设计的超算Green Destiny 使用了非常节能的芯片，只需要较低的冷切，240核消耗了3.2千瓦，获得的运算性能是1010亿次，性耗比为3.1瓦/亿次。是我们这个自制的小超算的两倍哦！！！</p>
+
+<p>Another interesting comparison is to the Orion Multisystems clusters. Orion is no longer around, but a few years ago they sold two commercial clusters: a 12-node desktop cluster (the DS-12) and a 96-node deskside cluster (the DS-96). Both machines used Transmeta CPUs. The DS-12 used 170W under load, and its performance was about 13.8 GFLOPS. This gives it a performance/power ratio of 12.31W/GLFOP (much better than Microwulf). The DS-96 consumed 1580W under load, with a performance of 109.4 GFLOPS. This gives it a performance/power ratio of 14.44W/GFLOP, which again beats Microwulf.</p>
+
+<p>Another way to look at power consumption and price is to use the metric from Green 500. Their metric is MFLOPS/Watt (the bigger the number the better). Microwulf comes in at 58.33, the DS-12 is 81.18, and the deskside unit is 69.24. So using the Green 500 metric we can see that the Orion systems are more power efficient than Microwulf. But let’s look a little deeper at the Orion systems.</p>
+
+<p>The Orion systems look great at Watts/GFLOP and considering the age of the Transmeta chips, that is no small feat. But let’s look at the price/performance metric. The DS-12 desktop model had a list price of about $10,000, giving it a price/performance ratio of $724/GFLOP. The DS-96 deskside unit had a list price of about $100,000, so it’s price/performance is about $914/GFLOP. That is, while the Orion systems were much more power efficient, their price per GFLOP is much higher than that of Microwulf, making them much less cost efficient than Microwulf.</p>
+
+<p>Since Microwulf is better than the Orion systems in price/performance, and the Orion systems are better than Microwulf in power/performance, let’s try some experiments with metrics to see if we can find a useful way to combine the metrics. Ideally we’d like a single metric that encompasses a system’s price, performance, and power usage. As an experiment, let’s compute MFLOP/Watt/$. It may not be perfect, but at least it combines all 3 numbers into a single metric, by extending the Green 500 metric to include price. You want a large MFLOP/Watt to get the most processing power per unit of power as possible. We also want price to be as small as possible so that means we want the inverse of price to be as large as possible. This means that we want MFLOP/Watt/$ to be as large as possible. With this in mind, let’s see how Microwulf and Orion did.</p>
+
+<ul>
+  <li>Microwulf: 0.2362</li>
+  <li>Orion DS-12: 0.00812</li>
+  <li>Orion DS-96: 0.00069 </li>
+</ul>
+
+<p>From these numbers (even though they are quite small), Microwulf is almost 3 times better than the DS-12 and almost 35 times better than the DS-96 using this metric. We have no idea if this metric is truly meaningful but it give us something to ponder. It’s basically the performance per unit power per unit cost. (OK, that’s a little strange, but we think it could be a useful way to compare the overall efficiency of different systems.)</p>
+
+<p>We might also compute the inverse of the MFLOP/Watt/$ metric: – $/Watt/MFLOP – where you want this number to be as small as possible. (You want price to be small and you want Watt/MFLOP to be small). So using this metric we can see the following:</p>
+
+<ul>
+  <li>Microwulf: 144,083</li>
+  <li>Orion DS-12: 811,764</li>
+  <li>Orion DS-96: 6,924,050 </li>
+</ul>
+
+<p>This metric measures the price per unit power per unit performance. Comparing Microwulf to the Orion systems, we find that Microwulf is about 5.63 times better than the DS-12, and 48 times better than the DS-96. It’s probably a good idea to stop here, before we drive ourselves nuts with metrics.</p>
+
+<p>While most clusters publicize their performance data, Very few clusters publicize their power consumption data.</p>
+
+<p>Some notable exceptions are:</p>
+
+<p>Green Destiny, an experimental blade cluster built at Los Alamos National Labs in 2002. Green Destiny was built expressly to minimze power consumption, using 240 Transmeta TM560 CPUs. Green Destiny consumed 3.2 kilowatts and produced 101 Gflops (on Linpack), yielding a power/performance ratio of 31 watts/Gflop. Microwulf’s 17.14 watts/Gflop is much better.</p>
+
+<pre><code>The (apparently defunct) Orion Multisystems DS-12 and DS-96 systems: 
+
+The DS-12 "desktop" system consumed 170 watts under load, and produced 13.8 Gflops (Linpack), for a power/performance ratio of 12.31 watts/Gflop. (The DS-12's list price was about $10,000, making its price/performance ratio $724/Gflop.)
+The DS-96 "under desk" system consumed 1580 watts under load, and produced 109.4 Gflops (Linpack), for a power/performance ratio of 14.44 watts/Gflop. (The DS-96's list price was about $100,000, making its price/performance ratio about $914/Gflop.)
+</code></pre>
+
+<p>Orion Multisystems DS-12 and DS-96</p>
+
+<p>我们的小超算性价比上 远超这些商业机器，其性耗比也居于前流。</p>
+
+<p>节能500超算名单，是基于最强500超算的（本小超算没有被列入，呵呵），排名按每瓦运算次数排列。我们的小超算是1.713瓦／亿次，换算如下：</p>
+
+<pre><code>1 / 17.14 W/Gflop * 1000 Mflops/Gflop= 58.34 Mflops/W
+</code></pre>
+
+<p>2007年8月，我们的小超算超越了节能500超算的第二位，Mare Nostrum (58.23 Mflops/W) – 可惜啊，和排名第一BlueGene/L (112.24 Mflops/W)的距离有点远。</p>
+
+<h3 id="section-14">结论</h3>
+
+<p>此小超算用了4块芯片、8核集群，大小为11” x 12” x 17”，适合放在桌面上，也适合打包放到飞机上运输。</p>
+
+<p>除了小巧，HPL检测本超算有262.5亿次的运算性能，总花费是2470美元（2007年1月），性价比为9.41美元/亿次。</p>
+
+<p>本小超算能有如此神力的原因是：</p>
+
+<ul>
+  <li>多核芯片已经普及：这样可以让系统变得更小。</li>
+  <li>内存大降价： 此小超算最贵的部分就是这个，不过价格一直在快速下降中，8G内存应该够用了吧？？</li>
+  <li>千兆网卡已经普及：On-board GigE adaptors, inexpensive GigE NICs, and inexpensive GigE switches allow Microwulf to offer enough network bandwidth to avoid starving a parallel computation with respect to communication.</li>
+</ul>
+
+<p>我们不打算保守我们的技术秘密，而是希望所有人都来尝试这玩玩，嗯，其实很多部件都是可以替换的。</p>
+
+<p>比如，随着固态硬盘的降价，可以试试固态硬盘替换掉机械硬盘，看看对性能有何影响。</p>
+
+<p>比如内存：因为内存降价，可以把内存换为2GB的，这样每核可以2GB内存。Recalling that HPL kept running out of memory when we increased N above 30,000, it would be interesting to see how many more FLOPS one could eke out with more RAM. The curve in Figure Six suggests that performance is beginning to plateau, but there still looks to be room for improvement there.</p>
+
+<p>比如主板和芯片：此微星主板使用AM2插槽，这个插槽刚好支持威盛新的4核Athlon64芯片，这样就可以替换掉上文中的双核芯片，使得整个系统变成16核，性能更加强劲。有兴趣的同学可以测测这么做的结果性能提升多少？性价比因此而产生的变化？千兆内部网的效能变化等……</p>
+
+<p>等等……</p>
+
+<aside>尤其是已经几年后的今天（2014），这个列表几乎可以全部替换掉了。</aside>
+
+<h3 id="section-15">应用：</h3>
+
+<p>和其他超算一样，本小超算可以运行一些并行运算软件——需要特别设计，以利用系统的并行运算能力。</p>
+
+<p>这些软件一般会使用 通用信道和并行虚拟机。这几个库提供了分布式计算的最基础功能，一是使得进程可以在网络间沟通和同步，二是提供了一个分布执行最后汇总的机制，使得程序可以被复制成多份，分别在各个节点上运行。</p>
+
+<p>有很多应用软件已经可以在本小超算上使用，大部分是由特定领域的科学家写的，用于解决特定问题：</p>
+
+<p><a href="http://www.geocities.com/andrei_chernousov/freecfd.htm">CFD codes</a>, an assortment of programs for computational fluid dynamics</p>
+
+<p><a href="http://www.ee.duke.edu/%7Ewrankin/Dpmta/">DPMTA</a>, a tool for computing N-body interactions <a href="http://ftp.sunet.se/pub/molbio/evolve/fastdnaml/fastDNAml.html">fastDNAml</a>, a program for computing phylogenetic trees from DNA sequences</p>
+
+<p>Parallel finite element analysis (FEA) programs, 包括：</p>
+
+<ul>
+  <li><a href="http://adventure.q.t.u-tokyo.ac.jp/">Adventure</a>, the ADVanced ENgineering analysis Tool for Ultra large REal world, a library of 20+ FEA modules</li>
+  <li><a href="http://www.dealii.org/">deal.II</a>, a C++ program library providing computational solutions for partial differential equations using adaptive finite elements</li>
+  <li><a href="http://www.maths.bath.ac.uk/%7Eparsoft/doug/">DOUG</a>, Domain decomposition On Unstructured Grids</li>
+  <li><a href="http://geofem.tokyo.rist.or.jp/">GeoFEM</a>, a multi-purpose/multi-physics parallel finite element simulation/platform for solid earth</li>
+  <li><a href="http://www.rcs.manchester.ac.uk/research/parafem">ParaFEM</a>, a general parallel finite element message passing libary </li>
+  <li>Parallel <a href="http://www.fftw.org/parallel/parallel-fftw.html">FFTW</a>, a program for computing fast Fourier transforms (FFT)</li>
+  <li><a href="http://www.mpa-garching.mpg.de/galform/gadget/index.shtml">GADGET</a>, a cosmological N-body simulator</li>
+  <li><a href="http://www.msg.ameslab.gov/gamess/">GAMESS</a>, a system for ab initio quantum chemistry computations</li>
+  <li><a href="http://www.gromacs.org/">GROMACS</a>, a molecular dynamics program for modeling molecular interactions, especially those from biochemistry</li>
+  <li><a href="http://www.fos.su.se/%7Esasha/md_prog.html">MDynaMix</a>, a molecular dynamics program for simulating mixtures</li>
+  <li><a href="http://www.mpiblast.org/">mpiBLAST</a>, a program for comparing gene sequences</li>
+  <li><a href="http://www.ks.uiuc.edu/Research/namd/">NAMD</a>, a molecular dynamics program for simulating large biomolecular systems</li>
+  <li><a href="http://www.nas.nasa.gov/Resources/Software/npb.html">NPB 2</a>, the NASA Advanced Supercomputing Division’s Parallel Benchmarks suite. 包含有:
+    <ul>
+      <li>BT, a computational fluid dynamics simulation</li>
+      <li>CG, a sparse linear system solver</li>
+      <li>EP, an embarrassingly parallel floating point solver</li>
+      <li>IS, a sorter for large lists of integers</li>
+      <li>LU, a different CFD simulation</li>
+      <li>MG, a 3D scalar Poisson-equation solver</li>
+      <li>SP, yet another (different) CFD simulation </li>
+    </ul>
+  </li>
+  <li><a href="http://glaros.dtc.umn.edu/gkhome/metis/parmetis/overview">ParMETIS</a>, a library of operations on graphs, meshes, and sparse matrices</li>
+  <li><a href="http://pvmpov.sourceforge.net/">PVM-POV</a>, a ray-tracer/renderer</li>
+  <li><a href="http://www.gps.caltech.edu/%7Ejtromp/research/downloads.html">SPECFEM3D</a>, a global and regional seismic wave simulator</li>
+  <li><a href="http://www.astro.princeton.edu/%7Ebode/TPM/index.html">TPM</a>, a collisionless N-body (dark matter) simulator </li>
+</ul>
+
+<p>这是我们使用小超算的领域：</p>
+
+<ul>
+  <li>给卡尔文大学的本科生做研究项目</li>
+  <li>As a high performance computing resource for <a href="http://cs.calvin.edu/curriculum/cs/374">CS 374: High Performance Computing</a></li>
+  <li>正在做的事情：
+    <ul>
+      <li>给本地的高中学校也定制几个，以提升学生了解计算的兴趣</li>
+      <li>用于会议，作为一个个人超算的示例模型。</li>
+      <li>空闲时，此小超算用于斯坦福大学的 <a href="http://folding.stanford.edu/">Folding@Home</a>项目： which helps researchers better understand protein folding, which in turn helps them the causes of (and hopefuly the cures for) genetic diseases. Excess CPU cycles on a Beowulf cluster like Microwulf can be devoted to pretty much any <a href="http://en.wikipedia.org/wiki/List_of_distributed_computing_projects">distributed computing project</a>. </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="section-16">常见问题回答：</h3>
+
+<ol>
+  <li>
+    <p>是不是小超算运行 大型软件或者是游戏 比较快？</p>
+
+    <p>有可能，但有个前提，就是该软件或者游戏是可以通过网络进行并行运行的，(例如该软件使用了message passing interface (MPI))，不过现实是很少有公司会开发这样的游戏，因为超算一般不是普通人用的，应用软件则有一些，但也不是普通人会经常接触的。</p>
+
+    <p>普通多核电脑，内存对processor是公用的，每个运行在不同核心上的  programs/threads 可在这共享的内存层面进行 通讯。</p>
+
+    <p>而小超算不同，每块主板都有自己独用的 内存，所以程序无法在这些分散在不同主板上的内存层面 通讯， 它们是依赖网络进行通讯（使用MPI）。
+ Since its memory is distributed among the cluster’s CPUs, a cluster is a distributed memory multiprocessor.</p>
+  </li>
+  <li>
+    <p>可以使用视窗系统来驱动小超算么？</p>
+
+    <p>小超算的关键是用让集群互联，并行协作，目前最常用的软件是 MPI。</p>
+
+    <p>视窗系统下也有若干个版本的 MPI 可用，(To find them, just google ‘windows mpi’.)因此,也可以用视窗操作系统来组小超算。微软已经发布有若干个用于 高性能运算的 操作系统版本，叫 Windows Compute Cluster Server (Windows CCS)，里面带有所有相关集群用的软件，包括MPI。</p>
+  </li>
+  <li>
+    <p>我也要搞部小超算，可到哪里学习？</p>
+
+    <p>下面链接可以学习：</p>
+
+    <ul>
+      <li>Building a Beowulf System, by Jan Lindheim, provides a quick overview</li>
+      <li>Jacek Radajewski and Douglas Eadline’s HowTo provides a more detailed overview</li>
+      <li>Kurt Swendson’s HowTo provides step-by-step instructions for building a cluster using Redhat Linux and LAM-MPI</li>
+      <li>Engineering a Beowulf-style Compute Cluster, by Robert Brown, is an online book on building Beowulf clusters, with lots of useful information.</li>
+      <li>The Beowulf mailing list FAQ, by Don Becker, et al, is a list of answers to questions frequently posted to the Beowulf.org mailing list, which has a searchable Archive.</li>
+      <li>Beowulf.org’s Projects page provides a list of links to the first hundred or so Beowulf cluster project sites. Many of these sites provide information that is useful to someone building a Beowulf cluster. </li>
+    </ul>
+  </li>
+  <li>
+    <p>怎么把主板按到有机玻璃上？</p>
+
+    <p>Our vendor supplied screws and brass standoffs with our motherboards. The standoffs have a male/screw end, normally screwed into the case; and a female/nut end, to which the motherboard is screwed. To use these to mount the motherboards, we just had to:</p>
+
+    <ul>
+      <li>drill holes in the plexiglass pieces in the same positions as the motherboard mounting holes;</li>
+      <li>screw the brass standoffs into the holes in the plexiglass pieces; and</li>
+      <li>screw the motherboards to the standoffs. </li>
+    </ul>
+
+    <p>To prepare each plexiglass piece, we laid a motherboard on top of it and then used a marker to color the plexiglass through the motherboard’s mounting holes. 技巧就是：</p>
+
+    <ul>
+      <li>one piece of plexiglass has motherboards on both its top and its bottom, so you have to mark both sides; and</li>
+      <li>two motherboards hang upside down, and two sit right-side up, so you have to take that into account when marking the holes. </li>
+    </ul>
+
+    <p>We used a red marker to mark the positions of the holes on motherboards facing up, and a blue marker to mark the positions of the holes on motherboards facing down.</p>
+
+    <p>With the plexiglass pieces marked, we took them to our campus machine shop and used a drill press to drill holes in each piece of plexiglass.</p>
+
+    <p>When all the motherboard holes were drilled, we stacked the plexiglass pieces as they would appear in Microwulf and drilled holes in their corners for the threaded rods.</p>
+
+    <p>We then screwed the standoffs into the plexiglass, taking care not to overtighten them. Being made of soft brass, they are very easy to shear off. If this happens to you, just take the piece of plexiglass back to the drill press and drill out the bit of brass screw that’s in the hole. (Or, if this is the only one, you can just leave it there and use one fewer screws to mount the motherboard.)</p>
+
+    <p>With the standoffs in place, we then placed the motherboards on the standoffs, and used screws to secure them in place. That’s it!</p>
+
+    <p>The only other detail worth mentioning is that before we screwed each motherboard tight to the standoffs, we chose one standoff on each motherboard to ground that motherboard against static. To do this grounding, we got some old phone wire, looped one end to the standoff, and then tightened the screw for that standoff. We then grounded each wire to one of the threaded rods, and grounded that threaded rod to one of the power supplies.</p>
+  </li>
+  <li>
+    <p>这小超算可以卖么？</p>
+
+    <p>否，主要是对商业我们不在行。</p>
+
+    <p>But we are trying to build an endowment to provide in-house funding for student projects like Microwulf, so if you’ve found this site to be useful, please consider making a (tax-deductible) donation to it:</p>
+
+    <blockquote>
+      <p>CS Hardware Endowment Fund
+ Department of Computer Science
+ Calvin College
+ 3201 Burton SE
+ Grand Rapids, MI 49546</p>
+    </blockquote>
+  </li>
+</ol>
+
+<h2 id="section-17">第三部分、小型化：卡片阵列</h2>
+
+<p><a href="http://www.southampton.ac.uk/~sjc/raspberrypi/pi_supercomputer_southampton.htm">此部分原文</a></p>
+
+<p>南安普敦大学的计算机工程师们用 64 个树莓派（Raspberry Pi）构建了一个小超算，<strong>1TB 的内存</strong>（每块树莓派主板上装备了一张 16GB SD 卡），总造价在 2500 英镑以下，命名为 Iridis-Pi，取自该校的另外一台<a href="http://www.southampton.ac.uk/research/new_boundaries/supercomputer.shtml">超级计算机 Iridis（全欧洲最快的运行 Win Server 的超算）</a>。</p>
+
+<p><img src="/static/images/个人小超算实战资料汇编/树莓派阵列.jpg" alt="树莓派阵列" /></p>
+
+<p><strong>说明：</strong>其总的运算速度和前一部分差不多，但内存上提升了不少。</p>
+
+<h3 id="section-18">制作树莓派超算的步骤</h3>
+
+<p>作者：Simon Cox 教授</p>
+
+<p>Computational Engineering and Design Research Group</p>
+
+<p>Faculty of Engineering and the Environment</p>
+
+<p>University of Southampton, SO17 1BJ, UK.</p>
+
+<p>版本：V0.2: 8th September 2012</p>
+
+<h3 id="section-19">第一步 硬件构建过程</h3>
+
+<p>固定用的承载托盘</p>
+
+<p><img src="/static/images/个人小超算实战资料汇编/固定用托盘.jpg" alt="固定用托盘" /></p>
+
+<p>承载托盘2</p>
+
+<p><img src="/static/images/个人小超算实战资料汇编/承载托盘.jpg" alt="承载托盘" /></p>
+
+<p>所有树莓派板卡：
+<img src="/static/images/个人小超算实战资料汇编/树莓派板卡.jpg" alt="树莓派板卡" /></p>
+
+<p>近照</p>
+
+<p><img src="/static/images/个人小超算实战资料汇编/树莓派近照.jpg" alt="树莓派近照" /></p>
+
+<p>电源：</p>
+
+<p><img src="/static/images/个人小超算实战资料汇编/密布电源.jpg" alt="密布电源" /></p>
+
+<aside>此处还需要一个智能变压的，这么多的插座也是很不妥当的。</aside>
+
+<p>最后插入电源效果：</p>
+
+<p><img src="/static/images/个人小超算实战资料汇编/完工图.jpg" alt="完工图" /></p>
+
+<h3 id="section-20">第二步 让机器运行起来</h3>
+
+<ol>
+  <li>
+    <p>下载 <a href="http://www.raspberrypi.org/downloads">底层驱动镜像</a>。此处用的是: <a href="http://downloads.raspberrypi.org/images/raspbian/2012-08-16-wheezy-raspbian/2012-08-16-wheezy-raspbian.zip">2012-08-16-wheezy-raspbian.zip</a></p>
+  </li>
+  <li>
+    <p>烧录底层驱动到闪存盘：可用<a href="http://www.softpedia.com/get/CD-DVD-Tools/Data-CD-DVD-Burning/Win32-Disk-Imager.shtml">win32磁盘烧录工具</a>或者你牛叉、苹果系统内置的dd程序。use the “Write” option to put the image from the disk to your card</p>
+  </li>
+  <li>
+    <p>启动第一块树莓派</p>
+  </li>
+  <li>
+    <p>配置并安装：Expand image to fill card using the option on screen when you first boot. If you don’t do this on first boot, then you need to use，<a href="http://elinux.org/RPi_raspi-config">参见</a></p>
+
+    <pre><code> $ sudo raspi-config
+</code></pre>
+  </li>
+  <li>
+    <p>登录，<a href="http://www.simonthepiman.com/beginners_guide_change_my_default_password.php">修改密码</a></p>
+
+    <pre><code> $ passwd
+</code></pre>
+  </li>
+</ol>
+
+<p>6.注销</p>
+
+<pre><code>    $ exit
+</code></pre>
+
+<ol>
+  <li>
+    <p>然后再登录，看看是否正确</p>
+  </li>
+  <li>
+    <p>更新可用的程序包</p>
+
+    <pre><code> $ sudo apt-get update
+</code></pre>
+  </li>
+  <li>
+    <p>为了稳定性，注意不要和普通电脑一样，进行全局升级（<code>sudo apt-get upgrade</code>），此处只是为了获取可安装程序的列表。</p>
+  </li>
+  <li>
+    <p>安装Fortran等，因为科学运算大都需要这个，所以预先安装了。</p>
+
+    <pre><code>$ sudo apt-get install gfortran
+</code></pre>
+  </li>
+  <li>
+    <p>为了可以在多节点运行程序，需要构建MPI，<a href="http://westcoastlabs.blogspot.co.uk/2012/06/parallel-processing-on-pi-bramble.html">参看手册</a>。要注意两件事：</p>
+  </li>
+  <li>Since we put Fortran in we are good to go without excluding anything</li>
+  <li>
+    <p>手册中提到的软件包是为armel打的，而此处我们需要的是armhf，因此需要自己构建MPI。</p>
+  </li>
+  <li>
+    <p>在继续之前，<a href="http://www.mcs.anl.gov/research/projects/mpich2/documentation/files/mpich2-1.4.1-installguide.pdf">可阅读此链接内容</a>，了解更多信息，下面将安装此连接中的第2.2步开始。</p>
+  </li>
+  <li>
+    <p>新建一目录，用于存放源码</p>
+
+    <pre><code>$ mkdir /home/pi/mpich2
+$ cd ~/mpich2
+</code></pre>
+  </li>
+  <li>
+    <p>获取MPI源码</p>
+
+    <pre><code>$ wget http://www.mcs.anl.gov/research/projects/mpich2/downloads/tarballs/1.4.1p1/mpich2-1.4.1p1.tar.gz
+</code></pre>
+  </li>
+  <li>
+    <p>解压</p>
+
+    <pre><code>$ tar xfz mpich2-1.4.1p1.tar.gz
+</code></pre>
+  </li>
+  <li>
+    <p>新建一路径，存放编译好的文件。此处用 “rpimpi” 替换了原文中的 “you” ，并且用两步来新建路径</p>
+
+    <pre><code>$ sudo mkdir /home/rpimpi/        
+$ sudo mkdir /home/rpimpi/mpich2-install
+</code></pre>
+  </li>
+  <li>
+    <p>新建一路径，用于编译（开编译专用路径的好处是保持源码目录的干净）</p>
+
+    <pre><code>mkdir /home/pi/mpich_build
+</code></pre>
+  </li>
+  <li>
+    <p>切换到编译用的目录</p>
+
+    <pre><code>$ cd /home/pi/mpich_build
+</code></pre>
+  </li>
+  <li>
+    <p>配置编译选项：</p>
+
+    <pre><code>$ sudo /home/pi/mpich2/mpich2-1.4.1p1/configure -prefix=/home/rpimpi/mpich2-install
+</code></pre>
+  </li>
+  <li>
+    <p>开始编译文件：坐下来喝功夫茶吧，因为这步会花很长时间……</p>
+
+    <p>$ sudo make</p>
+  </li>
+  <li>
+    <p>安装编译好的程序：这步时间也会有点长，不过相比编译，还是快多了，哈哈……</p>
+
+    <pre><code>$ sudo make install
+</code></pre>
+  </li>
+  <li>
+    <p>Add the place that you put the install to your path</p>
+
+    <p>$ export PATH=$PATH:/home/rpimpi/mpich2-install/bin</p>
+  </li>
+</ol>
+
+<p>可以写入 <code>.profile</code> 中，这样永久有效。</p>
+
+<pre><code>    $nano ~/.profile
+</code></pre>
+
+<p>然后写入下面两行：</p>
+
+<pre><code>    # Add MPI to path
+    PATH="$PATH:/home/rpimpi/mpich2-install/bin"
+</code></pre>
+
+<ol>
+  <li>
+    <p>检查下看看是否安装正确</p>
+
+    <p>$ which mpicc
+   $ which mpiexec</p>
+  </li>
+  <li>
+    <p>回到家目录，新建一测试目录，并切换到该目录：</p>
+
+    <pre><code>$ cd ~
+$ mkdir mpi_testing
+$ cd mpi_testing
+</code></pre>
+  </li>
+  <li>
+    <p>测试下在单一节点上，MPI的运行状况：</p>
+
+    <pre><code>mpiexec -f machinefile -n &lt;number&gt; hostname
+</code></pre>
+  </li>
+</ol>
+
+<p>输出会包含一个IP地址的列表，此处只有一行，因为只有一台机器。</p>
+
+<pre><code>1. 获知你的ip地址
+
+        $ ifconfig
+
+2. Put this into a single file called machinefile
+</code></pre>
+
+<ol>
+  <li>
+    <p>修改 <code>machinefile</code></p>
+
+    <pre><code>$ nano machinefile
+</code></pre>
+  </li>
+</ol>
+
+<p>加入此行:</p>
+
+<pre><code>    192.168.1.161
+</code></pre>
+
+<p>[或者其他你设定的ip地址]</p>
+
+<ol>
+  <li>
+    <p>运行一下：</p>
+
+    <pre><code>$ mpiexec -f machinefile –n 1 hostname
+</code></pre>
+  </li>
+</ol>
+
+<p>输出下面的信息:</p>
+
+<pre><code>    raspberrypi
+</code></pre>
+
+<ol>
+  <li>
+    <p>测试点C程序。在编译的MPI文件夹下，就有一个CPI例子。使用MPI来计算圆周率：</p>
+
+    <pre><code>$ cd /home/pi/mpi_testing
+$ mpiexec -f machinefile -n 2 ~/mpich_build/examples/cpi
+</code></pre>
+  </li>
+</ol>
+
+<p>下面是输出的信息:</p>
+
+<pre><code>    Process 0 of 2 is on raspberrypi
+    Process 1 of 2 is on raspberrypi
+    pi is approximately 3.1415926544231318, Error is 0.0000000008333387
+</code></pre>
+
+<p>完成此步，说明第一节已经成功了！</p>
+
+<h3 id="section-21">给子节点刷机</h3>
+
+<ol>
+  <li>
+    <p>主节点搞定后，因为里面安装有所有需要的程序，可以把这闪存卡当父卡，接下来就是克隆此卡。</p>
+  </li>
+  <li>
+    <p>关闭Pi：</p>
+
+    <pre><code>$ sudo poweroff
+</code></pre>
+  </li>
+</ol>
+
+<p>拔出闪存卡，插回电脑（或者其他用来写卡的机器）上的写卡器，然后，把这闪存卡上的镜像克隆回电脑上，<a href="http://www.softpedia.com/get/CD-DVD-Tools/Data-CD-DVD-Burning/Win32-Disk-Imager.shtml">参见此文</a>。用的工具和第2步一样。此处用的是 <code>Read</code> 选项。</p>
+
+<p>这镜像存为 <em>2012-08-16-wheezy-raspbian_backup_mpi_master.img</em> ，姑且叫 <em>父镜像</em></p>
+
+<ol>
+  <li>
+    <p>拔出这张父卡，插回第一台树莓派。然后，电脑上插入想写入的新卡，安装第2步，把父镜像刷入这新卡中。注意：因为父镜像里面的软件都是安装好的，所以此处可以不用重复第4步。</p>
+  </li>
+  <li>
+    <p>测试下这新刷的卡：把这新刷的卡插入第二台树莓派中，启动之，看看效果。已经搞定了两台树莓派，接下来进入下面的测试。</p>
+  </li>
+</ol>
+
+<h3 id="ssh-">使用 SSH 登录替换密码方式</h3>
+
+<p>这么做的目的是简化登录，否则那么多树莓派要登录，搞死人。</p>
+
+<p><strong>说明：</strong> 下面所有的命令行，如果没有特别说明，就都是在主节点输入的。</p>
+
+<ol>
+  <li>
+    <p><a href="http://steve.dynedge.co.uk/2012/05/30/logging-into-a-rasberry-pi-using-publicprivate-keys/">参看文档</a>。生成RSA密钥：</p>
+
+    <pre><code>$ cd ~
+$ ssh-keygen -t rsa –C “raspberrypi@raspberrypi”
+</code></pre>
+  </li>
+</ol>
+
+<p>密钥存储在 <code>/home/pi/.ssh/id_rsa</code> 。创建过程会要求输入一些信息，比如 “myfirstpicluster”（不输入也可以，不过不建议这样）。然后放入第二台树莓派中。</p>
+
+<pre><code>    $ cat ~/.ssh/id_rsa.pub | ssh pi@192.168.1.162 "cat &gt;&gt; .ssh/authorized_keys"
+</code></pre>
+
+<ol>
+  <li>
+    <p>登录第二台树莓派，看看刚刚操作结果：</p>
+
+    <p>$ ls –al ~/.ssh</p>
+  </li>
+</ol>
+
+<p>应该可以看到一个文件叫： “authorized_keys”</p>
+
+<ol>
+  <li>
+    <p>在第二台树莓派中，获取下IP地址，然后回到主节点，把获取到的IP加入到主节点的 machinefile。</p>
+
+    <pre><code>$ nano machinefile
+</code></pre>
+  </li>
+</ol>
+
+<p>添加一行：（或者你获取到的其他地址）</p>
+
+<pre><code>    192.168.1.161
+    192.168.1.162
+</code></pre>
+
+<ol>
+  <li>
+    <p>测试下两台树莓派运行C代码。</p>
+
+    <pre><code>$ cd /home/pi/mpi_testing
+$ mpiexec -f machinefile -n 2 ~/mpich_build/examples/cpi
+</code></pre>
+  </li>
+</ol>
+
+<p>下面是输出的信息:</p>
+
+<pre><code>    Process 0 of 2 is on raspberrypi
+    Process 1 of 2 is on raspberrypi
+    pi is approximately 3.1415926544231318, Error is 0.0000000008333387
+</code></pre>
+
+<p>注意：此处还没改主机名，因此会看到此处的主机名是一样的。</p>
+
+<ol>
+  <li>
+    <p>到第二台树莓派上，改下主机名 (看附录1 “Hostname Script”) ，测试下效果：</p>
+
+    <pre><code>$ mpiexec -f machinefile -n 2 ~/mpich_build/examples/cpi
+</code></pre>
+  </li>
+</ol>
+
+<p>下面是输出的信息:</p>
+
+<pre><code>    Process 0 of 2 is on raspberrypi
+    Process 1 of 2 is on iridispi002
+</code></pre>
+
+<blockquote>
+  <p>恭喜，到已经完成了构建2节点超算</p>
+</blockquote>
+
+<h3 id="section-22">构建64节点（甚至更多）的超算</h3>
+
+<ol>
+  <li>
+    <p>关闭所有树莓派</p>
+
+    <pre><code> $ sudo poweroff
+</code></pre>
+  </li>
+  <li>
+    <p>拔出第二台树莓派的闪存卡，插到电脑上，把其镜像提取出来，存为 <em>2012-08-16-wheezy-raspbian_backup_mpi_worker.img</em>，然后把这镜像作为其他子节点的母卡：这张母卡上比父卡多了一个 密钥。然后，按照上面的第2步，插入新的闪存卡，刷入镜像。</p>
+  </li>
+</ol>
+
+<p>之后不断重复这步，直到所有的树莓派都刷完。</p>
+
+<ol>
+  <li>
+    <p>刷完机后，需要登录到主节点，修改 <em>machinefile</em> 添加IP地址 </p>
+  </li>
+  <li>
+    <p>重命名下各个树莓派的主机名，比如可在主节点输入：</p>
+
+    <pre><code> ssh pi@192.168.1.162 'sudo echo "iridispi002" | sudo tee /etc/hostname'
+ ssh pi@192.168.1.163 'sudo echo "iridispi003" | sudo tee /etc/hostname'
+ ssh pi@192.168.1.164 'sudo echo "iridispi004" | sudo tee /etc/hostname'
+ ……
+</code></pre>
+  </li>
+</ol>
+
+<p>依次类推（汗哦，64个节点，逐个写，累死人哦……），算了， 还是写个脚本自动命名吧</p>
+
+<h4 id="pythonmpi4pyhttpmpi4pyscipyorgdocsusrmanindexhtml">5. 使用脚本来自动命名，此处用的是python的<a href="http://mpi4py.scipy.org/docs/usrman/index.html">mpi4py</a></h4>
+
+<ol>
+  <li>
+    <p>安装软件</p>
+
+    <pre><code> $ sudo apt-get install python-mpi4py
+</code></pre>
+  </li>
+  <li>
+    <p>放入软件</p>
+
+    <pre><code> $ cd ~
+ $ mkdir mpi4py
+ $ cd mpi4py
+ $ wget http://mpi4py.googlecode.com/files/mpi4py-1.3.tar.gz
+ $ tar xfz mpi4py-1.3.tar.gz
+ $ cd mpi4py-1.3/demo
+</code></pre>
+  </li>
+  <li>
+    <p>不断在每个节点上重复第一二步（之前因为没考虑到这步，所以没有把这个也烧录进母镜像中，所以需要逐个写入，下次制作母镜像的时候，最好这个也加进去）</p>
+  </li>
+  <li>
+    <p>在主节点运行一个示例：使用2节点</p>
+
+    <pre><code> $ mpirun.openmpi -np 2 -machinefile /home/pi/mpi_testing/machinefile python helloworld.py
+</code></pre>
+  </li>
+</ol>
+
+<p>下面是输出的信息:</p>
+
+<pre><code>    Hello, World! I am process 0 of 2 on raspberrypi.
+    Hello, World! I am process 1 of 2 on iridispi002.
+</code></pre>
+
+<ol>
+  <li>
+    <p>使用4节点看看</p>
+
+    <pre><code> $ mpiexec.openmpi -n 4 -machinefile /home/pi/mpi_testing/machinefile python helloworld.py
+</code></pre>
+  </li>
+</ol>
+
+<p>下面是输出的信息:</p>
+
+<pre><code>    Hello, World! I am process 2 of 4 on raspberrypi.
+    Hello, World! I am process 3 of 4 on iridispi002.
+    Hello, World! I am process 1 of 4 on iridispi002.
+    Hello, World! I am process 0 of 4 on raspberrypi.
+</code></pre>
+
+<ol>
+  <li>
+    <p>These are handy to remove things if your attempts to get mpi4py don’t quite pan out</p>
+
+    <pre><code> $ sudo apt-get install python-mpi4py
+ $ sudo apt-get autoremove
+</code></pre>
+  </li>
+</ol>
+
+<h4 id="section-23">密钥也需要自动化脚本</h4>
+
+<pre><code>cat ~/.ssh/id_rsa.pub | ssh pi@192.168.1.161 "cat &gt;&gt; .ssh/authorized_keys"
+cat ~/.ssh/id_rsa.pub | ssh pi@192.168.1.162 "cat &gt;&gt; .ssh/authorized_keys"
+cat ~/.ssh/id_rsa.pub | ssh pi@192.168.1.163 "cat &gt;&gt; .ssh/authorized_keys"
+...
+</code></pre>
+
+<p>如果修改了密钥，这么多操作可就惨了，因此，也需要自动化脚本来帮忙。</p>
+
+<h4 id="pythonpip">改进下python安装方式：Pip</h4>
+
+<ol>
+  <li>
+    <p><a href="http://www.pip-installer.org/en/latest/installing.html">PIP是个类似于apt的python包管理工具</a>，新建安装目录：</p>
+
+    <pre><code> $ cd ~
+ $ mkdir pip_testing
+ $ cd pip_testing
+</code></pre>
+  </li>
+  <li>
+    <p>下载并安装之</p>
+
+    <pre><code> $ curl http://python-distribute.org/distribute_setup.py | sudo python
+ $ curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python
+</code></pre>
+  </li>
+</ol>
+
+<h4 id="making-mpi-shared-libraries-for-raspberry-pi">making MPI Shared Libraries for Raspberry Pi</h4>
+
+<p>MPI libraries can also be built “shared” so that they can be dynamically loaded. This gives a library file that ends in “.so” etc. not “.a” and we can do that by building those MPI libraries again. 步骤和上面一样，只是参数改为： “_shared” ，如下：</p>
+
+<pre><code>$ mkdir /home/pi/mpich2_shared
+$ cd ~/mpich2_shared
+$ wget http://www.mcs.anl.gov/research/projects/mpich2/downloads/tarballs/1.4.1p1/mpich2-1.4.1p1.tar.gz
+$ tar xfz mpich2-1.4.1p1.tar.gz
+$ sudo mkdir /home/rpimpi_shared/
+$ sudo mkdir /home/rpimpi_shared/mpich2-install_shared
+$ mkdir /home/pi/mpich_build_shared
+$ cd /home/pi/mpich_build_shared
+$ sudo /home/pi/mpich2_shared/mpich2-1.4.1p1/configure -prefix=/home/rpimpi_shared/mpich2-install_shared --enable-shared
+$ sudo make
+$ sudo make install
+$ export PATH=$PATH:/home/rpimpi_shared/mpich2-install_shared/bin
+</code></pre>
+
+<p>若想永久性添加此路径，需要编辑 .profile文件</p>
+
+<pre><code>$ nano ~/.profile
+</code></pre>
+
+<p>在最后添加下面两行:</p>
+
+<pre><code># Add MPI Shared to path
+PATH="$PATH:/home/rpimpi_shared/mpich2-install_shared/bin"
+</code></pre>
+
+<h2 id="section-24">附录：</h2>
+
+<p>主板类型：</p>
+
+<ul>
+  <li>ATX 就是普通家用电脑的大板，长方形。尺寸为30.5厘米×24.4厘米</li>
+  <li>MicroATX有两种，一种是缩小了比例的ATX，一种是减少了长度的ATX，差不多正方形，尺寸为24.4厘米×24.4厘米。</li>
+  <li>MiniITX 更小，只有16厘米×16厘米的尺寸，适合用来建家庭影院电脑。</li>
+  <li>
+    <p>uATX 比MicroATX小，准系统或HDPC使用的迷你主板，超小型机箱用，接口和平常看到的不太一样，可插独立显卡，但插槽位置方向可能不太一样。尺寸为24.4×18.4厘米</p>
+  </li>
+  <li>EATX</li>
+  <li>另外，手机和平板电脑的主板，则更小，不过基于其目前这两种的芯片性能仍然有限，竞争力上不是很给力。</li>
+</ul>
+
+<p>机箱：中塔可放ATX，微塔可放MicroATX</p>
+
+<p>家庭影院电脑（home theater personal computer=HTPC）一般特征是外形小，功耗低，静音，高性能，可遥控——控制媒体播放器用的，价格3000内。备有各种接口，用于电视、视频监控等，一般硬盘容量较大。——小超算的组建和家庭影院电脑的组建有些部分很接近，呵呵。要是我的话，还会增加投影部分的配置。</p>
+
+<h2 id="section-25">黑传说的看法：</h2>
+
+<p>组个人小超算的意义：</p>
+
+<ol>
+  <li>海量运算：比如大型统计、加密解密、图形运算等</li>
+  <li>灵活处理：放在自己家里或者办公室里，想用就用，不用到计算中心排队。</li>
+  <li>便宜：3000左右的价格。</li>
+  <li>功能强大：是针对个人电脑而言的，这也意味着可以用好多年，以后如果超过运算能力了，就当个人电脑用。</li>
+</ol>
+
+<p>另外，上面两例虽然使用了及其便宜的机器，但相对中国人来说，这个价格还是贵了，如果换成国内的产品的话，可以把价格做到3000人民币左右。</p>
+
+<p>咳咳，工作用小超算，娱乐用家庭影院电脑，呵呵，性能都比普通的商业产品强，逐步构建强大的工作环境和生活娱乐环境，真的是很有成就感的事情啊，最好找一个喜欢的人，这样幸福感更强，哈哈，各位一起努力吧……</p>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+
+  <!-- 有言评论 -->
+  <div id="uyan_frame"></div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+  
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a class="pull-right" href="/%E8%BD%AF%E4%BB%B6%E7%94%9F%E4%BA%A7%E7%BA%BF/2012/09/13/%E7%A8%B3%E5%81%A5%E7%9A%84%E8%BD%AF%E7%A1%AC%E4%BB%B6%E7%8E%AF%E5%A2%83/">◁前<br>稳健的软硬环境◀篇</a>
+    </div>
+    
+    
+     <!--回到头部-->
+    <div class="back-top"><a href="#【个人小超算】实战资料汇编">△
+    <br>回头▲再看</a></div> 
+    
+    
+    <div class="post-next">
+    <a href="/%E4%BB%96%E5%B1%B1%E4%B9%8B%E7%9F%B3/2013/02/20/%E6%9C%8D%E8%A3%85%E9%9D%A2%E6%96%99%E7%89%B9%E6%80%A7%E5%A4%A7%E5%85%A8/">后▷<br>篇▶【整理】服装面料特性大全</a>
+    </div>
+    
+    
+  </div>
+
+<!--页面底部自动浮现-->
+  <div class="post-reletive">
+  <!--相关文章-->
+
+  </div>
+
+
+</div>
+
+
+ 
+</div>
+
+
+
+
+      
+      <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2014版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+    <span>致谢： <br>
+      <a href="http://www.github.com">github</a>，
+      <a href="http://jekyllrb.com/">jekyll</a>，
+      <a href="http://johnmacfarlane.net/pandoc/index.html">pandoc</a>，以及一切对本人有帮助的人！</span>
+    <span>
+    <!--百度统计-->  
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</span>
+    </li>     
+</ul>
+</footer>
+
+
+    
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>

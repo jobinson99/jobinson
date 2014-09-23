@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>古文竖排+从左向右在html中的处理方法</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/%E6%8A%80%E6%9C%AF%E6%99%AE%E5%8F%8A/2011/11/22/html5%E5%8F%A4%E6%96%87%E7%AB%96%E6%8E%92%E6%96%87%E5%AD%97%E6%98%BE%E7%A4%BA/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="古文竖排+从左向右在html中的处理方法">古文竖排+从左向右在html中的处理方法</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>摘要：</b><br/>古文竖排从右向左文字在 html 中的显示</p>
+      
+
+      
+      <p class="post-tag"><b>话题：</b>
+        
+        <a href="/话题列表/#古文-ref">古文
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#竖排文字-ref">竖排文字
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#从右向左-ref">从右向左
+        <sup>1</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#技术普及-ref">技术普及</a>
+        
+      </span>
+      
+      
+      创建时间：2011-11-22
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <p>这是本人在w3c小组讨论时的提议，懒得多说话，直接贴图：</p>
+
+<pre><code>                  top 
+           .----------------. 
+      left |                | right 
+           '----------------' 
+                 bottom 
+ 
+                before 
+           .----------------. 
+     start |                | end 
+           '----------------' 
+                 after 
+
+                  over 
+           .----------------. 
+ line-left |                | line-right 
+           '----------------' 
+                 under 
+</code></pre>
+
+<p>另，补充了三个建议：</p>
+
+<ol>
+  <li>
+    <p>多一样竖列方式，因为中国古文的标准就是这这种，成标准后，有利于方便古文内容原文的展现。</p>
+
+    <pre><code>              before 
+        .----------------. 
+    end |                | start 
+        '----------------' 
+              after 
+</code></pre>
+  </li>
+  <li>
+    <p>对数字和字母的处理方式，为显示效果考虑，把正常的变为斜体，把斜体变为正常。</p>
+
+    <pre><code>                       [i]a[/i]
+ ab2 -------&gt;&gt;         [i]b[/i]
+                       [i]2[/i]
+
+                        a
+ [i]ab2[/i] -------&gt;&gt;   b
+                        2
+</code></pre>
+  </li>
+  <li>
+    <p>对数学公式的处理，是难点之一，方法是把操作符号也转为竖向。</p>
+
+    <pre><code>                                    2 | 1
+ 111        1                       2 | 1
+ ------- = ---     --------------&gt;&gt; 2 | 1
+ 222        2                        //
+                                    2 | 1
+</code></pre>
+  </li>
+  <li>
+    <p>对代码的处理方式：（2014-05-01 补充）和上面的数学公式类似。</p>
+  </li>
+</ol>
+
+<p>2014-05-01 补充</p>
+
+<h2 id="section">补充一个简单的实现</h2>
+
+<pre><code>.han
+{
+    column-width: 5px;
+    -webkit-column-width: 5px;
+    -moz-column-width: 5px; 
+
+    column-gap: 50px;
+    -moz-column-gap: 50px;
+    -moz-column-rule:1px solid gray;
+
+    height: 300px;
+    overflow-y: hidden;
+    overflow-x: auto;
+
+    word-wrap: break-word;      /*英文断开字母*/
+    direction:rtl;     /*改起点方向在右*/
+    unicode-bidi:bidi-override;    /*改文字方向为相反*/
+}
+</code></pre>
+
+<p>测试下效果：</p>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;meta charset="utf-8"&gt;
+&lt;link rel="stylesheet" href="x-scroll.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="han"&gt;
+
+■■■■■■■■■■■■■【文章开头】泰山不让土壤，故能成其大；河海不择细流，故能就其深；王者不却众庶，故能明其德。——李斯《谏逐客令》
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
+
+■■英文字母斜体好看点：&lt;i&gt;ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse&lt;/i&gt;
+
+12345678900102949421351
+■■数字斜体好看点：
+&lt;i&gt;349860286492860596897234632974609823408623&lt;/i&gt;
+
+泰山不让土壤，故能成其大；河海不择细流，故能就其深；王者不却众庶，故能明其德。——李斯《谏逐客令》
+【文章结尾】●●●●●
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p>效果如下：</p>
+
+<style type="text/css">
+ .han
+{
+column-width: 5px;
+-webkit-column-width: 5px;
+-moz-column-width: 5px; 
+
+column-gap: 50px;
+-moz-column-gap: 50px;
+-moz-column-rule:1px solid gray;
+
+height: 300px;
+overflow-y: hidden;
+overflow-x: auto;
+
+word-wrap: break-word;      
+direction:rtl;     
+unicode-bidi:bidi-override;    
+}
+</style>
+
+<div class="han">
+
+■■■■■■■■■■■■■【文章开头】泰山不让土壤，故能成其大；河海不择细流，故能就其深；王者不却众庶，故能明其德。——李斯《谏逐客令》
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation
+
+■■英文字母斜体好看点：<i>ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse</i>
+
+12345678900102949421351
+■■数字斜体好看点：
+<i>349860286492860596897234632974609823408623</i>
+
+泰山不让土壤，故能成其大；河海不择细流，故能就其深；王者不却众庶，故能明其德。——李斯《谏逐客令》
+【文章结尾】●●●●●
+</div>
+
+<p><strong>注意：</strong>  <mark>IE9- 无效。另外，这里还有好多点需要改进：代码数学公式，换行等等！</mark>  </p>
+
+<p>嗯，我是不是该把这站也变成这样呢？</p>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+
+  <!-- 有言评论 -->
+  <div id="uyan_frame"></div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+  
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a class="pull-right" href="/%E6%B6%85%E7%A3%90/2011/11/05/%E6%88%90%E5%B9%B4%E4%BA%BA%E9%83%BD%E6%98%AF%E5%B8%A6%E7%97%85%E7%94%9F%E5%AD%98%E7%9A%84/">◁前<br>如何面对绝症：成年人都是带病生存的◀篇</a>
+    </div>
+    
+    
+     <!--回到头部-->
+    <div class="back-top"><a href="#古文竖排+从左向右在html中的处理方法">△
+    <br>回头▲再看</a></div> 
+    
+    
+    <div class="post-next">
+    <a href="/%E4%BF%9D%E5%81%A5/2011/12/03/%E5%B8%B8%E7%94%A8%E7%94%B5%E5%99%A8%E5%AF%B9%E8%BA%AB%E4%BD%93%E5%81%A5%E5%BA%B7%E7%9A%84%E5%BD%B1%E5%93%8D%E5%92%8C%E9%98%B2%E6%B2%BB/">后▷<br>篇▶【整理】常用电器对身体健康的影响和防治</a>
+    </div>
+    
+    
+  </div>
+
+<!--页面底部自动浮现-->
+  <div class="post-reletive">
+  <!--相关文章-->
+
+  </div>
+
+
+</div>
+
+
+ 
+</div>
+
+
+
+
+      
+      <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2014版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+    <span>致谢： <br>
+      <a href="http://www.github.com">github</a>，
+      <a href="http://jekyllrb.com/">jekyll</a>，
+      <a href="http://johnmacfarlane.net/pandoc/index.html">pandoc</a>，以及一切对本人有帮助的人！</span>
+    <span>
+    <!--百度统计-->  
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</span>
+    </li>     
+</ul>
+</footer>
+
+
+    
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>

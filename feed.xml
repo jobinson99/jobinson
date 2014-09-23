@@ -1,21 +1,2168 @@
----
-layout: none
----
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{ site.title | xml_escape }}</title>
-    <description>{{ site.description | xml_escape }}</description>
-    <link>{{ site.url }}{{ site.baseurl }}/</link>
-    <atom:link href="{{ "/feed.xml" | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml" />
-    {% for post in site.posts limit:10 %}
+    <title>黑传说</title>
+    <description>乌抵天明</description>
+    <link>http://jobinson.ga/</link>
+    <atom:link href="http://jobinson.ga/feed.xml" rel="self" type="application/rss+xml" />
+    
       <item>
-        <title>{{ post.title | xml_escape }}</title>
-        <description>{{ post.content | xml_escape }}</description>
-        <pubDate>{{ post.date | date: "%a, %Y %b %d %H:%M:%S %z" }}</pubDate>
-        <link>{{ post.url | prepend: site.baseurl | prepend: site.url }}</link>
-        <guid isPermaLink="true">{{ post.url | prepend: site.baseurl | prepend: site.url }}</guid>
+        <title>利用metalsmith建静态网站</title>
+        <description>&lt;h2 id=&quot;metalsmith&quot;&gt;为何选用metalsmith&lt;/h2&gt;
+
+&lt;p&gt;metalsmith的特点：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;全部插件化&lt;/li&gt;
+  &lt;li&gt;核心很小，就一个调用程序，处理目录，输入输出的标口层（标准接口层）&lt;/li&gt;
+  &lt;li&gt;灵活性大，可以生成各种类型项目：静态站，项目架构，生成工具，电子书，项目文档等&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;安装环境&lt;/h2&gt;
+
+&lt;p&gt;除了要安装metalsmith外，还要安装所需的插件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ npm install metalsmith
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;一般需要的插件：&lt;/p&gt;
+
+&lt;p&gt;assets：不渲染的部分
+beautifier：为运行效率考虑，一般不需要。但为了方便检查代码生成结果，需要。
+collections：分类？
+navigation：根据稳健树输出导航
+paginate：分页
+permalinks：简化链接形式
+tags：使用标签
+templates：布局模板&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;模板选用&lt;/h2&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;预览&lt;/h2&gt;
+
+</description>
+        <pubDate>Sat, 2014 Sep 13 12:15:31 +0800</pubDate>
+        <link>http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/09/13/%E5%88%A9%E7%94%A8metalsmith%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/09/13/%E5%88%A9%E7%94%A8metalsmith%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/</guid>
       </item>
+    
+      <item>
+        <title>静态网站变成动态网站</title>
+        <description>&lt;h1 id=&quot;section&quot;&gt;脱胎换骨&lt;/h1&gt;
+
+&lt;h2 id=&quot;markdown&quot;&gt;换markdown渲染核心&lt;/h2&gt;
+
+&lt;p&gt;注：由于一些代码在liquid的转码中出现问题，因此，有必要对照着源码，&lt;a href=&quot;https://github.com/jobinson99/jobinson99.github.io&quot;&gt;源码库在此&lt;/a&gt;
+jekyll2默认用的 kramdown，换！
+github网站提供的编译器版本比较注重安全性，因此会关闭一些功能。&lt;/p&gt;
+
+&lt;p&gt;为了解决这些问题，改用pandoc渲染，相应的：关闭掉github本身提供的渲染功能。
+获得的好处：文内导航自动生成，支持数学公式，支持表格等！&lt;/p&gt;
+
+&lt;p&gt;另外，最新的bootstrap也基于jekyll了。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://jekyllrb.com/docs/plugins/&quot;&gt;插件安装参考&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;公式解决：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&amp;gt;
+&amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;换用本地编译结果为发布结果&lt;/h3&gt;
+
+&lt;p&gt;关闭github的jekyll自动编译服务。在顶级文件夹下，加入一个名为 &lt;code&gt;.nojekyll&lt;/code&gt; 的文件即可。&lt;/p&gt;
+
+&lt;h2 id=&quot;js&quot;&gt;利用js使页面动态响应&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;简单的根据用户显示内容&lt;/li&gt;
+  &lt;li&gt;从别的网站获取新闻，用户每次查看都是最新新闻&lt;/li&gt;
+  &lt;li&gt;在线编辑&lt;/li&gt;
+  &lt;li&gt;提交成果到成果库：利用git.js&lt;/li&gt;
+  &lt;li&gt;在线交流：together.js&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;添加动态编程环境&lt;/h2&gt;
+
+&lt;p&gt;codemirror？制作一个编程环境&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;在线提交&lt;/h2&gt;
+
+&lt;p&gt;利用 github.js 实现在线提交！——但安全性较差，一般只用在本地js编程环境下，当然，如果有隐藏办法也是可以的，但防君子不妨小人！&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 2014 Sep 01 20:01:01 +0800</pubDate>
+        <link>http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/09/01/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E5%8F%98%E6%88%90%E5%8A%A8%E6%80%81%E7%BD%91%E7%AB%99/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/09/01/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E5%8F%98%E6%88%90%E5%8A%A8%E6%80%81%E7%BD%91%E7%AB%99/</guid>
+      </item>
+    
+      <item>
+        <title>静态站生成器</title>
+        <description>&lt;mark&gt;特别提醒：不要把时间浪费在迁移平台上！&lt;/mark&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;特别提醒：不要把时间浪费在迁移平台上！ &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;近一个月来，发现github的页面不会更新了，试了很多方式，都不更新——后来，才想起升级过git版本，新版本快速提交时对深度路径压缩不正确，导致出问题！解决办法是删了该目录后提交，再恢复该目录，再提交。&lt;/p&gt;
+
+&lt;p&gt;折腾过程中，顺便就查了下各个语言的生成器，量真多，几乎每个语言都有若干个。
+个人主要关注几个关注量大，且所用语言个人比较看好或者常用的。&lt;/p&gt;
+
+&lt;p&gt;生成静态站：coffeescript
+前端：angular+动态响应&lt;/p&gt;
+
+&lt;p&gt;别人认为的槽点如下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;jekyll的windows支持不太好。好吧，虽然在windows下折腾能跑起来。但是我不是来折腾的，据我所知，windows下要克服的原因主要是gbk编码，以及一些ruby的gem安装的问题。&lt;/li&gt;
+    &lt;li&gt;中文支持太差。不支持中文的url路径？还有tag名称如果设置为中文，则不可以使用site.tags.TAG这种用法筛选文章，简直就是坑。&lt;/li&gt;
+    &lt;li&gt;功能还是比较欠缺。只有一个分页器？还只能在index下分页？还有那个坑爹的liquid模板。不如直接上erb（当然作者是为了github的安全着想）。&lt;/li&gt;
+    &lt;li&gt;不想装ruby&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;ruby&quot;&gt;ruby&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;jekyll 本人第一个深入使用的静态站生成器，使用量极高&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;js&quot;&gt;js&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;metalsmith 全插件化，可从简到复杂，可定制性高&lt;/li&gt;
+  &lt;li&gt;hexo 台湾一学生搞的，支持多线程生成，上百个文件只需要花数秒中就能生成，可自动提交，应该算js版的octopress。&lt;/li&gt;
+  &lt;li&gt;harp 零配置起步——要不分支为sharp？&lt;/li&gt;
+  &lt;li&gt;assemble&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;consolidate.js 模板中介
+liveload.js 根据更改，可即时刷新&lt;/p&gt;
+
+&lt;h3 id=&quot;coffeescript&quot;&gt;coffeescript&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;docpad&lt;/li&gt;
+  &lt;li&gt;Wintersmith&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;其他&lt;/h3&gt;
+
+&lt;p&gt;常见的&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;sphinx&lt;/li&gt;
+  &lt;li&gt;org-mode：其周边成熟度很高，个人用的也不少，不过，因为其对内嵌代码的设计有严重缺陷，而且广泛的使用率，使其改进的难度会变得极大！&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;另外，还有几个特别的，比如直接用makefile来生成的&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;模板语言的选择&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;jade 设计易混，缩进蛋疼&lt;/li&gt;
+  &lt;li&gt;swig 语法借鉴jinja2 功能全，使用 {}标记&lt;/li&gt;
+  &lt;li&gt;handlebars 非常少逻辑的模板，类似mustache，但比其稍强 使用 {}标记：没有if else for等，只有标签，标签用于替换各种东西。&lt;/li&gt;
+  &lt;li&gt;ejs 无标签注记，无区块（有include） &lt;code&gt;&amp;lt;% code %&amp;gt;&lt;/code&gt; 筛选，可自定义标记，有客户端渲染器&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;不知道会不会出现liquid的自身难以完整表达自身的问题？？？&lt;/p&gt;
+
+&lt;p&gt;不应该给html增加一个标识符&lt;code&gt;{}&lt;/code&gt;，而应该使用原有的&lt;code&gt;&amp;lt;&amp;gt;&lt;/code&gt;，比如&lt;code&gt;&amp;lt;% %&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;? ?&amp;gt;&lt;/code&gt;，目的是减少处理和识别复杂度。&lt;/p&gt;
+
+&lt;p&gt;其实php是一个伪装成编程语言的模板语言！！(带交互响应的)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php xxx ?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;静态站的模板，是剥离php的交互响应部分，把需要高度交互响应的，换用性能更强劲的部件。而不极限于php。&lt;/p&gt;
+
+&lt;p&gt;技术演进：
+php/asp+html+js+css，重心在php
+由于普及率问题，现在演变成了：
+html+css+js+各种js模板。重心在js&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 2014 Jul 24 22:01:11 +0800</pubDate>
+        <link>http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/07/24/%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E5%99%A8/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/07/24/%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E5%99%A8/</guid>
+      </item>
+    
+      <item>
+        <title>大人格和小人格</title>
+        <description>&lt;p&gt;不可以用对匹夫匹妇的道德水平来要求在历史上有重大影响的人物。&lt;/p&gt;
+
+&lt;p&gt;和尚应该吃肉，批量饲养的肉应该吃；但不能乱吃肉，野生的一般不吃，但严重破坏生态平衡的要吃。&lt;/p&gt;
+
+&lt;p&gt;理由有三：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;现在大部分肉都是饲养的，这些肉的销售，可以养活了好几家人，甚至几十家，几百家人。&lt;/li&gt;
+  &lt;li&gt;这些肉不断被高速消化，会促进这些生物本身的生育和长成。&lt;/li&gt;
+  &lt;li&gt;吃肉有助于身体发育，有了强健的身体，有助于创造更多的价值。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;因此，帮助消化这些肉，不仅不会犯杀生，甚至有助于 乐生 。&lt;/p&gt;
+
+&lt;p&gt;这是大仁！&lt;/p&gt;
+
+&lt;p&gt;帮助植物或者动物繁育，帮助人过日子，或者帮人能养育人口，这些都是大仁！&lt;/p&gt;
+
+&lt;p&gt;大仁可不拘戒律，戒律只是为了给那些自控差的人用的，毕竟绝大部分人都是自控差的。&lt;/p&gt;
+
+&lt;p&gt;追求大仁者，有可能是因为本身小仁无法追求，比如我，然后移情到大仁上，或者说是不想众生和我一样遭遇那样的困苦，因此想在自己能力范围内，帮大众规避这种困难。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;道德困扰了中国人&lt;/h2&gt;
+
+&lt;p&gt;原文作者李敖，我把里面那些偏执、不符合历史和现实的东西改写掉。&lt;/p&gt;
+
+&lt;p&gt;中国人在几千年残酷的生活中，总结出了一套有助于改善自身生存的规则，演化为日常生活中的伦理道德。&lt;/p&gt;
+
+&lt;p&gt;而伦理道德被发明以后，又具备了自身的独立生命力，被经常用来判断一个人或者一件事，甚至极端到“泛道德主义”，就是什么都要道德一下，该道德的固然道德，不道德的也照道德不误，道德定了。&lt;/p&gt;
+
+&lt;p&gt;流风所至，人们经常会把一切都先来个二分法，什么都先劈头来个大分类，像小孩子问“好人” “坏人”一样，先用“道德的”或“不道德的”来检查一切。 &lt;/p&gt;
+
+&lt;p&gt;这种极端做法，使人不太承认在“道德的”或“不道德的”的以外，还有一种“跟道德不相干的”第三势力存在，甚至还想把第三势力也道而德之：&lt;/p&gt;
+
+&lt;p&gt;例如“玉”有什么道德不道德？可是中国人说“玉石之美有五德”；“鸡”有什么道德不道德？可是中国人说“鸡有五德”；“天地”有什么道德不道德？
+可是中国人说“天地不仁”或“天地大德”。……&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;仁困扰了孔夫子&lt;/h3&gt;
+
+&lt;p&gt;从“论语”里，我们经常可以发现这种困扰的文字。
+以管仲的人格问题为例：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;子贡曰：“管仲非仁者与？桓公杀公子纠，不能死，又相之。”
+子曰：“管仲相桓公，霸诸侯，一匡天下，民到与今受其赐。微管仲，吾其被髡左衽矣！岂匹夫匹妇之为谅也，自经于沟渎而莫之知也！”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;翻译：子贡问：“管仲的人格有问题罢？齐桓公杀了公子纠，管仲是公子纠的人，他不能为公子纠殉难，反倒替齐桓公当家，管仲的人格有问题罢？”
+孔夫子答：“管仲帮齐桓公，尊王攘夷，一统天下，老百姓直到今天还得到他的好处，没管仲，连我今天都要因亡国而做胡人打扮了！管仲是大处着眼的人，他哪里会像一般匹夫匹妇一样，没没无闻去殉难，没没无闻的去守那些匹夫匹妇的人格标准呢！”&lt;/p&gt;
+
+&lt;p&gt;子贡的困扰，同样发生在子路身上： &lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;子路曰：“桓公杀公子纠，召忽死之，管仲不死，曰：未仁乎？”
+子曰：“桓公九合诸候，不以车兵，管仲之力也。如其仁！如其仁！”&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;翻译：子路问：“齐桓公杀了公子纠，召忽殉难，为公子纠死了，管仲却偷生，人格有问题罢？”
+孔夫子答：“齐桓公多次召集群雄，不用武力，全是管仲的功劳。管仲是大处着眼的人，这就是他伟大的人格啊！非常伟大！”&lt;/p&gt;
+
+&lt;p&gt;孔夫子给两个学生的答案，都是在说管仲具有和普通人不一样的 “仁” 。&lt;/p&gt;
+
+&lt;p&gt;孔夫子死后，后代的人，几乎全在孔夫子思想大磁场下做“指南针”，一直不敢“代圣人立言”，以致孔夫子的思想，非但不能被“继绝学”，反倒其学愈继愈绝。
+千百年来，他的思想一直被匹夫匹妇思想家解释着，自然百孔千疮、一丘之貉。 &lt;/p&gt;
+
+&lt;p&gt;在答复两个学生的“道德审判”里，孔夫子把“仁”字来做“统摄诸德完成人格”的总辞汇，但没有区分“大仁”和“小仁”。
+而且，随着时间的推移，这个“仁”字内涵是有变化的。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;大人格与小人格&lt;/h3&gt;
+
+&lt;p&gt;孔夫子的“仁”，包含着“人格的两层面”：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;第一层面是“管仲的层面”：是大人物的层面、是特立独行的层面、是大无畏的层面、是“虽千万人，吾往矣！”的层面；&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;第二层面是“匹夫匹妇的层面”：是小市民的层面、是随波逐流的层面、是依附权势的层面、是“庸德之行，庸言之谨”的层面。 &lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;大人格：管仲的层面&lt;/h3&gt;
+
+&lt;p&gt;“管仲的层面”所表现的人格，叫“大人格”；“匹夫匹妇”所表现的，叫“小人格”。
+“大人格”的表现因为是特立独行的、是大无畏的、是“虽千万人，吾往矣！”的，自然跟“小人格”的表现冲突，尤其是“大人格”尚未功成名就前，这种冲突，更为显著。&lt;/p&gt;
+
+&lt;p&gt;管仲在尚未功成名就前，与朋友做生意，要多分钱，在“小人格”标准，这是吃人；
+管仲为朋友办事，给办砸，在“小人格”标准，这是害人；
+管仲同朋友出征，作战时退后，凯旋时在前，在“小人格”标准，这是胆怯；
+管仲在公子纠被杀，朋友殉难，反倒投奔敌人，在“小人格”标准，这是无耻。……&lt;/p&gt;
+
+&lt;p&gt;即使在管仲功成名就以后，在“小人格”标准下，他的作风，也可议颇多，孔夫子以“小人格”标准看管仲，就骂出“管仲之器小哉！”的话、就骂出“管氏而知礼，孰不知礼！”的话。&lt;/p&gt;
+
+&lt;p&gt;管仲的一切不合“小人格”标准的行径，虽为大家所不谅，但他的朋友鲍叔牙却一直信任他、一直让他。
+最妙的，在管仲临死前，齐桓公来问他谁做他的接班人，他竟不推荐曾推荐他的鲍叔牙，理由是鲍叔牙不能搞政治。
+这在“小人格”的标准下，十足是忘恩负义了，但在“忠于为国，不私其友”的“大人格”标准下，管仲却能天下为公。
+管仲所以为管仲、所以伟大，就在于这里！ &lt;/p&gt;
+
+&lt;p&gt;以孔夫子的深明大义，都难免用过“小人格”标准看管仲，可见“小人格”标准在社会上多么流行。
+“小人格”标准是“匹夫匹妇的层面”，是随波逐流的、依附权势的、“庸德之行，庸言之谨”的，这种标准的泛滥下，胸怀“大人格”标准的英雄豪杰，都会长期遭到舆论、谣言、群众、世俗的打击。&lt;/p&gt;
+
+&lt;p&gt;所以，“父子责善” 的贤人 匡章，全国说他不孝；“弟死不葬”的志士张良，社会说他不仁；周公旦 被诬不利孺子；直不疑 被诬与嫂通奸；马援 被诬贪污；张自忠被骂汉奸，蒙羞六七载；岳飞不得昭雪，沉冤二十年。
+……&lt;/p&gt;
+
+&lt;p&gt;多少大丈夫，在“小人格”标准下，都变成了“人格有问题”的下三烂，这种不公道局面的形成，毛病出在哪儿呢？ &lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;小人格：匹夫匹妇的层面&lt;/h3&gt;
+
+&lt;p&gt;毛病出在“匹夫匹妇的层面”。&lt;/p&gt;
+
+&lt;p&gt;“匹夫匹妇的层面”所见者小，这种层面的“道德判断”，只是小市民的横断面，小市民只会从个人的利益、家族的利益、朋友的利益、宗教的利益、职业的利益、帮派的利益和党的利益检定人格，
+他们要求的人格标准也只是他们小圈圈的人格标准，在小圈圈内，他们不失为好丈夫、好朋友、好龙头、好领袖，但在小圈圈外，他们都是魔鬼。&lt;/p&gt;
+
+&lt;p&gt;黑龙会头子、黑手党教父在小圈圈内是最够朋友的，但在小圈圈外是无恶不作的；
+公孙弘小圈圈外内是第一流的孝子、第一流节俭的人，但在小圈圈外，他是第一流的奸臣。&lt;/p&gt;
+
+&lt;p&gt;用“小人格”标准看，甘地最不够朋友，因为他主张人要为真理牺牲朋友，甘地的人格有问题！
+用 “小人格”标准看，文天祥忠而忘孝、生活奢侈，文天祥的人格也有问题！ &lt;/p&gt;
+
+&lt;p&gt;因为社会上匹夫匹妇多，检定人格的标准，自也就匹夫匹妇化，匹夫匹妇只注重小团体利益，缺少对社会整体的真理与正义；
+只会以偏盖全，缺少大处着眼。
+所以，常常有很好很好的人，反被视为坏蛋、被视为“人格有问题”。 &lt;/p&gt;
+
+&lt;p&gt;很坏很坏的人，发现匹夫匹妇的“小人格”标准原来这样，发现匹夫匹妇只注意“小人格”而不知“大人格”，于是他们便从“小人格”毁掉异己、斗臭政敌、破坏“非我族类”的“大人格”形象。
+他们的方法是迂回的：报纸的围剿、口语的相传、朋友的诬控、妻子的伪证、罪名的离奇、审判的丑化等等，都是他们的拿手好戏。 &lt;/p&gt;
+
+&lt;p&gt;结果是，“道德迷”的中国人，很容易便在“道德判断”上中计，硬说谁谁谁“人格有问题”。然后喊打喊杀，口水直溅。 &lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;管仲的小人格也没问题&lt;/h3&gt;
+
+&lt;p&gt;具有“大人格”抱负的英雄豪杰，难道他们的“小人格”方面真有问题吗？事实绝非如此。
+再以管仲为例，在“小人格”标准下看管仲，这个人太菜了，但是幕后真相是：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;吾始困时，尝与鲍叔贾，分财利多自与，鲍叔不以我为贪，知我贫也；
+吾尝为鲍叔谋事而穷困，鲍叔不以我愚，知时有利不利也；
+吾尝三仕三见逐于君，鲍叔不以我为不肖，知我不遭时也；
+我尝三战三走，鲍叔不以我为怯，知我有老母也；
+公子纠败，召忽死之，吾幽囚受辱，鲍叔不以我为无耻，知我不羞小节而耻功名不显于天下也。
+—-生我者父母，知我者鲍子也。 &lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;这段动人的话，告诉了我们，具有“大人格”胸怀的，他的“小人格”方面，其实没有问题，只是不为匹夫匹妇所知罢了！ &lt;/p&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;“虽千万人，吾往矣！”&lt;/h3&gt;
+
+&lt;p&gt;一个人走上特立独行的、大无畏的、“虽千万人，吾往矣！”的长路，他的人格，早就在“匹夫匹妇的层面”之上，不是人间大智大仁大勇的，不会这样走；
+不是道德至高人品至善的，不会这样走；不是“大人格”涵盖了“小人格”的，不会这样走。 &lt;/p&gt;
+
+&lt;p&gt;绝大部分人千百年来讲道德，却讲错了道德，只讲到独善其身的“乡愿”道德，却没讲到兼善天下的“狂狷”道德。
+结果是，中国思想中的“虽千万人，吾往矣！”的理论谁都会说，却很少人敢做，因为一做就倒霉。&lt;/p&gt;
+
+&lt;p&gt;孔夫子攻击“乡愿”，但是千百年下来，人人是“乡愿”，并且以“乡愿”身份，骂“虽千万人，吾往矣！”的少数人“人格有问题”。&lt;/p&gt;
+
+&lt;p&gt;我们不要忘记：在举国滔滔，为阉党拍马祝寿的时候，顾宪成不肯签名，这是何等人格！
+在举国滔滔，为国民党歌功颂德的时候，党外人士敢捋虎须，这是何等人格！ &lt;/p&gt;
+
+&lt;p&gt;我们不要忘记：检定人格的第一标准，是看一个人有没有特立独行的、大无畏的、“虽千万人，吾往矣！”的“大人格”，而不是看他有没有匹夫匹妇的“小人格”。
+不确认出这种检定标准，人的道德不会有进步，人将永远在滑头的道德水平上做小市民，人永远不会做大丈夫。 &lt;/p&gt;
+
+&lt;p&gt;一九八一年四月六日&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 2014 Jul 21 00:00:00 +0800</pubDate>
+        <link>http://jobinson.ga/%E6%B6%85%E7%A3%90/2014/07/21/%E5%A4%A7%E4%BA%BA%E6%A0%BC%E5%92%8C%E5%B0%8F%E4%BA%BA%E6%A0%BC/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E6%B6%85%E7%A3%90/2014/07/21/%E5%A4%A7%E4%BA%BA%E6%A0%BC%E5%92%8C%E5%B0%8F%E4%BA%BA%E6%A0%BC/</guid>
+      </item>
+    
+      <item>
+        <title>【公开课】常见编程语言风格</title>
+        <description>&lt;p&gt;下面应该越来越少人看了，只要扫一眼有个印象就行，不需要在这里掌握。&lt;/p&gt;
+
+&lt;h2 id=&quot;c&quot;&gt;C&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.buildyourownlisp.com/&quot;&gt;参考：用c来构建一个链码系统&lt;/a&gt; &lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;变量&lt;/h3&gt;
+
+&lt;p&gt;通过 事先定义（statement） 末尾需要一个分号&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;int count;
+int count = 10;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;内建数据类型：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;标识&lt;/th&gt;
+      &lt;th&gt;数据类型&lt;/th&gt;
+      &lt;th&gt;示例&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;void&lt;/td&gt;
+      &lt;td&gt;空类型&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;char&lt;/td&gt;
+      &lt;td&gt;单字符型/Byte&lt;/td&gt;
+      &lt;td&gt;char last_initial = ‘H’;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;int&lt;/td&gt;
+      &lt;td&gt;整数&lt;/td&gt;
+      &lt;td&gt;int age = 23;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;long&lt;/td&gt;
+      &lt;td&gt;长整数&lt;/td&gt;
+      &lt;td&gt;long age_of_universe = 13798000000;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;float&lt;/td&gt;
+      &lt;td&gt;带小数数字&lt;/td&gt;
+      &lt;td&gt;float liters_per_pint = 0.568f;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;double&lt;/td&gt;
+      &lt;td&gt;双精度带小数数字&lt;/td&gt;
+      &lt;td&gt;double speed_of_swallow = 0.01072896;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;函数定义&lt;/h3&gt;
+
+&lt;p&gt;一对大括号+逗号分隔内部变量+分号，return用于设定输出结果&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;int math-add(int x, int y) {
+    int result = x + y;
+    return result;
+  }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;调用&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;math-add(10, 18)
+&amp;gt; 28
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;为了方便调用计算结果，把结果存入变量中 一对括号+逗号分隔内部变量+分号&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;int add4reuse = math-add(10, 18);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;问题：以上步骤都是在内存中操作，重启机器就没了，如果有需要，则可以进一步写入文件或者数据库中，实现持久性存储。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;结构定义：用于新建 类&lt;/h3&gt;
+
+&lt;p&gt;类 = 多变量绑在一起，变成一个包&lt;/p&gt;
+
+&lt;p&gt;point是新建框架的名字&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;typedef struct {
+    float x;
+    float y;
+  } point;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;新建框架的使用。设定实例：实例+点+变量&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;point p;
+p.x = 0.1;
+p.y = 10.0;
+
+float length = sqrt(p.x * p.x + p.y * p.y);
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;pointer-&quot;&gt;pointer 系统：指针&lt;/h3&gt;
+
+&lt;h3 id=&quot;char&quot;&gt;字串 &lt;code&gt;char*&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;条件操控&lt;/h3&gt;
+
+&lt;p&gt;if+括号+若有多个条件，则用 &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; 并列 或 &lt;code&gt;||&lt;/code&gt; 或 分隔&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; if (x &amp;gt; 10 &amp;amp;&amp;amp; x &amp;lt; 100) {
+   puts(&quot;x 大于10 且小于100!&quot;);
+ } else {
+   puts(&quot;x 小于11或者大于99!&quot;);
+ }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;循环&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code&gt;while&lt;/code&gt; 下面表示从10往1算，递减&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;code&gt;for &lt;/code&gt;下面表示从0到9算，递增&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  int i = 10;
+    while (i &amp;gt; 0) {
+      puts(&quot;Loop Iteration&quot;);
+      i = i - 1;
+    }
+    
+    for (int i = 0; i &amp;lt; 10; i++) {
+      puts(&quot;Loop Iteration&quot;);
+    }
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;c-1&quot;&gt;C的一些机制&lt;/h3&gt;
+
+&lt;p&gt;调-返 （callback）：用于后台加载，后台运算不错，但由于并行计算时代的到来，这个很好的机制变成了最容易出问题的地方。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;设计全面的语言：通链&lt;/h2&gt;
+
+&lt;p&gt;主要的语法特征：前置标识&lt;/p&gt;
+
+&lt;p&gt;机制：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;灵活的机制兼顾编写效率和运行效率：
+    &lt;ul&gt;
+      &lt;li&gt;运作机制：代码可立刻解析运行，从而提升编写效率。也可编译后运行，提升运行效率。&lt;/li&gt;
+      &lt;li&gt;类型系统：可以不预先设定数据操作类型，让系统自动辨识，提升代码编写效率。也可以在后期优化时指定数据类型，提升运行效率。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;前瞻性的设计：资源回收机制，总分法，并行计算等。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;特点：设计非常完备，而且，这样的完备设计已经稳定标准化了多年。&lt;/p&gt;
+
+&lt;p&gt;缺点：普及度不高，而且，因为设计太过完备，难免隐藏不少问题，只是因为应用太少，这些问题暴露的不全。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;难读天书：简符码&lt;/h2&gt;
+
+&lt;p&gt;目的在于提供快速简便的拣选。&lt;/p&gt;
+
+&lt;p&gt;虽然难懂，但因为应用比较多，所以还是需要掌握部分规律。&lt;/p&gt;
+
+&lt;h2 id=&quot;jshtmlcss&quot;&gt;通用常见型：js+html+css特混编队&lt;/h2&gt;
+
+&lt;p&gt;这是目前最流行，也最通用的，虽然效率还不太好，但随着其普及，这方面的改善一直在进行中……&lt;/p&gt;
+
+&lt;p&gt;最主要部分是js，其越来越全能。&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 2014 May 12 22:38:00 +0800</pubDate>
+        <link>http://jobinson.ga/%E6%8A%80%E6%9C%AF%E6%99%AE%E5%8F%8A/2014/05/12/%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E9%A3%8E%E6%A0%BC/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E6%8A%80%E6%9C%AF%E6%99%AE%E5%8F%8A/2014/05/12/%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E9%A3%8E%E6%A0%BC/</guid>
+      </item>
+    
+      <item>
+        <title>【公开课】编程语言解剖</title>
+        <description>&lt;p&gt;杂七杂八之后，接下来，说说能够组合出程序的编程语言：&lt;/p&gt;
+
+&lt;p&gt;先说说这世界上有啥编程语言。对于正常人而言，计算机编程语言大概就是下面这四种类型：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;计算机电子信号——&amp;gt;编码为二进制——&amp;gt;助记符（汇编）——&amp;gt;抽象以方便人类操作的语言（比如C）
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;对于前面三种，现在一般人都不需要去直接接触，对于第四种，就是我们日常需要接触掌握的，第四种是非常丰富的，有各种各样，而且，日常编程生产作业中，都是不可避免地需要同时掌握好几个编程语言，才能写出一个可用的程序的，因此，为了快速掌握它们，需要了解它们的一些共有规律。&lt;/p&gt;
+
+&lt;p&gt;另外，对于有些特殊要求的，比如前面说到的瘫痪的人，可能其计算机编程语言就演变成如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;计算机电子信号——&amp;gt;编码为二进制——&amp;gt;助记符（汇编）——&amp;gt;摩斯码或者可能的盲文编程语言（目前还不存在这种语言）
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;为什么会有这么多的语言呢？&lt;/h3&gt;
+
+&lt;p&gt;从打孔机时代一路走来&lt;/p&gt;
+
+&lt;p&gt;为了表达 &lt;code&gt;1 + 2 + ... + 10 = 55&lt;/code&gt; 并打印出结果，需要：&lt;/p&gt;
+
+&lt;p&gt;其特点：操作 操作对象 内存位置。再复杂的逻辑，都可以简化为如此形式。
+初看运算范围是有限的：不超过8位二进制所能表达的范围，当然，有办法表达所有数字，就是运用科学计数法。
+这是没有资源回收的版本，会导致有三个内存位置一直被占用。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;00110001 00000000 00000000
+00110001 00000001 00000001
+00110011 00000001 00000010
+01010001 00001011 00000010
+00100010 00000010 00001000
+01000011 00000001 00000000
+01000001 00000001 00000001
+00010000 00000010 00000000
+01100010 00000000 00000000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;每句解释：
+1. [结果]把数字0 存放到 内存位置 0 中
+2. [运算材料]把数字1 存放到 内存位置 1 中
+3. [运算]把 内存位置1的&lt;strong&gt;值&lt;/strong&gt; 存放到内存位置 2 中
+4. [设定范围] 内存位置 2 的值 减去 11
+5. [设定范围] 若 内存位置2的值为0 ，则跳转到第九步
+6. [累计结果]把内存位置1的值 加入到内存位置 0 中
+7. [递增] 把内存位置1的值 加1
+8. [跳转]继续第三步
+9. [输出]把 位于内存位置 0 的值 输出。&lt;/p&gt;
+
+&lt;p&gt;进一步发展编程语言，利用借记符：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Set “total” to 0
+ Set “count” to 1
+[loop]
+ Set “compare” to “count”
+ Subtract 11 from “compare”
+ If “compare” is zero, continue at [end]
+ Add “count” to “total”
+ Add 1 to “count”
+ Continue at [loop]
+[end]
+ Output “total”
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;中文解释：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;设 “总值” 初始值为 0&lt;/li&gt;
+  &lt;li&gt;设 “累加值”初始值为 1&lt;/li&gt;
+  &lt;li&gt;[循环执行]&lt;/li&gt;
+  &lt;li&gt;设 “范围” 为 “累加值”&lt;/li&gt;
+  &lt;li&gt;“范围” - 11&lt;/li&gt;
+  &lt;li&gt;如果 “范围” = 0 转到 [结果]&lt;/li&gt;
+  &lt;li&gt;总值 = 累加值&lt;/li&gt;
+  &lt;li&gt;累加值 = 累加值 + 1&lt;/li&gt;
+  &lt;li&gt;转到 [循环执行]&lt;/li&gt;
+  &lt;li&gt;[结果]&lt;/li&gt;
+  &lt;li&gt;输出 “总值”&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;现代编程语言 js：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;var total = 0, count = 1;
+while (count &amp;lt;= 10) {
+  total += count;
+  count += 1;
+}
+console.log(total);
+// → 55
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当然，理论上还可以进一步简化：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(sum(range(1, 10)));
+// → 55
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;问题&lt;/strong&gt;：8位二进制可以表达多少？
+13，用二进制表示：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;  0   0   0   0   1   1   0   1
+128  64  32  16   8   4   2   1
+
+也就是： `00001101` 或者 `8+4+1=13` 。依此类推，8位数可以一共表达256，ascii的基础码共128（编码还不够简约，其实26个大写字母可以只用加一位即可判断，不需要硬编码进去），包含扩展码后共256个。
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;aside&gt;个人观点：其实，汉字如果用笔画+位置来编码的话，也不需要那么多：假设10个基本笔画，42个位置信息，则可以编码 10^42=10e+42&lt;/aside&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;语言发展的动力&lt;/h3&gt;
+
+&lt;p&gt;编程语言是不完美的，现实情况的变化，编程语言也是需要不断发展的。&lt;/p&gt;
+
+&lt;p&gt;编程语言进化的动力，就是不满！&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Algol: 汇编语言太低级了。&lt;/li&gt;
+    &lt;li&gt;Pascal: Algol语言缺少足够的数据类型。&lt;/li&gt;
+    &lt;li&gt;Modula: Pascal语言对于系统应用编程来说太弱了。&lt;/li&gt;
+    &lt;li&gt;Simula: Algol语言在仿真模拟方面不够好。&lt;/li&gt;
+    &lt;li&gt;Smalltalk: Simula语言里并不是所有的东西都是对象。&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;Fortran: 汇编语言太低级。&lt;/li&gt;
+    &lt;li&gt;Cobol: Fortran语言不好用。&lt;/li&gt;
+    &lt;li&gt;PL/1: Fortran语言缺少足够的数据类型。&lt;/li&gt;
+    &lt;li&gt;Ada:所有现存的编程语言都有缺失。&lt;/li&gt;
+    &lt;li&gt;Basic: Fortran语言不好用。&lt;/li&gt;
+    &lt;li&gt;APL: Fortran语言在数组操作上不好用。&lt;/li&gt;
+    &lt;li&gt;J: APL语言需要自己的字符集。&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;C: 汇编语言太低级。&lt;/li&gt;
+    &lt;li&gt;C++: C语言太低级。&lt;/li&gt;
+    &lt;li&gt;Java: C++太笨重。微软在压迫我们。&lt;/li&gt;
+    &lt;li&gt;C#: Java是Sun公司控制的。&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;Lisp: 用图灵机方式描述计算机计算太别扭。&lt;/li&gt;
+    &lt;li&gt;Scheme: MacLisp语言太笨拙。&lt;/li&gt;
+    &lt;li&gt;T: Scheme语言没有程序库。&lt;/li&gt;
+    &lt;li&gt;Common Lisp:Lisp语言的方言太多了。&lt;/li&gt;
+    &lt;li&gt;Dylan: Scheme语言没有程序库，Lisp语法太疯狂。&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;Perl: Shell脚本/awk/sed都不像编程语言。&lt;/li&gt;
+    &lt;li&gt;Python: Perl语言太让人受不了。&lt;/li&gt;
+    &lt;li&gt;Ruby: Perl语言太笨拙，Lisp语法太疯狂。&lt;/li&gt;
+    &lt;li&gt;Prolog: 编程不够逻辑。&lt;/li&gt;
+    &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;易语言:你们都不支持中文编程 &lt;/li&gt;
+    &lt;li&gt;爱编：你们都不国际化&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;目前处于大整合阶段：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;界面使用统一跨平台语言：html+css+js&lt;/li&gt;
+  &lt;li&gt;效率：开发效率，运行效率需要平衡&lt;/li&gt;
+  &lt;li&gt;国际化： 更易用、高效的编程——提升开发效率，降低学习难度&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;语法流派&lt;/h3&gt;
+
+&lt;p&gt;先说说语法，人类社会中存在大概三种下命令方式：
+1. 领导说：“甲乙丙丁！”甲乙丙丁：“在！”领导：“你们去ooxx！”甲乙丙丁：“是！”
+2. 另一种是：领导说：我们要去ooxx，嗯，甲乙丙丁，你们去做这件事吧！
+3. 简化命令法：甲乙丙丁 去xxx&lt;/p&gt;
+
+&lt;p&gt;第一种是一般常见的编程语言，比如c比如js。第二种是链码等各种前置标识表达式或者成对标识语言会采用的方式。第三种一般是用在脚本语言，好处是快速简洁，但程序一长，就很难懂。&lt;/p&gt;
+
+&lt;p&gt;第一种和第三种都是直抒式，第二种是抽象式。为什么会有这么些方式呢？&lt;/p&gt;
+
+&lt;p&gt;第一种和第三种是： &lt;code&gt;2+3+0=5&lt;/code&gt;  （需要写2个+号）&lt;/p&gt;
+
+&lt;p&gt;第二种是：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    2
+    3
++   0
+-------
+    5
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;好处：节省笔墨，语义化易懂。（只需要写一个+号，可见设计者明显是个有办法的懒人）&lt;/p&gt;
+
+&lt;p&gt;前置标识表达式有很多种：比如链码，markdown，比如json，其实C和JS也算部分的前置表达，但其表达式内部都是直抒式的。&lt;/p&gt;
+
+&lt;p&gt;网标码的成对语义化表达方式，太过浪费笔墨。&lt;/p&gt;
+
+&lt;p&gt;另外几种特殊的编码，比如摩斯码、简符码等简化命令式，则很难懂。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;程序的共有特征&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;编程语言的构成要素&lt;/h3&gt;
+
+&lt;p&gt;一套编程语言，无非是：表达的类型+操作（读、写、查），穷尽各种组合就是了。&lt;/p&gt;
+
+&lt;p&gt;神编的构造经验：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;设定存在的类型，&lt;/li&gt;
+  &lt;li&gt;批量判断输入输出类型是否正确，逐个判断还是批量判断？，&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;具体设定各个函数的功能，但不判断类型，只读入读出？。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; 类型 |纵坐标：操作对象
+           |
+      与非 |
+      数字 |
+      字符 |
+      内名 |
+ 横坐标____|______________________________________
+ 操作      |    读     查    写
+    字符串 |
+    数据流 |
+        树 |
+        表 |
+      函数 |
+      向量 |
+      链串 |
+      拓扑 |
+      闭合 |
+    连续统 |
+  提示信息 |
+  文件路径 |
+    程序包 |
+           |
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;进一步细分：&lt;/p&gt;
+
+&lt;p&gt;【类型】：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;数字（整数、单数、复数、浮点数……进制，关联操作加减乘除可以看成是合并、删除、拆分等操作）&lt;/li&gt;
+  &lt;li&gt;名-属性类（集、数组、数列、链串、清单、拓扑、散列表、列联表、对应表、字典、n维表、向量、序列……）&lt;/li&gt;
+  &lt;li&gt;程序包级别（类、名位、包、系统……）&lt;/li&gt;
+  &lt;li&gt;提示信息（提示、示警、出错仍继续、出错中止）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;【操作】：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;读（读法，列出所有，统计）&lt;/li&gt;
+  &lt;li&gt;查[判断，查有没有，要哪个，在哪]&lt;/li&gt;
+  &lt;li&gt;写[改变（类型/值/位置），新造，删除，合并，拆分]&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;【怎么操作】：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;默认：按先后顺序操作&lt;/li&gt;
+  &lt;li&gt;流程控制：条件控制&lt;/li&gt;
+  &lt;li&gt;重复操作：宏
+    &lt;ul&gt;
+      &lt;li&gt;自动脚本&lt;/li&gt;
+      &lt;li&gt;统筹法&lt;/li&gt;
+      &lt;li&gt;框架&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;编程语言常有的机制&lt;/h3&gt;
+
+&lt;p&gt;命名，以方便调用&lt;/p&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;程序设计思路：抽象&lt;/h3&gt;
+
+</description>
+        <pubDate>Mon, 2014 May 05 00:00:00 +0800</pubDate>
+        <link>http://jobinson.ga/%E6%8A%80%E6%9C%AF%E6%99%AE%E5%8F%8A/2014/05/05/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E8%A7%A3%E5%89%96/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E6%8A%80%E6%9C%AF%E6%99%AE%E5%8F%8A/2014/05/05/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E8%A7%A3%E5%89%96/</guid>
+      </item>
+    
+      <item>
+        <title>个人知识管理经验汇总</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;个人知识管理&lt;/h2&gt;
+
+&lt;p&gt;目的：主要用于收集学习的资料，做笔记，想一些零碎的想法。&lt;/p&gt;
+
+&lt;p&gt;两种主要用途：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;知识笔记：不断累加的，有些因为各种原因需要保密——还可能需要别人也参与修改，但因为有了git这种工具，使得维基不再是唯一的方式。换句话就是方便的持续集成！&lt;/li&gt;
+  &lt;li&gt;个人日志：不需要修改的，有些隐私，需要保密权限的设定&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;为了最大化效率，需要做到：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;掌握一种富格式文本：因为文本最通用&lt;/li&gt;
+  &lt;li&gt;理想学习生态链：版本管理——所见即所得编辑——发布——持续修订&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;利用版本管理来管理协作社区！&lt;/li&gt;
+  &lt;li&gt;利用简化的格式，来专注内容&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;选用工具&lt;/h3&gt;
+
+&lt;p&gt;下面列出我自己用过的各种个人知识工具总结：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;工具&lt;/th&gt;
+      &lt;th&gt;优点&lt;/th&gt;
+      &lt;th&gt;缺点&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;word类&lt;/td&gt;
+      &lt;td&gt;格式完美，批注方便&lt;/td&gt;
+      &lt;td&gt;编辑软件不通用，编辑软件有点大，发布不方便&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;博客类&lt;/td&gt;
+      &lt;td&gt;用过博客中国，搜狐，网易的&lt;/td&gt;
+      &lt;td&gt;过分依赖特定服务器，定制性不够&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;wordpress&lt;/td&gt;
+      &lt;td&gt;定制能力好，网上到处可见其身影&lt;/td&gt;
+      &lt;td&gt;自己管理服务器麻烦，之前自己建过类似的，后来懒得麻烦了就重回网易博客&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;wiki类&lt;/td&gt;
+      &lt;td&gt;可定制，内部索引完美&lt;/td&gt;
+      &lt;td&gt;也是需要依赖服务器，不用服务器的tiddlywiki是打包到一个文件中，及其变态&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;笔记类网站&lt;/td&gt;
+      &lt;td&gt;简单方便, 非常适合于做笔记&lt;/td&gt;
+      &lt;td&gt;用了360doc好几年，还一直用网易的笔记，印象笔记用过一阵子放弃了，这类的缺点是依赖服务器，自主性不够，整理花费时间长（主要是操作需要等等服务器反馈，时间冗长）&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;basket类&lt;/td&gt;
+      &lt;td&gt;灵活，添加点子很方便，界面漂亮快速&lt;/td&gt;
+      &lt;td&gt;导出太丑&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;org-mode&lt;/td&gt;
+      &lt;td&gt;用起来很爽，功能丰富&lt;/td&gt;
+      &lt;td&gt;调教所需花费的时间太多&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;github+jekyll&lt;/td&gt;
+      &lt;td&gt;方便版本管理，流畅的操作流程&lt;/td&gt;
+      &lt;td&gt;jekyll本身转码器不甚满意，不过已经可以算很满意了。&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;静态空间+版本管理+生成工具&lt;/td&gt;
+      &lt;td&gt;定制能力逆天，而且可以累积的，有空就改改，最接近完美的&lt;/td&gt;
+      &lt;td&gt;可以用各种生成工具，从pandoc，orgmode到makefile任意&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;其中，用得觉得爽的是：360doc，basket，orgmode，markdown+jekyll。
+最后三种，可以做到本地笔记和发布的笔记同步，从而不用同时维护两种，彻底打通整个链条。
+比如本文，本地和远程原来就是两个版本，有了后面工具后，就合并为一个了。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;知识笔记的需求&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;容易转为其他格式的：也就是语法要通用性好，或者说各种格式转换方便，尤其是要有转出为html能力：有pandoc这个转换利器，html-org，html-markdown，markdown-html的转换不是啥问题。但org只能在orgmode里转html。&lt;/li&gt;
+  &lt;li&gt;编辑方便的：
+    &lt;ul&gt;
+      &lt;li&gt;如果没有所见即所得编辑器，则语法要简练。&lt;/li&gt;
+      &lt;li&gt;编辑器要好用。——最好有所见即所得的编辑器。但所见即所得编辑器只可以编辑看得见的，看不见的编辑不了，掌控不到全局。&lt;/li&gt;
+      &lt;li&gt;html配合zencoding后，写起来爽的一塌糊涂。相比而言，markdown，orgmode都还要略为逊色。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;普通阅读干扰少的：html渲染后虽然不错，但如果不渲染，其符号太多，阅读干扰大，尤其是一些手持设备还普遍对所见即所得编辑器有巨大的问题的时候，在这些设备上编辑会很麻烦。&lt;/li&gt;
+  &lt;li&gt;格式要求：
+    &lt;ul&gt;
+      &lt;li&gt;有方便的大纲显示：学习和创作中，知识的系统性很重要。word有大纲视图，易码肆配合speedbar可以搞定，内部也可以用outline来搞大纲视图。&lt;/li&gt;
+      &lt;li&gt;内容与样式分离, 写作专注于内容，长啥样后期控制，或者阅读者控制。&lt;/li&gt;
+      &lt;li&gt;标题&lt;/li&gt;
+      &lt;li&gt;段落&lt;/li&gt;
+      &lt;li&gt;具备2种以上复加强调功能, 包括粗体, 颜色。——html可搞定，orgmode可以通过特殊设置，markdown可通过嵌入html代码解决。&lt;/li&gt;
+      &lt;li&gt;表格&lt;/li&gt;
+      &lt;li&gt;列表: 有序 和 无序&lt;/li&gt;
+      &lt;li&gt;代码相关:
+        &lt;ul&gt;
+          &lt;li&gt;原样输入：orgmode在插入自身的特有代码时需要注意一下。markdown由于利用缩进，可以做到表述自身代码很容易。&lt;/li&gt;
+          &lt;li&gt;原样输出&lt;/li&gt;
+          &lt;li&gt;代码高亮&lt;/li&gt;
+          &lt;li&gt;最好有 元文档能力： 代码可以运行获得结果，也可以以源码形式保留。&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;发布：
+    &lt;ul&gt;
+      &lt;li&gt;可以转化为静态html用于网站发布&lt;/li&gt;
+      &lt;li&gt;能自动生成目录功能。&lt;/li&gt;
+      &lt;li&gt;页眉页脚与配色方案等可以独立于每篇文章作成模板。&lt;/li&gt;
+      &lt;li&gt;本地与在线都能使用。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;内容管理:
+    &lt;ul&gt;
+      &lt;li&gt;使用版本管理: 不会担心什么误操作把辛苦多年的积累给干掉.&lt;/li&gt;
+      &lt;li&gt;版本管理工具最好是分布式的, 不依赖于服务器, 这样费用就低, 离线使用也方便。&lt;/li&gt;
+      &lt;li&gt;可以通过版本管理工具进行多人协作。&lt;/li&gt;
+      &lt;li&gt;可以通过查看代码改动来做文档批注工具。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Tue, 2014 Apr 29 22:53:21 +0800</pubDate>
+        <link>http://jobinson.ga/%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/2014/04/29/%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86%E7%BB%8F%E9%AA%8C/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/2014/04/29/%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86%E7%BB%8F%E9%AA%8C/</guid>
+      </item>
+    
+      <item>
+        <title>【公开课】软件是啥</title>
+        <description>&lt;p&gt;注：因为场地的原因，目前没法给各位报名参加我的免费编程培训，就转到这里来开公开课，喜欢的拿去看，我会慢慢填坑，逐步把整个产业链的方方面面都涉及到，给大家当入门。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;古老而又新鲜&lt;/h2&gt;
+
+&lt;p&gt;大概三千年前，周穆王时代，四川就已经有了偃师的木甲术，六百多年后，到了春秋时期，鲁班制造了机关人，而墨子则制造了最早的飞机，它们都是具备了一定的智能，但这种智能很难控，因为其利用了一种动物的能量和部分可控智能：老鼠！&lt;/p&gt;
+
+&lt;p&gt;机器心脏藏着一只甚至多只老鼠，老鼠在机关人的心脏里活动，通过线牵动机器的四肢，使得机器能够动起来。&lt;/p&gt;
+
+&lt;p&gt;这有点像我们平常所见到的木偶戏一样，只不过木偶是靠人控制，而机关人是靠里面老鼠的活动。&lt;/p&gt;
+
+&lt;p&gt;之所以选择老鼠，是因为老鼠生命力很强，又很活跃，闲不住，能够给机关人提供一定的能量，并且使得机关人看起来像是活的。&lt;/p&gt;
+
+&lt;p&gt;墨子和鲁班同时还根据老鼠的活动规律，设计了一套与之匹配的操控流程，比如听到猫声，老鼠就会瑟瑟发抖，比较安静，把这种行为设定为机关人停止活动——这也就是我们现在很熟悉的声控。&lt;/p&gt;
+
+&lt;p&gt;这叫机关术，可以在游戏 轩辕剑外传枫之舞 里面玩到。其精妙程度后来成了精妙巧智的代名词：机关！经常在考古类电影里看到这些，一般是早就设计好一整套机器，然后等着人去触动，触动则整套机器运动起来。&lt;/p&gt;
+
+&lt;p&gt;总结下，机关人和机关，这些都是最古老和精妙的程序，是融合“软硬”知识，综合生物、物理、材料等学科专业知识，设计制造出来的。&lt;/p&gt;
+
+&lt;p&gt;当然，这种机关的缺点也很明显：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;能量不足，可持续性差：老鼠的生命活力是很有限的，整天跑去抓活老鼠也不是那么容易，养的话也颇费资材。不过这是时代局限，那个古老年代大家还没法利用石油和电力。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;另外一个缺陷就是设计难度过高：为了让小老鼠牵动大机械，需要非常精妙的安排，机关重重，这样的复杂度，也只有绝顶聪明的人才能做到，及其消耗脑力。人才培养的困难和优秀人才的匮乏，必然使得传承难度极大。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;最后就是动物的可控性不足，使得机器的行为稳健性太差。老鼠毕竟是活生生的动物，有时难免暴走，机械此时的行为就很难预估了。&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;不过，即使有这些固有的缺陷，但这套技术却并没有完全失传：一部分被用来制造古代的生产和战争用的机械，比如纺织机和弩机；一部分被用来设置机关暗道，据说秦皇陵就是这样，真假不明；一部分则演变成日常的游戏：木偶戏。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;智能的核心：软件&lt;/h2&gt;
+
+&lt;p&gt;在上面提到的机关人中，硬件就是：木头制造的各种部件，还有连接这些部件的各种线。另外就是驱动力：能量！比如动物能，电，汽油什么的。&lt;/p&gt;
+
+&lt;p&gt;但有这堆木头、线和能量，组装起来的机械还是比较简单的，需要人去操控，才能发挥其巨大威力。&lt;/p&gt;
+
+&lt;p&gt;就像汽车，如果不用人或者智能程序控制，汽车自己开着开着就会掉沟里去。&lt;/p&gt;
+
+&lt;p&gt;人虽然全能，但人毕竟是肉体，会累，会情绪不稳，需要吃饭，需要休息，如果有那么一种东西，能够让机器自动而且还正确地运行，那多好啊！&lt;/p&gt;
+
+&lt;p&gt;有！这东西有，古代人是设计一整套程序，然后靠某些条件去触发，而现代人则从简单的控制电路，到单片机，到智能芯片，到全能芯片，到超算……
+控制方式越来越智能，运算能力越来越强大，可以实现的事情越来越多。&lt;/p&gt;
+
+&lt;p&gt;从简单的在电脑上设计程序，让程序去控制机械，到模拟木偶戏，用电脑去演戏——说的就是在电脑上打游戏、看电影、上网灌水啊！&lt;/p&gt;
+
+&lt;p&gt;啥？看电影打游戏上网灌水也是在控制机械？对的，没说错，不过你控制的是：显示器的每个非常小的像素点和网关的收发操作。这些你都没感觉到而已，因为程序会根据你打字和发送动作，自动帮你完成了。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;什么样才算计算机&lt;/h2&gt;
+
+&lt;p&gt;只要有“寄存”功能，就是计算机！
+只要能运算四则运算，就能运算所有数学问题，只不过是时间长短而已&lt;/p&gt;
+
+&lt;p&gt;算筹——》算盘——》珠算——》算尺——》电子计算机——》集成电路后的计算机——》联网时代的计算机（超算）&lt;/p&gt;
+
+&lt;p&gt;算盘不简单，一点不比现代计算器弱！因为其有“暂记”功能。
+是一个可以复杂计算的计算机！尤其是高阶的算盘。&lt;/p&gt;
+
+&lt;p&gt;下面是最常见的9档算盘&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;| 1 | 1 | 1 | 1 | 1 || 1 | 1 | 1 | 1 |
+| 1 | 1 | 1 | 1 | 1 || 1 | 1 | 1 | 1 |
+|   |   |   |   |   ||   |   |   |   |
+| --| --| --| --| --|| --| --| --| --|
+|   |   |   |   |   ||   |   |   |   |
+| 1 | 1 | 1 | 1 | 1 || 1 | 1 | 1 | 1 |
+| 1 | 1 | 1 | 1 | 1 || 1 | 1 | 1 | 1 |
+| 1 | 1 | 1 | 1 | 1 || 1 | 1 | 1 | 1 |
+| 1 | 1 | 1 | 1 | 1 || 1 | 1 | 1 | 1 |
+| 1 | 1 | 1 | 1 | 1 || 1 | 1 | 1 | 1 |
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;算盘形状：简单的日常所见的
+超长算盘：一般只在电影里看到
+多维算盘：至少两个算盘，交叉成坐标
+圆算盘：
+八卦形状算盘：24档&lt;/p&gt;
+
+&lt;p&gt;计算尺
+手工：发展到珠算+计算尺 已经算是极限&lt;/p&gt;
+
+&lt;p&gt;机械：发展到机械计算器已经开始超越手工
+帕斯卡加法器：第一台机械计算器，10进制，加减法   机械钟表（60进制）
+1674年，莱布尼茨 改进机械计算器（四则运算） 从八卦中获得灵感，提出以二进制设计计算器，系统提出了二进制运算法则&lt;/p&gt;
+
+&lt;p&gt;提花编织机：手工的提花——》简单编程的提花（先打好孔）
+1725年，布乔：纸带，通过编织孔控制提花机的提花动作——这种方法，标准化考试的时候那些答题卡还在用。
+1805年，杰卡德：自动提花编织机，同时操控1200个编织针&lt;/p&gt;
+
+&lt;p&gt;提花技术至今仍然非常重要，比如在印刷多层电路板上
+1822年 巴贝奇： 差分机 1834年，分析机设想
+分析机：现代计算机的模型
++ 存贮库：每个齿轮存贮10个数，齿轮阵列存贮1000个50位数
++ 运算室：
++ 控制部分：控制运算顺序
+构思了 送入和取出数据的机构，
+存贮室和运算室间运算数据的部件
+其伙伴：拜伦独生女 阿达 编制了一批函数程序&lt;/p&gt;
+
+&lt;p&gt;1888年 霍列瑞斯 （Hollerith）从杰卡德的自动提花机获得灵感，为了人口统计数据处理，制造 自动制表机：二进制，多个统计项目，根据打孔情况进行自动统计。&lt;/p&gt;
+
+&lt;p&gt;1944年 艾肯，从巴贝奇和阿达那里获得灵感，用机电方式替代巴贝奇的机械方式。领衔造出马克一号，3000继电器，通过电磁铁控制开关动作。
+霍波（Hopper，cobol设计者）编写程序
+臭虫（bug）：在马克一号里发现一只飞蛾卡住计算机。——硬件故障&lt;/p&gt;
+
+&lt;p&gt;1883年，爱迪生效应（电子管原理）
+1895年，弗莱明为了无线电讯号检波问题，根据爱迪生效应，发明 热离子阀（第一只电子管，真空二极管，把交流电整流成直流电）
+1906年，福雷斯特为了提高二极管检波灵敏度，发明真空三极管（加入栅栏式金属网，栅极可以微小电流控制阴极和屏极——屏极可获得较大电流，也就是放大作用）
+1912年，福雷斯特，在硅谷利用真空三极管制作了 放大器&lt;/p&gt;
+
+&lt;p&gt;电子管：无线电装置中用于检波，整流，放大，振荡元件&lt;/p&gt;
+
+&lt;p&gt;电子管的饱和状态：电流从阴极到屏极完全导通
+电子管的截至状态：电流从阴极到屏极没有电流通过
+两种状况用栅极控制，比艾肯继电器快10000倍&lt;/p&gt;
+
+&lt;p&gt;1939年，阿坦那索夫 完成电子计算机设想，1942年装配出 ABC计算机，第一台电子计算机
+1943年 英国巨人密码机（2015年才能解密 Colossus） 图灵
+1943年，莫尔学院开始设计制造电子计算机，1946年2月14日，第一台实用的电子计算机（大众情人ENIAC）诞生：电子数学积分和计算机。运算速度在马克一号1000倍以上。
+弱点：程序和计算分离，程序指令倍放在机器的外部电路里
+1945年，离散变量自动电子计算机（EDVAC）101页报告（诺伊曼机：计算机的五大部件，二进制替代十进制简化电路设计，程序也当作数据存入机器内部）&lt;/p&gt;
+
+&lt;p&gt;1950年，图灵 ACE&lt;/p&gt;
+
+&lt;p&gt;1951年 兰德公司的通用计算机（UNIVAC）
+1953年，小沃森 全用途的科学计算机，IBM701：放弃穿孔卡，改用 真空管逻辑电路，磁芯存储器，磁带机 &lt;/p&gt;
+
+&lt;p&gt;1947年，贝尔实验室，半导体放大器（点接触型晶体管）
+1948年，结型晶体管
+1954年，贝尔实验室，第一台晶体管计算机（TRADIC）
+1957年，仙童公司，半导体平面处理技术（氧化，拍照，刻蚀，扩散）
+1958年，德州仪器公司，锗片，用热焊法连接导线，集成电路（晶体管很小，而其中起作用的部分更小，大部分被支架管壳占用了）
+1959年，仙童公司，硅片，蒸发沉积金属法替代热焊法
+1961年，德州仪器公司，第一台集成电路计算机
+1963年，巨型机CDC6000：并行（一中央处理器，10外围处理器）
+1964年，IBM360（360度=全方位）兼容性
+1969年，通用 小型机Nova
+英特尔公司 存储芯片3101（双极性集成电路）
+1970年，英特尔公司，1103（动态随机存储器DRAM）
+1971年，微处理器（中央处理器微缩在一块集成电路上）
+1972年，图形用户界面
+1974年，牛郎星：第一台用微处理器的微型计算机
+1975年，微软BASIC&lt;/p&gt;
+
+&lt;p&gt;密码机
+科郝 秘密写作机
+德国二战 谜 密码机（Enigma）：加密
+1939年，英国罗宾逊&lt;/p&gt;
+
+&lt;p&gt;打孔机的优势：
++ 打孔机是2进制，而算盘是5进制或者说是简化了的10进制，二进制是抽象度更高更纯粹机械上可更容易实现的方法
++ 打孔机记忆能力更强：打在纸上，不会被人推倒桌子算子就乱
++ 运行更稳健：运行速度有保证，并且这种运行效率可以轻易复制（培养一个珠算高手需要耗费的资源和时间相对来说太长）&lt;/p&gt;
+
+&lt;p&gt;问题：
+如何用简单的四则运算算高阶数学？或者如何让高阶数学变为简单的四则运算？
+在建国初期，面对复杂的数学，是用算法把计算量分解，最后汇总。&lt;/p&gt;
+
+&lt;p&gt;第一台电子数字计算机 ENIAC
+加法器 大约400个电子管
+两个加法器可以完成乘法运算&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;软件可以干啥？&lt;/h2&gt;
+
+&lt;p&gt;从上面我们知道，软件就是帮人更灵活控制各种机器的，从小到显示器的像素点，到大型机械。&lt;/p&gt;
+
+&lt;p&gt;那么，我们现在还有必要逐个去细致控制每个像素点么？现在已经几乎不用这样麻烦了。&lt;/p&gt;
+
+&lt;p&gt;现在控制整个屏幕的像素点，简单的只需要一句话就可以了。&lt;/p&gt;
+
+&lt;p&gt;机械控制？现在也在大发展，有些领域已经不用再对机械的每一步进行人工设计了，比如目前的热门话题3d打印，可以做到在电脑上做设计图，不需设计生产流程，电脑自动调用设备进行堆叠浇筑成型。&lt;/p&gt;
+
+&lt;p&gt;当然，仅仅控制机器还是不够的，田野的田用机器可以控制灌水和停水，但没法知道什么时候需要水，此时，需要添加监控装置，有了装置还不够，还需要能够自动发短信提醒。&lt;/p&gt;
+
+&lt;p&gt;最终成品可见我之前发过的文章：用通用的智能控制芯片（比如arduino），外加一个通信模块（比如：gsm），再加几段代码，就完成了这个设备的简单自动化。&lt;a href=&quot;https://github.com/skorokithakis/arduino-irrigation&quot;&gt;完整代码在此&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;注意：不要被代码吓到了，后面会说到这些代码的规律。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;密码和代码&lt;/h2&gt;
+
+&lt;p&gt;我发的链接里那段代码，大家看了估计会一片模糊，甚至会被吓退，但那仅仅是因为陌生，其实，代码并没有那么复杂。&lt;/p&gt;
+
+&lt;p&gt;我们日常经常就经常接触，比如玩游戏的时候，会喊土豆土豆，我是地瓜，这里的“土豆”代表的是友好的同盟一方，而地瓜则代表着自己的身份，这就是最简单的代码。&lt;/p&gt;
+
+&lt;p&gt;代码，就是用来代替某样东西的码表。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;地瓜 = 我 = 操作者
+土豆 = 友好的盟友一方 =  被操作方
+呼叫 = 查询
+呼叫完毕等待接收状态 = 服务器伺服状态
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这实际上就是一道简单的人肉程序，代表两个人——服务器间的简单沟通。几乎所有的计算机程序都可以还原成如此简单的模式，只不过目前用的是各种大家还陌生的代号而已。下面我会说到这些代号的掌握方法。一点也不用被吓倒。&lt;/p&gt;
+
+&lt;p&gt;这么简单的人肉程序，当然破解起来很容易，战争的发展，促使人们发明越来越复杂的密码，直到超出人脑所能推测的范围。——计算机也就是为了这种加密，解密需要发展出来。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;代码的本质&lt;/h2&gt;
+
+&lt;p&gt;西游记中，孙悟空头上有个紧箍圈，唐僧只要一念紧箍咒，猴子就会头疼欲裂，痛不欲生。&lt;/p&gt;
+
+&lt;p&gt;这其实和我们前面说到的机关是很像的：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;被作用者 &amp;lt;—— 机关 &amp;lt;—— 触发机会 &amp;lt;—— 触发行为 &amp;lt;—— 触发者&lt;/li&gt;
+  &lt;li&gt;孙悟空的头 &amp;lt;—— 紧箍圈功能启动 &amp;lt;—— 禁锢圈解码器 &amp;lt;—— 紧箍咒 &amp;lt;—— 唐僧&lt;/li&gt;
+  &lt;li&gt;电脑的各种设备 &amp;lt;—— 电脑功能 &amp;lt;—— 电脑解码器 &amp;lt;—— 代码 &amp;lt;—— 我们&lt;/li&gt;
+  &lt;li&gt;我们希望的地方 &amp;lt;—— 强大的神明 &amp;lt;—— 解码器（靠焚毁才能解码） &amp;lt;—— 符箓 &amp;lt;—— 我们求的某些天师&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;这其中，唐僧念的紧箍咒就是我们这里要说到的代码，禁锢圈解码器就是电脑。&lt;/p&gt;
+
+&lt;p&gt;好吧，我们烧香拜佛烧的符咒，本身也是一种代码，不过其作用方式和我们电脑有点不同。&lt;/p&gt;
+
+&lt;p&gt;这可见，代码不仅仅是写在电脑上的，也可以是用嘴说的——声控！其实还可以是看的——手势隔空操作，甚至可以是想的。&lt;/p&gt;
+
+&lt;p&gt;大概是2012年吧，有个身体瘫痪如霍金的程序员去世，他用的是摩斯码，用摩斯码来改gnome的界面，有人调戏说是累死的。&lt;/p&gt;
+
+&lt;p&gt;就目前来说吧，声控和手势隔空操作，或者是意念还是触控操作，对于写代码来说，还是太简单原始的。目前代码最高效的生产环境仍然是电脑+键盘。&lt;/p&gt;
+
+&lt;p&gt;所用代码的便捷性和实用性是很重要的，或许有的人眼睛不行，那么对他而言，最好就是编码语言就是不用眼睛最好，就像念咒语一样。&lt;/p&gt;
+
+&lt;p&gt;选用什么语言呢？其实是每个人各异的，比如刚刚说到的累死的程序员，他除了摩斯码，别的选择对他来说都是太遥远的事。&lt;/p&gt;
+
+&lt;p&gt;不过我们有手有脚的，不能和他比，如果我们选用的东西不顺手，也是可以自己改造，除非遇到不可抗力。&lt;/p&gt;
+
+&lt;p&gt;什么叫不可抗力呢？就是客户需求！比如我们很流行的浏览器ie6，多么老迈，但因为用的人很多，而我们写程序就是为了给这些人用的，于是，我们不得不捏着鼻子，去屈就这些乱七八糟的东西。&lt;/p&gt;
+
+&lt;p&gt;楼上有人好奇会具体教什么语言，应该说是会涉及四种类型：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;内容描述性语言：也叫格式，平时用到的会有好多种，有文本的，有多媒体的，甚至有流程描述的。&lt;/li&gt;
+  &lt;li&gt;外观控制语言：也叫样式，这个因为事实标准化了，可以只有一种&lt;/li&gt;
+  &lt;li&gt;转换的语言：这是为了方便而使用的。搞编程的有好几个对应的名词：宏，脚本，正则……这里统一叫 自动化 吧&lt;/li&gt;
+  &lt;li&gt;交互控制语言：这个分两种情况，一种是顺手的工具，一种是通用的工具，看个人倾向。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;一段简单的代码&lt;/h2&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;软件用什么制造？&lt;/h2&gt;
+
+&lt;p&gt;接下来说说代码是怎么制造的，先看看一个图：&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/static/images/软件是啥/多屏编程.png&quot; alt=&quot;多屏编程.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;有点复杂是吧？其实，编程的软件可以简单，也可以复杂。有个比较简单的方法是使用记事本，没错，就是你windows开始菜单附件里那个记事本。&lt;/p&gt;
+
+&lt;p&gt;但这还不是最简单的，最简单的命令行模式下的vi和nano。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/static/images/软件是啥/nano.png&quot; alt=&quot;nano.png&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;从工具的简单，说明一件事：编程并不是复杂的事情，因此，我们没必要被吓到！&lt;/p&gt;
+
+&lt;p&gt;从实际使用上，nano这个更简单的工具，使用起来反而比记事本方便快速。——我就用了好长时间nano。&lt;/p&gt;
+
+&lt;p&gt;但nano等简单工具明显是不方便的，可以说，编程会有三种模式：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;命令行下最简单模式：这是一种返璞归真，也是一种无奈的选择，因为有些设备没有图形界面，只能用这种简单的方式控制；另外就是远程管理服务器，为了节省带宽，只能用这种方式。&lt;/li&gt;
+  &lt;li&gt;可扩展编辑器：这类的代表是易码肆（emacs）和vim，特点是快速，功能扩展方便，有很多现成的好用工具。&lt;/li&gt;
+  &lt;li&gt;巨型编程套件，也就是程序员说的集成开发环境（IDE），这类的典型代表是通用型的VisualStudio，特定领域型的AdobeFlash等。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;那么一个起码的编程生产线需要什么要素呢？&lt;/p&gt;
+
+&lt;h2 id=&quot;section-8&quot;&gt;软件生产线需要的要素&lt;/h2&gt;
+
+&lt;p&gt;如果觉得说的太慢，可以跳入下一步：
+软件环境
+由于windows系统本身使用的是 &lt;code&gt;gb18032&lt;/code&gt; 或者其他两个 &lt;code&gt;gbk&lt;/code&gt; &lt;code&gt;gb2312&lt;/code&gt; ，为了减少出错，统一换用 &lt;code&gt;utf-8&lt;/code&gt; 。——我可以说这几套逐个穷尽编码设计严重缺脑么？建议编写新华字典的去把那些当年设计这套方案的砖家放猪圈里喂养几天，然后可以送上案板。&lt;/p&gt;
+
+</description>
+        <pubDate>Mon, 2014 Apr 28 21:18:01 +0800</pubDate>
+        <link>http://jobinson.ga/%E6%8A%80%E6%9C%AF%E6%99%AE%E5%8F%8A/2014/04/28/%E8%BD%AF%E4%BB%B6%E6%98%AF%E5%95%A5/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E6%8A%80%E6%9C%AF%E6%99%AE%E5%8F%8A/2014/04/28/%E8%BD%AF%E4%BB%B6%E6%98%AF%E5%95%A5/</guid>
+      </item>
+    
+      <item>
+        <title>如何在jekyll中随心所欲使用插件</title>
+        <description>&lt;h2 id=&quot;github-pages&quot;&gt;使用github pages不支持的插件&lt;/h2&gt;
+
+&lt;h3 id=&quot;pandoc&quot;&gt;问题：换用pandoc来渲染？&lt;/h3&gt;
+
+&lt;p&gt;由于markdown+liquid会产生种种问题，因此，换用一种比较完美的转码方案。
+不知道pandoc对自身语法的支持情况如何？&lt;/p&gt;
+
+&lt;p&gt;由于 Github Pages 并不支持 Pandoc，所以就需要在本地将站点完全生成好后再将它送到github上的&lt;em&gt;gh-pages&lt;/em&gt;仓库里。&lt;/p&gt;
+
+&lt;p&gt;为何需要本地生成好网站？&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;[Github Page] 不支持插件&lt;/li&gt;
+  &lt;li&gt;[Github Page] 服务器上软件基于安全角度考虑，会限制较多&lt;/li&gt;
+  &lt;li&gt;利用 [Github Page] 编译并发布网站相对比较耗时。
+很显然，既然已经在本地生成好了网站，再将代码上传到服务器重新编译一遍是挺多余的。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;虽然麻烦，但也带来几个优点：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;本地生成，可以随心所欲地使用各种插件，或者换用别的静态站点生成器……&lt;/li&gt;
+  &lt;li&gt;这样提交的是已经生成的成品，不用调用Github Pages生成，节省地球资源，也可以提高更新速度，不会出现今晚提交，明早才被更新好的情况。&lt;/li&gt;
+  &lt;li&gt;麻烦的话，可以把操作过程封装为一条命令搞定，也就不麻烦了。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;实现过程&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;安装pandoc&lt;/li&gt;
+  &lt;li&gt;安装定制过的jekyll
+定制的jekyll内容：修改 &lt;code&gt;lib/jekyll/converters/markdown.rb&lt;/code&gt; 文件，在 &lt;code&gt;setup&lt;/code&gt; 和 &lt;code&gt;convert&lt;/code&gt; 中按照其它渲染器的格式增加一个 &lt;code&gt;pandoc&lt;/code&gt; 判断即可。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装pandoc的ruby接口：pandoc-ruby&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;修改 Jekyll 配置文件 _config.yml 如下：&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; markdown: pandoc
+ pandoc:
+     extensions: [mathjax, standalone]
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;上面的 extensions 并不唯一，可以将任何 Pandoc 支持的选项加入其中。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;如何维护双库？&lt;/h2&gt;
+
+&lt;p&gt;很明显，这样生成后，源码和生成的静态文件就分开了，如何管理呢？双库法！静态站仓库只需要更新 gh-pages分支。&lt;/p&gt;
+
+&lt;p&gt;默认的项目仓库情况：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;本地仓库&lt;/th&gt;
+      &lt;th&gt;本地地址&lt;/th&gt;
+      &lt;th&gt;远程对应的仓库&lt;/th&gt;
+      &lt;th&gt;作用&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;master&lt;/td&gt;
+      &lt;td&gt;xxx&lt;/td&gt;
+      &lt;td&gt;site/origin/master&lt;/td&gt;
+      &lt;td&gt;网站源码，主分支&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;gh-pages&lt;/td&gt;
+      &lt;td&gt;xxx/_site&lt;/td&gt;
+      &lt;td&gt;site/origin/gh-pages&lt;/td&gt;
+      &lt;td&gt;分支，gh-pages只追踪和发布此文件夹下文件。&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;双库法后，项目仓库如下：&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;本地仓库&lt;/th&gt;
+      &lt;th&gt;本地实际地址&lt;/th&gt;
+      &lt;th&gt;远程对应的仓库&lt;/th&gt;
+      &lt;th&gt;作用&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;source/master&lt;/td&gt;
+      &lt;td&gt;xxx&lt;/td&gt;
+      &lt;td&gt;source/origin/master&lt;/td&gt;
+      &lt;td&gt;网站源码，主分支&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;site/gh-pages&lt;/td&gt;
+      &lt;td&gt;xxx/_site&lt;/td&gt;
+      &lt;td&gt;site/origin/gh-pages&lt;/td&gt;
+      &lt;td&gt;分支，子模块&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;文件结构如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~/
+  |-- xxx-source/
+  |    |-- _includes/
+  |    |-- _posts/
+  |    |-- index.html
+  |    |-- .nojekyll
+  |    |-- _config.yml
+  |     ....
+  |    |-- _site/ &amp;lt;--- 软链或子模块，也就是发布到gh-pages的文件
+  |
+  |-- xxx-gh-pages/  ---&amp;gt; 软链或子模块到 xxx-source/_site
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;从头开始的完整步骤：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;远程开双仓库&lt;/li&gt;
+  &lt;li&gt;本地新建一文件夹 xxx-source，放入源码，然后同步到远程 &lt;em&gt;git@github.com:username/source.git&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;生成静态站码&lt;/li&gt;
+  &lt;li&gt;放入源码到&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;双仓库的准备工作&lt;/h3&gt;
+
+&lt;p&gt;第一步，远程开双仓库。假设为如下：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;git@github.com:username/source.git 本地的 xxx-source 会发布到此&lt;/li&gt;
+  &lt;li&gt;git@github.com:username/site.git 本地的 xxx-gh-pages 会发布到此&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;第二步，关闭github服务器的jekyll编译器。&lt;/p&gt;
+
+&lt;p&gt;原理：在上传到gh-pages分支上的文件根目录下，创建一个名为 &lt;em&gt;.nojekyll&lt;/em&gt; 的文件，即可关闭github的jekyll编译器。&lt;/p&gt;
+
+&lt;p&gt;方法：修改 &lt;em&gt;_config.yml&lt;/em&gt;，加入如下两行，让其生成的文件中，带 &lt;em&gt;.nojekyll&lt;/em&gt;文件：（后面有需要，还可以加入更多的，此处先加这个最基本的）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;include:
+- .nojekyll
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;一些有关操作&lt;/h3&gt;
+
+&lt;p&gt;远程删除或者添加分支&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 删除远程分支
+git push origin :gh-pages
+# 添加远程分支
+git push origin gh-pages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;生成孤立分支：先克隆源码站，然后生成孤立分支 gh-pages （带参数 &lt;code&gt;--orphan&lt;/code&gt; 没有历史记录，是一个完全独立背景干净的分支），清空里面所有内容&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone git@github.com:username/site.git
+cd repository
+
+git checkout --orphan gh-pages
+
+git rm -rf .
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;加入独有内容后，推送到服务器&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git push origin gh-pages
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;.htacess呢？ 不行！
+redirects呢？&lt;/p&gt;
+
+&lt;p&gt;同一目录，但互相监控不同的文件夹？同一目录双库？&lt;/p&gt;
+
+&lt;p&gt;先本地建完主分支master，然后新建小分支gh-pages&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git branch gh-pages
+git push -u origin --all
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;一起推向服务器端&lt;/p&gt;
+
+&lt;p&gt;然后切换到分支gh-pages。把.git文件全部放入_site中，然后转到_site中，提交。 &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git branch gh-pages
+git push -u origin --all
+
+git remote add origin ssh://git@github.com/username/site.git
+git push -u origin master
+git checkout gh-pages
+git push -u origin gh-pages   
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可选步骤：删掉主分支，以免混淆。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git branch -d master
+git branch  
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;软链双库法&lt;/h3&gt;
+
+&lt;p&gt;前提：操作系统是linux，因为需要利用到一个linux才有的特性：软链&lt;/p&gt;
+
+&lt;p&gt;其中，&lt;em&gt;_site&lt;/em&gt; 文件夹是个软链，本地生成的文件实际是放到硬盘另一个地方，生成后再转入此文件夹，把文件上传到github的origin/gh-pages。&lt;/p&gt;
+
+&lt;p&gt;下面不用软链时的操作（由于此法通用于windows下，所以此处也提供出来）： /xxx-source 和 /xxx-gh-pages&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 新建文件夹 xxx-gh-pages
+mkdir xxx-gh-pages
+cd xxx-gh-pages
+git clone git@github.com:username/site.git
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;接下来，再在 xxx-gh-pages下面，添加 &lt;code&gt;.gitignore&lt;/code&gt; 文件， 把一些不要监控的文件添加进去。&lt;/p&gt;
+
+&lt;p&gt;发布：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cd ~/xxx-source
+# 此处是把源码发布到源码仓库
+git add .
+git commit -am &quot;发表文章&quot;
+git push
+# 生成
+jekyll build
+cd ~/xxx-source/_site/
+cp _site/* ~/xxx-gh-pages
+cd ~/xxx-gh-pages
+git add .
+git commit &quot;发表文章&quot;
+git push
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;浓缩为：（此处省去源码也发布部分，多个shell命令可以用 &lt;code&gt;;&lt;/code&gt;或者 &lt;code&gt;&amp;amp;&amp;amp;&lt;/code&gt; 连接起来）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias build_blog=&quot;cd ~/xxx-source; jekyll;cp -r ~/xxx-source/_site/* ~/xxx-gh-pages;cd ~/xxx-gh-pages;git add .;git commit -am &#39;发表文章&#39;;git push&quot;
+alias bb=&quot;build_blog&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;总要去复制文件，还不够省俭，如果是linux下，则可以更省俭：使用软链！&lt;/p&gt;
+
+&lt;p&gt;把xxx-gh-pages软链到~/xxx-source/_site：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# 软链到xxx-source/_site
+cd ..
+cd xxx-source
+ln -s ~/xxx-gh-pages _site
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;最后批处理之：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;alias build_blog=&quot;cd ~/xxx-source; jekyll;cd ~/xxx-gh-pages;git add .;git commit -am &#39;发表文章&#39;;git push&quot;
+alias bb=&quot;build_blog&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://charliepark.org/jekyll-with-plugins/&quot;&gt;参考此文&lt;/a&gt; &lt;/p&gt;
+
+&lt;h2 id=&quot;submodules&quot;&gt;子模块双库法：submodules&lt;/h2&gt;
+
+&lt;p&gt;全过程：&lt;/p&gt;
+
+&lt;p&gt;说明：为减少时间，在完成新建子模块前，尽可能在两个分支里面，保留尽可能最少的文件，以减少新建子模块时间。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;开两仓库。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;清空xxx-gh-pages的内容，并且提交到远程。清空并提交的目的是减少克隆时间。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;切换到 &lt;em&gt;xxx-source&lt;/em&gt; 分支，把 &lt;em&gt;xxx-source&lt;/em&gt; 分支也同步到github。
+接着，把xxx-gh-pages指为子模块，并挂载到 &lt;code&gt;_site&lt;/code&gt;目录下。
+注意，此处不要有 &lt;code&gt;_site&lt;/code&gt; 文件，下面的命令会自动克隆原有 &lt;em&gt;site&lt;/em&gt; 到此处。&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; $ git checkout master
+ $ git push -u origin --all
+
+ $ git submodule add -b master git@github.com:username/site.git _site
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;在 &lt;em&gt;xxx-source&lt;/em&gt; 分支，看看情况：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git status
+要提交的变更：
+  （使用 &quot;git reset HEAD &amp;lt;file&amp;gt;...&quot; 撤出暂存区）
+
+        new file:   .gitmodules
+        new file:   _site
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;接着直接输入下面命令，提交，并同步github上的source仓库：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git commit -m &quot;把xxx-gh-pages变成xxx-source的子模块&quot;
+$ git push
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;初始化子模块，并看看其指向哪？&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git submodule init
+Submodule &#39;_site&#39; (git@github.com:username/site.git) registered for path &#39;_site&#39;
+$ git submodule 
+4aac2028817a9de3e31f2c1b84f5783b9d837150 _site (heads/master)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;把还没被jekyll生成的源文件都搬到source的目录下，并全部纳入追踪名单。&lt;/p&gt;
+
+    &lt;p&gt;$ git add .
+ $ git commit -m “全部纳入追踪名单”&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;修改 &lt;em&gt;_config.yml&lt;/em&gt;，让其生成的文件中，带 &lt;em&gt;.nojekyll&lt;/em&gt;文件。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;include:
+- .nojekyll
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;用jekyll生成网站，&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ jekyll build
+$ git status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;移动到 &lt;em&gt;_site&lt;/em&gt; 目录下，此时，会发现，已经不是在source仓库了，而是自动到了site仓库，看下分支情况：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd _site
+$ git status
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;把 &lt;em&gt;_site&lt;/em&gt; 下文件全部纳入管理，提交，同步到github的site仓库&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git add .
+$ git commit -m &quot;首次生成&quot;
+$ git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;移动到source目录，提交更改，同步到于github的source仓库&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ cd ..
+$ git commit -a -m &quot;建站完毕&quot;
+$ git push origin source
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;到此步已经完成，可以上github的网站看看结果。&lt;/p&gt;
+
+&lt;p&gt;总结：以后，整个发布流程变成了：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;修改文件&lt;/li&gt;
+  &lt;li&gt;运行 jekyll 生成&lt;/li&gt;
+  &lt;li&gt;看下生成结果： _site&lt;/li&gt;
+  &lt;li&gt;add, commit and push changes in _site subdirectory&lt;/li&gt;
+  &lt;li&gt;add, commit and push changes in the project (including _site subdir)&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;不断重复这个过程&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt;  jekyll build &amp;amp;&amp;amp; cd _site &amp;amp;&amp;amp; git add ./ &amp;amp;&amp;amp; git commit -m &#39;发布&#39; &amp;amp;&amp;amp; git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;可以写成一个批处理文件&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+set -e
+message=$1
+
+jekyll build
+cd _site
+git add ./
+git commit -m &#39;$message&#39;
+git push origin master
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://blog.blindgaenger.net/generate_github_pages_in_a_submodule.html&quot;&gt;参考此文&lt;/a&gt;
+&lt;a href=&quot;http://indelible.io/blog/2013/07/14/jekyll-plugins-and-github-pages.html&quot;&gt;再参考此文&lt;/a&gt; &lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;换用自己喜欢的生成工具&lt;/h2&gt;
+
+&lt;p&gt;摸清了github的各种道道后，接下来，已经可以任意使用网页生成工具了。
+只需要在生成页面的根目录下，放一个 &lt;em&gt;.nojekyll&lt;/em&gt; 文件即可。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;简化图片操作&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://mad4a.me/2012/08/02/emacs-summary-cont/#outline_2&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;图片路径安排：每篇文章一个图片文件夹&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;| --- _posts
+|       | --- 2012-07-31-hello-world-again.md
+|       | --- 2012-08-01-emacs-summary.md
+|       | --- 2012-08-02-emacs-summary-cont.md
+|
+| --- assets
+|       | --- images
+|       |       | --- emacs-summary
+|       |       |       | --- emacs-screenshot.png
+|       |       |
+|       |       | --- emacs-summary-cont
+|       |       |       | --- post-meta-screenshot.png
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;要达到的目的：仅仅上下方向键选择图片。&lt;/p&gt;
+
+&lt;p&gt;需要创建两个文件：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;el文件：用于获取图片路径和列出图片&lt;/li&gt;
+  &lt;li&gt;yasnippet文件：用于调用上面的el文件中的函数，选择图片。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;其中el文件，姑且命名为 &lt;code&gt;markdown-image-select.el&lt;/code&gt; 填入以下内容：&lt;/p&gt;
+
+&lt;p&gt;yasnippet文件， 姑且命名为 &lt;code&gt;i&lt;/code&gt;，填入内容：（注意不要换行）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;![${1:$$(yas-choose-value (mis-yield-choices (buffer-file-name)))}](/static/images/`(mis-get-directory-from-bufname (buffer-file-name))`/$1)$0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后，修改下emacs的配置，调用 &lt;code&gt;markdown-image-select&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;最后一步，重启emacs&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 2014 Apr 27 04:34:21 +0800</pubDate>
+        <link>http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/04/27/%E5%A6%82%E4%BD%95%E5%9C%A8jekyll%E4%B8%AD%E9%9A%8F%E5%BF%83%E6%89%80%E6%AC%B2%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/04/27/%E5%A6%82%E4%BD%95%E5%9C%A8jekyll%E4%B8%AD%E9%9A%8F%E5%BF%83%E6%89%80%E6%AC%B2%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6/</guid>
+      </item>
+    
+      <item>
+        <title>利用github建网络日志站手记——黑传说版</title>
+        <description>&lt;h2 id=&quot;github&quot;&gt;github建立日志系统的优势&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;喜欢分享日志的人，会经历三个阶段：&lt;/p&gt;
+
+  &lt;p&gt;第一阶段，刚接触日志分享系统，觉得很新鲜，试着选择一个免费的日志分享托管网站来写。&lt;/p&gt;
+
+  &lt;p&gt;第二阶段，觉得免费的博客托管网站限制太多，就自己买域名和空间，自己搭独立日志系统。&lt;/p&gt;
+
+  &lt;p&gt;第三阶段，觉得独立日志系统的日常管理太繁琐，最好在保留控制权的前提下，让别人来管，自己只负责写日志。&lt;/p&gt;
+
+  &lt;p&gt;大多数日志作者，都徘徊在第一和第二阶段，因为第三阶段不太容易到达：你很难找到俯首听命、愿意为你管理服务器的人。&lt;/p&gt;
+
+  &lt;p&gt;但是不久前，情况出现变化，一些程序员利用github搭建日志系统。他们既拥有绝对管理权，又享受github带来的便利：&lt;/p&gt;
+
+  &lt;p&gt;只要向主机同步提案，即可发布新文章。更妙的是，还是免费的，github提供无限流量，世界各地都有理想的访问速度，不用自己去和服务器机房打交道了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;github pages建网站可以说是其他技术类日志分享服务的克星，因为程序员愿意折腾。其好处：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;可随意定制&lt;/li&gt;
+  &lt;li&gt;方便，和程序开发库（github）直通&lt;/li&gt;
+  &lt;li&gt;可控&lt;/li&gt;
+  &lt;li&gt;简单自动：只需要提交&lt;/li&gt;
+  &lt;li&gt;高效通用：markdown控制&lt;/li&gt;
+  &lt;li&gt;免费，无限流量，无限空间&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;局限：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;不提供 用户端-服务端 交互&lt;/li&gt;
+  &lt;li&gt;国内访问速度不可保障，可能被墙？&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;github-pages&quot;&gt;注册启用 github pages：&lt;/h2&gt;
+
+&lt;p&gt;github提供两种类型的静态网站服务，&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;用户或者组织级的，域名是 &lt;em&gt;用户或组织名.github.io&lt;/em&gt; 。启用方式：建立一个叫 &lt;em&gt;和用户或组织同名.github.io&lt;/em&gt; 的仓库，github会自动把xxx.github.io仓库里的文件，转为github page的页面。&lt;/li&gt;
+  &lt;li&gt;项目级的，域名是 &lt;em&gt;用户或组织名.github.io/项目名&lt;/em&gt; 。启用方式：建立一个名叫 &lt;em&gt;gh-pages&lt;/em&gt; 的分支，github会自动把 gh-pages 仓库里的文件，转为github page的页面。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;由于 &lt;em&gt;xxx.github.io&lt;/em&gt; 只能一个用户或者组织一个，需要新建一用户或者组织，很不方便，更常用的是项目级的，每个项目生成一个静态站，这样一个用户下可以有多个静态站，方便。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;使用：&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;如果是xxx.github.io，则把需要的日志纳入成果管理，提交后，把本地的仓库同步到注册的xxx.github.io仓库中，即完成发布。&lt;/li&gt;
+  &lt;li&gt;如果是gh-pages的话，则把结果生成到gh-pages，即完成发布。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;jekyll&quot;&gt;定制日志系统：jekyll&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;jekyll：静态网站生成器，可将markdown和textile文档转为html，可使用liquid模板&lt;/li&gt;
+  &lt;li&gt;github pages对于上传的文件，会用jekyll处理后再发布。&lt;/li&gt;
+  &lt;li&gt;可能缺点：不适合大型网站，因为没有用到数据库，每运行一次都必须遍历全部的文本文件，网站越大，生成时间越长。——这是可以解决的&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;两种方式：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;利用github的自动生成：settings——》Automatic Page Generator——》Continue To Layouts——》选择系统提供的模板——》发布。
+之后生成一个叫gh-pages仓库，里面是生成的html文件。&lt;/li&gt;
+  &lt;li&gt;利用jekyll定制，或者是别的静态站点生成工具定制&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;下面使用jekyll来生成静态站，所需软件：ruby gem&lt;/p&gt;
+
+&lt;p&gt;简单安装过程：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install jekyll
+cd 本地想存放站点文件夹的上级文件夹
+~/.gem/ruby/2.1.0/bin/jekyll new 站点文件夹
+cd 站点文件夹
+jekyll serve
+# =&amp;gt; 浏览器中查看 http://localhost:4000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;查看文件夹，结构如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;文件夹名/
+├── _config.yml
+├── _includes
+│   ├── footer.html
+│   ├── head.html
+│   └── header.html
+├── _layouts
+│   ├── default.html
+│   ├── page.html
+│   └── post.html
+├── _posts
+│   └── 2014-08-06-welcome-to-jekyll.markdown
+├── css
+│   └── main.css
+├── feed.xml
+├── about.md
+└── index.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;说明：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自己写的markdown文件，放在 &lt;em&gt;_posts&lt;/em&gt; 文件夹下，可用子目录（用于分类），文件命名方式必须是：&lt;em&gt;年-月-日-名字.md&lt;/em&gt; 。&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;_layouts&lt;/em&gt; 是页面模板&lt;/li&gt;
+  &lt;li&gt;Jekyll会把任何不以下划线开头的文件和目录都复制/生成到网站（在本地是生成到_site/目录)。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;想存放静态文件，比如图片，css，js等，可以自己新建一个文件夹，比如名为： &lt;em&gt;static&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：由于ruby2 的路径编码问题，jekyll上面的文件名不要用中文，会导致出现编码问题，jekyll站点文件里面可以utf-8。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;测试效果：&lt;/h3&gt;
+
+&lt;p&gt;本地写markdown文件，放入 &lt;em&gt;_post&lt;/em&gt; 文件夹中，如果想测试下效果，可以本地使用jekyll生成，然后在浏览器中查看。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;jekyll build
+# =&amp;gt; 当前文件夹将生成到 ./_site
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;问题：如何递增生成？可结合git的对比功能实现。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;定制页面模板：&lt;/h3&gt;
+
+&lt;p&gt;jekyll把 &lt;em&gt;_layouts&lt;/em&gt; 目录中的文档看做是生成用的模板，如果某个文档中的头部变量声明中指定了layout，则Jekyll在生成页面时会使用该模板进行渲染，用文档的内容替换模板中的部分。模板之间可相互嵌套调用：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;---
+layout: post
+...
+---
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;利用好Liquid语言的include语法能够带来很大的变量。被包含的页面部件需要放在_includes文件夹中。&lt;/p&gt;
+
+&lt;p&gt;注意：不管文件的扩展名是md、html还是xml、txt，只要文件的头部包含变量声明，Jekyll的模板引擎就会对其进行处理。
+其中md和html文件都会处理为html，其他类型会保持扩展名。&lt;/p&gt;
+
+&lt;p&gt;另外，liquid语法的引入，使得页面规则产生很大的变化，不能再简单的以markdown来写了。尤其是程序中带有大括号的。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;写文章页面的定制&lt;/h3&gt;
+
+&lt;p&gt;markdown文章可进一步定制：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;---
+layout: default
+title: &quot;这是标题&quot;
+date: 2014-04-23 09:45:26
+description: &quot;这是摘要&quot;
+categories: 这是存放的目录
+tags: [话题1, 话题2]
+lastmod: 2014-04-24
+---
+
+&amp;lt;h2&amp;gt;{{ page.title }}&amp;lt;/h2&amp;gt;
+
+&amp;lt;p&amp;gt;我的第一篇文章天地玄黄&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;{{ page.date | date: &#39;%Y-%m-%d&#39; }}&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;说明：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;每篇文章的头部，必须用一个 &lt;em&gt;yaml格式&lt;/em&gt; 设置元数据。它用三根短划线 &lt;code&gt;---&lt;/code&gt; ，标记开始和结束，里面每一行代表一种设置。&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;layout:default&lt;/code&gt; ，表示该文章的模板使用 &lt;em&gt;_layouts&lt;/em&gt; 目录下的 &lt;em&gt;default.html&lt;/em&gt; 文件；&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;title: &quot;这是标题&quot;&lt;/code&gt;，表示该文章的标题是”这是标题”，如果不设置这个值，默认嵌入文件名的标题的是”hello world”。&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;利用github建网络日志站手记——黑传说版&lt;/code&gt; 就是文件头中设置的”这是标题”，&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;2014-04-23 17:45:26 +0800&lt;/code&gt; 则是嵌入文件名的日期（也可以在文件头重新定义date变量），&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;| date_to_string&lt;/code&gt; 表示将 &lt;code&gt;page.date&lt;/code&gt; 变量转化成人类可读的格式。
+此处我改年月日方式为 &lt;code&gt;| date: &#39;%Y-%m-%d&#39;&lt;/code&gt; 显示。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;此处要注意：由于加入了liquid模板语言，整个markdown语法有些变化。比如此处如果要原样输出liquid语言的话，需要加入 {/% raw %/} ，内嵌自身的话，出问题，行内呢？——至少就目前而言，这不是一个适合复杂编程的代码形式！两种形式解决这种嵌套自身出现的问题：转码，特殊规则&lt;/p&gt;
+
+    &lt;p&gt;{/% raw %/}
+  raw in raw
+  {/% endraw %/}&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;定制导航&lt;/h3&gt;
+
+&lt;p&gt;我是直接把 &lt;em&gt;_layout/default.html&lt;/em&gt; 中的头部部分移到了新建文件 &lt;em&gt;_include/header.html&lt;/em&gt; 中。&lt;/p&gt;
+
+&lt;p&gt;下面是 心内求法 同学的的设置，更加动态：
+在 &lt;em&gt;_config.yml&lt;/em&gt; 中定制&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;menuitems:
+    - name:         首页
+      url:          /index.html
+    - name:         分类
+      url:          /categories.html
+    - name:         话题
+      url:          /tags.html
+    - name:         归档
+      url:           /archive.html
+    - name:         读书
+      url:           /reading.html
+    - name:         工作
+      url:           /working.html
+    - name:         我是谁
+      url:           /about.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后在模板的导航部分添加：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;ul class=&quot;nav&quot;&amp;gt;
+      {/% for item in site.menuitems %/}
+        {/% if item.url == page.url %/}
+        &amp;lt;li class=&quot;active&quot;&amp;gt;
+        {/% else %/}
+        &amp;lt;li&amp;gt;
+        {/% endif %/}
+        &amp;lt;a href=&quot;&quot;&amp;gt;&amp;lt;/a&amp;gt;
+        &amp;lt;/li&amp;gt;
+      {/% endfor %/}
+    &amp;lt;/ul&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意：如果不是加入模板生成代码的话，可以直接用markdown来写，比如友情链接部分，用markdown来写明显比直接用html写来的高效。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;定制首页&lt;/h3&gt;
+
+&lt;p&gt;修改 &lt;em&gt;index.html&lt;/em&gt; 文件，填入以下内容：&lt;/p&gt;
+
+&lt;h3 id=&quot;rss&quot;&gt;分类、话题（标签）、归档和RSS&lt;/h3&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;文章摘要&lt;/h3&gt;
+
+&lt;p&gt;如果有设定摘要的话，可以&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{% if post.description %}&amp;lt;span&amp;gt;{{ post.description }}&amp;lt;/span&amp;gt;{% endif %}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;文章首段预览&lt;/h3&gt;
+
+&lt;p&gt;如果需要文章首段预览的话，可加入：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;span&amp;gt;{{ post.excerpt }}&amp;lt;/span&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-8&quot;&gt;话题（标签云）&lt;/h3&gt;
+
+&lt;p&gt;js实现：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&quot;tag-cloud&quot;&amp;gt;
+    {% for tag in site.tags %}
+    &amp;lt;a href=&quot;/category/tags.html#{{ tag[0] }}-ref&quot; id=&quot;{{ forloop.index }}&quot; class=&quot;__tag&quot; style=&quot;margin: 5px&quot;&amp;gt;{{ tag[0] }}&amp;lt;/a&amp;gt;
     {% endfor %}
+  &amp;lt;/div&amp;gt;
+  &amp;lt;script type=&quot;text/javascript&quot;&amp;gt;
+   $(function() {
+     var minFont = 12.0,
+     maxFont = 36.0,
+     diffFont = maxFont - minFont,
+     size = 0;
+     
+     {% assign max = 1.0 %}
+     {% for tag in site.tags %}
+     {% if tag[1].size &amp;gt; max %}
+     {% assign max = tag[1].size %}
+     {% endif %}
+     {% endfor %}
+     
+     {% for tag in site.tags %}
+     size = (Math.log({{ tag[1].size }}) / Math.log({{ max }})) * diffFont + minFont;
+     $(&quot;#{{ forloop.index }}&quot;).css(&quot;font-size&quot;, size + &quot;px&quot;);
+     {% endfor %}
+   });
+  &amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-9&quot;&gt;分页&lt;/h3&gt;
+
+&lt;p&gt;TODO: ajax分页 TODO: 浮动标题 on paginator&lt;/p&gt;
+
+&lt;h3 id=&quot;section-10&quot;&gt;语法高亮&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;利用外部资源，比如GitHub Gist。简单，但是需要使用外部链接或通过js嵌入到页面，不利于文档和代码的统一维护&lt;/li&gt;
+  &lt;li&gt;使用js在前端渲染，比如google-code-prettify。简单高效，对语言的支持不够多&lt;/li&gt;
+  &lt;li&gt;使用Jekyll插件，比如调用pygments。推荐方式，支持100多种语言。——已经默认启用！&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如下：其中，ruby是指定所用的代码名，linenos是显示行号&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{% highlight ruby linenos %}
+def foo
+  puts &#39;foo&#39;
+end
+{% endhighlight %}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;效果如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;长长长……长长长代码……长长长长代码……&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;长长长……长长长代码……长长长长代码……&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;长长长……长长长代码……长长长长代码……长长长……长长长代码……长长长长代码……&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;更改样式，修改 &lt;em&gt;css&lt;/em&gt; 文件夹下的 &lt;em&gt;syntax.css&lt;/em&gt; 。&lt;/p&gt;
+
+&lt;p&gt;各种格式看看： ~~双波浪线删除线~~   &lt;em&gt;单下划线下划线&lt;/em&gt;  &lt;em&gt;单星斜体&lt;/em&gt; &lt;strong&gt;双下划线加粗&lt;/strong&gt; &lt;strong&gt;双星加粗&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-11&quot;&gt;页内跳转&lt;/h3&gt;
+
+&lt;p&gt;回到头部：&lt;/p&gt;
+
+&lt;h3 id=&quot;section-12&quot;&gt;文档目录&lt;/h3&gt;
+
+&lt;p&gt;如果写比较长的文章，提供一个类似于文档大纲，进行导航可以方便阅读。&lt;/p&gt;
+
+&lt;p&gt;两种方法：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;静态的方法是直接生成大纲：插件实现：jekyll-toc-generator&lt;/li&gt;
+  &lt;li&gt;用js来动态生成：这种方式加载东西少，但在不支持js的浏览器里，则无法使用。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;另外，为了兼容性，比如有的手机框架关闭了浏览器本身的跳转功能，因此，用双向连接的方式可以获得最大的兼容性。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-13&quot;&gt;使用公式&lt;/h3&gt;
+
+&lt;p&gt;渲染引擎支持公式否？是否需要系统装有 latex？&lt;/p&gt;
+
+&lt;p&gt;js渲染latex公式： &lt;a href=&quot;http://www.mathjax.org/&quot;&gt;Mathjax&lt;/a&gt; ，缺点是动态加载，速度慢。
+优点：支持公式编号，这样方便引用&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://chen.yanping.me/cn/blog/2012/03/10/octopress-with-latex&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;试试 &lt;script type=&quot;math/tex&quot;&gt;\exp(-\frac{x^2}{2})&lt;/script&gt; 代码 &lt;script type=&quot;math/tex&quot;&gt;\alpha + \beta&lt;/script&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt;        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt; 
+e^x = \sum\_{n=0}^\infty \frac{x^n}{n!} = \lim\_{n\rightarrow\infty} (1+x/n)^n 
+&lt;/script&gt;
+
+&lt;h3 id=&quot;section-14&quot;&gt;处理图片&lt;/h3&gt;
+
+&lt;p&gt;设置一个 &lt;code&gt;IMAGE_ROOT&lt;/code&gt; 变量，可以在post中设置，也可以在post的模板中通过指定的规则capture（或者assign）。&lt;/p&gt;
+
+&lt;p&gt;则引可以使用/xxx.png的形式插入图片，便于以后的调整和管理。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-15&quot;&gt;处理表格&lt;/h3&gt;
+
+&lt;p&gt;注：jekyll2之后，默认使用kramdown，可以自动处理表格。&lt;/p&gt;
+
+&lt;p&gt;注：如果是jekyll1，使用 redcarpet引擎，需要在 &lt;em&gt;_config.yml&lt;/em&gt; 中，添加下面两行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;redcarpet:
+    extensions: [tables]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-16&quot;&gt;博客搬家&lt;/h3&gt;
+
+&lt;p&gt;可能需要两步：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;（如果博客已经是wordpress则跳过此步）第一步使用blogstowordpress导入任意博客为wordpress类型&lt;/li&gt;
+  &lt;li&gt;第二步则是利用jekyll-import导入到jekyll，或者利用exitwp导出为markdown。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Jekyll提供了一个插件 jekyll-import(需要安装），可以将wordpress的博客导入到Jekyll。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;~ $ gem install jekyll jekyll-import
+~ $ jekyll new my-awesome-site
+~ $ cd my-awesome-site
+~/my-awesome-site $ jekyll import wordpressdotcom --source wordpress.xml
+~/my-awesome-site $ jekyll serve
+# =&amp;gt; Now browse to http://localhost:4000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;exitwp是一个用python开发的工具，号称是将wordpress的博客导出并转换成markdown，但实际上 任何能导出rss/atom的博客都可以用这个工具进行转换。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/thomasf/exitwp
+sudo pip install --upgrade  -r pip_requirements.txt
+cd exitwp/wordpress-xml/
+wget http://your/atom/file/xml
+cd ..
+python exitwp.py
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-17&quot;&gt;添加评论系统&lt;/h3&gt;
+
+&lt;p&gt;Jekyll生成的是静态网站，诸如评论、推荐、关注之类的功能，则需把各种各样第三方的功能部件加到你的博客中。&lt;/p&gt;
+
+&lt;p&gt;与博客相关的主要有几类：&lt;/p&gt;
+
+&lt;p&gt;社会化评论：专门提供评论功能的网站，可以为博客增加评论功能。也可能附带着关注、相关文章、推荐等功能。&lt;/p&gt;
+
+&lt;p&gt;国外的有disqus，国内的有友言，多说&lt;/p&gt;
+
+&lt;p&gt;社会化推荐：自动推荐跨站的相关文章。包括自动推相关文章。&lt;/p&gt;
+
+&lt;p&gt;国内的有友荐，无觅。&lt;/p&gt;
+
+&lt;p&gt;Jekyll本身也可以实现站内文章推荐的功能。&lt;/p&gt;
+
+&lt;p&gt;社会化分享：将自己喜欢的网址分享给别人，通常附带推荐功能。
+国内的有加网 ，百度分享等。其中加网提供了划词分享功能。&lt;/p&gt;
+
+&lt;p&gt;社交网站联动：可以发布简短的动态。比如Twitter, Facebook, Google Plus, 新浪微博等网站。与博客的联动可以是自己发布博客动态， 也可以是由别人推荐（这种方式即为社会化推荐）。&lt;/p&gt;
+
+&lt;p&gt;如果是自己发布动态，需要让别人能够方便的“关注/Follow”你，最好提供“一键关注的按钮”，或者提供连接能够让别人在这些网上方便的找到你。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-18&quot;&gt;社会化登录&lt;/h3&gt;
+
+&lt;p&gt;没懂，感觉也就是OpenID或OAuth的集合。暂时不予考虑。&lt;/p&gt;
+
+&lt;p&gt;由于存在着伟大的墙，只好尽量选择国内的社会化网络资源。对于更喜欢的国外的资源，尽量考虑如何不拖慢墙内用户的访问速度。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-19&quot;&gt;评论功能&lt;/h3&gt;
+
+&lt;p&gt;只选一个，选了友言。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-20&quot;&gt;推荐功能&lt;/h3&gt;
+
+&lt;p&gt;可以有多个，那么先加上友荐和无觅，Jekyll自带的相关文章功能也在测试中。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-21&quot;&gt;分享功能&lt;/h3&gt;
+
+&lt;p&gt;只选一个，选了百度分享，与百度统计可以勾搭在一起，而且据说有利于百度的SEO。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-22&quot;&gt;流量分析和统计&lt;/h3&gt;
+
+&lt;p&gt;第三方的流量分析和统计工具可以说是很多，可以选择国外的Google Analysis、SiteMeter和国内的百度统计、量子恒道统计等。&lt;/p&gt;
+
+&lt;p&gt;为了减少翻墙需求，还是选择国内的吧，选了百度——不过我可以说百度做的真差么？&lt;/p&gt;
+
+&lt;h3 id=&quot;section-23&quot;&gt;使用其他域名&lt;/h3&gt;
+
+&lt;p&gt;Github Pages会为站点分配类似 &lt;em&gt;用户名.github.io&lt;/em&gt; 的二级域名。不过最好还是申请顶级域名吧。&lt;/p&gt;
+
+&lt;p&gt;申请域名：免费的域名(.tk)可以&lt;a href=&quot;http://my.dot.tk/cgi-bin/amb/landing.dottk?nr=806151::15401173::1&quot;&gt;在此&lt;/a&gt;申请。 &lt;em&gt;.tk&lt;/em&gt; 是南太平洋岛国托克劳的国家域名，支持域名转发（可隐藏原URL）、电邮转发、A记录解析、CNAME别名记录、MX邮件记录、设置DNS服务器等服务。&lt;/p&gt;
+
+&lt;p&gt;收费的域名到处有，是否使用国内的域名商随你。&lt;/p&gt;
+
+&lt;h4 id=&quot;section-24&quot;&gt;域名解析服务&lt;/h4&gt;
+
+&lt;p&gt;一般来说域名提供商会提供简单的解析服务，也支持将解析服务指向到其他的提供者。&lt;/p&gt;
+
+&lt;p&gt;国外的如Godaddy，可能被墙。
+国内的如DNSPod，有免费版。&lt;/p&gt;
+
+&lt;p&gt;配置：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;在jekyll站点中增加CNAME文件，里面第一行写上要使用的域名&lt;/li&gt;
+  &lt;li&gt;配置域名解析指向，分两种情况：
+    &lt;ul&gt;
+      &lt;li&gt;如果用的顶级域名，在域名解析服务提供商那里将A记录指向github提供的ip地址&lt;/li&gt;
+      &lt;li&gt;如果使用二级域名，在域名解析服务提供商那里增加CNAME记录，指向github提供的ip地址&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;参考并致谢：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html&quot;&gt;Jekyll入门：阮一峰&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://thinkinside.tk/2013/05/27/jekyll_mysite.html&quot;&gt;Jekyll建站过程：心内求法&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://dannpu.com/blog/2013/08/03/Github-page-build-failure/&quot;&gt;利用本地编译结果替代github自动编译：淡朴若水&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;jekyll-1&quot;&gt;除了jekyll还有啥办法达到这个目的？&lt;/h2&gt;
+
+&lt;p&gt;几乎每种编程语言，都有生成静态网站的工具，可根据自己的需要和熟悉程度使用。&lt;/p&gt;
+
+&lt;p&gt;比如python的pelican，emacs的org-page，js的Wintersmith等……&lt;/p&gt;
+
+</description>
+        <pubDate>Wed, 2014 Apr 23 17:45:26 +0800</pubDate>
+        <link>http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/04/23/%E9%BB%91%E4%BC%A0%E8%AF%B4%E4%B9%8B%E5%88%A9%E7%94%A8github%E5%BB%BA%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97%E7%AB%99%E6%89%8B%E8%AE%B0/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/04/23/%E9%BB%91%E4%BC%A0%E8%AF%B4%E4%B9%8B%E5%88%A9%E7%94%A8github%E5%BB%BA%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97%E7%AB%99%E6%89%8B%E8%AE%B0/</guid>
+      </item>
+    
   </channel>
 </rss>

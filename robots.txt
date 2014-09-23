@@ -1,8 +1,5 @@
----
-layout: none
----
 User-agent: *
 Disallow: /static/
 Disallow: /themes/
 
-Sitemap: {{ site.url }}/sitemap.xml
+Sitemap: http://jobinson.ga/sitemap.xml

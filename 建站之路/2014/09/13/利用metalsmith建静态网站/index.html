@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>利用metalsmith建静态网站</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/09/13/%E5%88%A9%E7%94%A8metalsmith%E5%BB%BA%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="利用metalsmith建静态网站">利用metalsmith建静态网站</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>摘要：</b><br/></p>
+      
+
+      
+      <p class="post-tag"><b>话题：</b>
+        
+        <a href="/话题列表/#静态站-ref">静态站
+        <sup>3</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#metalsmith-ref">metalsmith
+        <sup>1</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#建站之路-ref">建站之路</a>
+        
+      </span>
+      
+      
+      创建时间：2014-09-13
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <h2 id="metalsmith">为何选用metalsmith</h2>
+
+<p>metalsmith的特点：</p>
+
+<ul>
+  <li>全部插件化</li>
+  <li>核心很小，就一个调用程序，处理目录，输入输出的标口层（标准接口层）</li>
+  <li>灵活性大，可以生成各种类型项目：静态站，项目架构，生成工具，电子书，项目文档等</li>
+</ul>
+
+<h2 id="section">安装环境</h2>
+
+<p>除了要安装metalsmith外，还要安装所需的插件</p>
+
+<pre><code>$ npm install metalsmith
+</code></pre>
+
+<p>一般需要的插件：</p>
+
+<p>assets：不渲染的部分
+beautifier：为运行效率考虑，一般不需要。但为了方便检查代码生成结果，需要。
+collections：分类？
+navigation：根据稳健树输出导航
+paginate：分页
+permalinks：简化链接形式
+tags：使用标签
+templates：布局模板</p>
+
+<h2 id="section-1">模板选用</h2>
+
+<h2 id="section-2">预览</h2>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+
+  <!-- 有言评论 -->
+  <div id="uyan_frame"></div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+  
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a class="pull-right" href="/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/09/01/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E5%8F%98%E6%88%90%E5%8A%A8%E6%80%81%E7%BD%91%E7%AB%99/">◁前<br>静态网站变成动态网站◀篇</a>
+    </div>
+    
+    
+     <!--回到头部-->
+    <div class="back-top"><a href="#利用metalsmith建静态网站">△
+    <br>回头▲再看</a></div> 
+    
+    
+    
+  </div>
+
+<!--页面底部自动浮现-->
+  <div class="post-reletive">
+  <!--相关文章-->
+
+  </div>
+
+
+</div>
+
+
+ 
+</div>
+
+
+
+
+      
+      <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2014版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+    <span>致谢： <br>
+      <a href="http://www.github.com">github</a>，
+      <a href="http://jekyllrb.com/">jekyll</a>，
+      <a href="http://johnmacfarlane.net/pandoc/index.html">pandoc</a>，以及一切对本人有帮助的人！</span>
+    <span>
+    <!--百度统计-->  
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</span>
+    </li>     
+</ul>
+</footer>
+
+
+    
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>

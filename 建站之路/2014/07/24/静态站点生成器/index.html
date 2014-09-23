@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>静态站生成器</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/07/24/%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E5%99%A8/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="静态站生成器">静态站生成器</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>摘要：</b><br/>静态站生成器的选择</p>
+      
+
+      
+      <p class="post-tag"><b>话题：</b>
+        
+        <a href="/话题列表/#静态站-ref">静态站
+        <sup>3</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#生成器-ref">生成器
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#angular-ref">angular
+        <sup>2</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#github-ref">github
+        <sup>4</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#coffeescript-ref">coffeescript
+        <sup>1</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#建站之路-ref">建站之路</a>
+        
+      </span>
+      
+      
+      创建时间：2014-07-24
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <mark>特别提醒：不要把时间浪费在迁移平台上！</mark>
+
+<blockquote>
+  <p>特别提醒：不要把时间浪费在迁移平台上！ </p>
+</blockquote>
+
+<p>近一个月来，发现github的页面不会更新了，试了很多方式，都不更新——后来，才想起升级过git版本，新版本快速提交时对深度路径压缩不正确，导致出问题！解决办法是删了该目录后提交，再恢复该目录，再提交。</p>
+
+<p>折腾过程中，顺便就查了下各个语言的生成器，量真多，几乎每个语言都有若干个。
+个人主要关注几个关注量大，且所用语言个人比较看好或者常用的。</p>
+
+<p>生成静态站：coffeescript
+前端：angular+动态响应</p>
+
+<p>别人认为的槽点如下：</p>
+
+<blockquote>
+  <ul>
+    <li>jekyll的windows支持不太好。好吧，虽然在windows下折腾能跑起来。但是我不是来折腾的，据我所知，windows下要克服的原因主要是gbk编码，以及一些ruby的gem安装的问题。</li>
+    <li>中文支持太差。不支持中文的url路径？还有tag名称如果设置为中文，则不可以使用site.tags.TAG这种用法筛选文章，简直就是坑。</li>
+    <li>功能还是比较欠缺。只有一个分页器？还只能在index下分页？还有那个坑爹的liquid模板。不如直接上erb（当然作者是为了github的安全着想）。</li>
+    <li>不想装ruby</li>
+  </ul>
+</blockquote>
+
+<h3 id="ruby">ruby</h3>
+
+<ul>
+  <li>jekyll 本人第一个深入使用的静态站生成器，使用量极高</li>
+</ul>
+
+<h3 id="js">js</h3>
+
+<ul>
+  <li>metalsmith 全插件化，可从简到复杂，可定制性高</li>
+  <li>hexo 台湾一学生搞的，支持多线程生成，上百个文件只需要花数秒中就能生成，可自动提交，应该算js版的octopress。</li>
+  <li>harp 零配置起步——要不分支为sharp？</li>
+  <li>assemble</li>
+</ul>
+
+<p>consolidate.js 模板中介
+liveload.js 根据更改，可即时刷新</p>
+
+<h3 id="coffeescript">coffeescript</h3>
+
+<ul>
+  <li>docpad</li>
+  <li>Wintersmith</li>
+</ul>
+
+<h3 id="section">其他</h3>
+
+<p>常见的</p>
+
+<ul>
+  <li>sphinx</li>
+  <li>org-mode：其周边成熟度很高，个人用的也不少，不过，因为其对内嵌代码的设计有严重缺陷，而且广泛的使用率，使其改进的难度会变得极大！</li>
+</ul>
+
+<p>另外，还有几个特别的，比如直接用makefile来生成的</p>
+
+<h2 id="section-1">模板语言的选择</h2>
+
+<ul>
+  <li>jade 设计易混，缩进蛋疼</li>
+  <li>swig 语法借鉴jinja2 功能全，使用 {}标记</li>
+  <li>handlebars 非常少逻辑的模板，类似mustache，但比其稍强 使用 {}标记：没有if else for等，只有标签，标签用于替换各种东西。</li>
+  <li>ejs 无标签注记，无区块（有include） <code>&lt;% code %&gt;</code> 筛选，可自定义标记，有客户端渲染器</li>
+</ul>
+
+<p>不知道会不会出现liquid的自身难以完整表达自身的问题？？？</p>
+
+<p>不应该给html增加一个标识符<code>{}</code>，而应该使用原有的<code>&lt;&gt;</code>，比如<code>&lt;% %&gt;</code>，<code>&lt;? ?&gt;</code>，目的是减少处理和识别复杂度。</p>
+
+<p>其实php是一个伪装成编程语言的模板语言！！(带交互响应的)</p>
+
+<pre><code>&lt;?php xxx ?&gt;
+</code></pre>
+
+<p>静态站的模板，是剥离php的交互响应部分，把需要高度交互响应的，换用性能更强劲的部件。而不极限于php。</p>
+
+<p>技术演进：
+php/asp+html+js+css，重心在php
+由于普及率问题，现在演变成了：
+html+css+js+各种js模板。重心在js</p>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+
+  <!-- 有言评论 -->
+  <div id="uyan_frame"></div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+  
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a class="pull-right" href="/%E6%B6%85%E7%A3%90/2014/07/21/%E5%A4%A7%E4%BA%BA%E6%A0%BC%E5%92%8C%E5%B0%8F%E4%BA%BA%E6%A0%BC/">◁前<br>大人格和小人格◀篇</a>
+    </div>
+    
+    
+     <!--回到头部-->
+    <div class="back-top"><a href="#静态站生成器">△
+    <br>回头▲再看</a></div> 
+    
+    
+    <div class="post-next">
+    <a href="/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/09/01/%E9%9D%99%E6%80%81%E7%BD%91%E7%AB%99%E5%8F%98%E6%88%90%E5%8A%A8%E6%80%81%E7%BD%91%E7%AB%99/">后▷<br>篇▶静态网站变成动态网站</a>
+    </div>
+    
+    
+  </div>
+
+<!--页面底部自动浮现-->
+  <div class="post-reletive">
+  <!--相关文章-->
+
+  </div>
+
+
+</div>
+
+
+ 
+</div>
+
+
+
+
+      
+      <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2014版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+    <span>致谢： <br>
+      <a href="http://www.github.com">github</a>，
+      <a href="http://jekyllrb.com/">jekyll</a>，
+      <a href="http://johnmacfarlane.net/pandoc/index.html">pandoc</a>，以及一切对本人有帮助的人！</span>
+    <span>
+    <!--百度统计-->  
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</span>
+    </li>     
+</ul>
+</footer>
+
+
+    
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>
