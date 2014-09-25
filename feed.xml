@@ -579,16 +579,19 @@ float length = sqrt(p.x * p.x + p.y * p.y);
 01100010 00000000 00000000
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;每句解释：
-1. [结果]把数字0 存放到 内存位置 0 中
-2. [运算材料]把数字1 存放到 内存位置 1 中
-3. [运算]把 内存位置1的&lt;strong&gt;值&lt;/strong&gt; 存放到内存位置 2 中
-4. [设定范围] 内存位置 2 的值 减去 11
-5. [设定范围] 若 内存位置2的值为0 ，则跳转到第九步
-6. [累计结果]把内存位置1的值 加入到内存位置 0 中
-7. [递增] 把内存位置1的值 加1
-8. [跳转]继续第三步
-9. [输出]把 位于内存位置 0 的值 输出。&lt;/p&gt;
+&lt;p&gt;每句解释：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;[结果]把数字0 存放到 内存位置 0 中&lt;/li&gt;
+  &lt;li&gt;[运算材料]把数字1 存放到 内存位置 1 中&lt;/li&gt;
+  &lt;li&gt;[运算]把 内存位置1的&lt;strong&gt;值&lt;/strong&gt; 存放到内存位置 2 中&lt;/li&gt;
+  &lt;li&gt;[设定范围] 内存位置 2 的值 减去 11&lt;/li&gt;
+  &lt;li&gt;[设定范围] 若 内存位置2的值为0 ，则跳转到第九步&lt;/li&gt;
+  &lt;li&gt;[累计结果]把内存位置1的值 加入到内存位置 0 中&lt;/li&gt;
+  &lt;li&gt;[递增] 把内存位置1的值 加1&lt;/li&gt;
+  &lt;li&gt;[跳转]继续第三步&lt;/li&gt;
+  &lt;li&gt;[输出]把 位于内存位置 0 的值 输出。&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;p&gt;进一步发展编程语言，利用借记符：&lt;/p&gt;
 
@@ -639,13 +642,13 @@ console.log(total);
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;&lt;strong&gt;问题&lt;/strong&gt;：8位二进制可以表达多少？
-13，用二进制表示：&lt;/p&gt;
+示例：13，用二进制表示：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;  0   0   0   0   1   1   0   1
 128  64  32  16   8   4   2   1
-
-也就是： `00001101` 或者 `8+4+1=13` 。依此类推，8位数可以一共表达256，ascii的基础码共128（编码还不够简约，其实26个大写字母可以只用加一位即可判断，不需要硬编码进去），包含扩展码后共256个。
 &lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;也就是： &lt;code&gt;00001101&lt;/code&gt; 或者 &lt;code&gt;8+4+1=13&lt;/code&gt; 。依此类推，8位数可以一共表达256，ascii的基础码共128（编码还不够简约，其实26个大写字母可以只用加一位即可判断，不需要硬编码进去），包含扩展码后共256个。&lt;/p&gt;
 
 &lt;aside&gt;个人观点：其实，汉字如果用笔画+位置来编码的话，也不需要那么多：假设10个基本笔画，42个位置信息，则可以编码 10^42=10e+42&lt;/aside&gt;
 
@@ -657,29 +660,29 @@ console.log(total);
 
 &lt;blockquote&gt;
   &lt;ul&gt;
-    &lt;li&gt;Algol: 汇编语言太低级了。&lt;/li&gt;
+    &lt;li&gt;Algol: 汇编太底层了。&lt;/li&gt;
     &lt;li&gt;Pascal: Algol语言缺少足够的数据类型。&lt;/li&gt;
     &lt;li&gt;Modula: Pascal语言对于系统应用编程来说太弱了。&lt;/li&gt;
     &lt;li&gt;Simula: Algol语言在仿真模拟方面不够好。&lt;/li&gt;
     &lt;li&gt;Smalltalk: Simula语言里并不是所有的东西都是对象。&lt;/li&gt;
     &lt;li&gt;&lt;/li&gt;
-    &lt;li&gt;Fortran: 汇编语言太低级。&lt;/li&gt;
+    &lt;li&gt;Fortran: 汇编太底层了。&lt;/li&gt;
     &lt;li&gt;Cobol: Fortran语言不好用。&lt;/li&gt;
     &lt;li&gt;PL/1: Fortran语言缺少足够的数据类型。&lt;/li&gt;
-    &lt;li&gt;Ada:所有现存的编程语言都有缺失。&lt;/li&gt;
+    &lt;li&gt;Ada: 所有现存的编程语言都有缺失。&lt;/li&gt;
     &lt;li&gt;Basic: Fortran语言不好用。&lt;/li&gt;
     &lt;li&gt;APL: Fortran语言在数组操作上不好用。&lt;/li&gt;
     &lt;li&gt;J: APL语言需要自己的字符集。&lt;/li&gt;
     &lt;li&gt;&lt;/li&gt;
-    &lt;li&gt;C: 汇编语言太低级。&lt;/li&gt;
-    &lt;li&gt;C++: C语言太低级。&lt;/li&gt;
+    &lt;li&gt;C: 汇编太底层了。&lt;/li&gt;
+    &lt;li&gt;C++: C语言太底层了。&lt;/li&gt;
     &lt;li&gt;Java: C++太笨重。微软在压迫我们。&lt;/li&gt;
     &lt;li&gt;C#: Java是Sun公司控制的。&lt;/li&gt;
     &lt;li&gt;&lt;/li&gt;
     &lt;li&gt;Lisp: 用图灵机方式描述计算机计算太别扭。&lt;/li&gt;
     &lt;li&gt;Scheme: MacLisp语言太笨拙。&lt;/li&gt;
     &lt;li&gt;T: Scheme语言没有程序库。&lt;/li&gt;
-    &lt;li&gt;Common Lisp:Lisp语言的方言太多了。&lt;/li&gt;
+    &lt;li&gt;Common Lisp: Lisp方言太多了。&lt;/li&gt;
     &lt;li&gt;Dylan: Scheme语言没有程序库，Lisp语法太疯狂。&lt;/li&gt;
     &lt;li&gt;&lt;/li&gt;
     &lt;li&gt;Perl: Shell脚本/awk/sed都不像编程语言。&lt;/li&gt;
@@ -687,6 +690,7 @@ console.log(total);
     &lt;li&gt;Ruby: Perl语言太笨拙，Lisp语法太疯狂。&lt;/li&gt;
     &lt;li&gt;Prolog: 编程不够逻辑。&lt;/li&gt;
     &lt;li&gt;&lt;/li&gt;
+    &lt;li&gt;js： java不适合新手&lt;/li&gt;
     &lt;li&gt;易语言:你们都不支持中文编程 &lt;/li&gt;
     &lt;li&gt;爱编：你们都不国际化&lt;/li&gt;
   &lt;/ul&gt;
@@ -702,12 +706,19 @@ console.log(total);
 
 &lt;h3 id=&quot;section-2&quot;&gt;语法流派&lt;/h3&gt;
 
-&lt;p&gt;先说说语法，人类社会中存在大概三种下命令方式：
-1. 领导说：“甲乙丙丁！”甲乙丙丁：“在！”领导：“你们去ooxx！”甲乙丙丁：“是！”
-2. 另一种是：领导说：我们要去ooxx，嗯，甲乙丙丁，你们去做这件事吧！
-3. 简化命令法：甲乙丙丁 去xxx&lt;/p&gt;
+&lt;p&gt;先说说语法，人类社会中存在大概三种下命令方式：&lt;/p&gt;
 
-&lt;p&gt;第一种是一般常见的编程语言，比如c比如js。第二种是链码等各种前置标识表达式或者成对标识语言会采用的方式。第三种一般是用在脚本语言，好处是快速简洁，但程序一长，就很难懂。&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;领导说：“甲乙丙丁！”甲乙丙丁：“在！”领导：“你们去ooxx！”甲乙丙丁：“是！”&lt;/li&gt;
+  &lt;li&gt;另一种是：领导说：我们要去ooxx，嗯，甲乙丙丁，你们去做这件事吧！&lt;/li&gt;
+  &lt;li&gt;简化命令法：甲乙丙丁 去xxx&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;第一种是一般常见的编程语言，比如c，js。&lt;/li&gt;
+  &lt;li&gt;第二种是链码等各种前置标识表达式或者成对标识语言会采用的方式。&lt;/li&gt;
+  &lt;li&gt;第三种一般是用在脚本语言，好处是快速简洁，但程序一长，就很难懂。&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;第一种和第三种都是直抒式，第二种是抽象式。为什么会有这么些方式呢？&lt;/p&gt;
 
@@ -734,41 +745,37 @@ console.log(total);
 
 &lt;h3 id=&quot;section-4&quot;&gt;编程语言的构成要素&lt;/h3&gt;
 
-&lt;p&gt;一套编程语言，无非是：表达的类型+操作（读、写、查），穷尽各种组合就是了。&lt;/p&gt;
+&lt;p&gt;一套编程语言，无非是：&lt;strong&gt;表达的类型+操作（读、写、查），穷尽各种组合就是了。&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;神编的构造经验：&lt;/p&gt;
+&lt;p&gt;一般而言，编程语言之间的不同，在于抽象方式各异：各个语言为了达成自己的主要目的，在着眼点上会极尽所能的抽象方式，提供该方面尽可能大的可操控能力，该方面的稳定性，该方面的可测试性。&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;设定存在的类型，&lt;/li&gt;
-  &lt;li&gt;批量判断输入输出类型是否正确，逐个判断还是批量判断？，&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;具体设定各个函数的功能，但不判断类型，只读入读出？。&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
 
-    &lt;pre&gt;&lt;code&gt; 类型 |纵坐标：操作对象
-           |
-      与非 |
-      数字 |
-      字符 |
-      内名 |
- 横坐标____|______________________________________
- 操作      |    读     查    写
-    字符串 |
-    数据流 |
-        树 |
-        表 |
-      函数 |
-      向量 |
-      链串 |
-      拓扑 |
-      闭合 |
-    连续统 |
-  提示信息 |
-  文件路径 |
-    程序包 |
-           |
+&lt;pre&gt;&lt;code&gt;         类型 |纵坐标：操作对象
+              |
+         与非 |
+         数字 |
+         字符 |
+         内名 |
+    横坐标____|______________________________________
+    操作      |    读     查    写
+       字符串 |
+       数据流 |
+           树 |
+           表 |
+         函数 |
+         向量 |
+         链串 |
+         拓扑 |
+         闭合 |
+       连续统 |
+     提示信息 |
+     文件路径 |
+       程序包 |
+              |
 &lt;/code&gt;&lt;/pre&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
+
+&lt;p&gt;```&lt;/p&gt;
 
 &lt;p&gt;进一步细分：&lt;/p&gt;
 
@@ -803,11 +810,23 @@ console.log(total);
   &lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;新设计语言可以参考神编和sibilant的构造经验：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;设定存在的类型，&lt;/li&gt;
+  &lt;li&gt;批量判断输入输出类型是否正确，逐个判断还是批量判断？，&lt;/li&gt;
+  &lt;li&gt;具体设定各个函数的功能，但不判断类型，只读入读出？。&lt;/li&gt;
+&lt;/ol&gt;
+
 &lt;h3 id=&quot;section-5&quot;&gt;编程语言常有的机制&lt;/h3&gt;
 
-&lt;p&gt;命名，以方便调用&lt;/p&gt;
+&lt;p&gt;命名：对每个操作和操作对象都命名，以方便调用。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-6&quot;&gt;程序设计思路：抽象&lt;/h3&gt;
+&lt;h3 id=&quot;section-6&quot;&gt;程序设计思路：抽象，化整为零&lt;/h3&gt;
+
+&lt;p&gt;抽象化，自动化&lt;/p&gt;
+
+&lt;p&gt;化整为零，简化问题解决方式&lt;/p&gt;
 
 </description>
         <pubDate>Mon, 2014 May 05 00:00:00 +0800</pubDate>
