@@ -188,12 +188,10 @@ int count = 10;
 
 <p>类 = 多变量绑在一起，变成一个包</p>
 
-<p>point是新建框架的名字</p>
-
 <pre><code>typedef struct {
     float x;
     float y;
-  } point;
+  } point;   /point是新建框架的名字
 </code></pre>
 
 <p>新建框架的使用。设定实例：实例+点+变量</p>
@@ -207,7 +205,22 @@ float length = sqrt(p.x * p.x + p.y * p.y);
 
 <h3 id="pointer-">pointer 系统：指针</h3>
 
+<pre><code>int* x;   /这样的写法对新手来说清晰
+int *x;   /这是日常的写法 
+
+/* A pointer to a new empty Qexpr lval */
+lval* lval_qexpr(void) {
+  lval* v = malloc(sizeof(lval));   /
+  v-&gt;type = LVAL_QEXPR;    / 指针属性：类型
+  v-&gt;count = 0;    /指针属性：
+  v-&gt;cell = NULL;   /指针属性：
+  return v;
+}
+</code></pre>
+
 <h3 id="char">字串 <code>char*</code></h3>
+
+<h3 id="array">数组 <code>array</code></h3>
 
 <h3 id="section-3">条件操控</h3>
 
@@ -240,11 +253,27 @@ float length = sqrt(p.x * p.x + p.y * p.y);
   </li>
 </ul>
 
+<h3 id="section-5">宏</h3>
+
+<p>用在处理重复性操作</p>
+
+<pre><code>#define MACROXXX(args, cond, err) if (!(cond)) { xxx(args); return lval_err(err); }
+</code></pre>
+
+<p>使用 #define 来定义，三个参数分别代表：参照参数，条件，出错信息。整个宏代表：如果条件不成立，则 执行xxx(参照参数)，并输出 出错信息。
+注：此处没设定如果条件成立的处理方式</p>
+
+<pre><code>/* 调用 */
+MACROXXX(a, (a-&gt;count == 1                 ), "Function 'xxx' passed too many arguments!");
+MACROXXX(a, (a-&gt;cell[0]-&gt;type == LVAL_QEXPR), "Function 'xxx' passed incorrect type!");
+MACROXXX(a, (a-&gt;cell[0]-&gt;count != 0        ), "Function 'xxx' passed {}!");
+</code></pre>
+
 <h3 id="c-1">C的一些机制</h3>
 
 <p>调-返 （callback）：用于后台加载，后台运算不错，但由于并行计算时代的到来，这个很好的机制变成了最容易出问题的地方。</p>
 
-<h2 id="section-5">设计全面的语言：通链</h2>
+<h2 id="section-6">设计全面的语言：通链</h2>
 
 <p>主要的语法特征：前置标识</p>
 
@@ -264,7 +293,9 @@ float length = sqrt(p.x * p.x + p.y * p.y);
 
 <p>缺点：普及度不高，而且，因为设计太过完备，难免隐藏不少问题，只是因为应用太少，这些问题暴露的不全。</p>
 
-<h2 id="section-6">难读天书：简符码</h2>
+<p>对于lisp，只需要学习其设计，而不需要学习其具体的编程</p>
+
+<h2 id="section-7">难读天书：简符码</h2>
 
 <p>目的在于提供快速简便的拣选。</p>
 

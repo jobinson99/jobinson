@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>静态站生成器</title>
+<title>易码肆的码道技巧</title>
 <meta name="description" content="黑传说的学习笔记">
 
 <link rel="canonical" href="http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/07/24/%E9%9D%99%E6%80%81%E7%AB%99%E7%82%B9%E7%94%9F%E6%88%90%E5%99%A8/">
@@ -51,33 +51,25 @@
       <div class="post">
   
   <header class="post-header">
-    <h1 id="静态站生成器">静态站生成器</h1>
+    <h1 id="易码肆的码道技巧">易码肆的码道技巧</h1>
 
     <div class="post-abstract">
       
-      <p><b>摘要：</b><br/>静态站生成器的选择</p>
+      <p><b>摘要：</b><br/>易码肆的码道技巧</p>
       
 
       
       <p class="post-tag"><b>话题：</b>
         
-        <a href="/话题列表/#静态站-ref">静态站
-        <sup>3</sup></a>
-        &nbsp;
-        
-        <a href="/话题列表/#生成器-ref">生成器
+        <a href="/话题列表/#markdown-ref">markdown
         <sup>1</sup></a>
         &nbsp;
         
-        <a href="/话题列表/#angular-ref">angular
-        <sup>2</sup></a>
+        <a href="/话题列表/#码道-ref">码道
+        <sup>1</sup></a>
         &nbsp;
         
-        <a href="/话题列表/#github-ref">github
-        <sup>4</sup></a>
-        &nbsp;
-        
-        <a href="/话题列表/#coffeescript-ref">coffeescript
+        <a href="/话题列表/#技巧-ref">技巧
         <sup>1</sup></a>
         &nbsp;
         
@@ -103,91 +95,123 @@
   </header>
 
   <article class="post-content">
-    <mark>特别提醒：不要把时间浪费在迁移平台上！</mark>
+    <p>既然选用码道来作为主要的文档格式，那么一个适手的工具就是必须的了。本人选用的是：易码肆（emacs）+码道中文模式（markdown-zh）</p>
 
-<blockquote>
-  <p>特别提醒：不要把时间浪费在迁移平台上！ </p>
-</blockquote>
+<p>码道中文模式是我个人改造的，<a href="https://github.com/i-org/markdown-mode-zh">可在此下载</a></p>
 
-<p>近一个月来，发现github的页面不会更新了，试了很多方式，都不更新——后来，才想起升级过git版本，新版本快速提交时对深度路径压缩不正确，导致出问题！解决办法是删了该目录后提交，再恢复该目录，再提交。</p>
+<p>另外，为了让生产线更高效，还有一个中文版的成果管理工具：<a href="https://github.com/i-org/egg-zh">鹅哥哥成果管理</a></p>
 
-<p>折腾过程中，顺便就查了下各个语言的生成器，量真多，几乎每个语言都有若干个。
-个人主要关注几个关注量大，且所用语言个人比较看好或者常用的。</p>
+<h2 id="snippet">利用snippet</h2>
 
-<p>生成静态站：coffeescript
-前端：angular+动态响应</p>
+<p><a href="http://mad4a.me/2012/08/02/emacs-summary-cont/#outline_2">参考</a></p>
 
-<p>别人认为的槽点如下：</p>
+<h3 id="section">添加几个常用的代码片段</h3>
 
-<blockquote>
-  <ul>
-    <li>jekyll的windows支持不太好。好吧，虽然在windows下折腾能跑起来。但是我不是来折腾的，据我所知，windows下要克服的原因主要是gbk编码，以及一些ruby的gem安装的问题。</li>
-    <li>中文支持太差。不支持中文的url路径？还有tag名称如果设置为中文，则不可以使用site.tags.TAG这种用法筛选文章，简直就是坑。</li>
-    <li>功能还是比较欠缺。只有一个分页器？还只能在index下分页？还有那个坑爹的liquid模板。不如直接上erb（当然作者是为了github的安全着想）。</li>
-    <li>不想装ruby</li>
-  </ul>
-</blockquote>
+<p>新建几个snippet，内容如下：</p>
 
-<h3 id="ruby">ruby</h3>
+<p>插入头部：h（还有大bug）</p>
 
-<ul>
-  <li>jekyll 本人第一个深入使用的静态站生成器，使用量极高</li>
-</ul>
+<pre><code># -*- mode: snippet -*-
+# name: head-info
+# --
+---
+layout: post
+title: "`(mis-remove-date (mis-extract-file-name (buffer-name)))`"
+date: `(format-time-string "%Y-%m-%d %H:%M:%S %z")`
+description: ""
+categories: `(buffer-file-name)`
+tags: [${1:话题}]
+lastmod: 
+--- 
 
-<h3 id="js">js</h3>
-
-<ul>
-  <li>metalsmith 全插件化，可从简到复杂，可定制性高</li>
-  <li>hexo 台湾一学生搞的，支持多线程生成，上百个文件只需要花数秒中就能生成，可自动提交，应该算js版的octopress。</li>
-  <li>harp 零配置起步——要不分支为sharp？</li>
-  <li>assemble</li>
-</ul>
-
-<p>consolidate.js 模板中介
-liveload.js 根据更改，可即时刷新</p>
-
-<h3 id="coffeescript">coffeescript</h3>
-
-<ul>
-  <li>docpad</li>
-  <li>Wintersmith</li>
-</ul>
-
-<h3 id="section">其他</h3>
-
-<p>常见的</p>
-
-<ul>
-  <li>sphinx</li>
-  <li>org-mode：其周边成熟度很高，个人用的也不少，不过，因为其对内嵌代码的设计有严重缺陷，而且广泛的使用率，使其改进的难度会变得极大！</li>
-</ul>
-
-<p>另外，还有几个特别的，比如直接用makefile来生成的</p>
-
-<h2 id="section-1">模板语言的选择</h2>
-
-<ul>
-  <li>jade 设计易混，缩进蛋疼</li>
-  <li>swig 语法借鉴jinja2 功能全，使用 {}标记</li>
-  <li>handlebars 非常少逻辑的模板，类似mustache，但比其稍强 使用 {}标记：没有if else for等，只有标签，标签用于替换各种东西。</li>
-  <li>ejs 无标签注记，无区块（有include） <code>&lt;% code %&gt;</code> 筛选，可自定义标记，有客户端渲染器</li>
-</ul>
-
-<p>不知道会不会出现liquid的自身难以完整表达自身的问题？？？</p>
-
-<p>不应该给html增加一个标识符<code>{}</code>，而应该使用原有的<code>&lt;&gt;</code>，比如<code>&lt;% %&gt;</code>，<code>&lt;? ?&gt;</code>，目的是减少处理和识别复杂度。</p>
-
-<p>其实php是一个伪装成编程语言的模板语言！！(带交互响应的)</p>
-
-<pre><code>&lt;?php xxx ?&gt;
+$0
 </code></pre>
 
-<p>静态站的模板，是剥离php的交互响应部分，把需要高度交互响应的，换用性能更强劲的部件。而不极限于php。</p>
+<p>我的看法：a</p>
 
-<p>技术演进：
-php/asp+html+js+css，重心在php
-由于普及率问题，现在演变成了：
-html+css+js+各种js模板。重心在js</p>
+<pre><code># -*- mode: snippet -*-
+# name: aside
+# --
+&lt;aside&gt;&lt;b&gt;黑传说看法：&lt;/b&gt;${1:}&lt;/aside&gt;
+</code></pre>
+
+<p>加粗+背景色：bbc</p>
+
+<pre><code># -*- mode: snippet -*-
+# name: bold+background-color
+# --
+&lt;b style="background-color:${1:};"&gt;${2:文本}&lt;/b&gt; $0
+</code></pre>
+
+<p>背景色:bc</p>
+
+<pre><code># -*- mode: snippet -*-
+# name: background-color
+# --
+&lt;span style="background-color:${1:};"&gt;${2:文本}&lt;/span&gt; $0
+</code></pre>
+
+<p>字体颜色:fc</p>
+
+<pre><code># -*- mode: snippet -*-
+# name: font-color
+# --
+&lt;span style="color:${1:};"&gt;${2:文本}&lt;/span&gt; $0
+</code></pre>
+
+<p>高亮文本：m</p>
+
+<pre><code># -*- mode: snippet -*-
+# name: highlighted text
+# --
+&lt;mark&gt;${1:文本}&lt;/mark&gt; $0
+</code></pre>
+
+<p>圈字：q</p>
+
+<pre><code># -*- mode: snippet -*-
+# name: border-around
+# --
+&lt;span style="border: 2px solid black; border-radius: 30px;"&gt;${1:圈字}&lt;/span&gt; $0
+</code></pre>
+
+<h3 id="section-1">简化图片插入操作</h3>
+
+<p>图片路径安排：每篇文章一个图片文件夹</p>
+
+<pre><code>| --- _posts
+|       | --- 2012-07-31-hello-world-again.md
+|       | --- 2012-08-01-emacs-summary.md
+|       | --- 2012-08-02-emacs-summary-cont.md
+|
+| --- assets
+|       | --- images
+|       |       | --- emacs-summary
+|       |       |       | --- emacs-screenshot.png
+|       |       |
+|       |       | --- emacs-summary-cont
+|       |       |       | --- post-meta-screenshot.png
+</code></pre>
+
+<p>要达到的目的：仅仅用上下方向键选择图片。</p>
+
+<p>需要创建两个文件：</p>
+
+<ul>
+  <li>修改emacs 配置文件：用于获取图片路径和列出图片</li>
+  <li>yasnippet文件：用于调用上面的配置文件中设定的函数，选择图片。</li>
+</ul>
+
+<p>姑且把emacs配置文件单独存为一个 el文件，命名为 <code>markdown-image-select.el</code> 填入以下内容：</p>
+
+<p>yasnippet文件， 姑且命名为 <em>i</em>，填入内容：（注意不要换行）</p>
+
+<pre><code>![${1:$$(yas-choose-value (mis-yield-choices (buffer-file-name)))}](/static/images/`(mis-get-directory-from-bufname (buffer-file-name))`/$1)$0
+</code></pre>
+
+<p>然后，修改下emacs的配置，调用 <code>markdown-image-select</code>。</p>
+
+<p>最后一步，重启emacs</p>
 
 
   </article>
@@ -212,7 +236,7 @@ html+css+js+各种js模板。重心在js</p>
     
     
      <!--回到头部-->
-    <div class="back-top"><a href="#静态站生成器">△
+    <div class="back-top"><a href="#易码肆的码道技巧">△
     <br>回头▲再看</a></div> 
     
     

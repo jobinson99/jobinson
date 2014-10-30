@@ -6,10 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>如何在jekyll中随心所欲使用插件</title>
+<title>利用github建静态站手记——黑传说版</title>
 <meta name="description" content="黑传说的学习笔记">
 
-<link rel="canonical" href="http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/04/27/%E5%A6%82%E4%BD%95%E5%9C%A8jekyll%E4%B8%AD%E9%9A%8F%E5%BF%83%E6%89%80%E6%AC%B2%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6/">
+<link rel="canonical" href="http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/04/23/%E9%BB%91%E4%BC%A0%E8%AF%B4%E4%B9%8B%E5%88%A9%E7%94%A8github%E5%BB%BA%E9%9D%99%E6%80%81%E7%AB%99%E6%89%8B%E8%AE%B0/">
 
 <!-- 皮肤样式 -->
 <link rel="stylesheet" href="/themes/atlas/css/style.css">
@@ -51,33 +51,33 @@
       <div class="post">
   
   <header class="post-header">
-    <h1 id="如何在jekyll中随心所欲使用插件">如何在jekyll中随心所欲使用插件</h1>
+    <h1 id="利用github建静态站手记——黑传说版">利用github建静态站手记——黑传说版</h1>
 
     <div class="post-abstract">
       
-      <p><b>摘要：</b><br/>如何在jekyll中使用插件，并且网站上的效果和本地一样：双枝法</p>
+      <p><b>摘要：</b><br/>利用github pages，建造静态站点的手记</p>
       
 
       
       <p class="post-tag"><b>话题：</b>
         
-        <a href="/话题列表/#github-ref">github
-        <sup>4</sup></a>
+        <a href="/话题列表/#建站-ref">建站
+        <sup>1</sup></a>
         &nbsp;
         
-        <a href="/话题列表/#jekyll-ref">jekyll
+        <a href="/话题列表/#github-ref">github
         <sup>2</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#静态站-ref">静态站
+        <sup>4</sup></a>
         &nbsp;
         
         <a href="/话题列表/#双库法-ref">双库法
         <sup>1</sup></a>
         &nbsp;
         
-        <a href="/话题列表/#子模块-ref">子模块
-        <sup>1</sup></a>
-        &nbsp;
-        
-        <a href="/话题列表/#软链-ref">软链
+        <a href="/话题列表/#域名-ref">域名
         <sup>1</sup></a>
         &nbsp;
         
@@ -95,7 +95,7 @@
       </span>
       
       
-      创建时间：2014-04-27
+      创建时间：2014-04-23
       
       
     </p>
@@ -103,56 +103,76 @@
   </header>
 
   <article class="post-content">
-    <h2 id="github-pages">使用github pages不支持的插件</h2>
+    <h2 id="github">github建立日志系统的优势</h2>
 
-<h3 id="pandoc">问题：换用pandoc来渲染？</h3>
+<blockquote>
+  <p>喜欢分享日志的人，会经历三个阶段：</p>
 
-<p>由于markdown+liquid会产生种种问题，因此，换用一种比较完美的转码方案。
-不知道pandoc对自身语法的支持情况如何？</p>
+  <p>第一阶段，刚接触日志分享系统，觉得很新鲜，试着选择一个免费的日志分享托管网站来写。</p>
 
-<p>由于 Github Pages 并不支持 Pandoc，所以就需要在本地将站点完全生成好后再将它送到github上的<em>gh-pages</em>仓库里。</p>
+  <p>第二阶段，觉得免费的博客托管网站限制太多，就自己买域名和空间，自己搭独立日志系统。</p>
 
-<p>为何需要本地生成好网站？</p>
+  <p>第三阶段，觉得独立日志系统的日常管理太繁琐，最好在保留控制权的前提下，让别人来管，自己只负责写日志。</p>
+
+  <p>大多数日志作者，都徘徊在第一和第二阶段，因为第三阶段不太容易到达：你很难找到俯首听命、愿意为你管理服务器的人。</p>
+
+  <p>但是不久前，情况出现变化，一些程序员利用github搭建日志系统。他们既拥有绝对管理权，又享受github带来的便利：</p>
+
+  <p>只要向主机同步提案，即可发布新文章。更妙的是，还是免费的，github提供无限流量，世界各地都有理想的访问速度，不用自己去和服务器机房打交道了。</p>
+</blockquote>
+
+<p>github pages建网站可以说是其他技术类日志分享服务的克星，因为程序员愿意折腾。其好处：</p>
+
+<ol>
+  <li>可随意定制</li>
+  <li>方便，和程序开发库（github）直通</li>
+  <li>可控</li>
+  <li>简单自动：只需要提交</li>
+  <li>高效通用：markdown控制</li>
+  <li>免费，无限流量，无限空间</li>
+</ol>
+
+<p>局限：</p>
+
+<ol>
+  <li>不提供 用户端-服务端 交互</li>
+  <li>国内访问速度不可保障，可能被墙？</li>
+</ol>
+
+<h2 id="github-pages">启用 github pages：</h2>
+
+<p>github提供两种类型的静态网站服务，</p>
 
 <ul>
-  <li>[Github Page] 不支持插件</li>
-  <li>[Github Page] 服务器上软件基于安全角度考虑，会限制较多</li>
-  <li>利用 [Github Page] 编译并发布网站相对比较耗时。
-很显然，既然已经在本地生成好了网站，再将代码上传到服务器重新编译一遍是挺多余的。</li>
+  <li>用户或者组织级的，域名是 <em>用户或组织名.github.io</em> 。启用方式：建立一个叫 <em>和用户或组织同名.github.io</em> 的仓库，github会自动把xxx.github.io仓库里的文件，转为github page的页面。</li>
+  <li>项目级的，域名是 <em>用户或组织名.github.io/项目名</em> 。启用方式：建立一个名叫 <em>gh-pages</em> 的分支，github会自动把 gh-pages 仓库里的文件，转为github page的页面。</li>
 </ul>
 
-<p>虽然麻烦，但也带来几个优点：</p>
+<p>由于 <em>xxx.github.io</em> 只能一个用户或者组织一个，需要新建一用户或者组织，很不方便，更常用的是项目级的，每个项目生成一个静态站，这样一个用户下可以有多个静态站，方便。</p>
 
-<ol>
-  <li>本地生成，可以随心所欲地使用各种插件，或者换用别的静态站点生成器……</li>
-  <li>这样提交的是已经生成的成品，不用调用Github Pages生成，节省地球资源，也可以提高更新速度，不会出现今晚提交，明早才被更新好的情况。</li>
-  <li>麻烦的话，可以把操作过程封装为一条命令搞定，也就不麻烦了。</li>
-</ol>
+<h2 id="section">使用：</h2>
 
-<h3 id="section">实现过程</h3>
+<ul>
+  <li>如果想让github来生成，则把需要的日志纳入成果管理，立案后，把本地的仓库同步到注册的github仓库的master分支中，然后静待github来生成——一般很快就完成了。</li>
+  <li>如果不想让github来生成的话，则本地生成好，然后发布到github仓库的gh-pages分支，即完成发布。</li>
+</ul>
 
-<ol>
-  <li>安装pandoc</li>
-  <li>安装定制过的jekyll
-定制的jekyll内容：修改 <code>lib/jekyll/converters/markdown.rb</code> 文件，在 <code>setup</code> 和 <code>convert</code> 中按照其它渲染器的格式增加一个 <code>pandoc</code> 判断即可。</li>
-  <li>
-    <p>安装pandoc的ruby接口：pandoc-ruby</p>
-  </li>
-  <li>
-    <p>修改 Jekyll 配置文件 _config.yml 如下：</p>
+<h2 id="section-1">如何使用自己想要静态站生成器和插件？</h2>
 
-    <pre><code> markdown: pandoc
- pandoc:
-     extensions: [mathjax, standalone]
-</code></pre>
-  </li>
-</ol>
+<p>几乎每种编程语言，都有若干生成静态网站的工具，可根据自己的需要和熟悉程度选用。</p>
 
-<p>上面的 extensions 并不唯一，可以将任何 Pandoc 支持的选项加入其中。</p>
+<p>比如python的pelican，emacs的org-page，js的metalsmith等……</p>
 
-<h2 id="section-1">如何维护双库？</h2>
+<p>目前流行度最高的有ruby的jekyll。github就只使用了jekyll作为后台生成器，因此，如果用的是其他静态站生成器，都需要自己本地生成，然后发布到gh-pages分支。</p>
 
-<p>很明显，这样生成后，源码和生成的静态文件就分开了，如何管理呢？双库法！静态站仓库只需要更新 gh-pages分支。</p>
+<p>jekyll使用方法见下一篇：<a href="">使用jekyll生成静态站</a></p>
+
+<p>注意：自己生成的话，需要在生成页面的根目录下，放一个 <em>.nojekyll</em> 文件关闭github的jekyll生成服务。</p>
+
+<h2 id="section-2">如何维护双库？</h2>
+
+<p>如果是用的其他静态站生成器，很明显，源码和生成的静态文件就分开了。
+那么，如何管理呢？双库法！静态站仓库只需要更新 gh-pages分支。</p>
 
 <p>默认的项目仓库情况：</p>
 
@@ -218,7 +238,7 @@
   |    |-- .nojekyll
   |    |-- _config.yml
   |     ....
-  |    |-- _site/ &lt;--- 软链或子模块，也就是发布到gh-pages的文件
+  |    |-- _site/ &lt;--- 软链或子模块，此中文件会发布到gh-pages
   |
   |-- xxx-gh-pages/  ---&gt; 软链或子模块到 xxx-source/_site
 </code></pre>
@@ -228,11 +248,11 @@
 <ol>
   <li>远程开双仓库</li>
   <li>本地新建一文件夹 xxx-source，放入源码，然后同步到远程 <em>git@github.com:username/source.git</em></li>
-  <li>生成静态站码</li>
-  <li>放入源码到</li>
+  <li>本地新建一文件夹 xxx-gh-pages，软链到xxx-source/_site，然后同步到远程 <em>git@github.com:username/xxx-gh-pages.git</em></li>
+  <li>每次xxx-source生成后，切换到 xxx-gh-pages 同步到远程xxx-gh-pages的gh-pages分支</li>
 </ol>
 
-<h3 id="section-2">双仓库的准备工作</h3>
+<h3 id="section-3">双仓库的准备工作</h3>
 
 <p>第一步，远程开双仓库。假设为如下：</p>
 
@@ -251,7 +271,7 @@
 - .nojekyll
 </code></pre>
 
-<h3 id="section-3">一些有关操作</h3>
+<h3 id="section-4">一些有关操作</h3>
 
 <p>远程删除或者添加分支</p>
 
@@ -306,7 +326,7 @@ git push -u origin gh-pages
 git branch  
 </code></pre>
 
-<h3 id="section-4">软链双库法</h3>
+<h3 id="section-5">软链双库法</h3>
 
 <p>前提：操作系统是linux，因为需要利用到一个linux才有的特性：软链</p>
 
@@ -485,53 +505,70 @@ git commit -m '$message'
 git push origin master
 </code></pre>
 
-<p><a href="http://blog.blindgaenger.net/generate_github_pages_in_a_submodule.html">参考此文</a>
-<a href="http://indelible.io/blog/2013/07/14/jekyll-plugins-and-github-pages.html">再参考此文</a> </p>
-
-<h2 id="section-5">换用自己喜欢的生成工具</h2>
-
-<p>摸清了github的各种道道后，接下来，已经可以任意使用网页生成工具了。
-只需要在生成页面的根目录下，放一个 <em>.nojekyll</em> 文件即可。</p>
-
-<h2 id="section-6">简化图片操作</h2>
-
-<p><a href="http://mad4a.me/2012/08/02/emacs-summary-cont/#outline_2">参考</a></p>
-
-<p>图片路径安排：每篇文章一个图片文件夹</p>
-
-<pre><code>| --- _posts
-|       | --- 2012-07-31-hello-world-again.md
-|       | --- 2012-08-01-emacs-summary.md
-|       | --- 2012-08-02-emacs-summary-cont.md
-|
-| --- assets
-|       | --- images
-|       |       | --- emacs-summary
-|       |       |       | --- emacs-screenshot.png
-|       |       |
-|       |       | --- emacs-summary-cont
-|       |       |       | --- post-meta-screenshot.png
-</code></pre>
-
-<p>要达到的目的：仅仅上下方向键选择图片。</p>
-
-<p>需要创建两个文件：</p>
-
 <ul>
-  <li>el文件：用于获取图片路径和列出图片</li>
-  <li>yasnippet文件：用于调用上面的el文件中的函数，选择图片。</li>
+  <li><a href="http://blog.blindgaenger.net/generate_github_pages_in_a_submodule.html">参考此文</a></li>
+  <li><a href="http://indelible.io/blog/2013/07/14/jekyll-plugins-and-github-pages.html">再参考此文</a> </li>
+  <li><a href="http://dannpu.com/blog/2013/08/03/Github-page-build-failure/">利用本地编译结果替代github自动编译：淡朴若水</a></li>
 </ul>
 
-<p>其中el文件，姑且命名为 <code>markdown-image-select.el</code> 填入以下内容：</p>
+<h3 id="section-6">使用其他域名</h3>
 
-<p>yasnippet文件， 姑且命名为 <code>i</code>，填入内容：（注意不要换行）</p>
+<p>Github Pages会为站点分配类似 <em>用户名.github.io</em> 或者 <em>用户名.github.io/项目名</em> 的二级/三级域名。</p>
 
-<pre><code>![${1:$$(yas-choose-value (mis-yield-choices (buffer-file-name)))}](/static/images/`(mis-get-directory-from-bufname (buffer-file-name))`/$1)$0
+<p>不够简洁，还是申请顶级域名吧。</p>
+
+<p>申请域名：免费的域名(.tk)可以<a href="http://my.dot.tk/cgi-bin/amb/landing.dottk?nr=806151::15401173::1">在此申请</a>。
+<em>.tk</em> 是南太平洋岛国托克劳的国家域名，支持域名转发（可隐藏原URL）、电邮转发、A记录解析、CNAME别名记录、MX邮件记录、设置DNS服务器等服务。</p>
+
+<p>收费的域名到处有，自己去买吧。</p>
+
+<h4 id="section-7">域名解析服务</h4>
+
+<p>一般来说域名提供商会提供简单的解析服务，也支持将解析服务指向到其他域名解析服务提供者。</p>
+
+<p>国外的如Godaddy，可能被墙。
+国内的如DNSPod，有免费版。</p>
+
+<p>配置：</p>
+
+<ol>
+  <li>在github站点中增加CNAME文件，里面第一行写上要使用的域名</li>
+  <li>配置域名解析指向，分两种情况：
+    <ul>
+      <li>如果用的顶级域名，在域名解析服务提供商那里将A记录指向github提供的ip地址</li>
+      <li>如果使用二级域名，在域名解析服务提供商那里增加CNAME记录，指向github提供的ip地址</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="section-8">博客搬家</h3>
+
+<p>可能需要两步：</p>
+
+<ol>
+  <li>（如果博客已经是wordpress则跳过此步）第一步使用blogstowordpress导入任意博客为wordpress类型</li>
+  <li>第二步则是利用jekyll-import导入到jekyll，或者利用exitwp导出为markdown。</li>
+</ol>
+
+<p>Jekyll提供了一个插件 jekyll-import(需要安装），可以将wordpress的博客导入到Jekyll。</p>
+
+<pre><code>~ $ gem install jekyll jekyll-import
+~ $ jekyll new my-awesome-site
+~ $ cd my-awesome-site
+~/my-awesome-site $ jekyll import wordpressdotcom --source wordpress.xml
+~/my-awesome-site $ jekyll serve
+# =&gt; Now browse to http://localhost:4000
 </code></pre>
 
-<p>然后，修改下emacs的配置，调用 <code>markdown-image-select</code>。</p>
+<p>exitwp是一个用python开发的工具，号称是将wordpress的博客导出并转换成markdown，但实际上 任何能导出rss/atom的博客都可以用这个工具进行转换。</p>
 
-<p>最后一步，重启emacs</p>
+<pre><code>git clone https://github.com/thomasf/exitwp
+sudo pip install --upgrade  -r pip_requirements.txt
+cd exitwp/wordpress-xml/
+wget http://your/atom/file/xml
+cd ..
+python exitwp.py
+</code></pre>
 
 
   </article>
@@ -551,17 +588,17 @@ git push origin master
     <!--上一篇 话题 下一篇-->
     
     <div class="post-pre">
-      <a class="pull-right" href="/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/04/23/%E9%BB%91%E4%BC%A0%E8%AF%B4%E4%B9%8B%E5%88%A9%E7%94%A8github%E5%BB%BA%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97%E7%AB%99%E6%89%8B%E8%AE%B0/">◁前<br>利用github建网络日志站手记——黑传说版◀篇</a>
+      <a class="pull-right" href="/%E7%A5%A5%E5%92%8C%E7%94%9F%E6%B4%BB/2014/04/20/%E5%AE%B6%E5%BA%AD%E8%87%AA%E9%85%BF%E6%9E%9C%E9%85%92/">◁前<br>【整理】家庭自酿果酒◀篇</a>
     </div>
     
     
      <!--回到头部-->
-    <div class="back-top"><a href="#如何在jekyll中随心所欲使用插件">△
+    <div class="back-top"><a href="#利用github建静态站手记——黑传说版">△
     <br>回头▲再看</a></div> 
     
     
     <div class="post-next">
-    <a href="/%E6%8A%80%E6%9C%AF%E6%99%AE%E5%8F%8A/2014/04/28/%E8%BD%AF%E4%BB%B6%E6%98%AF%E5%95%A5/">后▷<br>篇▶【公开课】软件是啥</a>
+    <a href="/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/04/27/%E4%BD%BF%E7%94%A8jekyll%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E7%AB%99/">后▷<br>篇▶使用jekyll生成静态站点</a>
     </div>
     
     

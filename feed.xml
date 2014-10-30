@@ -8,7 +8,72 @@
     
       <item>
         <title>利用metalsmith建静态网站</title>
-        <description>&lt;h2 id=&quot;metalsmith&quot;&gt;为何选用metalsmith&lt;/h2&gt;
+        <description>&lt;mark&gt;特别提醒：不要把时间浪费在迁移平台上！&lt;/mark&gt;
+
+&lt;p&gt;问题发生：
+近一个月来，发现github的页面不会更新了，试了很多方式，都不更新——后来，才想起升级过git版本，新版本快速提交时对深度路径压缩不正确，导致出问题！解决办法是删了该目录后提交，再恢复该目录，再提交。&lt;/p&gt;
+
+&lt;p&gt;折腾过程中，顺便就查了下各个语言的生成器，量真多，几乎每个语言都有若干个。
+个人主要关注几个关注量大，且所用语言个人比较看好或者常用的。&lt;/p&gt;
+
+&lt;p&gt;别人认为的槽点如下：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;ruby的中文编码问题：不支持中文的url路径？还有tag名称如果设置为中文，则不可以使用site.tags.TAG这种用法筛选文章，简直就是坑。&lt;/li&gt;
+    &lt;li&gt;功能还是比较欠缺。只有一个分页器？还只能在index下分页？还有那个坑爹的liquid模板，不如直接上erb（当然作者是为了github的安全着想）。&lt;/li&gt;
+    &lt;li&gt;不想装ruby&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;ruby&quot;&gt;ruby&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;jekyll 本人第一个深入使用的静态站生成器，使用量极高&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;模板语言erb语法：属于Ruby标准库中的东西，不需要单独安装，模板中动态脚本的写法和JSP基本一个模子扒出来的 &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;% 写逻辑脚本(Ruby语法) %&amp;gt;
+&amp;lt;%= 直接输出变量值或运算结果 %&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;js&quot;&gt;js&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;metalsmith 全插件化，可从简到复杂，可定制性高&lt;/li&gt;
+  &lt;li&gt;hexo 台湾一学生搞的，支持多线程生成，上百个文件只需要花数秒中就能生成，可自动提交，应该算js版的octopress。&lt;/li&gt;
+  &lt;li&gt;harp 零配置起步——要不分支为sharp？&lt;/li&gt;
+  &lt;li&gt;assemble&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;consolidate.js 模板中介&lt;/p&gt;
+
+&lt;p&gt;liveload.js 根据更改，可即时刷新&lt;/p&gt;
+
+&lt;p&gt;生成静态站：coffeescript&lt;/p&gt;
+
+&lt;p&gt;前端：angular+动态响应&lt;/p&gt;
+
+&lt;h3 id=&quot;coffeescript&quot;&gt;coffeescript&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;docpad&lt;/li&gt;
+  &lt;li&gt;Wintersmith&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;其他&lt;/h3&gt;
+
+&lt;p&gt;常见的&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;sphinx：经常用于生成技术文档&lt;/li&gt;
+  &lt;li&gt;org-mode：其周边成熟度很高，个人用的也不少，不过，因为其对内嵌代码的设计有严重缺陷，而且广泛的使用率，使其改进的难度会变得极大！因此个人觉得除非开个分支改进否则很令人失望。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;另外，还有几个特别的，比如直接用makefile来生成的&lt;/p&gt;
+
+&lt;h2 id=&quot;metalsmith&quot;&gt;为何选用metalsmith&lt;/h2&gt;
 
 &lt;p&gt;metalsmith的特点：&lt;/p&gt;
 
@@ -18,7 +83,7 @@
   &lt;li&gt;灵活性大，可以生成各种类型项目：静态站，项目架构，生成工具，电子书，项目文档等&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;section&quot;&gt;安装环境&lt;/h2&gt;
+&lt;h2 id=&quot;section-1&quot;&gt;安装环境&lt;/h2&gt;
 
 &lt;p&gt;除了要安装metalsmith外，还要安装所需的插件&lt;/p&gt;
 
@@ -27,18 +92,88 @@
 
 &lt;p&gt;一般需要的插件：&lt;/p&gt;
 
-&lt;p&gt;assets：不渲染的部分
-beautifier：为运行效率考虑，一般不需要。但为了方便检查代码生成结果，需要。
-collections：分类？
-navigation：根据稳健树输出导航
-paginate：分页
-permalinks：简化链接形式
-tags：使用标签
-templates：布局模板&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;assets：不渲染的部分&lt;/li&gt;
+  &lt;li&gt;beautifier：为运行效率考虑，一般不需要。但为了方便检查代码生成结果，需要。&lt;/li&gt;
+  &lt;li&gt;collections：分类？&lt;/li&gt;
+  &lt;li&gt;navigation：根据稳健树输出导航&lt;/li&gt;
+  &lt;li&gt;paginate：分页&lt;/li&gt;
+  &lt;li&gt;permalinks：简化链接形式&lt;/li&gt;
+  &lt;li&gt;tags：使用标签&lt;/li&gt;
+  &lt;li&gt;templates：布局模板&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h2 id=&quot;section-1&quot;&gt;模板选用&lt;/h2&gt;
+&lt;p&gt;从metalsmith源码中的example中复制一份，然后根据需要修改。&lt;/p&gt;
 
-&lt;h2 id=&quot;section-2&quot;&gt;预览&lt;/h2&gt;
+&lt;h2 id=&quot;section-2&quot;&gt;模板语言选用&lt;/h2&gt;
+
+&lt;p&gt;模板语言是生成的时候要运行的部分。
+js则是用户打开的时候才会用的。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;jade 语法和内容易混，缩进在不同编辑器中显示不一，特蛋疼&lt;/li&gt;
+  &lt;li&gt;swig 语法借鉴jinja2 功能全，使用 &lt;code&gt;{}&lt;/code&gt; 标记&lt;/li&gt;
+  &lt;li&gt;handlebars 非常少逻辑的模板，类似mustache，但比其稍强 使用 &lt;code&gt;{}&lt;/code&gt; 标记：没有if else for等，只有标签，标签用于替换各种东西。&lt;/li&gt;
+  &lt;li&gt;Underscore 用的 &lt;code&gt;&amp;lt;&amp;gt;&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;ejs 无标签注记，无区块（有include） &lt;code&gt;&amp;lt;% code %&amp;gt;&lt;/code&gt; 筛选，可自定义标记，有客户端渲染器&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;需要注意：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;因为是静态站，此处不考虑模板引擎的效率&lt;/li&gt;
+  &lt;li&gt;不知道会不会出现liquid的自身难以完整表达自身的问题？？？——liquid社区竟然认为那是一个功能，而不是缺陷！！！！&lt;/li&gt;
+  &lt;li&gt;个人认为不应该给html增加一个标识符&lt;code&gt;{}&lt;/code&gt;，而应该使用原有的&lt;code&gt;&amp;lt;&amp;gt;&lt;/code&gt;，比如&lt;code&gt;&amp;lt;% %&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;? ?&amp;gt;&lt;/code&gt;，目的是减少处理和识别复杂度。因此选用ejs。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;要是当初html设计成类似lisp那样的标识前置简化语法，可以省好多，没办法，html是事实标准，就只能跟标准妥协了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;另外，觉得php其实是一个伪装成编程语言的模板语言！！(带交互响应的)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php xxx ?&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果把php当成静态站的模板，需要剥离php的交互响应部分，把需要高度交互响应的，换用性能更强劲的部件。而不极限于php。&lt;/p&gt;
+
+&lt;p&gt;技术演进：
+php/asp+html+js+css，重心在php&lt;/p&gt;
+
+&lt;p&gt;由于普及率问题，现在演变成了：
+html+css+js+各种js模板。重心在js&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;配置&lt;/h2&gt;
+
+&lt;h2 id=&quot;ejs&quot;&gt;ejs模板语言&lt;/h2&gt;
+
+&lt;p&gt;配置可参考hexo&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;%=输出变量%&amp;gt;
+&amp;lt;%-输出变量是不会对 &amp;amp; 等符号进行转义的
+
+&amp;lt;% if (names.length) { %&amp;gt;
+  &amp;lt;ul&amp;gt;
+    &amp;lt;% names.forEach(function(name){ %&amp;gt;
+      &amp;lt;li foo=&#39;&amp;lt;%= name + &quot;&#39;&quot; %&amp;gt;&#39;&amp;gt;&amp;lt;%= name %&amp;gt;&amp;lt;/li&amp;gt;
+    &amp;lt;% }) %&amp;gt;
+  &amp;lt;/ul&amp;gt;
+  &amp;lt;% } %&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;引用 片段
+    &amp;lt;ul&amp;gt;
+      &amp;lt;% users.forEach(function(user){ %&amp;gt;
+        &amp;lt;% include user/show %&amp;gt;
+      &amp;lt;% }) %&amp;gt;
+    &amp;lt;/ul&amp;gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;生成&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code&gt;metalsmith
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;预览&lt;/h2&gt;
 
 </description>
         <pubDate>Sat, 2014 Sep 13 12:15:31 +0800</pubDate>
@@ -48,7 +183,44 @@ templates：布局模板&lt;/p&gt;
     
       <item>
         <title>静态网站变成动态网站</title>
-        <description>&lt;h1 id=&quot;section&quot;&gt;脱胎换骨&lt;/h1&gt;
+        <description>&lt;h2 id=&quot;section&quot;&gt;利用外部资源&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;添加评论系统&lt;/h3&gt;
+
+&lt;p&gt;Jekyll生成的是静态网站，诸如评论、推荐、关注之类的功能，则需把各种各样第三方的功能部件加到你的博客中。&lt;/p&gt;
+
+&lt;p&gt;与博客相关的主要有几类：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;社会化评论：专门提供评论功能的网站，可以为博客增加评论功能，也可能附带着关注、相关文章、推荐等功能。国外的有disqus，国内的有友言，多说&lt;/li&gt;
+  &lt;li&gt;社会化推荐：自动推荐相关文章（站内或站外）。国内的有友荐，无觅。Jekyll本身也可以实现站内文章推荐的功能。&lt;/li&gt;
+  &lt;li&gt;社会化分享：将自己喜欢的网址分享给别人，通常附带推荐功能。国内的有加网 ，百度分享等。其中加网提供了划词分享功能。&lt;/li&gt;
+  &lt;li&gt;社交网站联动：可以发布简短的动态。比如Twitter, Facebook, Google Plus, 新浪微博等网站。与博客的联动可以是自己发布博客动态，也可以是由别人推荐（这种方式即为社会化推荐）。
+如果是自己发布动态，需要让别人能够方便的“关注/Follow”你，最好提供“一键关注的按钮”，或者提供连接能够让别人在这些网上方便的找到你。&lt;/li&gt;
+  &lt;li&gt;社会化登录：就是OpenID或OAuth的集合。暂时不予考虑。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;由于存在着伟大的墙，只好尽量选择国内的社会化网络资源。对于更喜欢的国外的资源，尽量考虑如何不拖慢墙内用户的访问速度。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;评论功能&lt;/h3&gt;
+
+&lt;p&gt;只选一个，选了友言。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;推荐功能&lt;/h3&gt;
+
+&lt;p&gt;友言 本身就有了，所以不用去考虑。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;分享功能&lt;/h3&gt;
+
+&lt;p&gt;友言本身也有了，不考虑了。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;流量分析和统计&lt;/h3&gt;
+
+&lt;p&gt;第三方的流量分析和统计工具可以说是很多，国外的Google Analysis、SiteMeter和国内的百度统计、量子恒道统计等。&lt;/p&gt;
+
+&lt;p&gt;为了减少翻墙需求，还是选择国内的吧，选了百度——不过我可以说百度做的真差么？&lt;/p&gt;
+
+&lt;h1 id=&quot;section-6&quot;&gt;脱胎换骨&lt;/h1&gt;
 
 &lt;h2 id=&quot;markdown&quot;&gt;换markdown渲染核心&lt;/h2&gt;
 
@@ -69,10 +241,6 @@ github网站提供的编译器版本比较注重安全性，因此会关闭一�
 &amp;lt;/script&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;section-1&quot;&gt;换用本地编译结果为发布结果&lt;/h3&gt;
-
-&lt;p&gt;关闭github的jekyll自动编译服务。在顶级文件夹下，加入一个名为 &lt;code&gt;.nojekyll&lt;/code&gt; 的文件即可。&lt;/p&gt;
-
 &lt;h2 id=&quot;js&quot;&gt;利用js使页面动态响应&lt;/h2&gt;
 
 &lt;ul&gt;
@@ -83,11 +251,11 @@ github网站提供的编译器版本比较注重安全性，因此会关闭一�
   &lt;li&gt;在线交流：together.js&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;section-2&quot;&gt;添加动态编程环境&lt;/h2&gt;
+&lt;h2 id=&quot;section-7&quot;&gt;添加动态编程环境&lt;/h2&gt;
 
 &lt;p&gt;codemirror？制作一个编程环境&lt;/p&gt;
 
-&lt;h2 id=&quot;section-3&quot;&gt;在线提交&lt;/h2&gt;
+&lt;h2 id=&quot;section-8&quot;&gt;在线提交&lt;/h2&gt;
 
 &lt;p&gt;利用 github.js 实现在线提交！——但安全性较差，一般只用在本地js编程环境下，当然，如果有隐藏办法也是可以的，但防君子不妨小人！&lt;/p&gt;
 
@@ -98,92 +266,124 @@ github网站提供的编译器版本比较注重安全性，因此会关闭一�
       </item>
     
       <item>
-        <title>静态站生成器</title>
-        <description>&lt;mark&gt;特别提醒：不要把时间浪费在迁移平台上！&lt;/mark&gt;
+        <title>易码肆的码道技巧</title>
+        <description>&lt;p&gt;既然选用码道来作为主要的文档格式，那么一个适手的工具就是必须的了。本人选用的是：易码肆（emacs）+码道中文模式（markdown-zh）&lt;/p&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;特别提醒：不要把时间浪费在迁移平台上！ &lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;码道中文模式是我个人改造的，&lt;a href=&quot;https://github.com/i-org/markdown-mode-zh&quot;&gt;可在此下载&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;近一个月来，发现github的页面不会更新了，试了很多方式，都不更新——后来，才想起升级过git版本，新版本快速提交时对深度路径压缩不正确，导致出问题！解决办法是删了该目录后提交，再恢复该目录，再提交。&lt;/p&gt;
+&lt;p&gt;另外，为了让生产线更高效，还有一个中文版的成果管理工具：&lt;a href=&quot;https://github.com/i-org/egg-zh&quot;&gt;鹅哥哥成果管理&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;折腾过程中，顺便就查了下各个语言的生成器，量真多，几乎每个语言都有若干个。
-个人主要关注几个关注量大，且所用语言个人比较看好或者常用的。&lt;/p&gt;
+&lt;h2 id=&quot;snippet&quot;&gt;利用snippet&lt;/h2&gt;
 
-&lt;p&gt;生成静态站：coffeescript
-前端：angular+动态响应&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://mad4a.me/2012/08/02/emacs-summary-cont/#outline_2&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;别人认为的槽点如下：&lt;/p&gt;
+&lt;h3 id=&quot;section&quot;&gt;添加几个常用的代码片段&lt;/h3&gt;
 
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;jekyll的windows支持不太好。好吧，虽然在windows下折腾能跑起来。但是我不是来折腾的，据我所知，windows下要克服的原因主要是gbk编码，以及一些ruby的gem安装的问题。&lt;/li&gt;
-    &lt;li&gt;中文支持太差。不支持中文的url路径？还有tag名称如果设置为中文，则不可以使用site.tags.TAG这种用法筛选文章，简直就是坑。&lt;/li&gt;
-    &lt;li&gt;功能还是比较欠缺。只有一个分页器？还只能在index下分页？还有那个坑爹的liquid模板。不如直接上erb（当然作者是为了github的安全着想）。&lt;/li&gt;
-    &lt;li&gt;不想装ruby&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;新建几个snippet，内容如下：&lt;/p&gt;
 
-&lt;h3 id=&quot;ruby&quot;&gt;ruby&lt;/h3&gt;
+&lt;p&gt;插入头部：h（还有大bug）&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;jekyll 本人第一个深入使用的静态站生成器，使用量极高&lt;/li&gt;
-&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;# -*- mode: snippet -*-
+# name: head-info
+# --
+---
+layout: post
+title: &quot;`(mis-remove-date (mis-extract-file-name (buffer-name)))`&quot;
+date: `(format-time-string &quot;%Y-%m-%d %H:%M:%S %z&quot;)`
+description: &quot;&quot;
+categories: `(buffer-file-name)`
+tags: [${1:话题}]
+lastmod: 
+--- 
 
-&lt;h3 id=&quot;js&quot;&gt;js&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;metalsmith 全插件化，可从简到复杂，可定制性高&lt;/li&gt;
-  &lt;li&gt;hexo 台湾一学生搞的，支持多线程生成，上百个文件只需要花数秒中就能生成，可自动提交，应该算js版的octopress。&lt;/li&gt;
-  &lt;li&gt;harp 零配置起步——要不分支为sharp？&lt;/li&gt;
-  &lt;li&gt;assemble&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;consolidate.js 模板中介
-liveload.js 根据更改，可即时刷新&lt;/p&gt;
-
-&lt;h3 id=&quot;coffeescript&quot;&gt;coffeescript&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;docpad&lt;/li&gt;
-  &lt;li&gt;Wintersmith&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;section&quot;&gt;其他&lt;/h3&gt;
-
-&lt;p&gt;常见的&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;sphinx&lt;/li&gt;
-  &lt;li&gt;org-mode：其周边成熟度很高，个人用的也不少，不过，因为其对内嵌代码的设计有严重缺陷，而且广泛的使用率，使其改进的难度会变得极大！&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;另外，还有几个特别的，比如直接用makefile来生成的&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;模板语言的选择&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;jade 设计易混，缩进蛋疼&lt;/li&gt;
-  &lt;li&gt;swig 语法借鉴jinja2 功能全，使用 {}标记&lt;/li&gt;
-  &lt;li&gt;handlebars 非常少逻辑的模板，类似mustache，但比其稍强 使用 {}标记：没有if else for等，只有标签，标签用于替换各种东西。&lt;/li&gt;
-  &lt;li&gt;ejs 无标签注记，无区块（有include） &lt;code&gt;&amp;lt;% code %&amp;gt;&lt;/code&gt; 筛选，可自定义标记，有客户端渲染器&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;不知道会不会出现liquid的自身难以完整表达自身的问题？？？&lt;/p&gt;
-
-&lt;p&gt;不应该给html增加一个标识符&lt;code&gt;{}&lt;/code&gt;，而应该使用原有的&lt;code&gt;&amp;lt;&amp;gt;&lt;/code&gt;，比如&lt;code&gt;&amp;lt;% %&amp;gt;&lt;/code&gt;，&lt;code&gt;&amp;lt;? ?&amp;gt;&lt;/code&gt;，目的是减少处理和识别复杂度。&lt;/p&gt;
-
-&lt;p&gt;其实php是一个伪装成编程语言的模板语言！！(带交互响应的)&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;?php xxx ?&amp;gt;
+$0
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;静态站的模板，是剥离php的交互响应部分，把需要高度交互响应的，换用性能更强劲的部件。而不极限于php。&lt;/p&gt;
+&lt;p&gt;我的看法：a&lt;/p&gt;
 
-&lt;p&gt;技术演进：
-php/asp+html+js+css，重心在php
-由于普及率问题，现在演变成了：
-html+css+js+各种js模板。重心在js&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# -*- mode: snippet -*-
+# name: aside
+# --
+&amp;lt;aside&amp;gt;&amp;lt;b&amp;gt;黑传说看法：&amp;lt;/b&amp;gt;${1:}&amp;lt;/aside&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;加粗+背景色：bbc&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# -*- mode: snippet -*-
+# name: bold+background-color
+# --
+&amp;lt;b style=&quot;background-color:${1:};&quot;&amp;gt;${2:文本}&amp;lt;/b&amp;gt; $0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;背景色:bc&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# -*- mode: snippet -*-
+# name: background-color
+# --
+&amp;lt;span style=&quot;background-color:${1:};&quot;&amp;gt;${2:文本}&amp;lt;/span&amp;gt; $0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;字体颜色:fc&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# -*- mode: snippet -*-
+# name: font-color
+# --
+&amp;lt;span style=&quot;color:${1:};&quot;&amp;gt;${2:文本}&amp;lt;/span&amp;gt; $0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;高亮文本：m&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# -*- mode: snippet -*-
+# name: highlighted text
+# --
+&amp;lt;mark&amp;gt;${1:文本}&amp;lt;/mark&amp;gt; $0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;圈字：q&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# -*- mode: snippet -*-
+# name: border-around
+# --
+&amp;lt;span style=&quot;border: 2px solid black; border-radius: 30px;&quot;&amp;gt;${1:圈字}&amp;lt;/span&amp;gt; $0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;简化图片插入操作&lt;/h3&gt;
+
+&lt;p&gt;图片路径安排：每篇文章一个图片文件夹&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;| --- _posts
+|       | --- 2012-07-31-hello-world-again.md
+|       | --- 2012-08-01-emacs-summary.md
+|       | --- 2012-08-02-emacs-summary-cont.md
+|
+| --- assets
+|       | --- images
+|       |       | --- emacs-summary
+|       |       |       | --- emacs-screenshot.png
+|       |       |
+|       |       | --- emacs-summary-cont
+|       |       |       | --- post-meta-screenshot.png
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;要达到的目的：仅仅用上下方向键选择图片。&lt;/p&gt;
+
+&lt;p&gt;需要创建两个文件：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;修改emacs 配置文件：用于获取图片路径和列出图片&lt;/li&gt;
+  &lt;li&gt;yasnippet文件：用于调用上面的配置文件中设定的函数，选择图片。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;姑且把emacs配置文件单独存为一个 el文件，命名为 &lt;code&gt;markdown-image-select.el&lt;/code&gt; 填入以下内容：&lt;/p&gt;
+
+&lt;p&gt;yasnippet文件， 姑且命名为 &lt;em&gt;i&lt;/em&gt;，填入内容：（注意不要换行）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;![${1:$$(yas-choose-value (mis-yield-choices (buffer-file-name)))}](/static/images/`(mis-get-directory-from-bufname (buffer-file-name))`/$1)$0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后，修改下emacs的配置，调用 &lt;code&gt;markdown-image-select&lt;/code&gt;。&lt;/p&gt;
+
+&lt;p&gt;最后一步，重启emacs&lt;/p&gt;
 
 </description>
         <pubDate>Thu, 2014 Jul 24 22:01:11 +0800</pubDate>
@@ -448,12 +648,10 @@ int count = 10;
 
 &lt;p&gt;类 = 多变量绑在一起，变成一个包&lt;/p&gt;
 
-&lt;p&gt;point是新建框架的名字&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;typedef struct {
     float x;
     float y;
-  } point;
+  } point;   /point是新建框架的名字
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;新建框架的使用。设定实例：实例+点+变量&lt;/p&gt;
@@ -467,7 +665,22 @@ float length = sqrt(p.x * p.x + p.y * p.y);
 
 &lt;h3 id=&quot;pointer-&quot;&gt;pointer 系统：指针&lt;/h3&gt;
 
+&lt;pre&gt;&lt;code&gt;int* x;   /这样的写法对新手来说清晰
+int *x;   /这是日常的写法 
+
+/* A pointer to a new empty Qexpr lval */
+lval* lval_qexpr(void) {
+  lval* v = malloc(sizeof(lval));   /
+  v-&amp;gt;type = LVAL_QEXPR;    / 指针属性：类型
+  v-&amp;gt;count = 0;    /指针属性：
+  v-&amp;gt;cell = NULL;   /指针属性：
+  return v;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h3 id=&quot;char&quot;&gt;字串 &lt;code&gt;char*&lt;/code&gt;&lt;/h3&gt;
+
+&lt;h3 id=&quot;array&quot;&gt;数组 &lt;code&gt;array&lt;/code&gt;&lt;/h3&gt;
 
 &lt;h3 id=&quot;section-3&quot;&gt;条件操控&lt;/h3&gt;
 
@@ -500,11 +713,27 @@ float length = sqrt(p.x * p.x + p.y * p.y);
   &lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;h3 id=&quot;section-5&quot;&gt;宏&lt;/h3&gt;
+
+&lt;p&gt;用在处理重复性操作&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#define MACROXXX(args, cond, err) if (!(cond)) { xxx(args); return lval_err(err); }
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用 #define 来定义，三个参数分别代表：参照参数，条件，出错信息。整个宏代表：如果条件不成立，则 执行xxx(参照参数)，并输出 出错信息。
+注：此处没设定如果条件成立的处理方式&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/* 调用 */
+MACROXXX(a, (a-&amp;gt;count == 1                 ), &quot;Function &#39;xxx&#39; passed too many arguments!&quot;);
+MACROXXX(a, (a-&amp;gt;cell[0]-&amp;gt;type == LVAL_QEXPR), &quot;Function &#39;xxx&#39; passed incorrect type!&quot;);
+MACROXXX(a, (a-&amp;gt;cell[0]-&amp;gt;count != 0        ), &quot;Function &#39;xxx&#39; passed {}!&quot;);
+&lt;/code&gt;&lt;/pre&gt;
+
 &lt;h3 id=&quot;c-1&quot;&gt;C的一些机制&lt;/h3&gt;
 
 &lt;p&gt;调-返 （callback）：用于后台加载，后台运算不错，但由于并行计算时代的到来，这个很好的机制变成了最容易出问题的地方。&lt;/p&gt;
 
-&lt;h2 id=&quot;section-5&quot;&gt;设计全面的语言：通链&lt;/h2&gt;
+&lt;h2 id=&quot;section-6&quot;&gt;设计全面的语言：通链&lt;/h2&gt;
 
 &lt;p&gt;主要的语法特征：前置标识&lt;/p&gt;
 
@@ -524,7 +753,9 @@ float length = sqrt(p.x * p.x + p.y * p.y);
 
 &lt;p&gt;缺点：普及度不高，而且，因为设计太过完备，难免隐藏不少问题，只是因为应用太少，这些问题暴露的不全。&lt;/p&gt;
 
-&lt;h2 id=&quot;section-6&quot;&gt;难读天书：简符码&lt;/h2&gt;
+&lt;p&gt;对于lisp，只需要学习其设计，而不需要学习其具体的编程&lt;/p&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;难读天书：简符码&lt;/h2&gt;
 
 &lt;p&gt;目的在于提供快速简便的拣选。&lt;/p&gt;
 
@@ -1260,8 +1491,325 @@ console.log(total);
       </item>
     
       <item>
-        <title>如何在jekyll中随心所欲使用插件</title>
-        <description>&lt;h2 id=&quot;github-pages&quot;&gt;使用github pages不支持的插件&lt;/h2&gt;
+        <title>使用jekyll生成静态站点</title>
+        <description>&lt;p&gt;&lt;b style=&quot;background-color:red;&quot;&gt;注：由于本人换用别的生成引擎，因此，此文不再更新，不足部分请参考其他文章。&lt;/b&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;jekyll&quot;&gt;定制日志系统：jekyll&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;jekyll：静态网站生成器，可将markdown和textile文档转为html，可使用liquid模板&lt;/li&gt;
+  &lt;li&gt;github pages对于上传的文件，会用jekyll处理后再发布。&lt;/li&gt;
+  &lt;li&gt;可能缺点：不适合大型网站，因为没有用到数据库，每运行一次都必须遍历全部的文本文件，网站越大，生成时间越长。——这是可以解决的&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;两种方式：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;利用github的自动生成：settings——》Automatic Page Generator——》Continue To Layouts——》选择系统提供的模板——》发布。
+之后生成一个叫gh-pages仓库，里面是生成的html文件。&lt;/li&gt;
+  &lt;li&gt;利用jekyll定制，或者是别的静态站点生成工具定制&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;下面使用jekyll来生成静态站，所需软件：ruby gem&lt;/p&gt;
+
+&lt;p&gt;简单安装过程：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gem install jekyll
+cd 本地想存放站点文件夹的上级文件夹
+~/.gem/ruby/2.1.0/bin/jekyll new 站点文件夹
+cd 站点文件夹
+jekyll serve
+# =&amp;gt; 浏览器中查看 http://localhost:4000
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;查看文件夹，结构如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;文件夹名/
+├── _config.yml
+├── _includes
+│   ├── footer.html
+│   ├── head.html
+│   └── header.html
+├── _layouts
+│   ├── default.html
+│   ├── page.html
+│   └── post.html
+├── _posts
+│   └── 2014-08-06-welcome-to-jekyll.markdown
+├── css
+│   └── main.css
+├── feed.xml
+├── about.md
+└── index.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;说明：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;自己写的markdown文件，放在 &lt;em&gt;_posts&lt;/em&gt; 文件夹下，可用子目录（用于分类），文件命名方式必须是：&lt;em&gt;年-月-日-名字.md&lt;/em&gt; 。&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;_layouts&lt;/em&gt; 是页面模板&lt;/li&gt;
+  &lt;li&gt;Jekyll会把任何不以下划线开头的文件和目录都复制/生成到网站（在本地是生成到_site/目录)。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;想存放静态文件，比如图片，css，js等，可以自己新建一个文件夹，比如名为： &lt;em&gt;static&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：由于ruby2 的路径编码问题，jekyll上面的文件名不要用中文，会导致出现编码问题，jekyll站点文件里面可以utf-8。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;测试效果：&lt;/h3&gt;
+
+&lt;p&gt;本地写markdown文件，放入 &lt;em&gt;_post&lt;/em&gt; 文件夹中，如果想测试下效果，可以本地使用jekyll生成，然后在浏览器中查看。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;jekyll build
+# =&amp;gt; 当前文件夹将生成到 ./_site
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;问题：如何递增生成？可结合git的对比功能实现。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;定制页面模板：&lt;/h3&gt;
+
+&lt;p&gt;jekyll把 &lt;em&gt;_layouts&lt;/em&gt; 目录中的文档看做是生成用的模板，如果某个文档中的头部变量声明中指定了layout，则Jekyll在生成页面时会使用该模板进行渲染，用文档的内容替换模板中的部分。模板之间可相互嵌套调用：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;---
+layout: post
+...
+---
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;利用好Liquid语言的include语法能够带来很大的变量。被包含的页面部件需要放在_includes文件夹中。&lt;/p&gt;
+
+&lt;p&gt;注意：不管文件的扩展名是md、html还是xml、txt，只要文件的头部包含变量声明，Jekyll的模板引擎就会对其进行处理。
+其中md和html文件都会处理为html，其他类型会保持扩展名。&lt;/p&gt;
+
+&lt;p&gt;另外，liquid语法的引入，使得页面规则产生很大的变化，不能再简单的以markdown来写了。尤其是程序中带有大括号的。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;写文章页面的定制&lt;/h3&gt;
+
+&lt;p&gt;markdown文章可进一步定制：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;---
+layout: default
+title: &quot;这是标题&quot;
+date: 2014-04-23 09:45:26
+description: &quot;这是摘要&quot;
+categories: 这是存放的目录
+tags: [话题1, 话题2]
+lastmod: 2014-04-24
+---
+
+&amp;lt;h2&amp;gt;{{ page.title }}&amp;lt;/h2&amp;gt;
+
+&amp;lt;p&amp;gt;我的第一篇文章天地玄黄&amp;lt;/p&amp;gt;
+
+&amp;lt;p&amp;gt;{{ page.date | date: &#39;%Y-%m-%d&#39; }}&amp;lt;/p&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;说明：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;每篇文章的头部，必须用一个 &lt;em&gt;yaml格式&lt;/em&gt; 设置元数据。它用三根短划线 &lt;code&gt;---&lt;/code&gt; ，标记开始和结束，里面每一行代表一种设置。&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;layout:default&lt;/code&gt; ，表示该文章的模板使用 &lt;em&gt;_layouts&lt;/em&gt; 目录下的 &lt;em&gt;default.html&lt;/em&gt; 文件；&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;title: &quot;这是标题&quot;&lt;/code&gt;，表示该文章的标题是”这是标题”，如果不设置这个值，默认嵌入文件名的标题的是”hello world”。&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;使用jekyll生成静态站点&lt;/code&gt; 就是文件头中设置的”这是标题”，&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;2014-04-27 04:34:21 +0800&lt;/code&gt; 则是嵌入文件名的日期（也可以在文件头重新定义date变量），&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;| date_to_string&lt;/code&gt; 表示将 &lt;code&gt;page.date&lt;/code&gt; 变量转化成人类可读的格式。
+此处我改年月日方式为 &lt;code&gt;| date: &#39;%Y-%m-%d&#39;&lt;/code&gt; 显示。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;此处要注意：由于加入了liquid模板语言，整个markdown语法有些变化。比如此处如果要原样输出liquid语言的话，需要加入 {/% raw %/} ，内嵌自身的话，出问题，行内呢？——至少就目前而言，这不是一个适合复杂编程的代码形式！两种形式解决这种嵌套自身出现的问题：转码，特殊规则&lt;/p&gt;
+
+    &lt;p&gt;{/% raw %/}
+  raw in raw
+  {/% endraw %/}&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;定制导航&lt;/h3&gt;
+
+&lt;p&gt;我是直接把 &lt;em&gt;_layout/default.html&lt;/em&gt; 中的头部部分移到了新建文件 &lt;em&gt;_include/header.html&lt;/em&gt; 中。&lt;/p&gt;
+
+&lt;p&gt;下面是 心内求法 同学的的设置，更加动态：
+在 &lt;em&gt;_config.yml&lt;/em&gt; 中定制&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;menuitems:
+    - name:         首页
+      url:          /index.html
+    - name:         分类
+      url:          /categories.html
+    - name:         话题
+      url:          /tags.html
+    - name:         归档
+      url:           /archive.html
+    - name:         读书
+      url:           /reading.html
+    - name:         工作
+      url:           /working.html
+    - name:         我是谁
+      url:           /about.html
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后在模板的导航部分添加：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;ul class=&quot;nav&quot;&amp;gt;
+      {/% for item in site.menuitems %/}
+        {/% if item.url == page.url %/}
+        &amp;lt;li class=&quot;active&quot;&amp;gt;
+        {/% else %/}
+        &amp;lt;li&amp;gt;
+        {/% endif %/}
+        &amp;lt;a href=&quot;&quot;&amp;gt;&amp;lt;/a&amp;gt;
+        &amp;lt;/li&amp;gt;
+      {/% endfor %/}
+    &amp;lt;/ul&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意：如果不是加入模板生成代码的话，可以直接用markdown来写，比如友情链接部分，用markdown来写明显比直接用html写来的高效。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;定制首页&lt;/h3&gt;
+
+&lt;p&gt;修改 &lt;em&gt;index.html&lt;/em&gt; 文件，填入以下内容：&lt;/p&gt;
+
+&lt;h3 id=&quot;rss&quot;&gt;分类、话题（标签）、归档和RSS&lt;/h3&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;文章摘要&lt;/h3&gt;
+
+&lt;p&gt;如果有设定摘要的话，可以&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{% if post.description %}&amp;lt;span&amp;gt;{{ post.description }}&amp;lt;/span&amp;gt;{% endif %}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-6&quot;&gt;文章首段预览&lt;/h3&gt;
+
+&lt;p&gt;如果需要文章首段预览的话，可加入：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;span&amp;gt;{{ post.excerpt }}&amp;lt;/span&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;话题（标签云）&lt;/h3&gt;
+
+&lt;p&gt;js实现：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&quot;tag-cloud&quot;&amp;gt;
+    {% for tag in site.tags %}
+    &amp;lt;a href=&quot;/category/tags.html#{{ tag[0] }}-ref&quot; id=&quot;{{ forloop.index }}&quot; class=&quot;__tag&quot; style=&quot;margin: 5px&quot;&amp;gt;{{ tag[0] }}&amp;lt;/a&amp;gt;
+    {% endfor %}
+  &amp;lt;/div&amp;gt;
+  &amp;lt;script type=&quot;text/javascript&quot;&amp;gt;
+   $(function() {
+     var minFont = 12.0,
+     maxFont = 36.0,
+     diffFont = maxFont - minFont,
+     size = 0;
+     
+     {% assign max = 1.0 %}
+     {% for tag in site.tags %}
+     {% if tag[1].size &amp;gt; max %}
+     {% assign max = tag[1].size %}
+     {% endif %}
+     {% endfor %}
+     
+     {% for tag in site.tags %}
+     size = (Math.log({{ tag[1].size }}) / Math.log({{ max }})) * diffFont + minFont;
+     $(&quot;#{{ forloop.index }}&quot;).css(&quot;font-size&quot;, size + &quot;px&quot;);
+     {% endfor %}
+   });
+  &amp;lt;/script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-8&quot;&gt;分页&lt;/h3&gt;
+
+&lt;p&gt;TODO: ajax分页 TODO: 浮动标题 on paginator&lt;/p&gt;
+
+&lt;h3 id=&quot;section-9&quot;&gt;语法高亮&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;利用外部资源，比如GitHub Gist。简单，但是需要使用外部链接或通过js嵌入到页面，不利于文档和代码的统一维护&lt;/li&gt;
+  &lt;li&gt;使用js在前端渲染，比如google-code-prettify。简单高效，对语言的支持不够多&lt;/li&gt;
+  &lt;li&gt;使用Jekyll插件，比如调用pygments。推荐方式，支持100多种语言。——已经默认启用！&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如下：其中，ruby是指定所用的代码名，linenos是显示行号&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{% highlight ruby linenos %}
+def foo
+  puts &#39;foo&#39;
+end
+{% endhighlight %}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;效果如下：&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;长长长……长长长代码……长长长长代码……&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;长长长……长长长代码……长长长长代码……&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;长长长……长长长代码……长长长长代码……长长长……长长长代码……长长长长代码……&amp;#39;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;更改样式，修改 &lt;em&gt;css&lt;/em&gt; 文件夹下的 &lt;em&gt;syntax.css&lt;/em&gt; 。&lt;/p&gt;
+
+&lt;p&gt;各种格式看看： ~~双波浪线删除线~~   &lt;em&gt;单下划线下划线&lt;/em&gt;  &lt;em&gt;单星斜体&lt;/em&gt; &lt;strong&gt;双下划线加粗&lt;/strong&gt; &lt;strong&gt;双星加粗&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-10&quot;&gt;页内跳转&lt;/h3&gt;
+
+&lt;p&gt;回到头部：&lt;/p&gt;
+
+&lt;h3 id=&quot;section-11&quot;&gt;文档目录&lt;/h3&gt;
+
+&lt;p&gt;如果写比较长的文章，提供一个类似于文档大纲，进行导航可以方便阅读。&lt;/p&gt;
+
+&lt;p&gt;两种方法：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;静态的方法是直接生成大纲：插件实现：jekyll-toc-generator&lt;/li&gt;
+  &lt;li&gt;用js来动态生成：这种方式加载东西少，但在不支持js的浏览器里，则无法使用。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;另外，为了兼容性，比如有的手机框架关闭了浏览器本身的跳转功能，因此，用双向连接的方式可以获得最大的兼容性。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-12&quot;&gt;使用公式&lt;/h3&gt;
+
+&lt;p&gt;渲染引擎支持公式否？是否需要系统装有 latex？&lt;/p&gt;
+
+&lt;p&gt;js渲染latex公式： &lt;a href=&quot;http://www.mathjax.org/&quot;&gt;Mathjax&lt;/a&gt; ，缺点是动态加载，速度慢。&lt;/p&gt;
+
+&lt;p&gt;优点：支持公式编号，这样方便引用&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://chen.yanping.me/cn/blog/2012/03/10/octopress-with-latex&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;试试 &lt;script type=&quot;math/tex&quot;&gt;\exp(-\frac{x^2}{2})&lt;/script&gt; 代码 &lt;script type=&quot;math/tex&quot;&gt;\alpha + \beta&lt;/script&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt;        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt; 
+e^x = \sum\_{n=0}^\infty \frac{x^n}{n!} = \lim\_{n\rightarrow\infty} (1+x/n)^n 
+&lt;/script&gt;
+
+&lt;h3 id=&quot;section-13&quot;&gt;处理图片&lt;/h3&gt;
+
+&lt;p&gt;设置一个 &lt;code&gt;IMAGE_ROOT&lt;/code&gt; 变量，可以在post中设置，也可以在post的模板中通过指定的规则capture（或者assign）。&lt;/p&gt;
+
+&lt;p&gt;则引可以使用/xxx.png的形式插入图片，便于以后的调整和管理。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-14&quot;&gt;处理表格&lt;/h3&gt;
+
+&lt;p&gt;注：jekyll2之后，默认使用kramdown，可以自动处理表格。&lt;/p&gt;
+
+&lt;p&gt;注：如果是jekyll1，使用 redcarpet引擎，需要在 &lt;em&gt;_config.yml&lt;/em&gt; 中，添加下面两行：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;redcarpet:
+    extensions: [tables]
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;参考并致谢：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html&quot;&gt;Jekyll入门：阮一峰&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://thinkinside.tk/2013/05/27/jekyll_mysite.html&quot;&gt;Jekyll建站过程：心内求法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;github-pages&quot;&gt;使用github pages不支持的插件&lt;/h2&gt;
 
 &lt;h3 id=&quot;pandoc&quot;&gt;问题：换用pandoc来渲染？&lt;/h3&gt;
 
@@ -1287,7 +1835,7 @@ console.log(total);
   &lt;li&gt;麻烦的话，可以把操作过程封装为一条命令搞定，也就不麻烦了。&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;section&quot;&gt;实现过程&lt;/h3&gt;
+&lt;h3 id=&quot;section-15&quot;&gt;实现过程&lt;/h3&gt;
 
 &lt;ol&gt;
   &lt;li&gt;安装pandoc&lt;/li&gt;
@@ -1308,9 +1856,84 @@ console.log(total);
 
 &lt;p&gt;上面的 extensions 并不唯一，可以将任何 Pandoc 支持的选项加入其中。&lt;/p&gt;
 
-&lt;h2 id=&quot;section-1&quot;&gt;如何维护双库？&lt;/h2&gt;
+</description>
+        <pubDate>Sun, 2014 Apr 27 04:34:21 +0800</pubDate>
+        <link>http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/04/27/%E4%BD%BF%E7%94%A8jekyll%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E7%AB%99/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/04/27/%E4%BD%BF%E7%94%A8jekyll%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E7%AB%99/</guid>
+      </item>
+    
+      <item>
+        <title>利用github建静态站手记——黑传说版</title>
+        <description>&lt;h2 id=&quot;github&quot;&gt;github建立日志系统的优势&lt;/h2&gt;
 
-&lt;p&gt;很明显，这样生成后，源码和生成的静态文件就分开了，如何管理呢？双库法！静态站仓库只需要更新 gh-pages分支。&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;喜欢分享日志的人，会经历三个阶段：&lt;/p&gt;
+
+  &lt;p&gt;第一阶段，刚接触日志分享系统，觉得很新鲜，试着选择一个免费的日志分享托管网站来写。&lt;/p&gt;
+
+  &lt;p&gt;第二阶段，觉得免费的博客托管网站限制太多，就自己买域名和空间，自己搭独立日志系统。&lt;/p&gt;
+
+  &lt;p&gt;第三阶段，觉得独立日志系统的日常管理太繁琐，最好在保留控制权的前提下，让别人来管，自己只负责写日志。&lt;/p&gt;
+
+  &lt;p&gt;大多数日志作者，都徘徊在第一和第二阶段，因为第三阶段不太容易到达：你很难找到俯首听命、愿意为你管理服务器的人。&lt;/p&gt;
+
+  &lt;p&gt;但是不久前，情况出现变化，一些程序员利用github搭建日志系统。他们既拥有绝对管理权，又享受github带来的便利：&lt;/p&gt;
+
+  &lt;p&gt;只要向主机同步提案，即可发布新文章。更妙的是，还是免费的，github提供无限流量，世界各地都有理想的访问速度，不用自己去和服务器机房打交道了。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;github pages建网站可以说是其他技术类日志分享服务的克星，因为程序员愿意折腾。其好处：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;可随意定制&lt;/li&gt;
+  &lt;li&gt;方便，和程序开发库（github）直通&lt;/li&gt;
+  &lt;li&gt;可控&lt;/li&gt;
+  &lt;li&gt;简单自动：只需要提交&lt;/li&gt;
+  &lt;li&gt;高效通用：markdown控制&lt;/li&gt;
+  &lt;li&gt;免费，无限流量，无限空间&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;局限：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;不提供 用户端-服务端 交互&lt;/li&gt;
+  &lt;li&gt;国内访问速度不可保障，可能被墙？&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;github-pages&quot;&gt;启用 github pages：&lt;/h2&gt;
+
+&lt;p&gt;github提供两种类型的静态网站服务，&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;用户或者组织级的，域名是 &lt;em&gt;用户或组织名.github.io&lt;/em&gt; 。启用方式：建立一个叫 &lt;em&gt;和用户或组织同名.github.io&lt;/em&gt; 的仓库，github会自动把xxx.github.io仓库里的文件，转为github page的页面。&lt;/li&gt;
+  &lt;li&gt;项目级的，域名是 &lt;em&gt;用户或组织名.github.io/项目名&lt;/em&gt; 。启用方式：建立一个名叫 &lt;em&gt;gh-pages&lt;/em&gt; 的分支，github会自动把 gh-pages 仓库里的文件，转为github page的页面。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;由于 &lt;em&gt;xxx.github.io&lt;/em&gt; 只能一个用户或者组织一个，需要新建一用户或者组织，很不方便，更常用的是项目级的，每个项目生成一个静态站，这样一个用户下可以有多个静态站，方便。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;使用：&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;如果想让github来生成，则把需要的日志纳入成果管理，立案后，把本地的仓库同步到注册的github仓库的master分支中，然后静待github来生成——一般很快就完成了。&lt;/li&gt;
+  &lt;li&gt;如果不想让github来生成的话，则本地生成好，然后发布到github仓库的gh-pages分支，即完成发布。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;如何使用自己想要静态站生成器和插件？&lt;/h2&gt;
+
+&lt;p&gt;几乎每种编程语言，都有若干生成静态网站的工具，可根据自己的需要和熟悉程度选用。&lt;/p&gt;
+
+&lt;p&gt;比如python的pelican，emacs的org-page，js的metalsmith等……&lt;/p&gt;
+
+&lt;p&gt;目前流行度最高的有ruby的jekyll。github就只使用了jekyll作为后台生成器，因此，如果用的是其他静态站生成器，都需要自己本地生成，然后发布到gh-pages分支。&lt;/p&gt;
+
+&lt;p&gt;jekyll使用方法见下一篇：&lt;a href=&quot;&quot;&gt;使用jekyll生成静态站&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;注意：自己生成的话，需要在生成页面的根目录下，放一个 &lt;em&gt;.nojekyll&lt;/em&gt; 文件关闭github的jekyll生成服务。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;如何维护双库？&lt;/h2&gt;
+
+&lt;p&gt;如果是用的其他静态站生成器，很明显，源码和生成的静态文件就分开了。
+那么，如何管理呢？双库法！静态站仓库只需要更新 gh-pages分支。&lt;/p&gt;
 
 &lt;p&gt;默认的项目仓库情况：&lt;/p&gt;
 
@@ -1376,7 +1999,7 @@ console.log(total);
   |    |-- .nojekyll
   |    |-- _config.yml
   |     ....
-  |    |-- _site/ &amp;lt;--- 软链或子模块，也就是发布到gh-pages的文件
+  |    |-- _site/ &amp;lt;--- 软链或子模块，此中文件会发布到gh-pages
   |
   |-- xxx-gh-pages/  ---&amp;gt; 软链或子模块到 xxx-source/_site
 &lt;/code&gt;&lt;/pre&gt;
@@ -1386,11 +2009,11 @@ console.log(total);
 &lt;ol&gt;
   &lt;li&gt;远程开双仓库&lt;/li&gt;
   &lt;li&gt;本地新建一文件夹 xxx-source，放入源码，然后同步到远程 &lt;em&gt;git@github.com:username/source.git&lt;/em&gt;&lt;/li&gt;
-  &lt;li&gt;生成静态站码&lt;/li&gt;
-  &lt;li&gt;放入源码到&lt;/li&gt;
+  &lt;li&gt;本地新建一文件夹 xxx-gh-pages，软链到xxx-source/_site，然后同步到远程 &lt;em&gt;git@github.com:username/xxx-gh-pages.git&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;每次xxx-source生成后，切换到 xxx-gh-pages 同步到远程xxx-gh-pages的gh-pages分支&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&quot;section-2&quot;&gt;双仓库的准备工作&lt;/h3&gt;
+&lt;h3 id=&quot;section-3&quot;&gt;双仓库的准备工作&lt;/h3&gt;
 
 &lt;p&gt;第一步，远程开双仓库。假设为如下：&lt;/p&gt;
 
@@ -1409,7 +2032,7 @@ console.log(total);
 - .nojekyll
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;section-3&quot;&gt;一些有关操作&lt;/h3&gt;
+&lt;h3 id=&quot;section-4&quot;&gt;一些有关操作&lt;/h3&gt;
 
 &lt;p&gt;远程删除或者添加分支&lt;/p&gt;
 
@@ -1464,7 +2087,7 @@ git push -u origin gh-pages
 git branch  
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;section-4&quot;&gt;软链双库法&lt;/h3&gt;
+&lt;h3 id=&quot;section-5&quot;&gt;软链双库法&lt;/h3&gt;
 
 &lt;p&gt;前提：操作系统是linux，因为需要利用到一个linux才有的特性：软链&lt;/p&gt;
 
@@ -1643,424 +2266,43 @@ git commit -m &#39;$message&#39;
 git push origin master
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://blog.blindgaenger.net/generate_github_pages_in_a_submodule.html&quot;&gt;参考此文&lt;/a&gt;
-&lt;a href=&quot;http://indelible.io/blog/2013/07/14/jekyll-plugins-and-github-pages.html&quot;&gt;再参考此文&lt;/a&gt; &lt;/p&gt;
-
-&lt;h2 id=&quot;section-5&quot;&gt;换用自己喜欢的生成工具&lt;/h2&gt;
-
-&lt;p&gt;摸清了github的各种道道后，接下来，已经可以任意使用网页生成工具了。
-只需要在生成页面的根目录下，放一个 &lt;em&gt;.nojekyll&lt;/em&gt; 文件即可。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-6&quot;&gt;简化图片操作&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://mad4a.me/2012/08/02/emacs-summary-cont/#outline_2&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;图片路径安排：每篇文章一个图片文件夹&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;| --- _posts
-|       | --- 2012-07-31-hello-world-again.md
-|       | --- 2012-08-01-emacs-summary.md
-|       | --- 2012-08-02-emacs-summary-cont.md
-|
-| --- assets
-|       | --- images
-|       |       | --- emacs-summary
-|       |       |       | --- emacs-screenshot.png
-|       |       |
-|       |       | --- emacs-summary-cont
-|       |       |       | --- post-meta-screenshot.png
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;要达到的目的：仅仅上下方向键选择图片。&lt;/p&gt;
-
-&lt;p&gt;需要创建两个文件：&lt;/p&gt;
-
 &lt;ul&gt;
-  &lt;li&gt;el文件：用于获取图片路径和列出图片&lt;/li&gt;
-  &lt;li&gt;yasnippet文件：用于调用上面的el文件中的函数，选择图片。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://blog.blindgaenger.net/generate_github_pages_in_a_submodule.html&quot;&gt;参考此文&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://indelible.io/blog/2013/07/14/jekyll-plugins-and-github-pages.html&quot;&gt;再参考此文&lt;/a&gt; &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://dannpu.com/blog/2013/08/03/Github-page-build-failure/&quot;&gt;利用本地编译结果替代github自动编译：淡朴若水&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;其中el文件，姑且命名为 &lt;code&gt;markdown-image-select.el&lt;/code&gt; 填入以下内容：&lt;/p&gt;
+&lt;h3 id=&quot;section-6&quot;&gt;使用其他域名&lt;/h3&gt;
 
-&lt;p&gt;yasnippet文件， 姑且命名为 &lt;code&gt;i&lt;/code&gt;，填入内容：（注意不要换行）&lt;/p&gt;
+&lt;p&gt;Github Pages会为站点分配类似 &lt;em&gt;用户名.github.io&lt;/em&gt; 或者 &lt;em&gt;用户名.github.io/项目名&lt;/em&gt; 的二级/三级域名。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;![${1:$$(yas-choose-value (mis-yield-choices (buffer-file-name)))}](/static/images/`(mis-get-directory-from-bufname (buffer-file-name))`/$1)$0
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;不够简洁，还是申请顶级域名吧。&lt;/p&gt;
 
-&lt;p&gt;然后，修改下emacs的配置，调用 &lt;code&gt;markdown-image-select&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;申请域名：免费的域名(.tk)可以&lt;a href=&quot;http://my.dot.tk/cgi-bin/amb/landing.dottk?nr=806151::15401173::1&quot;&gt;在此申请&lt;/a&gt;。
+&lt;em&gt;.tk&lt;/em&gt; 是南太平洋岛国托克劳的国家域名，支持域名转发（可隐藏原URL）、电邮转发、A记录解析、CNAME别名记录、MX邮件记录、设置DNS服务器等服务。&lt;/p&gt;
 
-&lt;p&gt;最后一步，重启emacs&lt;/p&gt;
+&lt;p&gt;收费的域名到处有，自己去买吧。&lt;/p&gt;
 
-</description>
-        <pubDate>Sun, 2014 Apr 27 04:34:21 +0800</pubDate>
-        <link>http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/04/27/%E5%A6%82%E4%BD%95%E5%9C%A8jekyll%E4%B8%AD%E9%9A%8F%E5%BF%83%E6%89%80%E6%AC%B2%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/04/27/%E5%A6%82%E4%BD%95%E5%9C%A8jekyll%E4%B8%AD%E9%9A%8F%E5%BF%83%E6%89%80%E6%AC%B2%E4%BD%BF%E7%94%A8%E6%8F%92%E4%BB%B6/</guid>
-      </item>
-    
-      <item>
-        <title>利用github建网络日志站手记——黑传说版</title>
-        <description>&lt;h2 id=&quot;github&quot;&gt;github建立日志系统的优势&lt;/h2&gt;
+&lt;h4 id=&quot;section-7&quot;&gt;域名解析服务&lt;/h4&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;喜欢分享日志的人，会经历三个阶段：&lt;/p&gt;
+&lt;p&gt;一般来说域名提供商会提供简单的解析服务，也支持将解析服务指向到其他域名解析服务提供者。&lt;/p&gt;
 
-  &lt;p&gt;第一阶段，刚接触日志分享系统，觉得很新鲜，试着选择一个免费的日志分享托管网站来写。&lt;/p&gt;
+&lt;p&gt;国外的如Godaddy，可能被墙。
+国内的如DNSPod，有免费版。&lt;/p&gt;
 
-  &lt;p&gt;第二阶段，觉得免费的博客托管网站限制太多，就自己买域名和空间，自己搭独立日志系统。&lt;/p&gt;
-
-  &lt;p&gt;第三阶段，觉得独立日志系统的日常管理太繁琐，最好在保留控制权的前提下，让别人来管，自己只负责写日志。&lt;/p&gt;
-
-  &lt;p&gt;大多数日志作者，都徘徊在第一和第二阶段，因为第三阶段不太容易到达：你很难找到俯首听命、愿意为你管理服务器的人。&lt;/p&gt;
-
-  &lt;p&gt;但是不久前，情况出现变化，一些程序员利用github搭建日志系统。他们既拥有绝对管理权，又享受github带来的便利：&lt;/p&gt;
-
-  &lt;p&gt;只要向主机同步提案，即可发布新文章。更妙的是，还是免费的，github提供无限流量，世界各地都有理想的访问速度，不用自己去和服务器机房打交道了。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;github pages建网站可以说是其他技术类日志分享服务的克星，因为程序员愿意折腾。其好处：&lt;/p&gt;
+&lt;p&gt;配置：&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;可随意定制&lt;/li&gt;
-  &lt;li&gt;方便，和程序开发库（github）直通&lt;/li&gt;
-  &lt;li&gt;可控&lt;/li&gt;
-  &lt;li&gt;简单自动：只需要提交&lt;/li&gt;
-  &lt;li&gt;高效通用：markdown控制&lt;/li&gt;
-  &lt;li&gt;免费，无限流量，无限空间&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;局限：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;不提供 用户端-服务端 交互&lt;/li&gt;
-  &lt;li&gt;国内访问速度不可保障，可能被墙？&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;github-pages&quot;&gt;注册启用 github pages：&lt;/h2&gt;
-
-&lt;p&gt;github提供两种类型的静态网站服务，&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;用户或者组织级的，域名是 &lt;em&gt;用户或组织名.github.io&lt;/em&gt; 。启用方式：建立一个叫 &lt;em&gt;和用户或组织同名.github.io&lt;/em&gt; 的仓库，github会自动把xxx.github.io仓库里的文件，转为github page的页面。&lt;/li&gt;
-  &lt;li&gt;项目级的，域名是 &lt;em&gt;用户或组织名.github.io/项目名&lt;/em&gt; 。启用方式：建立一个名叫 &lt;em&gt;gh-pages&lt;/em&gt; 的分支，github会自动把 gh-pages 仓库里的文件，转为github page的页面。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;由于 &lt;em&gt;xxx.github.io&lt;/em&gt; 只能一个用户或者组织一个，需要新建一用户或者组织，很不方便，更常用的是项目级的，每个项目生成一个静态站，这样一个用户下可以有多个静态站，方便。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;使用：&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;如果是xxx.github.io，则把需要的日志纳入成果管理，提交后，把本地的仓库同步到注册的xxx.github.io仓库中，即完成发布。&lt;/li&gt;
-  &lt;li&gt;如果是gh-pages的话，则把结果生成到gh-pages，即完成发布。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;jekyll&quot;&gt;定制日志系统：jekyll&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;jekyll：静态网站生成器，可将markdown和textile文档转为html，可使用liquid模板&lt;/li&gt;
-  &lt;li&gt;github pages对于上传的文件，会用jekyll处理后再发布。&lt;/li&gt;
-  &lt;li&gt;可能缺点：不适合大型网站，因为没有用到数据库，每运行一次都必须遍历全部的文本文件，网站越大，生成时间越长。——这是可以解决的&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;两种方式：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;利用github的自动生成：settings——》Automatic Page Generator——》Continue To Layouts——》选择系统提供的模板——》发布。
-之后生成一个叫gh-pages仓库，里面是生成的html文件。&lt;/li&gt;
-  &lt;li&gt;利用jekyll定制，或者是别的静态站点生成工具定制&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;下面使用jekyll来生成静态站，所需软件：ruby gem&lt;/p&gt;
-
-&lt;p&gt;简单安装过程：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;gem install jekyll
-cd 本地想存放站点文件夹的上级文件夹
-~/.gem/ruby/2.1.0/bin/jekyll new 站点文件夹
-cd 站点文件夹
-jekyll serve
-# =&amp;gt; 浏览器中查看 http://localhost:4000
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;查看文件夹，结构如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;文件夹名/
-├── _config.yml
-├── _includes
-│   ├── footer.html
-│   ├── head.html
-│   └── header.html
-├── _layouts
-│   ├── default.html
-│   ├── page.html
-│   └── post.html
-├── _posts
-│   └── 2014-08-06-welcome-to-jekyll.markdown
-├── css
-│   └── main.css
-├── feed.xml
-├── about.md
-└── index.html
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;说明：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;自己写的markdown文件，放在 &lt;em&gt;_posts&lt;/em&gt; 文件夹下，可用子目录（用于分类），文件命名方式必须是：&lt;em&gt;年-月-日-名字.md&lt;/em&gt; 。&lt;/li&gt;
-  &lt;li&gt;&lt;em&gt;_layouts&lt;/em&gt; 是页面模板&lt;/li&gt;
-  &lt;li&gt;Jekyll会把任何不以下划线开头的文件和目录都复制/生成到网站（在本地是生成到_site/目录)。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;想存放静态文件，比如图片，css，js等，可以自己新建一个文件夹，比如名为： &lt;em&gt;static&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：由于ruby2 的路径编码问题，jekyll上面的文件名不要用中文，会导致出现编码问题，jekyll站点文件里面可以utf-8。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;测试效果：&lt;/h3&gt;
-
-&lt;p&gt;本地写markdown文件，放入 &lt;em&gt;_post&lt;/em&gt; 文件夹中，如果想测试下效果，可以本地使用jekyll生成，然后在浏览器中查看。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;jekyll build
-# =&amp;gt; 当前文件夹将生成到 ./_site
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;问题：如何递增生成？可结合git的对比功能实现。&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;定制页面模板：&lt;/h3&gt;
-
-&lt;p&gt;jekyll把 &lt;em&gt;_layouts&lt;/em&gt; 目录中的文档看做是生成用的模板，如果某个文档中的头部变量声明中指定了layout，则Jekyll在生成页面时会使用该模板进行渲染，用文档的内容替换模板中的部分。模板之间可相互嵌套调用：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;---
-layout: post
-...
----
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;利用好Liquid语言的include语法能够带来很大的变量。被包含的页面部件需要放在_includes文件夹中。&lt;/p&gt;
-
-&lt;p&gt;注意：不管文件的扩展名是md、html还是xml、txt，只要文件的头部包含变量声明，Jekyll的模板引擎就会对其进行处理。
-其中md和html文件都会处理为html，其他类型会保持扩展名。&lt;/p&gt;
-
-&lt;p&gt;另外，liquid语法的引入，使得页面规则产生很大的变化，不能再简单的以markdown来写了。尤其是程序中带有大括号的。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;写文章页面的定制&lt;/h3&gt;
-
-&lt;p&gt;markdown文章可进一步定制：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;---
-layout: default
-title: &quot;这是标题&quot;
-date: 2014-04-23 09:45:26
-description: &quot;这是摘要&quot;
-categories: 这是存放的目录
-tags: [话题1, 话题2]
-lastmod: 2014-04-24
----
-
-&amp;lt;h2&amp;gt;{{ page.title }}&amp;lt;/h2&amp;gt;
-
-&amp;lt;p&amp;gt;我的第一篇文章天地玄黄&amp;lt;/p&amp;gt;
-
-&amp;lt;p&amp;gt;{{ page.date | date: &#39;%Y-%m-%d&#39; }}&amp;lt;/p&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;说明：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;每篇文章的头部，必须用一个 &lt;em&gt;yaml格式&lt;/em&gt; 设置元数据。它用三根短划线 &lt;code&gt;---&lt;/code&gt; ，标记开始和结束，里面每一行代表一种设置。&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;layout:default&lt;/code&gt; ，表示该文章的模板使用 &lt;em&gt;_layouts&lt;/em&gt; 目录下的 &lt;em&gt;default.html&lt;/em&gt; 文件；&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;title: &quot;这是标题&quot;&lt;/code&gt;，表示该文章的标题是”这是标题”，如果不设置这个值，默认嵌入文件名的标题的是”hello world”。&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;利用github建网络日志站手记——黑传说版&lt;/code&gt; 就是文件头中设置的”这是标题”，&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;2014-04-23 17:45:26 +0800&lt;/code&gt; 则是嵌入文件名的日期（也可以在文件头重新定义date变量），&lt;/li&gt;
-  &lt;li&gt;&lt;code&gt;| date_to_string&lt;/code&gt; 表示将 &lt;code&gt;page.date&lt;/code&gt; 变量转化成人类可读的格式。
-此处我改年月日方式为 &lt;code&gt;| date: &#39;%Y-%m-%d&#39;&lt;/code&gt; 显示。&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;此处要注意：由于加入了liquid模板语言，整个markdown语法有些变化。比如此处如果要原样输出liquid语言的话，需要加入 {/% raw %/} ，内嵌自身的话，出问题，行内呢？——至少就目前而言，这不是一个适合复杂编程的代码形式！两种形式解决这种嵌套自身出现的问题：转码，特殊规则&lt;/p&gt;
-
-    &lt;p&gt;{/% raw %/}
-  raw in raw
-  {/% endraw %/}&lt;/p&gt;
+  &lt;li&gt;在github站点中增加CNAME文件，里面第一行写上要使用的域名&lt;/li&gt;
+  &lt;li&gt;配置域名解析指向，分两种情况：
+    &lt;ul&gt;
+      &lt;li&gt;如果用的顶级域名，在域名解析服务提供商那里将A记录指向github提供的ip地址&lt;/li&gt;
+      &lt;li&gt;如果使用二级域名，在域名解析服务提供商那里增加CNAME记录，指向github提供的ip地址&lt;/li&gt;
+    &lt;/ul&gt;
   &lt;/li&gt;
-&lt;/ul&gt;
+&lt;/ol&gt;
 
-&lt;h3 id=&quot;section-4&quot;&gt;定制导航&lt;/h3&gt;
-
-&lt;p&gt;我是直接把 &lt;em&gt;_layout/default.html&lt;/em&gt; 中的头部部分移到了新建文件 &lt;em&gt;_include/header.html&lt;/em&gt; 中。&lt;/p&gt;
-
-&lt;p&gt;下面是 心内求法 同学的的设置，更加动态：
-在 &lt;em&gt;_config.yml&lt;/em&gt; 中定制&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;menuitems:
-    - name:         首页
-      url:          /index.html
-    - name:         分类
-      url:          /categories.html
-    - name:         话题
-      url:          /tags.html
-    - name:         归档
-      url:           /archive.html
-    - name:         读书
-      url:           /reading.html
-    - name:         工作
-      url:           /working.html
-    - name:         我是谁
-      url:           /about.html
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;然后在模板的导航部分添加：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;ul class=&quot;nav&quot;&amp;gt;
-      {/% for item in site.menuitems %/}
-        {/% if item.url == page.url %/}
-        &amp;lt;li class=&quot;active&quot;&amp;gt;
-        {/% else %/}
-        &amp;lt;li&amp;gt;
-        {/% endif %/}
-        &amp;lt;a href=&quot;&quot;&amp;gt;&amp;lt;/a&amp;gt;
-        &amp;lt;/li&amp;gt;
-      {/% endfor %/}
-    &amp;lt;/ul&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;注意：如果不是加入模板生成代码的话，可以直接用markdown来写，比如友情链接部分，用markdown来写明显比直接用html写来的高效。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-5&quot;&gt;定制首页&lt;/h3&gt;
-
-&lt;p&gt;修改 &lt;em&gt;index.html&lt;/em&gt; 文件，填入以下内容：&lt;/p&gt;
-
-&lt;h3 id=&quot;rss&quot;&gt;分类、话题（标签）、归档和RSS&lt;/h3&gt;
-
-&lt;h3 id=&quot;section-6&quot;&gt;文章摘要&lt;/h3&gt;
-
-&lt;p&gt;如果有设定摘要的话，可以&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{% if post.description %}&amp;lt;span&amp;gt;{{ post.description }}&amp;lt;/span&amp;gt;{% endif %}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-7&quot;&gt;文章首段预览&lt;/h3&gt;
-
-&lt;p&gt;如果需要文章首段预览的话，可加入：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;span&amp;gt;{{ post.excerpt }}&amp;lt;/span&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-8&quot;&gt;话题（标签云）&lt;/h3&gt;
-
-&lt;p&gt;js实现：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&quot;tag-cloud&quot;&amp;gt;
-    {% for tag in site.tags %}
-    &amp;lt;a href=&quot;/category/tags.html#{{ tag[0] }}-ref&quot; id=&quot;{{ forloop.index }}&quot; class=&quot;__tag&quot; style=&quot;margin: 5px&quot;&amp;gt;{{ tag[0] }}&amp;lt;/a&amp;gt;
-    {% endfor %}
-  &amp;lt;/div&amp;gt;
-  &amp;lt;script type=&quot;text/javascript&quot;&amp;gt;
-   $(function() {
-     var minFont = 12.0,
-     maxFont = 36.0,
-     diffFont = maxFont - minFont,
-     size = 0;
-     
-     {% assign max = 1.0 %}
-     {% for tag in site.tags %}
-     {% if tag[1].size &amp;gt; max %}
-     {% assign max = tag[1].size %}
-     {% endif %}
-     {% endfor %}
-     
-     {% for tag in site.tags %}
-     size = (Math.log({{ tag[1].size }}) / Math.log({{ max }})) * diffFont + minFont;
-     $(&quot;#{{ forloop.index }}&quot;).css(&quot;font-size&quot;, size + &quot;px&quot;);
-     {% endfor %}
-   });
-  &amp;lt;/script&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-9&quot;&gt;分页&lt;/h3&gt;
-
-&lt;p&gt;TODO: ajax分页 TODO: 浮动标题 on paginator&lt;/p&gt;
-
-&lt;h3 id=&quot;section-10&quot;&gt;语法高亮&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;利用外部资源，比如GitHub Gist。简单，但是需要使用外部链接或通过js嵌入到页面，不利于文档和代码的统一维护&lt;/li&gt;
-  &lt;li&gt;使用js在前端渲染，比如google-code-prettify。简单高效，对语言的支持不够多&lt;/li&gt;
-  &lt;li&gt;使用Jekyll插件，比如调用pygments。推荐方式，支持100多种语言。——已经默认启用！&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;如下：其中，ruby是指定所用的代码名，linenos是显示行号&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;{% highlight ruby linenos %}
-def foo
-  puts &#39;foo&#39;
-end
-{% endhighlight %}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;效果如下：&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;foo&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;长长长……长长长代码……长长长长代码……&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;长长长……长长长代码……长长长长代码……&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;4&lt;/span&gt;     &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;长长长……长长长代码……长长长长代码……长长长……长长长代码……长长长长代码……&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;5&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;更改样式，修改 &lt;em&gt;css&lt;/em&gt; 文件夹下的 &lt;em&gt;syntax.css&lt;/em&gt; 。&lt;/p&gt;
-
-&lt;p&gt;各种格式看看： ~~双波浪线删除线~~   &lt;em&gt;单下划线下划线&lt;/em&gt;  &lt;em&gt;单星斜体&lt;/em&gt; &lt;strong&gt;双下划线加粗&lt;/strong&gt; &lt;strong&gt;双星加粗&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;section-11&quot;&gt;页内跳转&lt;/h3&gt;
-
-&lt;p&gt;回到头部：&lt;/p&gt;
-
-&lt;h3 id=&quot;section-12&quot;&gt;文档目录&lt;/h3&gt;
-
-&lt;p&gt;如果写比较长的文章，提供一个类似于文档大纲，进行导航可以方便阅读。&lt;/p&gt;
-
-&lt;p&gt;两种方法：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;静态的方法是直接生成大纲：插件实现：jekyll-toc-generator&lt;/li&gt;
-  &lt;li&gt;用js来动态生成：这种方式加载东西少，但在不支持js的浏览器里，则无法使用。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;另外，为了兼容性，比如有的手机框架关闭了浏览器本身的跳转功能，因此，用双向连接的方式可以获得最大的兼容性。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-13&quot;&gt;使用公式&lt;/h3&gt;
-
-&lt;p&gt;渲染引擎支持公式否？是否需要系统装有 latex？&lt;/p&gt;
-
-&lt;p&gt;js渲染latex公式： &lt;a href=&quot;http://www.mathjax.org/&quot;&gt;Mathjax&lt;/a&gt; ，缺点是动态加载，速度慢。
-优点：支持公式编号，这样方便引用&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://chen.yanping.me/cn/blog/2012/03/10/octopress-with-latex&quot;&gt;参考&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;试试 &lt;script type=&quot;math/tex&quot;&gt;\exp(-\frac{x^2}{2})&lt;/script&gt; 代码 &lt;script type=&quot;math/tex&quot;&gt;\alpha + \beta&lt;/script&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-js&quot; data-lang=&quot;js&quot;&gt;&lt;span class=&quot;lineno&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;script&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;text/javascript&amp;quot;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;2&lt;/span&gt;        &lt;span class=&quot;nx&quot;&gt;src&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&amp;quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;lineno&quot;&gt;3&lt;/span&gt;     &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;/script&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;script type=&quot;math/tex; mode=display&quot;&gt; 
-e^x = \sum\_{n=0}^\infty \frac{x^n}{n!} = \lim\_{n\rightarrow\infty} (1+x/n)^n 
-&lt;/script&gt;
-
-&lt;h3 id=&quot;section-14&quot;&gt;处理图片&lt;/h3&gt;
-
-&lt;p&gt;设置一个 &lt;code&gt;IMAGE_ROOT&lt;/code&gt; 变量，可以在post中设置，也可以在post的模板中通过指定的规则capture（或者assign）。&lt;/p&gt;
-
-&lt;p&gt;则引可以使用/xxx.png的形式插入图片，便于以后的调整和管理。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-15&quot;&gt;处理表格&lt;/h3&gt;
-
-&lt;p&gt;注：jekyll2之后，默认使用kramdown，可以自动处理表格。&lt;/p&gt;
-
-&lt;p&gt;注：如果是jekyll1，使用 redcarpet引擎，需要在 &lt;em&gt;_config.yml&lt;/em&gt; 中，添加下面两行：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;redcarpet:
-    extensions: [tables]
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section-16&quot;&gt;博客搬家&lt;/h3&gt;
+&lt;h3 id=&quot;section-8&quot;&gt;博客搬家&lt;/h3&gt;
 
 &lt;p&gt;可能需要两步：&lt;/p&gt;
 
@@ -2089,98 +2331,10 @@ cd ..
 python exitwp.py
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;section-17&quot;&gt;添加评论系统&lt;/h3&gt;
-
-&lt;p&gt;Jekyll生成的是静态网站，诸如评论、推荐、关注之类的功能，则需把各种各样第三方的功能部件加到你的博客中。&lt;/p&gt;
-
-&lt;p&gt;与博客相关的主要有几类：&lt;/p&gt;
-
-&lt;p&gt;社会化评论：专门提供评论功能的网站，可以为博客增加评论功能。也可能附带着关注、相关文章、推荐等功能。&lt;/p&gt;
-
-&lt;p&gt;国外的有disqus，国内的有友言，多说&lt;/p&gt;
-
-&lt;p&gt;社会化推荐：自动推荐跨站的相关文章。包括自动推相关文章。&lt;/p&gt;
-
-&lt;p&gt;国内的有友荐，无觅。&lt;/p&gt;
-
-&lt;p&gt;Jekyll本身也可以实现站内文章推荐的功能。&lt;/p&gt;
-
-&lt;p&gt;社会化分享：将自己喜欢的网址分享给别人，通常附带推荐功能。
-国内的有加网 ，百度分享等。其中加网提供了划词分享功能。&lt;/p&gt;
-
-&lt;p&gt;社交网站联动：可以发布简短的动态。比如Twitter, Facebook, Google Plus, 新浪微博等网站。与博客的联动可以是自己发布博客动态， 也可以是由别人推荐（这种方式即为社会化推荐）。&lt;/p&gt;
-
-&lt;p&gt;如果是自己发布动态，需要让别人能够方便的“关注/Follow”你，最好提供“一键关注的按钮”，或者提供连接能够让别人在这些网上方便的找到你。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-18&quot;&gt;社会化登录&lt;/h3&gt;
-
-&lt;p&gt;没懂，感觉也就是OpenID或OAuth的集合。暂时不予考虑。&lt;/p&gt;
-
-&lt;p&gt;由于存在着伟大的墙，只好尽量选择国内的社会化网络资源。对于更喜欢的国外的资源，尽量考虑如何不拖慢墙内用户的访问速度。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-19&quot;&gt;评论功能&lt;/h3&gt;
-
-&lt;p&gt;只选一个，选了友言。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-20&quot;&gt;推荐功能&lt;/h3&gt;
-
-&lt;p&gt;可以有多个，那么先加上友荐和无觅，Jekyll自带的相关文章功能也在测试中。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-21&quot;&gt;分享功能&lt;/h3&gt;
-
-&lt;p&gt;只选一个，选了百度分享，与百度统计可以勾搭在一起，而且据说有利于百度的SEO。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-22&quot;&gt;流量分析和统计&lt;/h3&gt;
-
-&lt;p&gt;第三方的流量分析和统计工具可以说是很多，可以选择国外的Google Analysis、SiteMeter和国内的百度统计、量子恒道统计等。&lt;/p&gt;
-
-&lt;p&gt;为了减少翻墙需求，还是选择国内的吧，选了百度——不过我可以说百度做的真差么？&lt;/p&gt;
-
-&lt;h3 id=&quot;section-23&quot;&gt;使用其他域名&lt;/h3&gt;
-
-&lt;p&gt;Github Pages会为站点分配类似 &lt;em&gt;用户名.github.io&lt;/em&gt; 的二级域名。不过最好还是申请顶级域名吧。&lt;/p&gt;
-
-&lt;p&gt;申请域名：免费的域名(.tk)可以&lt;a href=&quot;http://my.dot.tk/cgi-bin/amb/landing.dottk?nr=806151::15401173::1&quot;&gt;在此&lt;/a&gt;申请。 &lt;em&gt;.tk&lt;/em&gt; 是南太平洋岛国托克劳的国家域名，支持域名转发（可隐藏原URL）、电邮转发、A记录解析、CNAME别名记录、MX邮件记录、设置DNS服务器等服务。&lt;/p&gt;
-
-&lt;p&gt;收费的域名到处有，是否使用国内的域名商随你。&lt;/p&gt;
-
-&lt;h4 id=&quot;section-24&quot;&gt;域名解析服务&lt;/h4&gt;
-
-&lt;p&gt;一般来说域名提供商会提供简单的解析服务，也支持将解析服务指向到其他的提供者。&lt;/p&gt;
-
-&lt;p&gt;国外的如Godaddy，可能被墙。
-国内的如DNSPod，有免费版。&lt;/p&gt;
-
-&lt;p&gt;配置：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;在jekyll站点中增加CNAME文件，里面第一行写上要使用的域名&lt;/li&gt;
-  &lt;li&gt;配置域名解析指向，分两种情况：
-    &lt;ul&gt;
-      &lt;li&gt;如果用的顶级域名，在域名解析服务提供商那里将A记录指向github提供的ip地址&lt;/li&gt;
-      &lt;li&gt;如果使用二级域名，在域名解析服务提供商那里增加CNAME记录，指向github提供的ip地址&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;参考并致谢：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html&quot;&gt;Jekyll入门：阮一峰&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://thinkinside.tk/2013/05/27/jekyll_mysite.html&quot;&gt;Jekyll建站过程：心内求法&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://dannpu.com/blog/2013/08/03/Github-page-build-failure/&quot;&gt;利用本地编译结果替代github自动编译：淡朴若水&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;jekyll-1&quot;&gt;除了jekyll还有啥办法达到这个目的？&lt;/h2&gt;
-
-&lt;p&gt;几乎每种编程语言，都有生成静态网站的工具，可根据自己的需要和熟悉程度使用。&lt;/p&gt;
-
-&lt;p&gt;比如python的pelican，emacs的org-page，js的Wintersmith等……&lt;/p&gt;
-
 </description>
         <pubDate>Wed, 2014 Apr 23 17:45:26 +0800</pubDate>
-        <link>http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/04/23/%E9%BB%91%E4%BC%A0%E8%AF%B4%E4%B9%8B%E5%88%A9%E7%94%A8github%E5%BB%BA%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97%E7%AB%99%E6%89%8B%E8%AE%B0/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/04/23/%E9%BB%91%E4%BC%A0%E8%AF%B4%E4%B9%8B%E5%88%A9%E7%94%A8github%E5%BB%BA%E7%BD%91%E7%BB%9C%E6%97%A5%E5%BF%97%E7%AB%99%E6%89%8B%E8%AE%B0/</guid>
+        <link>http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/04/23/%E9%BB%91%E4%BC%A0%E8%AF%B4%E4%B9%8B%E5%88%A9%E7%94%A8github%E5%BB%BA%E9%9D%99%E6%80%81%E7%AB%99%E6%89%8B%E8%AE%B0/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E5%BB%BA%E7%AB%99%E4%B9%8B%E8%B7%AF/2014/04/23/%E9%BB%91%E4%BC%A0%E8%AF%B4%E4%B9%8B%E5%88%A9%E7%94%A8github%E5%BB%BA%E9%9D%99%E6%80%81%E7%AB%99%E6%89%8B%E8%AE%B0/</guid>
       </item>
     
   </channel>

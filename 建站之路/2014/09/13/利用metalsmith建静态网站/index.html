@@ -62,7 +62,7 @@
       <p class="post-tag"><b>话题：</b>
         
         <a href="/话题列表/#静态站-ref">静态站
-        <sup>3</sup></a>
+        <sup>4</sup></a>
         &nbsp;
         
         <a href="/话题列表/#metalsmith-ref">metalsmith
@@ -91,7 +91,72 @@
   </header>
 
   <article class="post-content">
-    <h2 id="metalsmith">为何选用metalsmith</h2>
+    <mark>特别提醒：不要把时间浪费在迁移平台上！</mark>
+
+<p>问题发生：
+近一个月来，发现github的页面不会更新了，试了很多方式，都不更新——后来，才想起升级过git版本，新版本快速提交时对深度路径压缩不正确，导致出问题！解决办法是删了该目录后提交，再恢复该目录，再提交。</p>
+
+<p>折腾过程中，顺便就查了下各个语言的生成器，量真多，几乎每个语言都有若干个。
+个人主要关注几个关注量大，且所用语言个人比较看好或者常用的。</p>
+
+<p>别人认为的槽点如下：</p>
+
+<blockquote>
+  <ul>
+    <li>ruby的中文编码问题：不支持中文的url路径？还有tag名称如果设置为中文，则不可以使用site.tags.TAG这种用法筛选文章，简直就是坑。</li>
+    <li>功能还是比较欠缺。只有一个分页器？还只能在index下分页？还有那个坑爹的liquid模板，不如直接上erb（当然作者是为了github的安全着想）。</li>
+    <li>不想装ruby</li>
+  </ul>
+</blockquote>
+
+<h3 id="ruby">ruby</h3>
+
+<ul>
+  <li>jekyll 本人第一个深入使用的静态站生成器，使用量极高</li>
+</ul>
+
+<p>模板语言erb语法：属于Ruby标准库中的东西，不需要单独安装，模板中动态脚本的写法和JSP基本一个模子扒出来的 </p>
+
+<pre><code>&lt;% 写逻辑脚本(Ruby语法) %&gt;
+&lt;%= 直接输出变量值或运算结果 %&gt;
+</code></pre>
+
+<h3 id="js">js</h3>
+
+<ul>
+  <li>metalsmith 全插件化，可从简到复杂，可定制性高</li>
+  <li>hexo 台湾一学生搞的，支持多线程生成，上百个文件只需要花数秒中就能生成，可自动提交，应该算js版的octopress。</li>
+  <li>harp 零配置起步——要不分支为sharp？</li>
+  <li>assemble</li>
+</ul>
+
+<p>consolidate.js 模板中介</p>
+
+<p>liveload.js 根据更改，可即时刷新</p>
+
+<p>生成静态站：coffeescript</p>
+
+<p>前端：angular+动态响应</p>
+
+<h3 id="coffeescript">coffeescript</h3>
+
+<ul>
+  <li>docpad</li>
+  <li>Wintersmith</li>
+</ul>
+
+<h3 id="section">其他</h3>
+
+<p>常见的</p>
+
+<ul>
+  <li>sphinx：经常用于生成技术文档</li>
+  <li>org-mode：其周边成熟度很高，个人用的也不少，不过，因为其对内嵌代码的设计有严重缺陷，而且广泛的使用率，使其改进的难度会变得极大！因此个人觉得除非开个分支改进否则很令人失望。</li>
+</ul>
+
+<p>另外，还有几个特别的，比如直接用makefile来生成的</p>
+
+<h2 id="metalsmith">为何选用metalsmith</h2>
 
 <p>metalsmith的特点：</p>
 
@@ -101,7 +166,7 @@
   <li>灵活性大，可以生成各种类型项目：静态站，项目架构，生成工具，电子书，项目文档等</li>
 </ul>
 
-<h2 id="section">安装环境</h2>
+<h2 id="section-1">安装环境</h2>
 
 <p>除了要安装metalsmith外，还要安装所需的插件</p>
 
@@ -110,18 +175,88 @@
 
 <p>一般需要的插件：</p>
 
-<p>assets：不渲染的部分
-beautifier：为运行效率考虑，一般不需要。但为了方便检查代码生成结果，需要。
-collections：分类？
-navigation：根据稳健树输出导航
-paginate：分页
-permalinks：简化链接形式
-tags：使用标签
-templates：布局模板</p>
+<ul>
+  <li>assets：不渲染的部分</li>
+  <li>beautifier：为运行效率考虑，一般不需要。但为了方便检查代码生成结果，需要。</li>
+  <li>collections：分类？</li>
+  <li>navigation：根据稳健树输出导航</li>
+  <li>paginate：分页</li>
+  <li>permalinks：简化链接形式</li>
+  <li>tags：使用标签</li>
+  <li>templates：布局模板</li>
+</ul>
 
-<h2 id="section-1">模板选用</h2>
+<p>从metalsmith源码中的example中复制一份，然后根据需要修改。</p>
 
-<h2 id="section-2">预览</h2>
+<h2 id="section-2">模板语言选用</h2>
+
+<p>模板语言是生成的时候要运行的部分。
+js则是用户打开的时候才会用的。</p>
+
+<ul>
+  <li>jade 语法和内容易混，缩进在不同编辑器中显示不一，特蛋疼</li>
+  <li>swig 语法借鉴jinja2 功能全，使用 <code>{}</code> 标记</li>
+  <li>handlebars 非常少逻辑的模板，类似mustache，但比其稍强 使用 <code>{}</code> 标记：没有if else for等，只有标签，标签用于替换各种东西。</li>
+  <li>Underscore 用的 <code>&lt;&gt;</code></li>
+  <li>ejs 无标签注记，无区块（有include） <code>&lt;% code %&gt;</code> 筛选，可自定义标记，有客户端渲染器</li>
+</ul>
+
+<p>需要注意：</p>
+
+<ul>
+  <li>因为是静态站，此处不考虑模板引擎的效率</li>
+  <li>不知道会不会出现liquid的自身难以完整表达自身的问题？？？——liquid社区竟然认为那是一个功能，而不是缺陷！！！！</li>
+  <li>个人认为不应该给html增加一个标识符<code>{}</code>，而应该使用原有的<code>&lt;&gt;</code>，比如<code>&lt;% %&gt;</code>，<code>&lt;? ?&gt;</code>，目的是减少处理和识别复杂度。因此选用ejs。</li>
+</ul>
+
+<blockquote>
+  <p>要是当初html设计成类似lisp那样的标识前置简化语法，可以省好多，没办法，html是事实标准，就只能跟标准妥协了。</p>
+</blockquote>
+
+<p>另外，觉得php其实是一个伪装成编程语言的模板语言！！(带交互响应的)</p>
+
+<pre><code>&lt;?php xxx ?&gt;
+</code></pre>
+
+<p>如果把php当成静态站的模板，需要剥离php的交互响应部分，把需要高度交互响应的，换用性能更强劲的部件。而不极限于php。</p>
+
+<p>技术演进：
+php/asp+html+js+css，重心在php</p>
+
+<p>由于普及率问题，现在演变成了：
+html+css+js+各种js模板。重心在js</p>
+
+<h2 id="section-3">配置</h2>
+
+<h2 id="ejs">ejs模板语言</h2>
+
+<p>配置可参考hexo</p>
+
+<pre><code>&lt;%=输出变量%&gt;
+&lt;%-输出变量是不会对 &amp; 等符号进行转义的
+
+&lt;% if (names.length) { %&gt;
+  &lt;ul&gt;
+    &lt;% names.forEach(function(name){ %&gt;
+      &lt;li foo='&lt;%= name + "'" %&gt;'&gt;&lt;%= name %&gt;&lt;/li&gt;
+    &lt;% }) %&gt;
+  &lt;/ul&gt;
+  &lt;% } %&gt;
+</code></pre>
+
+<p>引用 片段
+    &lt;ul&gt;
+      &lt;% users.forEach(function(user){ %&gt;
+        &lt;% include user/show %&gt;
+      &lt;% }) %&gt;
+    &lt;/ul&gt;</p>
+
+<h2 id="section-4">生成</h2>
+
+<pre><code>metalsmith
+</code></pre>
+
+<h2 id="section-5">预览</h2>
 
 
   </article>
