@@ -513,7 +513,7 @@ git push origin master
 
 <h3 id="section-6">使用其他域名</h3>
 
-<p>Github Pages会为站点分配类似 <em>用户名.github.io</em> 或者 <em>用户名.github.io/项目名</em> 的二级/三级域名。</p>
+<p>Github Pages会为站点分配类似 <em>用户名或组织名.github.io</em> 或者 <em>用户名或组织名.github.io/项目名</em> 的二级/三级域名。</p>
 
 <p>不够简洁，还是申请顶级域名吧。</p>
 
@@ -532,7 +532,7 @@ git push origin master
 <p>配置：</p>
 
 <ol>
-  <li>在github站点中增加CNAME文件，里面第一行写上要使用的域名</li>
+  <li>在github站点中增加CNAME文件，里面第一行写上要使用的域名（注：只能一个）</li>
   <li>配置域名解析指向，分两种情况：
     <ul>
       <li>如果用的顶级域名，在域名解析服务提供商那里将A记录指向github提供的ip地址</li>
@@ -540,6 +540,8 @@ git push origin master
     </ul>
   </li>
 </ol>
+
+<p>使 www.域名 生效，需要咋办？</p>
 
 <h3 id="section-8">博客搬家</h3>
 
