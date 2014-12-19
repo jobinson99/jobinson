@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>你牛叉之分区表修复：testdisk</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/%E6%8A%80%E6%9C%AF%E6%99%AE%E5%8F%8A/2011/03/07/%E4%BD%A0%E7%89%9B%E5%8F%89%E4%B9%8B%E5%88%86%E5%8C%BA%E8%A1%A8%E4%BF%AE%E5%A4%8D/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="你牛叉之分区表修复：testdisk">你牛叉之分区表修复：testdisk</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>摘要：</b><br/></p>
+      
+
+      
+      <p class="post-tag"><b>话题：</b>
+        
+        <a href="/话题列表/#分区表修复-ref">分区表修复
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#你牛叉-ref">你牛叉
+        <sup>1</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#技术普及-ref">技术普及</a>
+        
+      </span>
+      
+      
+      创建时间：2011-03-07
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <p>近段时间，越来越觉得花在archlinux上折腾的时间太长了，遂有意换个发行版，恰好我的 <em>/usr</em> 在前天更新的时候，被我装的五花八门的各种软件给占满了，于是，昨天早上下定决心重装系统，这次用有奔头(ubuntu)，以节省更多时间在其他方面，而不是系统。但我手真贱，安装装出了问题：分区表损坏</p>
+
+<p>我原来的系统，分区是这样的：</p>
+
+<pre><code>/boot 64m
+/ 3G ext4
+/swap 3G
+/tmp 2G ext4
+/var 3G ext4
+/usr 15G ext4
+/home 剩余 ext4
+</code></pre>
+
+<p>因为先前出现了 <em>/usr</em> 用光的情况，为了防止以后类似情况发生，于是，想把前面分区都集中在一起，变成：</p>
+
+<pre><code>/boot 64m
+/ 21G ext4
+/swap 3G
+/home 剩余 ext4
+</code></pre>
+
+<p>分区结束后，安装失败，重新进入livecd，发现分区结果变成了图里这样：</p>
+
+<p><img src="/static/images/你牛叉之分区表修复/分区表损坏.jpeg" alt="分区损坏" /></p>
+
+<p>郁闷了，原来的那个 /home现在被掰成了两个，分区类型无法识别。初步感觉，应该是主分区和扩展分区问题。因为原来/tmp /var /usr /home都是在扩展分区里面的，现在我把他们拉出来，和原来在主分区的并在一起，原来的第四个主分区因为这个改变，而失去作用，于是，系统默认又在 /home位置建了一个主分区，然后主分区里包含/home这个分区，结果就成了这样。</p>
+
+<p>挂载是挂不上了，又不敢格式化（里面积累了好多年的心血），不知道如何处理。于是跑到相关社区，开始求助。</p>
+
+<ol>
+  <li>我的最高目标：数据不损坏，分区简单方式找回</li>
+  <li>最低目标：数据不损坏</li>
+</ol>
+
+<p>为了达到此目的，需要：</p>
+
+<ol>
+  <li>尽可能从丢失分区中找回数据。</li>
+  <li>使用工具恢复分区表</li>
+</ol>
+
+<p>恰好有朋友推荐，使用testdisk。于是我搜之。为了方便其他人，我把过程详细写下：</p>
+
+<p>一、在有奔头中安装testdisk：</p>
+
+<pre><code>#sudo apt-get install testdisk
+</code></pre>
+
+<p>二、使用testdisk（需要使用根权限）</p>
+
+<pre><code>#sudo testdisk
+</code></pre>
+
+<p>三、详细步骤（下面复制粘帖自网上，其中有些修改）：</p>
+
+<p>1.选择Create来进行分析，此处创建日志，以方便以后使用</p>
+
+<pre><code>Use arrow keys to select, then press Enter key:
+[ Create ]  Create a new log file
+[ Append ]  Append information to log file
+[ No Log ]  Don’t record anything
+</code></pre>
+
+<p>2.然后选择testdisk中要修复的硬盘：</p>
+
+<pre><code>Select a media (use Arrow keys, then press Enter):
+Disk /dev/sda – 160 GB / 149 GiB – ATA HITACHI HTS54251
+Disk /dev/sdb – 3272 MB / 3121 MiB – SM324BC USB DISK
+</code></pre>
+
+<p>3.选择testdisk修复的平台,我是Intel的，所以选择它</p>
+
+<pre><code>Please select the partition table type, press Enter when done.
+[Intel  ]  Intel/PC partition
+[EFI GPT]  EFI GPT partition map (Mac i386, some x86_64…)
+[Mac    ]  Apple partition map
+[None   ]  Non partitioned media
+[Sun    ]  Sun Solaris partition
+[XBox   ]  XBox partition
+[Return ]  Return to disk selection
+</code></pre>
+
+<p>4.使用testdisk分析,现在选择Analyse进行分析</p>
+
+<pre><code>[ Analyse  ]  Analyse current partition structure and search for lost partitions
+[ Advanced ]  Filesystem Utils
+[ Geometry ]  Change disk geometry
+[ Options  ]  Modify options
+[ MBR Code ]  Write TestDisk MBR code to first sector
+[ Delete   ]  Delete all data in the partition table
+[ Quit     ]  Return to disk selection
+</code></pre>
+
+<p>5.见到了没，基本所有的分区都出来了,直接回车就好了,默认直接回车是快速扫描.</p>
+
+<pre><code>*=Primary bootable  P=Primary  L=Logical  E=Extended  D=Deleted
+[Quick Search]  [ Backup ]
+</code></pre>
+
+<p>然后因为没用vista,所以选择n。</p>
+
+<pre><code>Should TestDisk search for partition created under Vista ? [Y/N] (answer Yes if
+unsure)
+N
+</code></pre>
+
+<p>6.进入,见到你的表区表了吧，注意下面的说明，此处可以对每个分区进行设定，比如最后一个分区，原先是D，也就是删除了的意思，此时我们如果确定该区就是我要找的分区，那么我可以选中该分区，然后将其换成L或者P（逻辑分区或者主分区），然后就可以回车进入下一步</p>
+
+<pre><code>Disk /dev/sda – 160 GB / 149 GiB – CHS 19457 255 63
+     Partition               Start        End    Size in sectors
+* HPFS – NTFS              0   1  1  1567 254 63   25189857
+L FAT32 LBA             1568   2  1  5097 254 63   56709324 [NO NAME]
+L Linux Swap            5098   1  1  5221 254 63    1991997
+L Linux                 5222   1  1  7298 254 63   33366942
+D Linux                 7299   1  1 19456 254 63  195318207
+
+Structure: Ok.  Use Up/Down Arrow keys to select partition.
+Use Left/Right Arrow keys to CHANGE partition characteristics:
+*=Primary bootable  P=Primary  L=Logical  E=Extended  D=Deleted
+Keys A: add partition, L: load backup, T: change type, P: list files,
+     Enter: to continue
+NTFS, 12 GB / 12 GiB
+</code></pre>
+
+<p>如果你不确定该分区是否是你所要的分区，可以按p，查看该区详细的文件。在查看详细的文件时，可以选择复制文件，安全起见，最好使用此功能备份。</p>
+
+<p>7、最后一步，就是写入了。先前由于不了解testdisk，以为找到的是现有的分区，后来仔细深入分区内部的搜索，才发现找到的是丢失的/home，找到了就好办了，将其D（delete，就是被删除了）的标志换成L（逻辑分区），然后进一步就是write（写入），之后退出testdisk，重启系统，搞定。</p>
+
+<p>经验教训：</p>
+
+<p>1、尽可能使用已经成熟的分区格式，比如ext3，我一开始用slax来急救，结果这家伙默认不识别ext4，浪费了点时间才搞定。如果我用btrfs呢？恐怕会更糟。</p>
+
+<p>2、有备无患：没有分区格式化前，先备份好，同时留有恢复工具</p>
+
+<p>3、数据瞬间丢失，是很伤人心的事情，会让人瞬间有死的感觉，所以，需要提高承受能力，同时，丢失数据也是锻炼承受能力的好办法，呵呵。</p>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+
+  <!-- 有言评论 -->
+  <div id="uyan_frame"></div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+  
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a class="pull-right" href="/%E6%8A%80%E6%9C%AF%E6%99%AE%E5%8F%8A/2011/02/18/%E6%88%91%E7%9A%84%E6%8A%80%E6%9C%AF%E5%90%8D%E8%AF%8D%E7%BF%BB%E8%AF%91/">◁前<br>【2012】我的技术相关名词翻译整理（不完成）◀篇</a>
+    </div>
+    
+    
+     <!--回到头部-->
+    <div class="back-top"><a href="#你牛叉之分区表修复：testdisk">△
+    <br>回头▲再看</a></div> 
+    
+    
+    <div class="post-next">
+    <a href="/%E7%A1%AC%E4%BB%B6/2011/06/15/%E4%BC%A0%E7%83%AD%E7%B3%BB%E7%BB%9F/">后▷<br>篇▶【整理】传热系统资料汇编</a>
+    </div>
+    
+    
+  </div>
+
+<!--页面底部自动浮现-->
+  <div class="post-reletive">
+  <!--相关文章-->
+
+  </div>
+
+
+</div>
+
+
+ 
+</div>
+
+
+
+
+      
+      <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2014版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+    <span>致谢： <br>
+      <a href="http://www.github.com">github</a>，
+      <a href="http://jekyllrb.com/">jekyll</a>，
+      <a href="http://johnmacfarlane.net/pandoc/index.html">pandoc</a>，以及一切对本人有帮助的人！</span>
+    <span>
+    <!--百度统计-->  
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</span>
+    </li>     
+</ul>
+</footer>
+
+
+    
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>
