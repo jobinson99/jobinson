@@ -162,19 +162,24 @@
 
 <p>2、<strong>性能参考：</strong></p>
 
-<p>2013年全球最快的大型超算：广州超算中心的天河二号（Tianhe-2），
-  + 节点：16,000个
-  + 架构：
-    + 运算用：中央处理器（两颗×12核）+协处理器（三颗×57核），
-    + 前端任务调度用：FT-1500（4096颗×16核）
-  + 性能：峰值计算速度（Rpeak）每秒5.49亿亿次、持续计算速度（Rmax）每秒3.39亿亿次双精度浮点运算
-  + 内存：每个节点拥有64GB主存，而每个Xeon Phi协处理器板载8GB内存，故每节点共88GB内存
-  + 连接：光电混合传输技术（Optoelectronics Hybrid Transport Technology），使用自制的TH Express-2主干拓扑结构网络连接，以13个大型路由器通过576个连接端口以光电传输介质与各个运算节点互联，控制器名为NRC，使用90纳米制程，单个控制器的数据吞吐量2.56Tbps，终端网络接口使用名为NIC的控制器，以PCI-E 2.0接口链接，数据传送速率6.36GB/s。
-  + 能耗：整机功耗17,808千瓦，在搭载水冷散热系统以后，功耗将达到24兆瓦，每瓦性能为1.901GFLOPS，不及IBM红杉每瓦2.177GFLOPS
-  + 造价：1亿美元
-  + 占地：720平方米</p>
+<p>2013年全球最快的大型超算：广州超算中心的天河二号（Tianhe-2）</p>
 
 <ul>
+  <li>节点：16,000个</li>
+  <li>架构：
+    <ul>
+      <li>运算用：中央处理器（两颗×12核）+协处理器（三颗×57核），</li>
+      <li>前端任务调度用：FT-1500（4096颗×16核）</li>
+    </ul>
+  </li>
+  <li>性能：峰值计算速度（Rpeak）每秒5.49亿亿次、持续计算速度（Rmax）每秒3.39亿亿次双精度浮点运算</li>
+  <li>内存：每个节点拥有64GB主存，而每个Xeon Phi协处理器板载8GB内存，故每节点共88GB内存</li>
+  <li>连接：光电混合传输技术（Optoelectronics Hybrid Transport Technology），使用自制的TH Express-2主干拓扑结构网络连接，以13个大型路由器通过576个连接端口以光电传输介质与各个运算节点互联，控制器名为NRC，使用90纳米制程，单个控制器的数据吞吐量2.56Tbps，终端网络接口使用名为NIC的控制器，以PCI-E 2.0接口链接，数据传送速率6.36GB/s。</li>
+  <li>能耗：整机功耗17,808千瓦，在搭载水冷散热系统以后，功耗将达到24兆瓦，每瓦性能为1.901GFLOPS，不及IBM红杉每瓦2.177GFLOPS</li>
+  <li>造价：1亿美元</li>
+  <li>
+    <p>占地：720平方米</p>
+  </li>
   <li>普通电脑的性能：</li>
   <li>苹果电脑性能：</li>
   <li>显卡：Videocore 4 的图芯在用于通用计算时的理论值240亿次。</li>
@@ -1065,7 +1070,7 @@ The DS-96 "under desk" system consumed 1580 watts under load, and produced 109.4
 
 <p><strong>说明：</strong>其总的运算速度和前一部分差不多，但内存上提升了不少。</p>
 
-<h3 id="section-18">制作树莓派超算的步骤</h3>
+<h3 id="section-18">树莓派组超算的步骤</h3>
 
 <p>作者：Simon Cox 教授</p>
 
@@ -1128,14 +1133,12 @@ The DS-96 "under desk" system consumed 1580 watts under load, and produced 109.4
     <pre><code> $ passwd
 </code></pre>
   </li>
-</ol>
+  <li>
+    <p>注销</p>
 
-<p>6.注销</p>
-
-<pre><code>    $ exit
+    <pre><code> $ exit
 </code></pre>
-
-<ol>
+  </li>
   <li>
     <p>然后再登录，看看是否正确</p>
   </li>
@@ -1222,13 +1225,14 @@ $ sudo mkdir /home/rpimpi/mpich2-install
   <li>
     <p>Add the place that you put the install to your path</p>
 
-    <p>$ export PATH=$PATH:/home/rpimpi/mpich2-install/bin</p>
+    <pre><code>$ export PATH=$PATH:/home/rpimpi/mpich2-install/bin
+</code></pre>
   </li>
 </ol>
 
-<p>可以写入 <code>.profile</code> 中，这样永久有效。</p>
+<p>可以写入 <code>~/.profile</code> 中，这样永久有效。</p>
 
-<pre><code>    $nano ~/.profile
+<pre><code>    $ nano ~/.profile
 </code></pre>
 
 <p>然后写入下面两行：</p>
@@ -1241,8 +1245,9 @@ $ sudo mkdir /home/rpimpi/mpich2-install
   <li>
     <p>检查下看看是否安装正确</p>
 
-    <p>$ which mpicc
-   $ which mpiexec</p>
+    <pre><code>$ which mpicc
+$ which mpiexec
+</code></pre>
   </li>
   <li>
     <p>回到家目录，新建一测试目录，并切换到该目录：</p>
@@ -1260,13 +1265,13 @@ $ cd mpi_testing
   </li>
 </ol>
 
-<p>输出会包含一个IP地址的列表，此处只有一行，因为只有一台机器。</p>
+<p>输出会包含一个IP地址的列表，因为只有一台机器，此处只输出一行。</p>
 
 <pre><code>1. 获知你的ip地址
 
         $ ifconfig
 
-2. Put this into a single file called machinefile
+2. Put this into a single file called *machinefile*
 </code></pre>
 
 <ol>
@@ -1460,7 +1465,7 @@ $ mpiexec -f machinefile -n 2 ~/mpich_build/examples/cpi
   </li>
 </ol>
 
-<p>依次类推（汗哦，64个节点，逐个写，累死人哦……），算了， 还是写个脚本自动命名吧</p>
+<p>依次类推。当然，64个节点，逐个写会累死人的，还是写个脚本自动命名吧。</p>
 
 <h4 id="pythonmpi4pyhttpmpi4pyscipyorgdocsusrmanindexhtml">5. 使用脚本来自动命名，此处用的是python的<a href="http://mpi4py.scipy.org/docs/usrman/index.html">mpi4py</a></h4>
 
