@@ -6,10 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>calligra suite已然成熟，可以替换libreoffice了</title>
+<title>【好玩】emacs24默认主题就是二十四小时……</title>
 <meta name="description" content="黑传说的学习笔记">
 
-<link rel="canonical" href="http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2013/09/13/calligra%20suite%E5%B7%B2%E7%84%B6%E6%88%90%E7%86%9F/">
+<link rel="canonical" href="http://jobinson.ga/%E8%BD%AF%E4%BB%B6%E7%94%9F%E4%BA%A7%E7%BA%BF/2012/07/19/%E5%A5%BD%E7%8E%A9%E7%9A%84%E6%98%93%E7%A0%81%E8%82%86%E4%B8%BB%E9%A2%98/">
 
 <!-- 皮肤样式 -->
 <link rel="stylesheet" href="/themes/atlas/css/style.css">
@@ -51,17 +51,25 @@
       <div class="post">
   
   <header class="post-header">
-    <h1 id="calligra suite已然成熟，可以替换libreoffice了">calligra suite已然成熟，可以替换libreoffice了</h1>
+    <h1 id="【好玩】emacs24默认主题就是二十四小时……">【好玩】emacs24默认主题就是二十四小时……</h1>
 
     <div class="post-abstract">
       
-      <p><b>摘要：</b><br/>使用jekyll生成静态站</p>
+      <p><b>摘要：</b><br/></p>
       
 
       
       <p class="post-tag"><b>话题：</b>
         
-        <a href="/话题列表/#办公软件-ref">办公软件
+        <a href="/话题列表/#易码肆-ref">易码肆
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#主题-ref">主题
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#时间-ref">时间
         <sup>1</sup></a>
         &nbsp;
         
@@ -74,12 +82,12 @@
       
       <span class="post-categories">类别：
         
-        <a href="/分类列表/#技术学习-ref">技术学习</a>
+        <a href="/分类列表/#软件生产线-ref">软件生产线</a>
         
       </span>
       
       
-      创建时间：2013-09-13
+      创建时间：2012-07-19
       
       
     </p>
@@ -87,26 +95,28 @@
   </header>
 
   <article class="post-content">
-    <p>昨天特意打开了calligra，和libreoffice对比了下。</p>
+    <p>易码肆24默认带了几个主题，以前就看过，没怎么注意，今天又仔细过了一眼，发现主题是和时间相关的，可能和当时的阳光/夜色和心情是相关的吧，权当作为各位使用主题的参考吧……</p>
 
-<ul>
-  <li>文档编辑部分：calligra words 和 libreoffice writer比，对doc和docx的渲染方面，calligra优于libreoffice，对其中表格的操作远远优于目前所有已知的办公软件，操作流畅。但calligra欠缺一个重要功能：文档结构图。</li>
-  <li>幻灯片部分：两者对ppt的渲染差不多，calligra更快，同是加载30m的文档，libreoffice崩溃，calligra正常。但calligra对odp的渐变色渲染，图形定位还有问题。</li>
-  <li>表格部分：没仔细对比过，不知。</li>
-  <li>数据库部分：对这两者的数据库都不用，所以具体不知，只知道calligra界面简化。</li>
-  <li>绘图部分：calligra完胜libreoffice，可以媲美的是gimp和inkscape。</li>
-  <li>流程图部分：libreoffice没有，calligra flow相当于微软office里面的visio，图标较全，应该可用。</li>
-</ul>
+<p>下面代码摘自我的“~/.emacs.d/config/020-face.el”</p>
 
-<p>总结归纳下：calligra已然成熟可用了，替换libreoffice的可能性大增。</p>
+<pre><code>;;清晨：light-blue（亮色调）
+;;早晨：adwaita （亮色调）
+;;上午：dichromacy（亮色调，宣纸？）
+;;正午前：tsdh-light（亮色调，利用液晶可视角度，只看当前一行）
+;;正午时分：tango（亮色调）
+;;午睡醒：wombat（暗色调）
+;;下午：manoj-dark （暗色调，日程使用）
+;;黄昏前：whiteboard（亮色调）
+;;黄昏：tango-dark （暗色调，效果不错）
+;;入夜：tsdh-dark （暗色调）
+;;夜色：deeper-blue （暗色调）
+;;深夜：misterioso （暗色调，效果不错）
+;;凌晨：wheatgrass（亮色调，注释颜色易混）
+</code></pre>
 
-<p>另外，虽然我一直主张基于浏览器创建办公套件，但calligra创新了一系列的东西，还是很值得期待。libreoffice，微软办公套件，wps都已老迈。</p>
+<p>好吧，再加上一道按时切换主题的代码，会自动根据时间换皮肤，从而在工作全身心工作中也能体会外面的日夜晨昏，安逸了……</p>
 
-<p>附加：</p>
-
-<p>我对doc都是只读取，保存就换odt。</p>
-
-<p>比如ribbon菜单栏，可取的也就图标化直观，但却带严重设计缺陷：小的地方太小，大的地方太大，太占用屏幕顶部，尤其是宽屏普及的情况下，严重影响视野，另外就是图标混乱。倒是好多年前的wps，做过有很多有意思的创新，比如以前一个拨号器就实用且美伦美涣，让人爱不释手，可惜这些东西早就被抛弃，彻底来了一个抄！</p>
+<p>纯属个人一时感受，诸位想喷就喷吧……有点生活在其中的感觉了</p>
 
 
   </article>
@@ -126,17 +136,17 @@
     <!--上一篇 话题 下一篇-->
     
     <div class="post-pre">
-      <a class="pull-right" href="/%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/2013/02/20/%E7%90%86%E6%83%B3%E7%A7%91%E7%A0%94%E5%86%99%E4%BD%9C%E7%8E%AF%E5%A2%83/">◁前<br>【整理】理想科研学习写作环境◀篇</a>
+      <a class="pull-right" href="/%E8%B4%B4%E8%BA%AB%E7%A7%BB%E5%8A%A8/2012/06/11/2012%E5%A6%82%E4%BD%95%E6%8A%8A%E6%89%8B%E6%9C%BA%E6%88%96%E5%B9%B3%E6%9D%BF%E6%89%93%E9%80%A0%E6%88%90%E5%8A%9E%E5%85%AC%E5%88%A9%E5%99%A8/">◁前<br>【2012】如何把手机/平板打造成办公利器◀篇</a>
     </div>
     
     
      <!--回到头部-->
-    <div class="back-top"><a href="#calligra suite已然成熟，可以替换libreoffice了">△
+    <div class="back-top"><a href="#【好玩】emacs24默认主题就是二十四小时……">△
     <br>回头▲再看</a></div> 
     
     
     <div class="post-next">
-    <a href="/%E7%A5%A5%E5%92%8C%E7%94%9F%E6%B4%BB/2014/04/20/%E5%AE%B6%E5%BA%AD%E8%87%AA%E9%85%BF%E6%9E%9C%E9%85%92/">后▷<br>篇▶【整理】家庭自酿果酒</a>
+    <a href="/%E8%BD%AF%E4%BB%B6%E7%94%9F%E4%BA%A7%E7%BA%BF/2012/09/13/%E7%A8%B3%E5%81%A5%E7%9A%84%E8%BD%AF%E7%A1%AC%E4%BB%B6%E7%8E%AF%E5%A2%83/">后▷<br>篇▶稳健的软硬环境</a>
     </div>
     
     

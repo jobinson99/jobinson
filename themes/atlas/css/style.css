@@ -171,7 +171,7 @@ summary {
     }
      
     blockquote {
-    margin: 1em 10px 1em 30px;
+    margin: 1em 10px 1em 20px;
     }
      
     /*
@@ -879,7 +879,6 @@ sup:hover {
 
 blockquote {
     background: #FDF7F7;
-    font-size: 90%;
 
     padding: 5px 5px 5px 5px;
     border-left: 5px solid #BBBBFF;
