@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>[学习笔记]易码肆初步入门</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/%E8%BD%AF%E4%BB%B6%E7%94%9F%E4%BA%A7%E7%BA%BF/2010/03/01/%E6%98%93%E7%A0%81%E8%82%86%E5%88%9D%E6%AD%A5%E5%85%A5%E9%97%A8/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="[学习笔记]易码肆初步入门">[学习笔记]易码肆初步入门</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>摘要：</b><br/></p>
+      
+
+      
+      <p class="post-tag"><b>话题：</b>
+        
+        <a href="/话题列表/#emacs-ref">emacs
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#vim-ref">vim
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#学习-ref">学习
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#效率-ref">效率
+        <sup>1</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#软件生产线-ref">软件生产线</a>
+        
+      </span>
+      
+      
+      创建时间：2010-03-01
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <p>下面是论坛的一些记录，没怎么整理就发上来了。</p>
+
+<p>最近学着写点程序，实在受不了eclipse一拖一拖的速度了。搞得我都经常不去eclipse下直接就开kwrite编辑了。</p>
+
+<p>想下点功夫来学vim或者emacs。</p>
+
+<p>当然，首先我要选一个来学。（我键盘恰好两个键失灵，郁闷，一个是capslock，一个是1，搞得我都要复制粘帖来写感叹号）</p>
+
+<p>我不是专业的，过去一直用nano来修改程序的说，只是最近有需要自己用python写点网络程序，比如用turbogears或者web.py来写点东西，悟性还不错，学习难度应该不是问题。</p>
+
+<p>python和python webframework都是新学，<strong>需要点命令行提示/文档之类什么的辅助。开eclipse+无数的网页+一个文档工具用来做读书笔记+图片工具+其他，</strong>而eclipse可以说对我帮助是最小的而资源占用上却不少的，而且还慢，太胸闷了，有必要换了它。</p>
+
+<p>在我的archlinux下，两个都装，品判一下。</p>
+
+<p>于是，我bt地用emacs修改vim的配置文件。</p>
+
+<ul>
+  <li>arch下vim好像不太整洁啊，竟然配置文件是放在~/.vimrc，我是希望放在~/.vim/vimrc这种的</li>
+  <li>晕倒，发现emacs也是把配置文件放在~/.emacs，不过emacs还自动建了一个backup用的文件夹在home下。vim要我自己指定。</li>
+  <li>emacs好像智能点，竟然能够记住我的双tab，把双tab编程了单tab</li>
+  <li>初步感觉emacs的键也太多了吧</li>
+  <li>vim我直接用了amix的800行配置，不过后来发现这个配置不咋样（arch的是vim7.2），比如竟然设定在终端下没有行号显示，害我设置了几次都发现没效果，还以为是输入错误或者是没有插件呢</li>
+  <li>中文的vim拼写检查竟然么有。</li>
+</ul>
+
+<p>感觉学起来都不难入手啊，只要一开始要求不高，有充分的心理准备。——中文教程写得都想让人望而切步的，还是看英文吧</p>
+
+<p>我用vim/emacs有几个步骤或者说学习阶段/适应目标的：</p>
+
+<ol>
+  <li>比gedit或者kwrite强大的编辑器：行号，高亮，缩进，查找等</li>
+  <li>比kate强大的编辑器：会话，自动补全等</li>
+  <li>入门了，该干吗干吗去。</li>
+</ol>
+
+<p>要求一降，学起来也就不怎么耗力了。</p>
+
+<p>继续bt地用vim看emacs的帮助和修改emacs的配置，用emacs查看vim的帮助和修改vim的配置</p>
+
+<p>最后确定：
+选了emacs了。</p>
+
+<p>vim的按键次数，我仔细数了下，其实比emacs多。
+比如从编辑状态退出，需要esc+组合键：+q+enter （总共按了5个按钮，分4次完成）。
+而emacs的退出，只需要两次组合键：ctrl+x ctrl+c （总共按了四个按钮，分两次完成）</p>
+
+<p>=====》》》初步结论：在基本操作方面，vim的效率不如emacs</p>
+
+<p>emacs不能算是编辑器，应该算了编程一体环境吧，以ide的角度来看，就不会觉得emacs功能累赘了。
+emacs快捷键也很有规律，用手记忆效果不错。</p>
+
+<p>学vim/emacs一开始好高骛远肯定是不行的，一点点啃效果更好。就像我楼上说的，分成三步来啃。————昨天一天下来，vim和emacs都被我打造成快超越kate的东东了，也熟悉了其基本操作（高级用法等以后有机会有需要再接触了）。</p>
+
+<p>我的capslock没必要改，因为坏了，而且笔记本上，键盘小，我手又大，而且还左手习惯，所以键盘布局和快捷键上根本不用变就很舒坦了。</p>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+
+  <!-- 有言评论 -->
+  <div id="uyan_frame"></div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+  
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+
+    <!--上一篇 话题 下一篇-->
+    
+    
+     <!--回到头部-->
+    <div class="back-top"><a href="#[学习笔记]易码肆初步入门">△
+    <br>回头▲再看</a></div> 
+    
+    
+    <div class="post-next">
+    <a href="/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2010/05/06/kde4%E5%B7%B2%E7%BB%8F%E6%88%90%E7%86%9F%E4%BA%86/">后▷<br>篇▶成熟了成熟了，kde4已经成熟了</a>
+    </div>
+    
+    
+  </div>
+
+<!--页面底部自动浮现-->
+  <div class="post-reletive">
+  <!--相关文章-->
+
+  </div>
+
+
+</div>
+
+
+ 
+</div>
+
+
+
+
+      
+      <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2015版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接，谢谢合作！</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+      <span>致谢： </br>
+        <a href="http://www.github.com">空间：github</a>，
+        <a href="http://jekyllrb.com">构建：jekyll</a>，
+        <a href="http://freenom.com/">域名：freenom</a>，
+        以及一切对本人有帮助的人事物！</span>
+      <span>
+        <!--百度统计-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+      </span>
+    </li>
+  </ul>
+</footer>
+
+
+    
+
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>

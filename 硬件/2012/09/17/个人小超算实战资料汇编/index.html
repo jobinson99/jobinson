@@ -946,9 +946,9 @@ The DS-96 "under desk" system consumed 1580 watts under load, and produced 109.4
   <li><a href="http://www.msg.ameslab.gov/gamess/">GAMESS</a>, a system for ab initio quantum chemistry computations</li>
   <li><a href="http://www.gromacs.org/">GROMACS</a>, a molecular dynamics program for modeling molecular interactions, especially those from biochemistry</li>
   <li><a href="http://www.fos.su.se/%7Esasha/md_prog.html">MDynaMix</a>, a molecular dynamics program for simulating mixtures</li>
-  <li><a href="http://www.mpiblast.org/">mpiBLAST</a>, a program for comparing gene sequences</li>
+  <li><a href="http://www.mpiblast.org/">mpiBLAST</a>, 基因序列对比程序</li>
   <li><a href="http://www.ks.uiuc.edu/Research/namd/">NAMD</a>, a molecular dynamics program for simulating large biomolecular systems</li>
-  <li><a href="http://www.nas.nasa.gov/Resources/Software/npb.html">NPB 2</a>, the NASA Advanced Supercomputing Division’s Parallel Benchmarks suite. 包含有:
+  <li><a href="http://www.nas.nasa.gov/Resources/Software/npb.html">NPB 2</a>, 美航局超算并行运算性能检测套装，包含:
     <ul>
       <li>BT, a computational fluid dynamics simulation</li>
       <li>CG, a sparse linear system solver</li>
@@ -1561,9 +1561,9 @@ cat ~/.ssh/id_rsa.pub | ssh pi@192.168.1.163 "cat &gt;&gt; .ssh/authorized_keys"
   </li>
 </ol>
 
-<h4 id="making-mpi-shared-libraries-for-raspberry-pi">making MPI Shared Libraries for Raspberry Pi</h4>
+<h4 id="mpi-">编译适用于 树莓派 的 MPI 共享库</h4>
 
-<p>MPI libraries can also be built “shared” so that they can be dynamically loaded. This gives a library file that ends in “.so” etc. not “.a” and we can do that by building those MPI libraries again. 步骤和上面一样，只是参数改为： “_shared” ，如下：</p>
+<p>MPI可以共享库方式被动态加载：共享库扩展名为 “.so” 而非 “.a”。 步骤和上面一样，只是参数改为： “_shared” ，如下：</p>
 
 <pre><code>$ mkdir /home/pi/mpich2_shared
 $ cd ~/mpich2_shared
@@ -1678,8 +1678,8 @@ PATH="$PATH:/home/rpimpi_shared/mpich2-install_shared/bin"
       <footer class="site-footer">
   <ul>
     <li>
-      <span>©2014版权所有：黑传说</span>
-      <span>欢迎转载，请注明出处并保留原文链接</span>
+      <span>©2015版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接，谢谢合作！</span>
     </li>
     <li>
     <span>黑传说——乌抵天明</span>
@@ -1691,24 +1691,26 @@ PATH="$PATH:/home/rpimpi_shared/mpich2-install_shared/bin"
     <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
     </li>    
     <li>
-    <span>致谢： <br>
-      <a href="http://www.github.com">github</a>，
-      <a href="http://jekyllrb.com/">jekyll</a>，
-      <a href="http://johnmacfarlane.net/pandoc/index.html">pandoc</a>，以及一切对本人有帮助的人！</span>
-    <span>
-    <!--百度统计-->  
+      <span>致谢： </br>
+        <a href="http://www.github.com">空间：github</a>，
+        <a href="http://jekyllrb.com">构建：jekyll</a>，
+        <a href="http://freenom.com/">域名：freenom</a>，
+        以及一切对本人有帮助的人事物！</span>
+      <span>
+        <!--百度统计-->
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
 document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
 </script>
 
-</span>
-    </li>     
-</ul>
+      </span>
+    </li>
+  </ul>
 </footer>
 
 
     
+
       
     <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
     
