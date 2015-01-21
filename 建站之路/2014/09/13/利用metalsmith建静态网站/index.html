@@ -106,22 +106,23 @@
     <li>ruby的中文编码问题：不支持中文的url路径？还有tag名称如果设置为中文，则不可以使用site.tags.TAG这种用法筛选文章，简直就是坑。</li>
     <li>功能还是比较欠缺。只有一个分页器？还只能在index下分页？还有那个坑爹的liquid模板，不如直接上erb（当然作者是为了github的安全着想）。</li>
     <li>不想装ruby</li>
+    <li>不熟悉ruby</li>
   </ul>
 </blockquote>
 
 <h3 id="ruby">ruby</h3>
 
-<ul>
-  <li>jekyll 本人第一个深入使用的静态站生成器，使用量极高</li>
-</ul>
+<p>jekyll 本人第一个深入使用的静态站生成器，使用量极高</p>
 
-<p>模板语言erb语法：属于Ruby标准库中的东西，不需要单独安装，模板中动态脚本的写法和JSP基本一个模子扒出来的 </p>
+<p>模板语言erb语法：属于Ruby标准库中的东西，不需要单独安装，模板中动态脚本的写法和JSP基本一个模子扒出来的。</p>
 
 <pre><code>&lt;% 写逻辑脚本(Ruby语法) %&gt;
 &lt;%= 直接输出变量值或运算结果 %&gt;
 </code></pre>
 
 <h3 id="js">js</h3>
+
+<p>有好多个：</p>
 
 <ul>
   <li>metalsmith 全插件化，可从简到复杂，可定制性高</li>
@@ -150,7 +151,7 @@
 <p>常见的</p>
 
 <ul>
-  <li>sphinx：经常用于生成技术文档</li>
+  <li>sphinx：python写的，经常用于生成技术文档</li>
   <li>org-mode：其周边成熟度很高，个人用的也不少，不过，因为其对内嵌代码的设计有严重缺陷，而且广泛的使用率，使其改进的难度会变得极大！因此个人觉得除非开个分支改进否则很令人失望。</li>
 </ul>
 
@@ -162,36 +163,106 @@
 
 <ul>
   <li>全部插件化</li>
-  <li>核心很小，就一个调用程序，处理目录，输入输出的标口层（标准接口层）</li>
-  <li>灵活性大，可以生成各种类型项目：静态站，项目架构，生成工具，电子书，项目文档等</li>
+  <li>核心很小，就一个调用程序，处理目录，输入输出的接口层（标准接口层），复制文件夹和文件到另一个文件夹和文件——此方法很值得借鉴！</li>
+  <li>灵活性大，可以生成各种类型项目：静态站，项目架构，生成工具，电子书，项目文档等，只要定义好模板。——相当于一个格式转换中心，从简单到复杂。</li>
 </ul>
+
+<p>几个插件化比较彻底的项目：gulp 插件化构建测试套装工具，consolidate.js模板，metalsmith构建中心。</p>
 
 <h2 id="section-1">安装环境</h2>
 
-<p>除了要安装metalsmith外，还要安装所需的插件</p>
+<p>一，安装 node.js，安装方法见nodejs文档。</p>
 
-<pre><code>$ npm install metalsmith
+<p>二，然后，安装metalsmith外</p>
+
+<pre><code>$ npm install metalsmith -g
 </code></pre>
 
-<p>一般需要的插件：</p>
+<p>三，安装一些需要的插件：下面列出一些一般需要的。</p>
 
 <ul>
-  <li>assets：不渲染的部分</li>
+  <li>assets：不转换、保持原样的部分</li>
   <li>beautifier：为运行效率考虑，一般不需要。但为了方便检查代码生成结果，需要。</li>
   <li>collections：分类？</li>
-  <li>navigation：根据稳健树输出导航</li>
+  <li>navigation：根据文件树输出导航</li>
   <li>paginate：分页</li>
-  <li>permalinks：简化链接形式</li>
-  <li>tags：使用标签</li>
+  <li>permalinks：给网页一个固定链接</li>
+  <li>tags：文章标签</li>
   <li>templates：布局模板</li>
 </ul>
 
-<p>从metalsmith源码中的example中复制一份，然后根据需要修改。</p>
+<h2 id="section-2">新建项目</h2>
 
-<h2 id="section-2">模板语言选用</h2>
+<p>可以从metalsmith源码中的example中复制一份，然后根据需要修改。</p>
 
-<p>模板语言是生成的时候要运行的部分。
-js则是用户打开的时候才会用的。</p>
+<p>也可以按照新建一个 nodejs 项目一样，新建一个，这样通用性较好。</p>
+
+<p>最终的文件结构可能如下：和一般的nodejs项目类似。</p>
+
+<pre><code>.
+|– source/     需要被转换的内容
+    |– content/
+    |– images/
+    |– styles/
+    |_ scripts/
+|– templates/    模板
+|   |_ partials/
+|– build/       生成的静态站点
+    |– content/
+    |– images/
+    |– styles/
+    |_ scripts/
+|– node_modules/    开发所需的模块        
+|– config.json
+|– index.js     项目启动文件，metalsmith总控配置就放在这
+|_ package.json    项目配置文件
+</code></pre>
+
+<h2 id="packagejson">项目所需插件：package.json</h2>
+
+<p>编辑 package.json，添加所需的依赖模块，然后安装</p>
+
+<pre><code>npm install --save-dev metalsmith
+</code></pre>
+
+<h2 id="indexjs">配置：index.js</h2>
+
+<p>编辑 index.js</p>
+
+<pre><code>var Metalsmith = require('metalsmith');
+Metalsmith(__dirname)
+  .destination('./build')
+  .use(drafts())
+  .use(markdown())
+  .use(permalinks('posts/:title'))
+  .use(templates('ejs'))
+  .build();
+</code></pre>
+
+<p>各句解释：</p>
+
+<ul>
+  <li><code>var Metalsmith = require('metalsmith');</code> 调用 metalsmith</li>
+  <li><code>__dirname/src</code> 指定需要转换的目录，比如此处是  <code>/src</code></li>
+  <li><code>.destination('./build')</code> 指定输出到 build文件夹</li>
+  <li><code>.use(drafts())</code> 使用 草稿箱</li>
+  <li><code>.use(markdown())</code> 指定输入的格式为markdown文件</li>
+  <li><code>.use(permalinks('posts/:title'))</code> 设定固定链接形式</li>
+  <li><code>.use(templates('ejs'))</code> 指定输出时使用的转换模板ejs</li>
+  <li><code>.build();</code> 生成</li>
+</ul>
+
+<p>如果不指定转换模板，则只是简单的 复制源码文件夹 到 输出文件夹。</p>
+
+<h2 id="section-3">转换模板语言选用</h2>
+
+<p>metalsmith用consolidate.js，来作为各种模板语言中介。</p>
+
+<p>模板引擎会根据每个文件头部的 yaml格式 的 设定，进行转换。</p>
+
+<p>模板语言是生成的时候要运行的部分。</p>
+
+<p>js则是用户打开的时候才会用的。</p>
 
 <ul>
   <li>jade 语法和内容易混，缩进在不同编辑器中显示不一，特蛋疼</li>
@@ -226,13 +297,13 @@ php/asp+html+js+css，重心在php</p>
 <p>由于普及率问题，现在演变成了：
 html+css+js+各种js模板。重心在js</p>
 
-<h2 id="section-3">配置</h2>
-
 <h2 id="ejs">ejs模板语言</h2>
 
-<p>配置可参考hexo</p>
+<p>ejs特点：不支持模板继承。</p>
 
-<pre><code>&lt;%=输出变量%&gt;
+<pre><code>// 用=号输出,会被escape转义编码
+&lt;%= 输出变量 %&gt;
+// 用“-”输出原始内容, 不会被escape
 &lt;%-输出变量是不会对 &amp; 等符号进行转义的
 
 &lt;% if (names.length) { %&gt;
@@ -244,19 +315,30 @@ html+css+js+各种js模板。重心在js</p>
   &lt;% } %&gt;
 </code></pre>
 
-<p>引用 片段
-    &lt;ul&gt;
-      &lt;% users.forEach(function(user){ %&gt;
-        &lt;% include user/show %&gt;
-      &lt;% }) %&gt;
-    &lt;/ul&gt;</p>
+<p>引用 片段</p>
+
+<pre><code>&lt;ul&gt;
+  &lt;% users.forEach(function(user){ %&gt;
+    &lt;% include user/show %&gt;
+  &lt;% }) %&gt;
+&lt;/ul&gt;
+</code></pre>
 
 <h2 id="section-4">生成</h2>
+
+<p>使用nodejs来生成</p>
+
+<pre><code>node index.js
+</code></pre>
+
+<p>也可用metalsmith，前提是配置内容写在 metalsmith.json </p>
 
 <pre><code>metalsmith
 </code></pre>
 
 <h2 id="section-5">预览</h2>
+
+<p><a href="http://www.robinthrift.com/posts/getting-to-know-metalsmith/">参考</a></p>
 
 
   </article>
