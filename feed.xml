@@ -7,8 +7,10 @@
     <atom:link href="http://jobinson.ga/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
-        <title>张尧学获奖的疑问</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;自然科学一等奖得主中南大学校长张尧学简历&lt;/h2&gt;
+        <title>试答张尧学获奖媒体的疑问</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;有关透明计算的信息&lt;/h2&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;自然科学一等奖得主中南大学校长张尧学简历&lt;/h3&gt;
 
 &lt;p&gt;1956年1月生，湖南常德澧县人，1982年本科毕业于陕西西北电讯工程学院(现陕西西安电子科技大学)，1987年4月加入中国共产党，获日本东北大学博士学位。教授，博士生导师，中南大学校长，中国工程院院士，中国作家协会会员，国务院学位委员会委员，国务院信息化咨询委员会委员，计算机学会普适计算专委会委员，&lt;strong&gt;解放军总装备部军用计算机及软件技术专业组专家&lt;/strong&gt;，《International Journal of Wireless and Mobile Computing》《Journal of Autonomic and Trusted Computing》《Chinese Journal of Electronics》等国内外学术期刊的编委。曾任教育部高等教育司司长、学位管理与研究生司司长、国务院学位委员会办公室主任、985工程办公室主任、211工程建设办公室主任等学术和行政职务。著有《又见木兰》、《水随天去》等管理类散文集。&lt;/p&gt;
 
@@ -34,7 +36,7 @@
 
 &lt;p&gt;成就：&lt;/p&gt;
 
-&lt;p&gt;1995年主持研制成功国内首台网络路由器，并推动了这一事关国家安全和信息产业核心产品的产业化。率先在国际上开展主动服务和透明计算领域的研究，提出了在时空上扩展冯诺依曼结构、把信息存储、运算和管理分开的透明计算理论与方法，并研究成功了基于该理论的内核分布式操作系统和无操作系统的透明计算终端，广泛用于中国军事、商务、教育和管理等领域，受到了国内外学术界的重视，被国外同行认为是“先于云计算，并包含了云计算”的原创性学术成果，并正向服务手机、云手机等移动互联网、家庭网等领域扩展。&lt;/p&gt;
+&lt;p&gt;1995年主持研制成功国内首台 &lt;strong&gt;网络路由器&lt;/strong&gt;，并推动了这一事关国家安全和信息产业核心产品的产业化。率先在国际上开展主动服务和透明计算领域的研究，提出了在&lt;strong&gt;时空上扩展&lt;/strong&gt;冯诺依曼结构、把信息存储、运算和管理分开的透明计算理论与方法，并研究成功了基于该理论的 &lt;strong&gt;内核分布式操作系统&lt;/strong&gt; 和&lt;strong&gt;无操作系统的透明计算终端&lt;/strong&gt;，广泛用于中国军事、商务、教育和管理等领域，受到了国内外学术界的重视，被国外同行认为是“先于云计算，并包含了云计算”的原创性学术成果，并正向服务手机、云手机等移动互联网、家庭网等领域扩展。&lt;/p&gt;
 
 &lt;p&gt;在网络基础理论方面提出了被美国同行称为“Zhang’s method”的交互式协议综合法，推动了网络基础理论的发展和进步。以第一获奖人获国家技术发明二等奖一项、国家科技进步二等奖两项；获IEEE AINA07最佳论文奖，何梁何利科技进步奖，美国IET教育基金会教育领先奖，以及亚洲开放大学联合会功勋服务奖等奖项。撰写中英文专著和教材8部，其中《计算机操作系统教程》已销售100余万册，成为国内计算机领域的主要教材之一。&lt;/p&gt;
 
@@ -42,7 +44,11 @@
 
 &lt;p&gt;主要的研究方向是透明计算和主动服务。透明计算主要是研究如何解决用户通过网络上的同一终端平台使用不同操作系统和相关应用，以及在不同终端平台上使用同一操作系统和相关应用。主动服务是按照用户需求，通过计算机对现有服务进行演化，从而提供尽可能满足用户需求的网络服务的一种计算方法。&lt;/p&gt;
 
-&lt;h2 id=&quot;section-1&quot;&gt;清华大学“网络计算的模式及基础理论研究”获国家自然科学一等奖&lt;/h2&gt;
+&lt;h3 id=&quot;section-2&quot;&gt;清华大学的通稿&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://news.tsinghua.edu.cn/publish/news/4205/2015/20150112091258538502525/20150112091258538502525_.html&quot;&gt;透明计算引领“下一个计算时代”&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;——“网络计算的模式及基础理论研究”获国家自然科学一等奖&lt;/p&gt;
 
 &lt;p&gt;该研究项目是在张尧学院士带领下，由清华大学计算机系教师周悦芝、林闯、任丰原和中南大学教师王国军共同完成的。该研究在国际上率先提出透明计算的新概念，突破了冯•诺依曼结构的局限，成功研制出了具有独立知识产权的超级操作系统和一系列具有原创性与系统性的重大创新成果，对促进我国计算机及相关产业转型升级发展具有重要意义。&lt;/p&gt;
 
@@ -54,77 +60,124 @@
 
 &lt;p&gt;目前，该项目已研制成功多种产品，应用于国防、教育、互联网等领域，未来将进一步推动透明计算与大数据、移动互联网相结合，对国家社会经济发展和网络信息安全提供支撑，推动相关产业升级换代，形成新的学科领域和研究方向。&lt;/p&gt;
 
-&lt;h2 id=&quot;section-2&quot;&gt;我的理解&lt;/h2&gt;
+&lt;h3 id=&quot;section-3&quot;&gt;申请获奖用的论文&lt;/h3&gt;
 
-&lt;p&gt;他应该是实战型+战略型的人物。&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;Yaoxue Zhang and Yuezhi Zhou. Transparent Computing: A New Paradigm for Pervasive Computing, LNCS 4159, 2006 年第1 卷1-11 页.&lt;/li&gt;
+  &lt;li&gt;Yaoxue Zhang and Yuezhi Zhou. 4VP+: A Novel Meta OS Approach for Streaming Programs in Ubiquitous Computing, in Proc. of the IEEE 21st International Conference on Advanced Information Networking and Applications (AINA 2007), 2007 年第1 卷394-403 页.&lt;/li&gt;
+  &lt;li&gt;Yaoxue Zhang, K. Takahashi, N. Shiratori, and S. Noguchi. An Interactive Protocol Synthesis Algorithm Using a Global State Transition Graph, IEEE Transactions on Software Engineering, 1988 年14(3)卷 394-404 页.&lt;/li&gt;
+  &lt;li&gt;Yaoxue Zhang, Hua Chen. A knowledge-based dynamic job-scheduling in low-volume/high-variety manufacturing, Artificial Intelligence in Engineering (UK), 1999 年13(3)卷 241-250 页.&lt;/li&gt;
+  &lt;li&gt;林 闯 . 计算机网络和计算机系统的性能评价, 清华大学出版社， ISBN:7-302-04267-5, 2001 年卷109-129 页.&lt;/li&gt;
+  &lt;li&gt;Fengyuan Ren, Chuang Lin, Xunhe Yin. Design a congestion controller based on sliding mode variable structure control, Computer Communications, 2005 年28(9)卷 1050-1061 页.&lt;/li&gt;
+  &lt;li&gt;Fengyuan Ren, Chuang Lin, Bo Wei. A robust active queue management algorithm in large delay networks, Computer Communications, 2005 年 28(5)卷 485-493 页.&lt;/li&gt;
+  &lt;li&gt;Jianer Chen, Guojun Wang, and Songqiao Chen. Locally subcube-connected hypercube networks: theoretical analysis and experimental results, IEEE Transactions on Computers, 2002 年51(5)卷 530-540 页.&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;是工程能力，实现能力。&lt;/p&gt;
+&lt;h3 id=&quot;section-4&quot;&gt;中途退出成员提供的信息&lt;/h3&gt;
 
-&lt;p&gt;其所做的工作是完成了一整套完整的新型系统，这里面必然涉及到大量的技术问题和海量的工作量。能够完成，至少说明其管理能力卓越，解决问题能力卓越。&lt;/p&gt;
+&lt;p&gt;作为前透明计算实验室的一员，来谈谈自己的想法好了。&lt;/p&gt;
 
-&lt;p&gt;结合其是解放军总装技术专家，实战部分应该是给保密单位研发操作系统了，所以大众无法了解。&lt;/p&gt;
+&lt;p&gt;首先张尧学的透明计算在我学校是分为几个项目来做的，每个项目有一个小团队。包括PC、Android手机，平板的透明计算OS，还有基于这个“理念”的移动医疗等应用项目。&lt;/p&gt;
 
-&lt;h2 id=&quot;section-3&quot;&gt;关于“透明计算” 的理解&lt;/h2&gt;
+&lt;p&gt;这里面PC端的OS就是我所在的小团队弄出来的。&lt;/p&gt;
 
-&lt;p&gt;一般一台计算机的软件从里层到外层的结构如下：&lt;/p&gt;
+&lt;p&gt;其它项目团队怎么弄的我不清楚，PC端基本都是我设计的，实现方案改过几次：&lt;/p&gt;
 
-&lt;p&gt;核芯+主板——》基本硬件管理层（比如bois uefi）——》硬件利用层（比如linux核心）——》图形界面（比如kde gnome）——》网络服务（远程桌面）&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;最初和Intel一起改PXE（这玩意是啥东西自行谷歌，网吧无盘就用它），想多台机器共用一个镜像，但更改的数据分别保存，搞了半天发现PXE跨不了局域网，也用不了无线，不能达到张尧学提出的要求，被PASS掉了。&lt;/li&gt;
+  &lt;li&gt;然后找了个开源的iPXE，号称支持广域网和无线，自定义脚本等诸多功能，整了半天把原型整出来了，又发现丫对无线的支持烂成渣，只支持一两个 802.11g的芯片组，尝试自行写无线驱动，还是不可行，因为要支持的无线网卡太多，只要有机器的网卡驱动没有，那这台机器就无法使用无线来加载透明计算系统，所以又被PASS掉。&lt;/li&gt;
+  &lt;li&gt;现在的方案（截止至我离开前），整了个开源的虚拟机（Virtualbox），虚拟机上运行透明计算系统，存储的操作系统放在服务器，用iSCSI传输，运行的真正操作系统（Windows那些）上装了些自己写的程序做管理和监控。&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;或者 chromeos就是这样的：&lt;/p&gt;
+&lt;p&gt;基本结构如下：&lt;/p&gt;
 
-&lt;p&gt;核芯+主板——》基本硬件管理层——》硬件利用层——》网络服务&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;    真实操作系统（Windows、Linux）
+    ————————————————-
+    虚拟机
+    ————————————————
+    透明计算管理程序
+    ————————————————
+    Linux
+    ———————————————–
+    机器硬件
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;云计算：&lt;/p&gt;
+&lt;p&gt;我走之前，所在团队的工作基本上就是在定制Linux和改虚拟机。。。还为这套东西增强些功能。。&lt;/p&gt;
 
-&lt;p&gt;核芯+主板——》基本硬件管理层——》硬件利用层——》网络服务&lt;/p&gt;
+&lt;p&gt;对于这整套东西，我的心里话其实是：没法用。真正使用的操作系统运行在一个虚拟机上，能快到哪去？更别说镜像还是放在服务器上用iSCSI协议来传 输的。央视的新闻我看了，播到展示透明计算机器运行着XP系统的时候，我都笑傻了，为啥？Win7及更新的操作系统可是可以用，但基本慢成狗！如果再在那 上面看个视频，能有10帧就谢天谢地了！首次启动Win7至少需要5分钟以上，如果你还处于10M以下的小水管的话，呵呵呵呵。。。最好别等了。&lt;/p&gt;
 
-&lt;p&gt;一般超算：&lt;/p&gt;
+&lt;p&gt;虽然团队其他人一直还在优化，但说实话效果很有限，而且这个东西我们自己都认为实在没有什么技术含量，离实用更差得远，这次听说获奖，其它团队怎么样我不清楚，但至少我们做的这个东西确实是没任何资格的。&lt;/p&gt;
 
-&lt;p&gt;cpu——》基本硬件管理层——》硬件利用层——》网络服务&lt;/p&gt;
+&lt;p&gt;还在团队的时候，老师给派新同学进来，要跟他们解释这个东西是什么，我们的回答就是“你理解成用虚拟机搭了个网吧无盘环境就好了”。。。&lt;/p&gt;
 
-&lt;p&gt;张的Meta OS：&lt;/p&gt;
+&lt;p&gt;上面说的这些仅限我所在团队的工作内容，透明计算还有其他团队，包括其他高富帅学校也有团队在搞，他们的工作我不清楚，肯定比我们做的要高大上得多吧。&lt;/p&gt;
 
-&lt;p&gt;核芯+主板——》基本硬件管理层——》网络服务&lt;/p&gt;
+&lt;h2 id=&quot;section-5&quot;&gt;解剖张和透明计算&lt;/h2&gt;
 
-&lt;p&gt;换句话说：就是一个  网络版bois或者uefi，且加强了功能。&lt;/p&gt;
+&lt;h3 id=&quot;section-6&quot;&gt;“透明计算”服务端的结构&lt;/h3&gt;
 
-&lt;p&gt;也可以说是： linux核心+网络服务 的弱化版，bois的强化版&lt;/p&gt;
+&lt;p&gt;先看看 普通电脑，云计算，chromeos，pxe 和 “透明计算” 的软硬件结构区别！&lt;/p&gt;
 
-&lt;p&gt;或者现在有一个流行词，叫 路由器操作系统！&lt;/p&gt;
+&lt;p&gt;一般一台计算机的软件从硬件层到外应用软件层的结构如下：&lt;/p&gt;
 
-&lt;p&gt;非常里层的一套系统。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;资源供应方=用户方
+核芯+主板——》基本硬件管理层（比如bois uefi）——》硬件利用层（比如linux核心）
+——》基本图形系统（比如x）
+——》用户界面系统（比如kde gnome）——》网络服务（远程桌面之类）
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;非常像超算，但又稍微不同于超算的应用方式。&lt;/p&gt;
+&lt;p&gt;资源和用户端分离：&lt;/p&gt;
 
-&lt;p&gt;如何解决网络问题？
-不同于 已有的远程启动(PXE)所使用的TFTP协议（单线程，速度不快，无法适应高速的界面初始化和大型任务的高速交互要求）。
-自己设计了一套适合如此里层的网络协议：高可靠网络协议和开发方法，研制了多操作系统远程加载协议（MRBP）和网络服务访问协议（NSAP），保证可靠的跨平台操作。&lt;/p&gt;
+&lt;p&gt;超算和云计算：&lt;/p&gt;
 
-&lt;p&gt;，将网络互连平台由较高的网络层下降到计算机芯片和操作系统间的接口层&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;资源端：云端服务器供应软硬件资源（核芯+主板——》基本硬件管理层——》硬件利用层——》网络服务）
+——》资源管理调度接口
+用户端：核芯+主板——》基本硬件管理层——》硬件利用层——》网络服务——》命令行下即可管理调度或者图形界面下管理软件
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;注：这不是创不创新的问题，而是有没有实力的问题，很多人，都想要这么省略，甚至直接 核芯+主板+网络服务（路由器就这样的），但 核芯+主板 的产业并不掌握在自己手中，无法主导。&lt;/p&gt;
+&lt;p&gt;chromeos是这样的：其中的图形界面部分不同于一般的系统，比较穿透。&lt;/p&gt;
 
-&lt;p&gt;这样不仅仅是实力，还有实战！是一手把这个极其繁重的工作给搞下来了。
-要搞定这么一个事情，需要涉及到海量的软硬件工作！&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;资源端：云端服务器供应软硬件资源
+——》资源管理调度接口
+用户端：核芯+主板——》基本硬件管理层——》硬件利用层
+|——》网络服务
+|——》基本图形系统——》图形界面
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;上面是简单的基本架构，下面更详细，更复杂：&lt;/p&gt;
+&lt;p&gt;无盘站&lt;/p&gt;
 
-&lt;p&gt;根据其描述：底层是兼容各种硬件的——这一步的工作量就很难想象的大了。——所以，能够搞定这一步，一定是用了特殊的方法，具体如何呢？根据我的了解，应该是简化了接口，只调用不同硬件底层较为通用的接口，而规避那些硬件特有的接口，或者是做了一个兼容层，来规范这些硬件特有接口。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;资源供应方：云端服务器供应软硬件资源
+——》远程桌面
+用户端：——》用户使用
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;不同芯片的兼容：&lt;/p&gt;
+&lt;p&gt;无盘站：缺陷是原有协议穿透不了局域网&lt;/p&gt;
 
-&lt;p&gt;甲品牌芯片
-乙品牌芯片
-丙品牌芯片
-……&lt;/p&gt;
+&lt;p&gt;张的透明计算：&lt;/p&gt;
 
-&lt;p&gt;不同主板的兼容：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;资源端：核芯+主板——》基本硬件管理层
+|——》硬件利用层（meta os）
+|——》网络服务（两个自写协议）
+用户端：核芯+主板——》基本硬件管理层——》硬件利用层
+&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;不同底层引导固件的兼容：&lt;/p&gt;
+&lt;p&gt;几种比较贴切的描述：&lt;/p&gt;
 
-&lt;p&gt;这个工作量大不大？反正linux下wine搞了十几年，至今仍然只能半残废状态。&lt;/p&gt;
+&lt;p&gt;网络版bois或者uefi，且加强了功能：极其底层的系统，在一般操作系统还没启动时，就已经启动，但又还没底层到主板上的引导程序。非主板烧录的，最接近底层硬件的操作系统。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-4&quot;&gt;资源分布形式&lt;/h3&gt;
+&lt;p&gt;linux核心+网络服务 的弱化版：相比较linux的完整操作系统，其功能主要几种在资源组织和资源分配，功能上不如linux复杂，比如没必要管理声音和图形渲染。&lt;/p&gt;
+
+&lt;p&gt;超级加强版 路由器操作系统。张之前就设计过一个 网络路由器系统，现在加强其功能了：硬件兼容更强，网络功能更强大，资源调度更透明方便，可调用的资源更多。&lt;/p&gt;
+
+&lt;p&gt;民用版超算：非常像超算，但资源并不像超算那样集中在机房，而是可以使用广域网的资源。&lt;/p&gt;
+
+&lt;p&gt;底层版分布式计算：可调用不仅仅是局域网的网络资源，而且是极其底层的资源，而不是被层层包装了的网络资源、云服务。&lt;/p&gt;
+
+&lt;p&gt;用一个通俗的比喻可能方便理解：&lt;em&gt;*在一片树林里扎篱笆，原来是在树枝上扎，后来有人在树干上扎，张的团队则是跑到根部扎。&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;总结为两句：系统很底层，管理的资源很广泛！&lt;/p&gt;
+
+&lt;h3 id=&quot;section-7&quot;&gt;资源分布形式&lt;/h3&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -205,9 +258,95 @@
     《——处理后，数据返回远程
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&quot;section-5&quot;&gt;关于主动服务&lt;/h2&gt;
+&lt;h3 id=&quot;section-8&quot;&gt;服务端资源管理&lt;/h3&gt;
 
-&lt;p&gt;其实就是 推送服务。&lt;/p&gt;
+&lt;p&gt;云计算、超算等，和这个问题解决方案应该是相同的。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-9&quot;&gt;如何解决硬件兼容问题&lt;/h3&gt;
+
+&lt;p&gt;上面是简单的基本架构，如何实现呢？&lt;/p&gt;
+
+&lt;p&gt;如果：世界上只有一种硬件，那这一步很好办。可惜，世界上各种硬件五花八门，驱动也是五花八门。兼容问题无穷无尽，层出不穷……&lt;/p&gt;
+
+&lt;p&gt;硬件兼容问题有多么令人焦躁呢：linux创始人针对 硬件商 直接是举中指，爆粗口。&lt;/p&gt;
+
+&lt;p&gt;如何解决？一般的思路是简化接口，只调用不同硬件底层较为通用的接口，而规避使用那些硬件特有的接口。或者更进一步，做一个兼容层（比如kde用phonon），来转换各个硬件不同的接口，规范使用这些硬件特有接口。&lt;/p&gt;
+
+&lt;p&gt;但这只是理论上可行，现实中需要多少工作量呢？海量！&lt;/p&gt;
+
+&lt;h3 id=&quot;section-10&quot;&gt;如何解决网络问题？&lt;/h3&gt;
+
+&lt;p&gt;上面前团队成员暴露出来的信息看，好事多磨，在前期想偷懒，借用现成的东西，结果至少改了三次，还没真正踏进门里。最后估计是痛定思痛，干脆自己重写了两个协议才算搞定。&lt;/p&gt;
+
+&lt;p&gt;参照清华的通报搞，很明显，在这家伙离去后，整个团队进行了重大革新。&lt;/p&gt;
+
+&lt;p&gt;不同于&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;已有的远程启动(PXE)所使用的TFTP协议&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;（单线程，速度不快，无法适应高速的界面初始化和大型任务的高速交互要求）。自己设计了一套也是底层的网络协议：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;高可靠网络协议和开发方法，研制了多操作系统远程加载协议（MRBP）和网络服务访问协议（NSAP），保证可靠的跨平台操作。
+将网络互连平台由较高的网络层下降到计算机芯片和操作系统间的接口层&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;section-11&quot;&gt;用户如何管理资源&lt;/h3&gt;
+
+&lt;p&gt;这相对来说已经非常简单了，主要是给各个操作系统做客户端的问题，虽然仍然是兼容性问题严重，但已有现成框架基本可以胜任，体力活。&lt;/p&gt;
+
+&lt;p&gt;目前硬件情况和软件情况，注定还无法如 服务端那样做到非常底层，但理论上是可以做到底层裸主机+客户端，但要硬件生产商配合。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-12&quot;&gt;工程难度和工作量&lt;/h3&gt;
+
+&lt;p&gt;就工程实现难度不低于一般的操作系统，比如linux，windows，主要是硬件方面的原因，但流行普及后，硬件兼容问题解决，会大幅度简化操作系统的设计。&lt;/p&gt;
+
+&lt;p&gt;其实，这不是创不创新的问题，而是有没有实力的问题，很多人，都想要这么省略，甚至直接 核芯+主板+网络服务（路由器就这样的），但 核芯+主板 的产业并不掌握在自己手中，无法主导。&lt;/p&gt;
+
+&lt;p&gt;这样不仅仅是实力，还有实战！是一手把这个极其繁重的工作给搞下来了。&lt;/p&gt;
+
+&lt;p&gt;要搞定这么一个事情，需要涉及到海量的软硬件工作！&lt;/p&gt;
+
+&lt;p&gt;这个工作量大不大？反正linux下wine搞了十几年，至今仍然只能半残废状态。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-13&quot;&gt;关于主动服务&lt;/h3&gt;
+
+&lt;p&gt;其实就是 推送服务，在掌握了计算机主要资源之后，这个不难做到。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-14&quot;&gt;对张个人的理解&lt;/h3&gt;
+
+&lt;p&gt;他应该是实战型+战略型的人物。&lt;/p&gt;
+
+&lt;p&gt;是工程能力，实现能力。&lt;/p&gt;
+
+&lt;p&gt;其所做的工作是完成了一整套完整的新型系统，这里面必然涉及到大量的技术问题和海量的工作量。能够完成，至少说明其管理能力卓越，解决问题能力卓越。&lt;/p&gt;
+
+&lt;p&gt;结合其是解放军总装技术专家，实战部分应该是给保密单位研发操作系统了，所以大众无法了解。&lt;/p&gt;
+
+&lt;p&gt;至于那些瞎鼓噪的，借用Gentoo创始人Daniel Robbins一句话：对于工程的事，请&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;show your code!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;人家是“工程院”院士！！不是中科院院士，擅长的是实现，不是理论。论文？对搞工程的人来说，那都是事后有闲的时候补充论述。&lt;/p&gt;
+
+&lt;p&gt;人家提出了一个有创新性的项目，并且有效组织了一群人，通过创新的办法克服各种工程难题，实现了。获重奖无可厚非，至于获得啥级别的，看其对评估单位的重要性，所以实至名归。&lt;/p&gt;
+
+&lt;p&gt;看看清华的通报稿，个人觉得，光这两点，就够获重奖了：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;成功研制出了具有独立知识产权的，运行在各种操作系统之下、主板之上的超级操作系统（Meta OS），使用户可以根据需要，通过近乎裸机的小终端设备获取不同操作系统平台的各类服务，从而大大降低了对用户终端的要求，解决了各种操作系统安全漏洞及多操作系统的兼容与跨平台问题。
+该团队还提出了高可靠网络协议和开发方法，研制了多操作系统远程加载协议（MRBP）和网络服务访问协议（NSAP），保证可靠的跨平台操作，将网络互连平台由较高的网络层下降到计算机芯片和操作系统间的接口层&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;可以说，meta os目前仍然是世界独步的，惟一无二的，有点接近的系统应该是 超算用的系统或者是 intel之类芯片设计商之前鼓吹的，嵌入主板的 微系统 。&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Those who can, Do; and those who cann’t, Teach; and those who cann’t anything, Suck!&lt;/p&gt;
+&lt;/blockquote&gt;
 
 </description>
         <pubDate>Fri, 2015 Jan 16 12:25:20 +0800</pubDate>
@@ -357,7 +496,7 @@
 &lt;ul&gt;
   &lt;li&gt;assets：不转换、保持原样的部分&lt;/li&gt;
   &lt;li&gt;beautifier：为运行效率考虑，一般不需要。但为了方便检查代码生成结果，需要。&lt;/li&gt;
-  &lt;li&gt;collections：分类？&lt;/li&gt;
+  &lt;li&gt;collections：分类&lt;/li&gt;
   &lt;li&gt;navigation：根据文件树输出导航&lt;/li&gt;
   &lt;li&gt;paginate：分页&lt;/li&gt;
   &lt;li&gt;permalinks：给网页一个固定链接&lt;/li&gt;
