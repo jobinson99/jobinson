@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>TurboGears2.1（极限动力2）学习笔记二_筋骨皮风格</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2010/04/13/turbogear2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="TurboGears2.1（极限动力2）学习笔记二_筋骨皮风格">TurboGears2.1（极限动力2）学习笔记二_筋骨皮风格</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>摘要：</b><br/></p>
+      
+
+      
+      <p class="post-tag"><b>话题：</b>
+        
+        <a href="/话题列表/#极限动力2-ref">极限动力2
+        <sup>2</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#筋骨皮-ref">筋骨皮
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#mvc-ref">mvc
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#turbogears-ref">turbogears
+        <sup>2</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#技术学习-ref">技术学习</a>
+        
+      </span>
+      
+      
+      创建时间：2010-04-13
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <p>TG2（恩，响应号召，就叫“极限动力2”吧）使用MCV设计风格（找不到好的中文翻译，就叫“筋骨皮”设计风格吧，呵呵，没错，是取自“人活一口气，树练筋骨皮”）设计，为什么需要筋骨皮分离呢？这个有维护、分工效率方面方便的原因。</p>
+
+<p>一般来说，分工效率高，但如果团队太小，那么就要学早期生产塑胶花时候的李超人吧，什么事情都一个人搞，筋骨皮全部自己一双手来，这是没有办法的，你想咋样就咋样。</p>
+
+<p>接下来，随着参与开发的人多了之后，就需要有初步的管理体系（恩，我们姑且叫svn吧，又一个缩写词，还好，这个有个名字叫 成效集中管理），好处不消说，就是分工负责，而且还不能相互冲突，此时，如果再像起始阶段一样，所有东西自己一个人来，就会有分工不明，导致混乱，所以，就有必要把东西拆成若干部分了，此时，就是我们说的筋骨皮风格就诞生并大大发挥效用了（注意：筋骨皮模式不是必须的，而是根据需要发展出来的，而且，还不是终点，随着事情的发展，很多需求会发展出来，更有效的方式也会被发明出来，比如现在就有的KISS就叫“简古纯粹”吧）。</p>
+
+<p>这些东西，对于接触过一些和管理方面知识的人，都不会有任何异议的，有异议的是不同的具体实现方式。</p>
+
+<p>在程序开发方面，古老的形式，比如我大学时学习的VFP，以数据库为中心，可以构建起任何一个程序（恩，确实是任何，至少我用VFP整过一个拨号程序，当年还需要56k猫 :_)）。但这种形式，随着数据库的发展，网络的兴起，人们渐渐发现，数据库种类多了，相互之间转换不方便，集中管理模式维护起来不方便等，使得把数据库部分再进行切分很有必要，于是，出现了筋骨皮这种模式（不管是mtv还是mvc，都是这个思路之下的产物，呵呵）</p>
+
+<p>采用筋骨皮方式，那么首先会碰到一个问题，就是骨架部分。</p>
+
+<p>在开始学习的时候，我很不习惯，因为我当年学习数据库的时候，以及后来搞经济社会统计的时候，是所有东西一次性设计完成，效率很高，而筋骨皮方式把各个部分分成了几个部分了，很不习惯，也感觉很混乱。</p>
+
+<p>在学习极限动力2的同时，我还看了web.py，对其对骨架部分的做法很欣赏，因为够简洁，也相对符合我以前搞数据库的方式。但仔细一想，则发现这种直接操作数据库的方式，不利于维护，也不利于数据库转移，只能适合数据一经录入就用不变动的，并且数据库结构以后一直都能用的统计里面，而不适合需要变动数据结构、转移数据库的网站中——所以，需要一个中介层（叫ORM，这个如何翻译呢？数据库映射，数据库兼容接口？），这个中介层不再管数据库字段里面关于操作、显示方面的因素，只做和骨架有关的，这样可以在不影响目前运行服务的情况下，在线下对数据库结构进行重新设计。</p>
+
+<p><strong>数据库 ∈ { 存储文件，数据库结构(schema)，数据库可用操作 }</strong></p>
+
+<p>数据库映射负责的是数据库结构部分。具体看极限动力2的做法，或者说是SQLAlchemy的具体做法就是：</p>
+
+<p>把原来数据库VFP时代中的字段标题，字段类型格式限定等，都分别放在controller或者template里面。</p>
+
+<p>只保留（比较泛泛）：</p>
+
+<ul>
+  <li>字段名＋类型＋长度＋是否自增长＋默认值＋是否可空＋外连键＋说明（对于数据库本身基本没啥价值，但对于维护数据库结构来说，还是很重要的东西）</li>
+  <li>＋初始值（这个可以不在创建骨架的时候生成，在骨架完成后，直接对数据库操作。不是默认值，默认值是属于外观的，可以不写入数据库。）</li>
+  <li>＋对数据库的操作，放到筋(controller)中</li>
+  <li>＋对数据库结果展示，放到皮(template)中</li>
+</ul>
+
+<p>总算弄明白了。举个例子：</p>
+
+<p>原来电子邮件，规定了具体的格式，而在筋骨皮模式中，</p>
+
+<p>A、数据库列是泛泛规定的，以方便在不同数据库间转移，同时也方便数据库结构修改，不至于影响操控和外观部分。比如可以直接存储为string或者unicode</p>
+
+<p>B、对电子邮件的格式的规定，是通过controller的验证部分来实现的，不符合规定的就拒绝接收。这样无需直接对数据库进行操作，有效降低数据库的负载，直接在相对数据库较快／省资源的验证部分就搞定了。而数据库也因此获得巨大的数据灵活性，方便数据库间数据转移。</p>
+
+<p>C、为了方便理解，有时有必要显示一个电子邮件的默认值作为参考示例，比如admin@admin.com，如果是古老的数据库，一般方法是直接在数据库中定义默认值（在统计里面，默认值是非常重要的，可以减少大量的重复性输入）。而实际上，这个值完全没必要写入、也完全没必要从数据库读出，完全可以在筋骨皮模式中的皮部分搞定，和B一样，也是<strong>把没必要和数据库交互的部分完全剥离出了骨架部分。</strong></p>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+
+  <!-- 有言评论 -->
+  <div id="uyan_frame"></div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+  
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a class="pull-right" href="/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2010/04/08/turbogears2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/">◁前<br>TurboGears2.1（极限动力2）学习笔记一_学习流◀篇</a>
+    </div>
+    
+    
+     <!--回到头部-->
+    <div class="back-top"><a href="#TurboGears2.1（极限动力2）学习笔记二_筋骨皮风格">△
+    <br>回头▲再看</a></div> 
+    
+    
+    <div class="post-next">
+    <a href="/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2010/05/06/kde4%E5%B7%B2%E7%BB%8F%E6%88%90%E7%86%9F%E4%BA%86/">后▷<br>篇▶成熟了成熟了，kde4已经成熟了</a>
+    </div>
+    
+    
+  </div>
+
+<!--页面底部自动浮现-->
+  <div class="post-reletive">
+  <!--相关文章-->
+
+  </div>
+
+
+</div>
+
+
+ 
+</div>
+
+
+
+
+      
+      <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2015版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接，谢谢合作！</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+      <span>致谢： </br>
+        <a href="http://www.github.com">空间：github</a>，
+        <a href="http://jekyllrb.com">构建：jekyll</a>，
+        <a href="http://freenom.com/">域名：freenom</a>，
+        以及一切对本人有帮助的人事物！</span>
+      <span>
+        <!--百度统计-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+      </span>
+    </li>
+  </ul>
+</footer>
+
+
+    
+
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>关于web framework的选型 </title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2010/03/08/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6%E9%80%89%E5%9E%8B/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="关于web framework的选型 ">关于web framework的选型 </h1>
+
+    <div class="post-abstract">
+      
+      <p><b>摘要：</b><br/></p>
+      
+
+      
+      <p class="post-tag"><b>话题：</b>
+        
+        <a href="/话题列表/#框架-ref">框架
+        <sup>1</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#技术学习-ref">技术学习</a>
+        
+      </span>
+      
+      
+      创建时间：2010-03-08
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <p>这好几个月来，一直在进入一个我原来不熟悉的领域，技术开发，虽然我选了一个比较容易的角度进去，但还是困难重重。</p>
+
+<p>从我最开始以为的php+lamp无敌的印象，到现在我知道了数据库和web server强人辈出，尤其是新应用面前（包括我要搞的应用），php和lamp都已经不堪其负。而分布式＋对象数据库等等概念，已经让我大开眼界。在此bs下国内各大网站，只知道抄表面的东西，看看人家facebook，一个发展不过几年的网站，就已经给社会贡献了新的编程语言，新的数据库，新的web server等等。
+回到正题。</p>
+
+<p>经过一段时间的饱读，现在我的技术选型基本上可以确定下来了。</p>
+
+<p>因为以前配过开源cms，有了点经验，知道各种程序框架基础的选型，首要的是：<strong>扩展要丰富，基础要强健</strong>。其他的都是可以较容易解决的。——很不幸，我还没能力自己创造一个，所以只能在现有的东西里面选。</p>
+
+<p>而要满足我这种bt的要求，<strong>可插拔性是免不了的</strong>。比如我选archlinux，选emacs，都是因为这种要求，容易让我配出我希望的东西，而不是别人认为不错的东西。</p>
+
+<p>那要新的还是旧的呢？根据我的激进风格，我会选择新的，但这个在以前用drupal的时候吃了大亏。当时我的drupal5都差不多快成形了，结果由于心里作祟，竟然换了drupal6，结果很多插件都找不到，很多东西要重新设置，直接把我累趴，搞到现在，那个drupal6还躺在我虚拟机里，处于半成品状态。</p>
+
+<p>那么旧的就是好的么？有人说要久经考验的东西才是好东西，这是多么古老的观点啊。如果非要久经考验，那这世界上就没有新技术了。一句话：<strong>根据需要确定是要激进还是保守。</strong></p>
+
+<p>比如给银行搞的东西，你敢激进么？但如果是迎接新技术浪潮的，那么就是越激进越好了。</p>
+
+<p>比如我选的tg2（可能还会变，在web2py，web.py间变，但基本的部件已经可以确定，换无非是想其他要求，学习难度不算在内，因为对他们，我都是新手），有人帖了好几年前的观点，说tg整合的包不行，有点拼凑的感觉，所以不建议采用，倒是看好pylons或者django</p>
+
+<p>但tg2不是已经合并了pylons么？默认已经是paster+……＋cherrypy+genshi(2.1默认可选mako，速度更快了。而且tg的可插拔性并没想象的那么别扭，实际上<strong>世界上所有有点规模的程序都不是一个人开发的，是众人拼起来的，所以，既然是拼，就难免有长有短，而如果条件允许，那么谁不想选用最优化的组件呢？</strong>而tg2恰好就给了这种可能性。</p>
+
+<p>tg2在国内不热，django横行，和大家都在做blog式的网站有关，那一天大家开始搞更web应用软件等相对复杂的系统的时候，就会发现原来django是如此脆弱。给个不太恰当的比喻，如果django是新浪的话，那么tg就是腾讯，一个是传媒起家，一个是应用起家</p>
+
+<p>现在仅剩的问题恐怕就是web.py指责所有web-framework的话了：你们都是让人在按你们的方式开发，看我多好，用我的话，就跟用python没两样。</p>
+
+<p>嗨，春节后，一直被emacs折磨到现在，也没啥好说的，不过emacs差不多也快成形了，接下来是时间问题了，时间一到，熟悉之后就一切顺畅了。</p>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+
+  <!-- 有言评论 -->
+  <div id="uyan_frame"></div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+  
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a class="pull-right" href="/%E8%BD%AF%E4%BB%B6%E7%94%9F%E4%BA%A7%E7%BA%BF/2010/03/01/%E6%98%93%E7%A0%81%E8%82%86%E5%88%9D%E6%AD%A5%E5%85%A5%E9%97%A8/">◁前<br>[学习笔记]易码肆初步入门◀篇</a>
+    </div>
+    
+    
+     <!--回到头部-->
+    <div class="back-top"><a href="#关于web framework的选型 ">△
+    <br>回头▲再看</a></div> 
+    
+    
+    <div class="post-next">
+    <a href="/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2010/04/08/turbogears2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/">后▷<br>篇▶TurboGears2.1（极限动力2）学习笔记一_学习流</a>
+    </div>
+    
+    
+  </div>
+
+<!--页面底部自动浮现-->
+  <div class="post-reletive">
+  <!--相关文章-->
+
+  </div>
+
+
+</div>
+
+
+ 
+</div>
+
+
+
+
+      
+      <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2015版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接，谢谢合作！</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+      <span>致谢： </br>
+        <a href="http://www.github.com">空间：github</a>，
+        <a href="http://jekyllrb.com">构建：jekyll</a>，
+        <a href="http://freenom.com/">域名：freenom</a>，
+        以及一切对本人有帮助的人事物！</span>
+      <span>
+        <!--百度统计-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+      </span>
+    </li>
+  </ul>
+</footer>
+
+
+    
+
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>

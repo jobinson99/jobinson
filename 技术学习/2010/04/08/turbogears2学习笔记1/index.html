@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>TurboGears2.1（极限动力2）学习笔记一_学习流</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2010/04/08/turbogears2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B01/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="TurboGears2.1（极限动力2）学习笔记一_学习流">TurboGears2.1（极限动力2）学习笔记一_学习流</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>摘要：</b><br/></p>
+      
+
+      
+      <p class="post-tag"><b>话题：</b>
+        
+        <a href="/话题列表/#python-ref">python
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#网站-ref">网站
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#turbogears-ref">turbogears
+        <sup>2</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#极限动力2-ref">极限动力2
+        <sup>2</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#经验-ref">经验
+        <sup>1</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#技术学习-ref">技术学习</a>
+        
+      </span>
+      
+      
+      创建时间：2010-04-08
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <p>注：由于水平所限，如果不当的地方，不吝赐教，谢谢。</p>
+
+<h2 id="section">选型：</h2>
+
+<p>虽然我对编程方面的基础还算不错，但为了避免给手下以过多压力和限制，我对编程方面的东西都是假装小白状的。</p>
+
+<p>可是，天又不测风云，英雄总有徒呼奈何的时候。我现在就碰到了，自己想搞的东西找不到合适的技术合伙人，于是，自己动手丰衣足食就被提上日程。本来，我是可以直接从facebook开始的，直接复制之，但发现里面太多功能不是我所期望的，如果要成为我所期望的，所做的修改工作量恐怕和我重新写一个差不了多少，而且，php的性能瓶颈在那里，使得我不想再在php上多花时间。于是，我转向了python，为啥不是ror？恩，原因嘛，无非是python应用更全面，而且好学，<strong>python说是一个编程语言好像不准确，准确的是说502胶水，可以轻易地把其他程序语言所创建的东西都粘在一起。</strong></p>
+
+<p>选定了python，那么，我自己来搞一个自己的web framework也是可以的，但我还不想这么做，我要利用现有的webframework。主要集中在三个：turbogears web2py web.py。为什么不是流行的django呢？因为据我分析，django的流行，完全是因为前段时间互联网的博客化倾向太过严重，才会如此，而<mark>现在和未来的互联网是什么样的呢？跨终端、跨平台、可插拔、应用型、联网＋本地。</mark>那么，django就大大的不合适了，就比如你要做个邮箱系统，如果你用的是wordpress，那么杯具就是注定的，虽然也能做出来。</p>
+
+<p>为什么选tg呢？tg的好处很多，比如整个架构所有组件几乎都可不要（变成了web.py还算少的，变成裸框架都可能），都可替换（可以变成任意其他webframework），恩，这和我选择操作系统的时候选了archlinux是一个道理的：<strong>简洁＋灵活性。</strong></p>
+
+<p>为什么不是web.py呢？web.py是一个反框架的框架，号称使用python来做网站，但是，我发现，因为我不想重造轮子，所以需要导入很多现成库，导致最终结果就是基于web.py的turbogears</p>
+
+<p>为什么不是web2py呢？web2py确实非常适合作教学，我一开始也比较满意，所以顺手给这个框架做了个翻译，使得开发中可以使用中文界面了。但web2py的缺陷也是明显的，除了其他人所列的那些问题，对我来说主要的问题是：有好用的东西不用，重造轮子不划算（为了好用的东西，有必要替换一些东东，结果变成了基于web2py的turbogears）；图形化的开发界面缺陷太多（比如配色，比如列表，比如代码编辑等，恩，没错，我每次装web2py，第一步就是换了其默认的css样式）。</p>
+
+<p>为什么选turbogears2.1？我真是激进啊，国内中文的tg文档，全部是基于tg1的，此时我上还在beta中的tg2.1确实需要被诟病。我的理由呢？就是tg1虽然中文文档多，但翻译得烂，还不如直接看英文原文，而且tg1的缺陷暴露也很明显，不适合我的项目。为什么不是tg2呢？个人曾经玩过php的xoops、joomla和drupal，深有体会，joomla是不错，我也基本上把其搞成了一个好用的网站，但郁闷的是，其皮肤系统是分散的，所需维护精力大幅提高，所以选择了统一性比较好的drupal。而选drupal给了我很多经验和教训。目前最好的还是drupal5，虽然drupal6改进了很多，虽然drupal7已经在开发，但因为大部分有用的扩展组件都是基于drupal5的，因此，迁移到drupal6会导致很多功能缺失，而drupal6的改进幅度还不足以让人去放弃drupal5，可能drupal7才会有如此吸引力，因此，drupal6社区的热度好像一直都有问题，很多组件都没迁移上来，后果就是drupal6可能会出师未捷身先死。我自己原来网站用的drupal5，还算不错，但上了6之后，基本的东西有提高，但功能丧失大部分，挫折太大，网站最终太监了。</p>
+
+<p>既然有如此经验，那么，就完全能够这么想：<strong>如果有大量东西需要从外部引入，那么如果要选，就选稳定的；否则，就选最新的，过渡型的有点吸引力，但不够大，最终社区热度和自身体验都会大打折扣。</strong>所以，我非常激进地选了turbogears2.1。</p>
+
+<h2 id="tg">初步学习tg：</h2>
+
+<p>一、tg分为几个部分：</p>
+
+<ul>
+  <li>可重用效果衔接：toscawidget</li>
+  <li>外形模板衔接：genshi/mako</li>
+  <li>网络服务器衔接：pylons</li>
+  <li>数据库衔接：SQLAlchemy</li>
+</ul>
+
+<p>注意：我的翻译不是传统的方式，可能比较难以理解，但这么翻译的好处是比较精确。每个词后面都有“衔接”两字，正好是其可替换、可插拔的特性的表现，这也是目前网络开发框架常用的方法：<strong>使用中间件来连接自定义的东西和固件，大幅度降低开发难度和维护难度，当然，这样会稍微降低下性能，但划得来。</strong></p>
+
+<p>二、tg快速向导所创建项目的文件结构和说明：</p>
+
+<p>XXX.pyc 是源文件的备份，下面所列，就不包含这个了。</p>
+
+<pre><code>|__ /XXX/config/app_cfg.py ：所使用的应用的配置
+|     |__ /config/__ini__.py ：
+|     |__ /config/evironment.py ：WSGI环境设置
+|     |__ /config/middleware.py ：WSGI中间件于此处配置
+|     |__ /XXX/deployment.ini_tmpl 一个部署时的配置文件模板
+|
+|__ /XXX/controllers/root.py ：站点总控制文件
+|     |__ /controllers/error.py ：设置错误中间件的作用形式
+|     |__ /controllers/secure.py ：一个设置有保护机制的控制器的模板（在快速创建中如果启用认证机制的话，这文件就有作用了）
+|     |__ /controllers/templates.py 404文件
+|     |__ /controllers/__init__.py
+|     |__ /controllers/controller.template 控制文件的模板
+|
+|__ /XXX/i18n ：本土化文件所在
+|
+|__ /XXX/lib/app_grobals.py 用于设置配置选项的存储方式
+|     |__ /lib/base.py 基本的控制器对象
+|     |__ /lib/helpers.py 本项目所使用的pylons帮助部件
+|     |__ /lib/__init__.py
+|
+|__ /XXX/model 用于model文件所在，此处一般需要根据需要创建一两个文件的，可复制下模板，然后改个名字和后缀名，比如model.py，创建之后，需要__init__.py里面导入相应的模块。
+|     |__ /model/auth.py 使用了用户认证模块的模型文件
+|     |__ /model/model.template 这个是模型文件的模板
+|     |__ /model/__init__.py
+|
+|__ /XXX/public 这里是静态文件所在，比如css，image，js
+|
+|__ /XXX/templates 所使用的模板所在，里面的文件，如果是使用genshi的话，是以html为后缀名，如果是用mako，则是以mak为后缀
+|     |__ /templates/master.mak 这个是模板的主控文件，定义页面各个部分的和页面结构
+|     |__ /templates/index.mak 这个是首页，从master.mak导入各种所需的部分，再加上自己特殊的东西
+|     |__ /templates/simple_mako.mak 这个是mako的最简模板
+|
+|__ /XXX/tests 调试用
+|
+|__ /XXX/websetup 原来需要新建的websetup.py，在2.1后变成了一个文件夹。modify this files to add db fixtures for app installation
+|     |__ websetup/bootstrap.py 引导文件
+|     |__ /websetup/schema.py
+|     |__ /websetup/__init__py
+|
+|__ /XXXX.egg-info 由setuptools创建，不要用普通方法修改，让setuptools自动搞
+|__ /ez_setup 团队使用svn开发的时候有用。
+|__ /XXX/__init__.py
+|__ /setup.py 设置如何安装的文件
+|__ /setup.cfg 设置如何安装的文件
+|__ /development.ini 启动tg服务器的文件
+|__ /test.ini 当使用调试模式nosetests时使用
+|__ /README.txt 安装说明文件
+|__ /MANIFEST.in
+|__ /devdata.db 数据库
+</code></pre>
+
+<p>三、需要学习的基本流程：</p>
+
+<p>首先，就是<strong>手把手教做一个wiki</strong>，需要认真看说明，非常详细，看完基本上tg的基本工作方式和精华就吸收到了。</p>
+
+<p>同时，还要<strong>把数据库结构迁移部分</strong>也学了，否则开发的时候会很不爽，每次修改数据库结构，都要删除原有数据库，然后重新创建一个数据库，这是不可忍受的，因为会使得原有数据库中的数据丢失，所以需要先学了数据库结构迁移部分，使得能够在线更新数据库结构。</p>
+
+<p>接下来。学完wiki部分，就可以开始构建自己的应用了。</p>
+
+<p>此时，需要学<strong>模型－模板－视图</strong>的几个构建部分。注意，<strong>toscawidget先不要学</strong>，我自己就先学了，结果很后悔太早学，浪费时间，并大幅度增加了对系统复杂度的恐惧感了。恩，目前的印象是，过多使用toscawidget会导致系统非常复杂难以维护：因为tw的部件并不是普通的部件，比如opera的部件，比如facebook的app，是可以随时添加，随时删除的，也不是默认就加载的（尤其是放在本地的时候，全部加载会很耗资源），而tw的部件是无状态的（stateless），运行时不可更改，否则出错，所以也就没办法做到像普通的app或者widget一样，可最大限度节省资源地随时插拔（当然，如果你所有应用都在服务器端，那我这段话可以忽略不计，而且还有必要大量使用tw；而恰好我的项目有一部分是需要在本地运行的，甚至是低资源的手机上运行，所以，这句话我非得说不可）。</p>
+
+<p>最后，那就是根据需要，再查手册了。</p>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+
+  <!-- 有言评论 -->
+  <div id="uyan_frame"></div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+  
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a class="pull-right" href="/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2010/03/08/%E7%BD%91%E7%BB%9C%E6%A1%86%E6%9E%B6%E9%80%89%E5%9E%8B/">◁前<br>关于web framework的选型 ◀篇</a>
+    </div>
+    
+    
+     <!--回到头部-->
+    <div class="back-top"><a href="#TurboGears2.1（极限动力2）学习笔记一_学习流">△
+    <br>回头▲再看</a></div> 
+    
+    
+    <div class="post-next">
+    <a href="/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2010/04/13/turbogear2%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B02/">后▷<br>篇▶TurboGears2.1（极限动力2）学习笔记二_筋骨皮风格</a>
+    </div>
+    
+    
+  </div>
+
+<!--页面底部自动浮现-->
+  <div class="post-reletive">
+  <!--相关文章-->
+
+  </div>
+
+
+</div>
+
+
+ 
+</div>
+
+
+
+
+      
+      <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2015版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接，谢谢合作！</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+      <span>致谢： </br>
+        <a href="http://www.github.com">空间：github</a>，
+        <a href="http://jekyllrb.com">构建：jekyll</a>，
+        <a href="http://freenom.com/">域名：freenom</a>，
+        以及一切对本人有帮助的人事物！</span>
+      <span>
+        <!--百度统计-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+      </span>
+    </li>
+  </ul>
+</footer>
+
+
+    
+
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>
