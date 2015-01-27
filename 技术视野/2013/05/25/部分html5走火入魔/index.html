@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>【反思】部分html5走火入魔</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/%E6%8A%80%E6%9C%AF%E8%A7%86%E9%87%8E/2013/05/25/%E9%83%A8%E5%88%86html5%E8%B5%B0%E7%81%AB%E5%85%A5%E9%AD%94/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="【反思】部分html5走火入魔">【反思】部分html5走火入魔</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>摘要：</b><br/></p>
+      
+
+      
+      <p class="post-tag"><b>话题：</b>
+        
+        <a href="/话题列表/#html5-ref">html5
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#标识-ref">标识
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#走火入魔-ref">走火入魔
+        <sup>1</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#技术视野-ref">技术视野</a>
+        
+      </span>
+      
+      
+      创建时间：2013-05-25
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <p>注：标题比较辛辣，仅为引起注意而已，不代表观点极端。</p>
+
+<h2 id="section">标识需要整理</h2>
+
+<p>新增的大部分标识，包括<code>&lt;header&gt;&lt;nav&gt;&lt;hgroup&gt;&lt;article&gt;&lt;section&gt;&lt;aside&gt;&lt;footer&gt;&lt;ruby&gt;&lt;summary&gt;&lt;rp&gt;&lt;output&gt;&lt;mark&gt;</code>，增加了系统复杂性、掌握难度，降低了处理效率。</p>
+
+<p>比如：</p>
+
+<pre><code>&lt;section id="xxx"&gt;
+
+&lt;div id="xxx"&gt;
+</code></pre>
+
+<ol>
+  <li>很明显，下面的比上面的简单。</li>
+  <li>上面所列的标识，大部分是布局用的。原因是原来只需要处理<code>div</code>即可获知整个文档的结构，现在需要多处理几个标识，这些标识和原先的<code>div</code>相互嵌套的话，处理复杂性大幅度上升。也因此，有人说语义化标签可以更方便搜索引擎处理也是很成疑问。</li>
+</ol>
+
+<p>标识数增加，必然导致解析器复杂，影响解析器效率，而且精确性不好，比如本来一个div就可以表示区块，所有div内的渲染都限定在该div内，继承关系简单。而如果多了一个section和div都是负责区块渲染的，那么这段区块渲染代码的继承关系则必然变成 多重继承，虽然引用的代码可能也就一句，但多一句也是多。</p>
+
+<p>虽然，多一个标识，可以逼迫渲染器开发者优化这些新标识，提升效率，但这些标识如果和原先的差别不大的呢？比如同样表示区块。其实要是浮动区块和固定区块倒是需要区分开来，进行优化，比如浮动区块由于需要动态渲染，调用系统的 图形加速，而不浮动的区块，则直接普通图形渲染即可。——这在用canvas做游戏上体现出来这个必要性了：需要经常性更新渲染的也就一两个层，其他都是普通的图片一次渲染即可。</p>
+
+<p>——相信做页面分析的人，很早就意识到这个问题了。</p>
+
+<pre><code>&lt;div&gt;
+
+&lt;header&gt;
+
+&lt;section&gt;
+
+&lt;div&gt;
+
+&lt;section&gt;
+
+&lt;section&gt;
+
+&lt;div&gt;
+
+……
+</code></pre>
+
+<ol>
+  <li>使用<code>div</code>方式，早在21世纪初，就通过dreamweaver和frontpage的战争中获胜，并发展成熟，甚至在后来<code>div+css</code>大行其道。</li>
+</ol>
+
+<p>那么，这种方式有没必要进一步改进呢？有必要，因为在<code>div+css</code>模式下，布局和文内特殊格式之间，都用的div，需要拆分开来，布局仍然用div，文内特殊格式用别的标签，比如<code>&lt;p&gt;&lt;/span&gt;</code>，但机制应该参考div这种优秀的模式，比如可指定class或id，可以组合出无穷尽的效果。</p>
+
+<ol>
+  <li>
+    <p>部分是通用性不足的：比如ruby标识，难道在标准中设定所有的编程语言都有一个标识？那标准何时完成？还是用<code>&lt;pre class="ruby"&gt;</code>这种方式通用且灵活。</p>
+  </li>
+  <li>
+    <p>另外，原先html4的部分标签，有必要清理掉。比如<sub> ，比如关于列表的几个标签&lt;ul&gt;&lt;ol&gt;&lt;dl&gt;，可以统一为一个，然后通过class或者id来控制实现的效果。</sub></p>
+  </li>
+</ol>
+
+<p>总之，多几个规律性不足的语义性标签，会加大了掌握的难度，而且降低了灵活性。</p>
+
+<p>有必要减少一些格式标签，汇总之后，可以获得更大的灵活性，提高学习的效率。</p>
+
+<pre><code>&lt;div class="content" id=""&gt; 用于表示固定的布局
+&lt;splash&gt; 浮动区块：需经常更新渲染的区块，和canvas一样调用系统图形加速
+&lt;header class="h1"&gt; 用于表示文档大纲级结构
+&lt;p class="abstract" id=""&gt; 用于表示段落
+&lt;span class="" id=""&gt; 用于表示段落内文本
+&lt;list class="orderlist" id=""&gt; 用于表示列表
+&lt;pre class="ruby"&gt; 用于表示程序语言类别
+</code></pre>
+
+<h2 id="section-1">更大的改进：后台内建机制</h2>
+
+<p>改进方法不是在前台的标签，而是后台的处理策略，这方面由于html标准长年的停滞，而改进不大。发展到今天，竟然是通过前台来倒逼后台改进。</p>
+
+<p>html5最终落到实处，对用户和开发者最有用部分或者说最终沉淀下来的话，也就后台策略部分，比如内建调用图形芯片加速，或者内建一个常用的动画，或者内建对多媒体解码器的调用等等。</p>
+
+<h2 id="section-2">其他需要改进的</h2>
+
+<p>对跨语种的标识支持至今仍没提上日程。</p>
+
+<p>经验教训：</p>
+
+<ol>
+  <li>
+    <mark>核心标准应该尽可能小且稳定</mark>
+    <p>，这样方便掌握和组合，前台方面尽量不变，但后台方面的改进应该是个持续不断的过程，而不应该标准设立后就停滞。</p>
+  </li>
+  <li>标准应该内建扩展方法。</li>
+  <li>应该把扩展后的成果作为模板，而不是统一扩展方向为新版本的标准。</li>
+</ol>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+
+  <!-- 有言评论 -->
+  <div id="uyan_frame"></div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+  
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a class="pull-right" href="/%E4%B8%AA%E4%BA%BA%E7%9F%A5%E8%AF%86%E7%AE%A1%E7%90%86/2013/02/20/%E7%90%86%E6%83%B3%E7%A7%91%E7%A0%94%E5%86%99%E4%BD%9C%E7%8E%AF%E5%A2%83/">◁前<br>【整理】理想科研学习写作环境◀篇</a>
+    </div>
+    
+    
+     <!--回到头部-->
+    <div class="back-top"><a href="#【反思】部分html5走火入魔">△
+    <br>回头▲再看</a></div> 
+    
+    
+    <div class="post-next">
+    <a href="/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2013/09/13/calligra%20suite%E5%B7%B2%E7%84%B6%E6%88%90%E7%86%9F/">后▷<br>篇▶calligra suite已然成熟，可以替换libreoffice了</a>
+    </div>
+    
+    
+  </div>
+
+<!--页面底部自动浮现-->
+  <div class="post-reletive">
+  <!--相关文章-->
+
+  </div>
+
+
+</div>
+
+
+ 
+</div>
+
+
+
+
+      
+      <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2015版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接，谢谢合作！</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+      <span>致谢： </br>
+        <a href="http://www.github.com">空间：github</a>，
+        <a href="http://jekyllrb.com">构建：jekyll</a>，
+        <a href="http://freenom.com/">域名：freenom</a>，
+        以及一切对本人有帮助的人事物！</span>
+      <span>
+        <!--百度统计-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+      </span>
+    </li>
+  </ul>
+</footer>
+
+
+    
+
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>
