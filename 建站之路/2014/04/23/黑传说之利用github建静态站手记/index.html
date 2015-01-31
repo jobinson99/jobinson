@@ -154,7 +154,7 @@
 
 <ul>
   <li>如果想让github来生成，则把需要的日志纳入成果管理，立案后，把本地的仓库同步到注册的github仓库的master分支中，然后静待github来生成——一般很快就完成了。</li>
-  <li>如果不想让github来生成的话，则本地生成好，然后发布到github仓库的gh-pages分支，即完成发布。</li>
+  <li>如果不想让github来生成的话，则本地生成好，然后<strong>发布到github仓库的gh-pages分支</strong>，即完成发布。</li>
 </ul>
 
 <h2 id="section-1">如何使用自己想要静态站生成器和插件？</h2>
@@ -165,14 +165,15 @@
 
 <p>目前流行度最高的有ruby的jekyll。github就只使用了jekyll作为后台生成器，因此，如果用的是其他静态站生成器，都需要自己本地生成，然后发布到gh-pages分支。</p>
 
-<p>jekyll使用方法见下一篇：<a href="">使用jekyll生成静态站</a></p>
+<p>jekyll使用方法见下一篇：<a href="/建站之路/2014/04/27/使用jekyll生成静态站/">使用jekyll生成静态站</a></p>
 
 <p>注意：自己生成的话，需要在生成页面的根目录下，放一个 <em>.nojekyll</em> 文件关闭github的jekyll生成服务。</p>
 
 <h2 id="section-2">如何维护双库？</h2>
 
-<p>如果是用的其他静态站生成器，很明显，源码和生成的静态文件就分开了。
-那么，如何管理呢？双库法！静态站仓库只需要更新 gh-pages分支。</p>
+<p>如果是用的其他静态站生成器，很明显，源码和生成的静态文件就分开了。</p>
+
+<p>那么，如何管理呢？双库法！ <strong>生成后的静态站 仓库 只需要更新到远程的 gh-pages分支。</strong></p>
 
 <p>默认的项目仓库情况：</p>
 
@@ -201,6 +202,8 @@
   </tbody>
 </table>
 
+<p>说明：如果使用github的jekyll服务，则默认本地不需要gh-pages分支，只需要发布到远程，并新建一个gh-pages的分支即可。</p>
+
 <p>双库法后，项目仓库如下：</p>
 
 <table>
@@ -223,22 +226,24 @@
       <td>site/gh-pages</td>
       <td>xxx/_site</td>
       <td>site/origin/gh-pages</td>
-      <td>分支，子模块</td>
+      <td>分支或子模块</td>
     </tr>
   </tbody>
 </table>
 
+<p>说明：至少需要两个远程仓库，比如我用了bitbucket的私有库来保存源码，用github的 gh-pages 来保存生成的静态站。</p>
+
 <p>文件结构如下：</p>
 
 <pre><code>~/
-  |-- xxx-source/
+  |-- xxx-source/       此处文件会发布到source/origin/master
   |    |-- _includes/
   |    |-- _posts/
   |    |-- index.html
   |    |-- .nojekyll
   |    |-- _config.yml
   |     ....
-  |    |-- _site/ &lt;--- 软链或子模块，此中文件会发布到gh-pages
+  |    |-- _site/ &lt;--- 软链或子模块，此处文件会发布到site/origin/gh-pages
   |
   |-- xxx-gh-pages/  ---&gt; 软链或子模块到 xxx-source/_site
 </code></pre>
@@ -271,7 +276,7 @@
 - .nojekyll
 </code></pre>
 
-<h3 id="section-4">一些有关操作</h3>
+<h4 id="section-4">一些有关操作</h4>
 
 <p>远程删除或者添加分支</p>
 
@@ -281,7 +286,7 @@ git push origin :gh-pages
 git push origin gh-pages
 </code></pre>
 
-<p>生成孤立分支：先克隆源码站，然后生成孤立分支 gh-pages （带参数 <code>--orphan</code> 没有历史记录，是一个完全独立背景干净的分支），清空里面所有内容</p>
+<p>生成孤立分支：先克隆源码站，然后生成孤立分支 gh-pages （带参数 <code>--orphan</code> 没有历史记录，是一个完全独立背景干净的分支），如有需要，可清空里面所有内容</p>
 
 <pre><code>git clone git@github.com:username/site.git
 cd repository
@@ -296,10 +301,10 @@ git rm -rf .
 <pre><code>git push origin gh-pages
 </code></pre>
 
-<p>.htacess呢？ 不行！
+<p><code>.htacess</code>呢？ 不行！
 redirects呢？</p>
 
-<p>同一目录，但互相监控不同的文件夹？同一目录双库？</p>
+<p>问题：如何在同一目录，但互相监控不同的文件夹？同一目录双库？</p>
 
 <p>先本地建完主分支master，然后新建小分支gh-pages</p>
 
@@ -309,7 +314,7 @@ git push -u origin --all
 
 <p>一起推向服务器端</p>
 
-<p>然后切换到分支gh-pages。把.git文件全部放入_site中，然后转到_site中，提交。 </p>
+<p>然后切换到分支gh-pages。把.git文件全部放入<code>_site</code>中，然后转到<code>_site</code>中，提交。</p>
 
 <pre><code>git branch gh-pages
 git push -u origin --all
@@ -317,13 +322,13 @@ git push -u origin --all
 git remote add origin ssh://git@github.com/username/site.git
 git push -u origin master
 git checkout gh-pages
-git push -u origin gh-pages   
+git push -u origin gh-pages
 </code></pre>
 
 <p>可选步骤：删掉主分支，以免混淆。</p>
 
 <pre><code>git branch -d master
-git branch  
+git branch
 </code></pre>
 
 <h3 id="section-5">软链双库法</h3>
@@ -387,27 +392,22 @@ alias bb="build_blog"
 
 <p>全过程：</p>
 
-<p>说明：为减少时间，在完成新建子模块前，尽可能在两个分支里面，保留尽可能最少的文件，以减少新建子模块时间。</p>
+<p>注意：为减少过程所需时间，在完成新建子模块前，尽可能在两个分支里面保留最少的文件，以减少新建子模块时间。</p>
 
 <ol>
-  <li>
-    <p>开两仓库。</p>
-  </li>
-  <li>
-    <p>清空xxx-gh-pages的内容，并且提交到远程。清空并提交的目的是减少克隆时间。</p>
-  </li>
-  <li>
-    <p>切换到 <em>xxx-source</em> 分支，把 <em>xxx-source</em> 分支也同步到github。
-接着，把xxx-gh-pages指为子模块，并挂载到 <code>_site</code>目录下。
-注意，此处不要有 <code>_site</code> 文件，下面的命令会自动克隆原有 <em>site</em> 到此处。</p>
-
-    <pre><code> $ git checkout master
- $ git push -u origin --all
-
- $ git submodule add -b master git@github.com:username/site.git _site
-</code></pre>
-  </li>
+  <li>开两仓库。</li>
+  <li>清空 <em>xxx-gh-pages</em> 的内容，并且提交到远程。清空的目的是减少克隆和提交时间。</li>
+  <li>切换到 <em>xxx-source</em> 分支，把 <em>xxx-source</em> 分支也同步到github。</li>
+  <li>接着，把xxx-gh-pages指为子模块，并挂载到 <code>_site</code>目录下。</li>
 </ol>
+
+<p>注意，此处不要有 <code>_site</code> 文件，下面的命令会自动克隆原有 <em>site</em> 到此处。</p>
+
+<pre><code>$ git checkout master
+$ git push -u origin --all
+
+$ git submodule add -b master git@github.com:username/site.git _site
+</code></pre>
 
 <p>在 <em>xxx-source</em> 分支，看看情况：</p>
 
@@ -419,7 +419,7 @@ alias bb="build_blog"
         new file:   _site
 </code></pre>
 
-<p>接着直接输入下面命令，提交，并同步github上的source仓库：</p>
+<p>接着输入下面命令，提案并同步github上的source仓库：</p>
 
 <pre><code>$ git commit -m "把xxx-gh-pages变成xxx-source的子模块"
 $ git push
@@ -433,14 +433,11 @@ $ git submodule
 4aac2028817a9de3e31f2c1b84f5783b9d837150 _site (heads/master)
 </code></pre>
 
-<ol>
-  <li>
-    <p>把还没被jekyll生成的源文件都搬到source的目录下，并全部纳入追踪名单。</p>
+<p>接着，把还没被jekyll生成的源文件都搬到source的目录下，并全部纳入追踪名单。</p>
 
-    <p>$ git add .
- $ git commit -m “全部纳入追踪名单”</p>
-  </li>
-</ol>
+<pre><code>$ git add .
+$ git commit -m "全部纳入追踪名单"
+</code></pre>
 
 <p>修改 <em>_config.yml</em>，让其生成的文件中，带 <em>.nojekyll</em>文件。</p>
 
@@ -478,19 +475,19 @@ $ git push origin source
 
 <p>总结：以后，整个发布流程变成了：</p>
 
-<ul>
+<ol>
   <li>修改文件</li>
   <li>运行 jekyll 生成</li>
   <li>看下生成结果： _site</li>
-  <li>add, commit and push changes in _site subdirectory</li>
-  <li>add, commit and push changes in the project (including _site subdir)</li>
-  <li>
-    <p>不断重复这个过程</p>
+  <li>子目录 <code>_site</code>下： add, commit and push changes</li>
+  <li>源码目录，包括<code>_site</code>：  add, commit and push changes</li>
+  <li>不断重复这个过程</li>
+</ol>
 
-    <pre><code>  jekyll build &amp;&amp; cd _site &amp;&amp; git add ./ &amp;&amp; git commit -m '发布' &amp;&amp; git push origin master
+<p>变为一命令：</p>
+
+<pre><code>jekyll build &amp;&amp; cd _site &amp;&amp; git add ./ &amp;&amp; git commit -m '发布' &amp;&amp; git push origin master
 </code></pre>
-  </li>
-</ul>
 
 <p>可以写成一个批处理文件</p>
 
@@ -511,7 +508,7 @@ git push origin master
   <li><a href="http://dannpu.com/blog/2013/08/03/Github-page-build-failure/">利用本地编译结果替代github自动编译：淡朴若水</a></li>
 </ul>
 
-<h3 id="section-6">使用其他域名</h3>
+<h2 id="section-6">域名指向：使用其他域名</h2>
 
 <p>Github Pages会为站点分配类似 <em>用户名或组织名.github.io</em> 或者 <em>用户名或组织名.github.io/项目名</em> 的二级/三级域名。</p>
 
@@ -522,7 +519,7 @@ git push origin master
 
 <p>收费的域名到处有，自己去买吧。</p>
 
-<h4 id="section-7">域名解析服务</h4>
+<h2 id="section-7">域名解析服务</h2>
 
 <p>一般来说域名提供商会提供简单的解析服务，也支持将解析服务指向到其他域名解析服务提供者。</p>
 
@@ -543,7 +540,7 @@ git push origin master
 
 <p>使 www.域名 生效，需要咋办？</p>
 
-<h3 id="section-8">博客搬家</h3>
+<h2 id="section-8">博客搬家</h2>
 
 <p>可能需要两步：</p>
 
@@ -559,7 +556,7 @@ git push origin master
 ~ $ cd my-awesome-site
 ~/my-awesome-site $ jekyll import wordpressdotcom --source wordpress.xml
 ~/my-awesome-site $ jekyll serve
-# =&gt; Now browse to http://localhost:4000
+# =&gt; 浏览器上察看结果 http://localhost:4000
 </code></pre>
 
 <p>exitwp是一个用python开发的工具，号称是将wordpress的博客导出并转换成markdown，但实际上 任何能导出rss/atom的博客都可以用这个工具进行转换。</p>
