@@ -1078,24 +1078,12 @@ nav {
 .site-nav {
   bottom: 8%;
   left: -5px;
-  display: none;
 }
 .outline {
   bottom: 8%; 
   right: 5px;
-  display: none;
+  overflow: scroll;
 }
-
-.site-nav:active {
-    display: block;
-}
-
-.outline:active {
-    display: block;
-}
-
-
-
 
 nav li,
 .post-list li {
