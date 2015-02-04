@@ -8,7 +8,9 @@
     
       <item>
         <title>对张尧学透明计算架构的理解</title>
-        <description>&lt;p&gt;长文可能很多人看不下去，先说结论：&lt;/p&gt;
+        <description>&lt;p&gt;&lt;strong&gt;说明一：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;长文可能很多人看不下去，先说结论：&lt;/p&gt;
 
 &lt;p&gt;张所提出并实现的透明计算，确实是世界独创的，至今仍然如此，获奖实至名归。&lt;/p&gt;
 
@@ -23,6 +25,12 @@
   &lt;li&gt;后来有人在树干上扎，——云计算&lt;/li&gt;
   &lt;li&gt;张的团队则是跑到根部扎——透明计算，超算&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;说明二：&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;文章分两部分，前半部分是收集到的信息，后半部分是我对该系统的分析。&lt;/p&gt;
+
+&lt;p&gt;全文目录可在右中侧的半圆按钮点出来。&lt;/p&gt;
 
 &lt;h2 id=&quot;section&quot;&gt;有关透明计算的信息&lt;/h2&gt;
 
@@ -793,7 +801,7 @@ html+css+js+各种js模板。重心在js&lt;/p&gt;
 
 &lt;h2 id=&quot;markdown&quot;&gt;换markdown渲染核心&lt;/h2&gt;
 
-&lt;p&gt;注：由于一些代码在liquid的转码中出现问题，因此，有必要对照着源码，&lt;a href=&quot;https://github.com/jobinson99/jobinson99.github.io&quot;&gt;源码库在此&lt;/a&gt;
+&lt;p&gt;注：由于一些代码在liquid的转码中出现问题，因此，有必要对照着源码，&lt;a href=&quot;https://github.com/jobinson99/jobinson.github.io&quot;&gt;源码库在此&lt;/a&gt;
 jekyll2默认用的 kramdown，换！
 github网站提供的编译器版本比较注重安全性，因此会关闭一些功能。&lt;/p&gt;
 
