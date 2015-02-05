@@ -8,33 +8,7 @@
     
       <item>
         <title>对张尧学透明计算架构的理解</title>
-        <description>&lt;ul id=&quot;markdown-toc&quot;&gt;
-  &lt;li&gt;&lt;a href=&quot;#section&quot;&gt;有关透明计算的信息&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-1&quot;&gt;自然科学一等奖得主中南大学校长张尧学简历&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-2&quot;&gt;清华大学的通稿&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-3&quot;&gt;申请获奖用的论文&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-4&quot;&gt;中途退出成员提供的信息&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-5&quot;&gt;张尧学自己的访谈&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#section-6&quot;&gt;解剖张和透明计算&lt;/a&gt;    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-7&quot;&gt;“透明计算”服务端的结构&lt;/a&gt;        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#section-8&quot;&gt;资源和用户端分离的系统：&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-9&quot;&gt;资源分布形式（待细化）&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-10&quot;&gt;服务端资源管理&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-11&quot;&gt;如何解决硬件兼容问题&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-12&quot;&gt;如何解决网络问题？&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-13&quot;&gt;用户如何管理资源&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-14&quot;&gt;工程难度和工作量&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-15&quot;&gt;关于主动服务&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#section-16&quot;&gt;对张个人的理解&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;说明一：&lt;/strong&gt;&lt;/p&gt;
+        <description>&lt;p&gt;&lt;strong&gt;说明一：&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;长文可能很多人看不下去，先说结论：&lt;/p&gt;
 
@@ -52,13 +26,7 @@
   &lt;li&gt;张的团队则是跑到根部扎——透明计算，超算&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;strong&gt;说明二：&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;文章分两部分，前半部分是收集到的信息，后半部分是我对该系统的分析。&lt;/p&gt;
-
-&lt;p&gt;全文目录可在右中侧的半圆按钮点出来。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;有关透明计算的信息&lt;/h2&gt;
+&lt;h2 id=&quot;section&quot;&gt;第一部分 收集到的透明计算信息&lt;/h2&gt;
 
 &lt;h3 id=&quot;section-1&quot;&gt;自然科学一等奖得主中南大学校长张尧学简历&lt;/h3&gt;
 
@@ -170,16 +138,18 @@ Linux
 
 &lt;p&gt;计算与存储分离很早就能实现了，网吧就是这么干的；这个概念不就是甲骨文等公司20年前提出的NC(网络计算机)吗？“透明计算”的概念乍听起来与云计算似乎无异，它到底有哪些独特之处呢？冯·诺依曼结构被颠覆了吗？Intel的透明计算和张尧学的透明计算是一回事吗？一个长期担任行政职务的人怎么会有时间做科研？张尧学近日接受科技日报独家专访&lt;/p&gt;
 
-&lt;p&gt;“透明计算”与“云计算”&lt;/p&gt;
+&lt;h4 id=&quot;section-6&quot;&gt;“透明计算”与“云计算”&lt;/h4&gt;
 
-&lt;p&gt;第一，云计算是由厂商通过服务器端的架构提供计算资源的服务，用户终端
-仅仅作为服务的接收端而存在，而透明计算主要关注用户端。用户需要服务时，就从服务器端将需要的软件或数据通过块或页的方式碎片化调用并主要在终端完成计算，而且终端可以装或不装任何数据、软件包括操作系统；第二，云计算主要解决数据的海量存放和使用问题，对软件的云化、特别是操作系统的云化没有提出好的解决方案，而透明计算则较好地解决了这个问题；第三，透明计算还包括了云计算不具备的全过程管理、带宽与缓冲管理等功能；第四，由于云计算的重点不在终端的使用情况上，因而其在终端安全性上没有突破，而透明计算在终端安全性上有很好的考虑。&lt;/p&gt;
+&lt;p&gt;第一，云计算是由厂商通过服务器端的架构提供计算资源的服务，用户终端仅仅作为服务的接收端而存在，而透明计算主要关注用户端。用户需要服务时，就从服务器端将需要的软件或数据通过块或页的方式碎片化调用并主要在终端完成计算，而且终端可以装或不装任何数据、软件包括操作系统；
+第二，云计算主要解决数据的海量存放和使用问题，对软件的云化、特别是操作系统的云化没有提出好的解决方案，而透明计算则较好地解决了这个问题；
+第三，透明计算还包括了云计算不具备的全过程管理、带宽与缓冲管理等功能；
+第四，由于云计算的重点不在终端的使用情况上，因而其在终端安全性上没有突破，而透明计算在终端安全性上有很好的考虑。&lt;/p&gt;
 
 &lt;p&gt;“透明计算的实现可以在多个层面，例如在硬件层之上、在中间件层或在应用层。”在张尧学看来，透明计算概念的提出应该早于云计算。&lt;/p&gt;
 
 &lt;p&gt;“云计算大概是从2008年左右被国内熟知，而我们最早做‘透明计算’相关研究是1998年，但当时我们没有称它为这个名字，这个名字是2003年左右微软亚洲研究院的一位领导在参观我的实验室时给起的。”他说。&lt;/p&gt;
 
-&lt;p&gt;发端于索普卡的“透明计算”&lt;/p&gt;
+&lt;h4 id=&quot;section-7&quot;&gt;发端于索普卡的“透明计算”&lt;/h4&gt;
 
 &lt;p&gt;“1998年，一台电脑的售价上万元，升级换代太快，而且病毒很多，我的想法是能不能让电脑变得更简单、更便宜、更安全和跨平台。”张尧学说，他在开发网络计算机的基础上，尝试把操作系统从原本已十分精简的终端上去掉，提出了没有操作系统的计算模式，并着手开发终端系统。&lt;/p&gt;
 
@@ -195,7 +165,7 @@ Linux
 
 &lt;p&gt;张尧学于1999年至2011年任职教育部，但他告诉记者：“我在调到教育部之前已和时任教育的主管领导谈好，要继续在清华大学做科研。这位领导和清华大学都是同意的。因此，我出差很少，而且晚上和休息日基本都在实验室，这一点，我想清华大学的同事们都可以证明。”&lt;/p&gt;
 
-&lt;p&gt;与英特尔的合作&lt;/p&gt;
+&lt;h4 id=&quot;section-8&quot;&gt;与英特尔的合作&lt;/h4&gt;
 
 &lt;p&gt;张尧学认为自己长期教授操作系统课程，以及从事协议的研究，对底层协议很熟悉。“操作系统两个最核心的内容是中断和调度，而这两个机制都是只针对单机，我就想能不能在底层硬件之上有个中间层，将操作系统和应用在内的软件从网络上加载到这个中间层上运行，并实现不同软件（包括操作系统及应用）的按需选择和按需调度，从而让不同的硬件和不同的软件系统连接。但这是一个黑匣子，需要反汇编。当时学生们做得很辛苦，后来好歹做成了，但效果不是太理想。这一是由于带宽，二是每个操作系统都要对底层反汇编，很难。”张尧学说。&lt;/p&gt;
 
@@ -207,13 +177,13 @@ Linux
 
 &lt;p&gt;他表示，目前英特尔已经在台式机、笔记本、上网本、移动互联网设备、平板电脑和智能手机等多个平台上实现了透明计算，包括上海交通大学在内的单位都已使用了英特尔的台式机透明计算系统。而不少大学则购买了由清华专利转让的台式机系统。“清华大学、中南大学和清华的毕业生还基于透明计算思想，研制成功了用手机远程使用多种操作系统和应用的手机透明计算系统等新的系统原型。这次基本上都已公开，我们的知识产权有可能会受到损失。”&lt;/p&gt;
 
-&lt;p&gt;与网络计算机等技术的区别&lt;/p&gt;
+&lt;h4 id=&quot;section-9&quot;&gt;与网络计算机等技术的区别&lt;/h4&gt;
 
 &lt;p&gt;总结与网络计算机、远程+VPN+PNS 等技术的区别，张尧学说，“透明计算”的最大突破是提出并部分实现了使终端如何变小以及无缝连接（跨硬件和软件平台）的思想和方法。按照此方法，研制了一个分布式超级操作系统MetaOS。它不仅包括远程启动协议MRBP（I, II）、网络服务访问协议NSAP，还包括可以管理调度不同的操作系统和网络带宽等资源的I/O man以及一个轻量化的网络协议栈等，并可沿使用路径监控网络上的使用情况。他透露，最近某央企控股公司也在国家重大专项支持下基于他们的原理和早期版本研制成功了MetaOS的新版本，并有重大应用。&lt;/p&gt;
 
 &lt;p&gt;一个理想的MetaOS能跟踪和记录来自于不同用户的访问、解决从端系统到服务器之间的各点资源的监控和管理，例如沿途的带宽、缓存等。“以前的计算机是由操作系统来调度各种软件的，但如何以碎片方式调动不同的操作系统，我没听说别人做过。”张尧学说。&lt;/p&gt;
 
-&lt;p&gt;产业化前景可期&lt;/p&gt;
+&lt;h4 id=&quot;section-10&quot;&gt;产业化前景可期&lt;/h4&gt;
 
 &lt;p&gt;“很多人说我们提出的计算与存储分离早就有了，我也做了十几年了，而且我们有专利。”张尧学说，“而且我们的技术可以让用户根据需要调用资源，指令是碎片化进入终端的，不是操作系统和应用程序全部，这样可以极大简化终端，带宽并不是主要问题”。&lt;/p&gt;
 
@@ -221,13 +191,13 @@ Linux
 
 &lt;p&gt;他介绍道，致力于将透明计算技术产业化的工作开展，在可穿戴设备、智慧家庭、医疗和教育大数据等方面都会有巨大的应用前景。例如，今后出国不用带笔记本电脑，远在非洲就可以存取和操作在北京计算机中的资源；医生在手机上可以使用专业软件调出并分析如核磁共振影像等各种医疗数据等等。&lt;/p&gt;
 
-&lt;h2 id=&quot;section-6&quot;&gt;解剖张和透明计算&lt;/h2&gt;
+&lt;h2 id=&quot;section-11&quot;&gt;第二部分 解剖张和透明计算&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Those who can, Do; and those who cann’t, Teach; and those who cann’t anything, Suck!&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;h3 id=&quot;section-7&quot;&gt;“透明计算”服务端的结构&lt;/h3&gt;
+&lt;h3 id=&quot;section-12&quot;&gt;“透明计算”服务端的结构&lt;/h3&gt;
 
 &lt;p&gt;先看看 普通电脑，云计算，chromeos，pxe 和 “透明计算” 的软硬件结构区别！&lt;/p&gt;
 
@@ -239,7 +209,7 @@ Linux
 ——》用户界面系统（比如kde gnome）——》网络服务（远程桌面之类）
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&quot;section-8&quot;&gt;资源和用户端分离的系统：&lt;/h4&gt;
+&lt;h4 id=&quot;section-13&quot;&gt;资源和用户端分离的系统：&lt;/h4&gt;
 
 &lt;p&gt;超算和云计算：&lt;/p&gt;
 
@@ -302,7 +272,7 @@ Linux
 
 &lt;p&gt;总结为三句：&lt;strong&gt;系统很底层，管理的资源很广泛，资源使用非常灵活！&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;section-9&quot;&gt;资源分布形式（待细化）&lt;/h3&gt;
+&lt;h3 id=&quot;section-14&quot;&gt;资源分布形式（待细化）&lt;/h3&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -383,11 +353,11 @@ Linux
     《——处理后，数据返回远程
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;section-10&quot;&gt;服务端资源管理&lt;/h3&gt;
+&lt;h3 id=&quot;section-15&quot;&gt;服务端资源管理&lt;/h3&gt;
 
 &lt;p&gt;云计算、超算等，和这个问题解决方案应该是相同的。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-11&quot;&gt;如何解决硬件兼容问题&lt;/h3&gt;
+&lt;h3 id=&quot;section-16&quot;&gt;如何解决硬件兼容问题&lt;/h3&gt;
 
 &lt;p&gt;上面是简单的基本架构，如何实现呢？&lt;/p&gt;
 
@@ -399,7 +369,7 @@ Linux
 
 &lt;p&gt;但这只是理论上可行，现实中需要多少工作量呢？海量！&lt;/p&gt;
 
-&lt;h3 id=&quot;section-12&quot;&gt;如何解决网络问题？&lt;/h3&gt;
+&lt;h3 id=&quot;section-17&quot;&gt;如何解决网络问题？&lt;/h3&gt;
 
 &lt;p&gt;上面前团队成员暴露出来的信息看，好事多磨，在前期想偷懒，借用现成的东西，结果至少改了三次，还没真正踏进门里。最后估计是痛定思痛，干脆自己重写了两个协议才算搞定。&lt;/p&gt;
 
@@ -423,13 +393,13 @@ Linux
 
 &lt;p&gt;多说一句：实际上，只要能够流畅视频，就足够做所有事了，反正真正计算都是在服务端，转成视频流传输就很好看了。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-13&quot;&gt;用户如何管理资源&lt;/h3&gt;
+&lt;h3 id=&quot;section-18&quot;&gt;用户如何管理资源&lt;/h3&gt;
 
 &lt;p&gt;这相对来说已经非常简单了，主要是给各个操作系统做客户端的问题，虽然仍然是兼容性问题严重，但已有现成框架基本可以胜任，体力活。&lt;/p&gt;
 
 &lt;p&gt;目前硬件情况和软件情况，注定还无法如 服务端那样做到非常底层，但理论上是可以做到底层裸主机+客户端，但要硬件生产商配合。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-14&quot;&gt;工程难度和工作量&lt;/h3&gt;
+&lt;h3 id=&quot;section-19&quot;&gt;工程难度和工作量&lt;/h3&gt;
 
 &lt;p&gt;就工程实现难度不低于一般的操作系统，比如linux，windows，主要是硬件方面的原因，但流行普及后，硬件兼容问题解决，会大幅度简化操作系统的设计。&lt;/p&gt;
 
@@ -441,11 +411,11 @@ Linux
 
 &lt;p&gt;另外，世界上有实力实现这个设想的，不多，也就一只手数得过来。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-15&quot;&gt;关于主动服务&lt;/h3&gt;
+&lt;h3 id=&quot;section-20&quot;&gt;关于主动服务&lt;/h3&gt;
 
 &lt;p&gt;其实就是 推送服务，在掌握了计算机主要资源之后，这个不难做到。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-16&quot;&gt;对张个人的理解&lt;/h3&gt;
+&lt;h3 id=&quot;section-21&quot;&gt;对张个人的理解&lt;/h3&gt;
 
 &lt;p&gt;他应该是实战型+战略型的人物。&lt;/p&gt;
 

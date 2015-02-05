@@ -5,19 +5,34 @@
 /*****************************************************************************/
 
 /* :::: 文章多屏显示 :::: */
-@media all and (min-width: 50em) {
-    .post {
-        column-count: 2;
-	-moz-column-count: 2;
-	-webkit-column-count: 2;
 
-        column-rule: 1px solid white;
-	-moz-column-rule: 1px solid white;
-	-webkit-column-rule: 1px solid white;
-        
-        column-gap: 35px;
-	-moz-column-gap: 35px;
-	-webkit-column-gap: 35px;
+.post {
+    overflow-y: hidden;
+    overflow-x: auto;
+    
+    height: 600px;
+    width: auto;
+    padding-left: 20px;
+    
+    -webkit-column-width: 600px;
+    -moz-column-width: 600px;
+    column-width: 600px;
+    
+    -webkit-column-rule: 10px solid white;
+    -moz-column-rule: 10px solid white;
+    column-rule: 10px solid white;
+    
+    -webkit-column-gap: 60px;    
+    -moz-column-gap: 60px;
+    column-gap: 60px;
+    
+    word-wrap: break-word;      /*英文断开字母*/
+}
+
+@media all and (max-width: 36em) {
+    .post {
+        height: 400px;
+
     }
 }
 /* :::: 文章底部设定 :::: */
