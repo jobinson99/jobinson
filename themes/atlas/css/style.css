@@ -836,14 +836,14 @@ table {
 }
 
 th {
-    background: #6C71C4;
     color: white;
+    background: #BBBBFF;
     padding: 10px;
 }
 
 th:hover {
     color: white;
-    background: #BBBBFF;
+    background: #6C71C4;
 }
 
 th, td {
@@ -971,6 +971,8 @@ article img {
     background: transparent url(/static/logo.png) no-repeat ;
     background-size: 50px 50px;
 
+    content: none;
+    
     border: 2px ridge #ffffff;
     border-radius: 5px;
     -moz-border-radius: 5px;
@@ -989,6 +991,7 @@ article img {
     -webkit-transform: scale(1.25) rotate(40deg);
     -o-transform: scale(1.25) rotate(40deg);
     -ms-transform: scale(1.25) rotate(40deg);
+
 }
 .activate {
     -moz-transform: scale(0.75);
@@ -1080,9 +1083,16 @@ nav {
   left: -5px;
 }
 .outline {
-  bottom: 8%; 
+  bottom: 8%;
   right: 5px;
   overflow: scroll;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.site-nav,
+.outline {
+   
 }
 
 nav li,
@@ -1156,8 +1166,10 @@ nav li a:hover,
     .post-list li {
        diplay: block;
        float: left;
-       width: 49.5%;
-       border-left: 1px solid #dcdcdc;
+       
+       width: 49%;
+       height: 70px;
+       border: 1px solid #F5F4E0;
     }
     .post-list li a {
         height: 60px;
@@ -1195,10 +1207,20 @@ nav li a:hover,
     
 }
 
-.subject-vision {
-    
+.subject-vision li {
+    list-style: none;
+    margin-left: -40px;
+    padding: 0;
 }
 
+.subject-vision li a {
+        display: block;
+    padding: 10px 20px;
+    background: #eee;
+}
+.subject-vision li a:hover {
+    background-color: #6C71C4;
+}
 
 
 /*****************************************************************************/
@@ -1288,16 +1310,8 @@ aside:hover {
 /*****************************************************************************/
 footer {
     font-size: 80%;
-    color: gray;
-    background-color: rgba(50,50,50,0.8);
-    margin-top: 1em;
-    width: 100%;
-    float: left;
-    position: relative;
-    
-    box-shadow: 0px 0 55px #000000;
-    -moz-box-shadow: 0px 0 55px #000000;
-    -webkit-box-shadow: 0px 0 55px #000000;
+    border-top: 10px dotted gray;
+    padding-top: 15px;
 }
 
 footer ul {
@@ -1307,14 +1321,19 @@ footer ul {
     padding: 0;
 }
 footer li {
+    width: 48%;
+    height: 70px;
     display: block;
-    width: 24%;
-    height: 50px;
     float: left;
-    border: 0;
+    position: relative;
+    border: 1px solid white;
+    color: gray;
+    background-color: #eeeeee;
 }
+
 footer li:hover {
-    background-color: black;
+    background-color: #dcdcdc;
+    color: #303030;
 }
 
 footer li span {
