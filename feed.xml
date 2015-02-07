@@ -498,7 +498,7 @@ Linux
       </item>
     
       <item>
-        <title>利用metalsmith建静态网站</title>
+        <title>使用metalsmith生成静态网站</title>
         <description>&lt;mark&gt;特别提醒：不要把时间浪费在迁移平台上！&lt;/mark&gt;
 
 &lt;p&gt;问题发生：
@@ -588,6 +588,16 @@ Linux
 
 &lt;p&gt;三，安装一些需要的插件：下面列出一些一般需要的。&lt;/p&gt;
 
+&lt;p&gt;内容：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;templates：布局模板&lt;/li&gt;
+  &lt;li&gt;markdown：内容源码形式&lt;/li&gt;
+  &lt;li&gt;ignore：忽略掉一些文件，典型的如 &lt;em&gt;readme.md&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;页面部件：&lt;/p&gt;
+
 &lt;ul&gt;
   &lt;li&gt;assets：不转换、保持原样的部分&lt;/li&gt;
   &lt;li&gt;beautifier：为运行效率考虑，一般不需要。但为了方便检查代码生成结果，需要。&lt;/li&gt;
@@ -596,7 +606,21 @@ Linux
   &lt;li&gt;paginate：分页&lt;/li&gt;
   &lt;li&gt;permalinks：给网页一个固定链接&lt;/li&gt;
   &lt;li&gt;tags：文章标签&lt;/li&gt;
-  &lt;li&gt;templates：布局模板&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;用于辅助编写&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;less.js 辅助编写css&lt;/li&gt;
+  &lt;li&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;用于压缩生成代码所需的插件：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTML Minifier：压缩html页面&lt;/li&gt;
+  &lt;li&gt;压缩css&lt;/li&gt;
+  &lt;li&gt;压缩js&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;section-2&quot;&gt;新建项目&lt;/h2&gt;
