@@ -30,7 +30,7 @@
 
     background-color: #F5F4E0;
 
-        box-shadow: 0px 0 55px black;
+    box-shadow: 0px 0 55px black;
     -moz-box-shadow: 0px 0 55px black;
     -webkit-box-shadow: 0px 0 55px black;
 }
@@ -72,12 +72,13 @@ article {
 .site-name,
 .slogan {
     text-shadow: #ee3333 -20px 0px 8px, #33ee33 20px 0px 5px;
+    z-index: 202;
 }
 
 .site-name {
     font-size: 350%;
     font-weight: bold;
-    padding-top: 20px;
+    padding-top: 15px;
     margin-bottom: 10px;
 }
 .slogan {
@@ -117,34 +118,34 @@ article {
     position: absolute;
     width: 100%;
     z-index: 201;
-       -webkit-animation-name: skylight;
-       -webkit-animation-duration: 15s;
-       -webkit-animation-timing-function: linear;
-       -webkit-animation-iteration-count: infinite;
-       -moz-animation-name: skylight;
-       -moz-animation-duration: 15s;
-       -moz-animation-timing-function: linear;
-       -moz-animation-iteration-count: infinite;
+    -webkit-animation-name: skylight;
+    -webkit-animation-duration: 15s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-name: skylight;
+    -moz-animation-duration: 15s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
     
 }
-     @-webkit-keyframes skylight {
-       0% {background-color: rgba(0,0,0,1);}
-       10% {background-color: rgba(0,0,255,0.55);}
-       20% {background-color: rgba(255,255,255,0.55);}
-       50% {background-color: rgba(255,255,255,0.25);}
-       80% {background-color: rgba(255,255,255,0.55);}
-       90% {background-color: rgba(0,0,255,0.25);}
-       100% {background-color: rgba(0,0,0,1);}
-     }
-     @-moz-keyframes skylight {
-       0% {background-color: rgba(0,0,0,1);}
-       10% {background-color: rgba(0,0,255,0.55);}
-       20% {background-color: rgba(255,255,255,0.55);}
-       50% {background-color: rgba(255,255,255,0.25);}
-       80% {background-color: rgba(255,255,255,0.55);}
-       90% {background-color: rgba(0,0,255,0.25);}
-       100% {background-color: rgba(0,0,0,1);}
-     }
+@-webkit-keyframes skylight {
+    0% {background-color: rgba(0,0,0,0.75);}
+    10% {background-color: rgba(200,200,200,0.75);}
+    20% {background-color: rgba(255,255,255,0.55);}
+    50% {background-color: rgba(255,255,255,0.25);}
+    80% {background-color: rgba(255,255,255,0.55);}
+    90% {background-color: rgba(200,200,200,0.75);}
+    100% {background-color: rgba(0,0,0,0.75);}
+}
+@-moz-keyframes skylight {
+    0% {background-color: rgba(0,0,0,0.75);}
+    10% {background-color: rgba(200,200,200,0.75);}
+    20% {background-color: rgba(255,255,255,0.55);}
+    50% {background-color: rgba(255,255,255,0.25);}
+    80% {background-color: rgba(255,255,255,0.55);}
+    90% {background-color: rgba(200,200,255,0.75);}
+    100% {background-color: rgba(0,0,0,0.75);}
+}
 
 .sun {
     width: 80px;
@@ -153,15 +154,15 @@ article {
     position: absolute;
 
     z-index:199;
-    background: rgba(255, 215, 0, 1);
+    background-color: gold;
     
     border-radius: 50px;
     -moz-border-radius: 50px;
     -webkit-border-radius: 50px;
     
-    box-shadow: 0px 0 50px gold;
-    -moz-box-shadow: 0px 0 50px gold;
-    -webkit-box-shadow: 0px 0 50px gold;
+    box-shadow: 0px 0 100px gold;
+    -moz-box-shadow: 0px 0 100px gold;
+    -webkit-box-shadow: 0px 0 100px gold;
     
     -webkit-animation-name: sunshine;
     -webkit-animation-duration: 15s;
@@ -174,18 +175,20 @@ article {
     -moz-animation-iteration-count: infinite;
 }
 @-webkit-keyframes sunshine {
-    0% {top:320px;left:20%;opacity:1;}
-    25% {top:150px;left:35%;opacity:0.5;}
-    50% {top:100px;left:50%;opacity:0;}
-    75% {top:150px;left:65%;opacity:0.5;}
-    100% {top:320px;left:80%;opacity:1;}
+    0% {top:330px;left:20%;background-color: red;}
+    20% {top:225px;left:32%;background-color:gold;}
+    40% {top:100px;left:44%;background-color: white;}
+    60% {top:100px;left:56%%;background-color:white;}
+    80% {top:225px;left:68%;background-color: gold;}
+    100% {top:330px;left:80%;background-color: red;}
 }
 @-moz-keyframes sunshine {
-    0% {top:320px;left:20%;opacity:1;}
-    25% {top:150px;left:35%;opacity:0.5;}
-    50% {top:100px;left:50%;opacity:0.2;}
-    75% {top:150px;left:65%;opacity:0.5;}
-    100% {top:320px;left:80%;opacity:1;}
+    0% {top:330px;left:20%;background-color: red;}
+    20% {top:225px;left:32%;background-color:gold;}
+    40% {top:100px;left:44%;background-color: white;}
+    60% {top:100px;left:56%%;background-color:white;}
+    80% {top:225px;left:68%;background-color: gold;}
+    100% {top:330px;left:80%;background-color: red;}
 }
 
 .horizon {
@@ -205,16 +208,16 @@ article {
 
 .index-category {
     column-count: 2;
-	-moz-column-count: 2;
-	-webkit-column-count: 2;
+    -moz-column-count: 2;
+    -webkit-column-count: 2;
 
-        column-rule: 1px solid white;
-	-moz-column-rule: 1px solid white;
-	-webkit-column-rule: 1px solid white;
-        
-        column-gap: 35px;
-	-moz-column-gap: 35px;
-	-webkit-column-gap: 35px;
+    column-rule: 1px solid white;
+    -moz-column-rule: 1px solid white;
+    -webkit-column-rule: 1px solid white;
+    
+    column-gap: 35px;
+    -moz-column-gap: 35px;
+    -webkit-column-gap: 35px;
 }
 
 
@@ -235,7 +238,7 @@ article {
 /*****************************************************************************/
 
 .layer {
-  background: transparent url(/static/404.png) no-repeat;
+    background: transparent url(/static/404.png) no-repeat;
 }
 
 /*****************************************************************************/

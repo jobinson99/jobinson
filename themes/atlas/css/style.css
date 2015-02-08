@@ -555,7 +555,7 @@ h6:hover {
 
 h1 {
     text-align: center;
-    padding: 20px 0;
+    padding: 20px 10px;
     margin: 0;
 }
 h2,
@@ -610,6 +610,7 @@ h6 {
 .post-next {
     display: block;
     float: left;
+    content: none;
     
 }
 .post-pre {
@@ -1090,9 +1091,16 @@ nav {
   overflow-y: auto;
 }
 
-.site-nav,
-.outline {
-   
+.site-nav li,
+.outline li {
+    margin-left: -40px;
+}
+
+.toc-h3 {
+    margin-left: 10px;
+}
+.toc-h4 {
+    margin-left: 20px;
 }
 
 nav li,
@@ -1212,7 +1220,6 @@ nav li a:hover,
     margin-left: -40px;
     padding: 0;
 }
-
 .subject-vision li a {
         display: block;
     padding: 10px 20px;
@@ -1326,7 +1333,7 @@ footer li {
     display: block;
     float: left;
     position: relative;
-    border: 1px solid white;
+    border: 1px dotted white;
     color: gray;
     background-color: #eeeeee;
 }

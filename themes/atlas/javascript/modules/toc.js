@@ -96,7 +96,7 @@ $.fn.toc = function(options) {
 jQuery.fn.toc.defaults = {
   container: 'body',
   listType: '<ul/>',
-  selectors: 'h1,h2,h3',
+  selectors: 'h2,h3,h4',
   smoothScrolling: true,
   scrollToOffset: 0,
   prefix: 'toc',
