@@ -3,7 +3,7 @@ require.config( {
     // 指代链接位置
     paths: {
         "jquery": "modules/jquery",
-    	"mathjax": "modules/MathJax.js?config=TeX-AMS-MML_HTMLorMML",
+    	"mathjax": "modules/MathJax",
         "toc": "modules/toc",
         "outliner": "modules/outliner"
     },

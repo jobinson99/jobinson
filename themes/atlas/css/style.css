@@ -1097,10 +1097,10 @@ nav {
 }
 
 .toc-h3 {
-    margin-left: 10px;
+    padding-left: 20px;
 }
 .toc-h4 {
-    margin-left: 20px;
+    padding-left: 40px;
 }
 
 nav li,
