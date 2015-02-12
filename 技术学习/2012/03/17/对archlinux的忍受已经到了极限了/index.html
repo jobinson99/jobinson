@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>【又一次叛逃失败】对archlinux的忍受已经到了极限了</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2012/03/17/%E5%AF%B9archlinux%E7%9A%84%E5%BF%8D%E5%8F%97%E5%B7%B2%E7%BB%8F%E5%88%B0%E4%BA%86%E6%9E%81%E9%99%90%E4%BA%86/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="【又一次叛逃失败】对archlinux的忍受已经到了极限了">【又一次叛逃失败】对archlinux的忍受已经到了极限了</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>【摘要】：</b><br/></p>
+      
+
+      
+      <p class="post-tag"><b>【话题】：</b>
+        
+        <a href="/话题列表/#archlinux-ref">archlinux
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#系统改进-ref">系统改进
+        <sup>1</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#技术学习-ref">【技术学习】</a>
+        
+      </span>
+      
+      
+      创建时间：2012-03-17 19:27:30
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <p>又一次升级后挂了。修复的时候，回想起这半年来，arch升级给我带来的折腾时间，估计超过我拿它用来工作的时间，<strong>折腾伤人啊！！！！！</strong></p>
+
+<p>吐糟下：</p>
+
+<p>arch比较方便， 系统结构清晰明朗，更新迅速</p>
+
+<p>但优点也是缺点：</p>
+
+<p>一、作为一个升级频繁的操作系统，竟然试图完全依靠升级的速度去拼系统问题的增长速度，本来这样理论上没啥问题，但作为一个成熟的项目，单纯依靠这么一个机制，就太理想化了。解决办法至少有二，<strong>快照功能或者有快捷的办法安装旧软件包方法。</strong></p>
+
+<p>1、现有的旧软件包安装方法是远远不够的，尤其是像xorg kde这种大块头，不够方便。</p>
+
+<p>2、若可以有5个快照，可以快速实现回滚和调试 ，不影响工作状态，就好了：那个fallback仅仅是上一版内核，对于桌面用户来说，太弱了。——其实也是有办法实现的，方法二有：</p>
+
+<p>1、自己写一个脚本，备份base和xorg的内容，然后grub/syslinux可引导备份的内容。</p>
+
+<p>2、使用lvm等文件系统</p>
+
+<p>二、快速的更新，本来是个优点，但对维护者来说，却是个巨大的负担，近期出错概率大增，很可能是其维护能力已经超载的表现。</p>
+
+<p>三、当然，随着我需求的满足，事情的增多，我的维护能力也超载了，因此没法像以前一样，没日没夜地排查错误。我需要都是稳定的基础，快速更新的顶层软件</p>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+  
+  <!-- 有言评论 -->
+  <div id="uyan_frame">
+    <h2>■评论</h2>
+  </div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a href="/%E8%B5%84%E6%B2%BB%E9%80%9A%E9%89%B4/2012/01/28/%E7%BE%8E%E5%9B%BD%E5%88%B6%E9%80%A0%E4%B8%80%E5%8E%BB%E4%B8%8D%E8%BF%94%E7%9A%84%E6%A0%B9%E6%BA%90%E5%9C%A8%E4%BA%8E%E4%BA%BA%E5%B0%91+%E5%A5%BD%E5%90%83%E6%87%92%E5%81%9A/">“美国制造”一去不返的根源：人少+好吃懒做◁◀前篇</a>
+    </div>
+    
+    
+    <!--回到头部-->
+    <div class="back-top"><a href="#【又一次叛逃失败】对archlinux的忍受已经到了极限了">△▲回头▲△</a></div> 
+    
+    
+    <div class="post-next">
+      <a href="/%E8%B4%B4%E8%BA%AB%E7%A7%BB%E5%8A%A8/2012/05/05/2012%E6%89%8B%E6%9C%BA%E8%BE%93%E5%85%A5%E6%B3%95%E7%95%8C%E9%9D%A2%E6%B5%8B%E8%AF%84/">后篇▶▷【2012】手机输入法界面布局测评</a>
+    </div>
+    
+    
+  </div>
+
+  <!--页面底部自动浮现-->
+  <div class="post-reletive">
+    <!--相关文章-->
+
+  </div>
+
+</div>
+
+
+  <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2015版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接，谢谢合作！</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+      <span>致谢： </br>
+        <a href="http://www.github.com">空间：github</a>，
+        <a href="http://jekyllrb.com">构建：jekyll</a>，
+        <a href="http://freenom.com/">域名：freenom</a>，
+        以及一切对本人有帮助的人事物！</span>
+      <span>
+        <!--百度统计-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+      </span>
+    </li>
+  </ul>
+</footer>
+
+
+    
+
+  
+</div>
+
+
+
+
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>

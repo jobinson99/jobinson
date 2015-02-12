@@ -1,62 +1,12 @@
 /*!
  * toc - jQuery Table of Contents Plugin
- * v0.3.2
+ * v0.2.0
  * http://projects.jga.me/toc/
  * copyright Greg Allen 2014
  * MIT License
 */
-/*!
- * smooth-scroller - Javascript lib to handle smooth scrolling
- * v0.1.2
- * https://github.com/firstandthird/smooth-scroller
- * copyright First+Third 2014
- * MIT License
-*/
-//smooth-scroller.js
 
 (function($) {
-  $.fn.smoothScroller = function(options) {
-    options = $.extend({}, $.fn.smoothScroller.defaults, options);
-    var el = $(this);
-
-    $(options.scrollEl).animate({
-      scrollTop: el.offset().top - $(options.scrollEl).offset().top - options.offset
-    }, options.speed, options.ease, function() {
-      var hash = el.attr('id');
-
-      if(hash.length) {
-        if(history.pushState) {
-          history.pushState(null, null, '#' + hash);
-        } else {
-          document.location.hash = hash;
-        }
-      }
-
-      el.trigger('smoothScrollerComplete');
-    });
-
-    return this;
-  };
-
-  $.fn.smoothScroller.defaults = {
-    speed: 400,
-    ease: 'swing',
-    scrollEl: 'body,html',
-    offset: 0
-  };
-
-  $('body').on('click', '[data-smoothscroller]', function(e) {
-    e.preventDefault();
-    var href = $(this).attr('href');
-
-    if(href.indexOf('#') === 0) {
-      $(href).smoothScroller();
-    }
-  });
-}(jQuery));
-
-(function($) {
-var verboseIdCache = {};
 $.fn.toc = function(options) {
   var self = this;
   var opts = $.extend({}, jQuery.fn.toc.defaults, options);
@@ -64,14 +14,18 @@ $.fn.toc = function(options) {
   var container = $(opts.container);
   var headings = $(opts.selectors, container);
   var headingOffsets = [];
-  var activeClassName = opts.activeClass;
+  var activeClassName = opts.prefix+'-active';
 
   var scrollTo = function(e, callback) {
-    if (opts.smoothScrolling && typeof opts.smoothScrolling === 'function') {
+    if (opts.smoothScrolling) {
       e.preventDefault();
       var elScrollTo = $(e.target).attr('href');
+      var $el = $(elScrollTo);
 
-      opts.smoothScrolling(elScrollTo, opts, callback);
+      $('body,html').animate({ scrollTop: $el.offset().top + opts.scrollToOffset }, 400, 'swing', function() {
+        location.hash = elScrollTo;
+        callback();
+      });
     }
     $('li', self).removeClass(activeClassName);
     $(e.target).parent().addClass(activeClassName);
@@ -109,22 +63,17 @@ $.fn.toc = function(options) {
     //build TOC
     var el = $(this);
     var ul = $(opts.listType);
-
     headings.each(function(i, heading) {
       var $h = $(heading);
       headingOffsets.push($h.offset().top - opts.highlightOffset);
 
-      var anchorName = opts.anchorName(i, heading, opts.prefix);
-
       //add anchor
-      if(heading.id !== anchorName) {
-        var anchor = $('<span/>').attr('id', anchorName).insertBefore($h);
-      }
+      var anchor = $('<span/>').attr('id', opts.anchorName(i, heading, opts.prefix)).insertBefore($h);
 
       //build TOC item
       var a = $('<a/>')
         .text(opts.headerText(i, heading, $h))
-        .attr('href', '#' + anchorName)
+        .attr('href', '#' + opts.anchorName(i, heading, opts.prefix))
         .bind('click', function(e) {
           $(window).unbind('scroll', highlightOnScroll);
           scrollTo(e, function() {
@@ -145,40 +94,17 @@ $.fn.toc = function(options) {
 
 
 jQuery.fn.toc.defaults = {
-  container: 'article',
+  container: 'body',
   listType: '<ul/>',
   selectors: 'h2,h3,h4',
-  smoothScrolling: function(target, options, callback) {
-    $(target).smoothScroller({
-      offset: options.scrollToOffset
-    }).on('smoothScrollerComplete', function() {
-      callback();
-    });
-  },
+  smoothScrolling: true,
   scrollToOffset: 0,
   prefix: 'toc',
-  activeClass: 'toc-active',
   onHighlight: function() {},
   highlightOnScroll: true,
   highlightOffset: 100,
   anchorName: function(i, heading, prefix) {
-    if(heading.id.length) {
-      return heading.id;
-    }
-
-    var candidateId = $(heading).text().replace(/[^a-z0-9]/ig, ' ').replace(/\s+/g, '-').toLowerCase();
-    if (verboseIdCache[candidateId]) {
-      var j = 2;
-      
-      while(verboseIdCache[candidateId + j]) {
-        j++;
-      }
-      candidateId = candidateId + '-' + j;
-      
-    }
-    verboseIdCache[candidateId] = true;
-
-    return prefix + '-' + candidateId;
+    return prefix+i;
   },
   headerText: function(i, heading, $heading) {
     return $heading.text();
