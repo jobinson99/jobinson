@@ -22,9 +22,17 @@
 
 &lt;h2 id=&quot;section-1&quot;&gt;转型路：主要的技术轨迹&lt;/h2&gt;
 
+&lt;h3 id=&quot;linux&quot;&gt;linux之路&lt;/h3&gt;
+
+&lt;p&gt;一开始是使用ubuntu，开启了我对开源领域的了解，恰好和我先前秉持的理念非常契合。 &lt;/p&gt;
+
+&lt;h3 id=&quot;pega&quot;&gt;pega的印象&lt;/h3&gt;
+
+&lt;p&gt;在千寻的时候，刚好了解到一个系统pega，可以快速编程。让我看到快速编程的潜力。&lt;/p&gt;
+
 &lt;h3 id=&quot;cms&quot;&gt;选cms来建网站&lt;/h3&gt;
 
-&lt;p&gt;先是选cms来快速搭建网站，发现了很多优秀的东西，但发现离满足我需求还非常远。这一步是2008-2010年初，感谢在一个&lt;a href=&quot;http://www.rongshang.com&quot;&gt;写动态密码和内网监控&lt;/a&gt;朋友的指点提示下，我开始想到自己更多编程实现。&lt;/p&gt;
+&lt;p&gt;先是选cms来快速搭建网站，发现了很多优秀的东西，但发现离满足我需求还非常远。这一步是2008-2010年初，感谢在一个&lt;a href=&quot;http://www.ronsung.com&quot;&gt;写动态密码，内网监控，省墨打印&lt;/a&gt;朋友的指点提示下，我开始想到自己更多编程实现。&lt;/p&gt;
 
 &lt;h3 id=&quot;python&quot;&gt;转入python&lt;/h3&gt;
 
@@ -61,6 +69,8 @@
 &lt;p&gt;拭目以待！&lt;/p&gt;
 
 &lt;h3 id=&quot;section-3&quot;&gt;总结&lt;/h3&gt;
+
+&lt;p&gt;个人从技术上的伸手党，追随者，变成了生产者。&lt;/p&gt;
 
 &lt;p&gt;其实，要不是被人严重干扰，至少可以早三年完成转型！！！&lt;/p&gt;
 
@@ -751,7 +761,7 @@ ADDS10硬盘分区助手；
   &lt;li&gt;paginate：分页&lt;/li&gt;
   &lt;li&gt;permalinks：给网页一个固定链接&lt;/li&gt;
   &lt;li&gt;tags：文章标签&lt;/li&gt;
-  &lt;li&gt;autotoc：自动生成文内目录&lt;/li&gt;
+  &lt;li&gt;autotoc：自动生成文内目录——目前这个不好用&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;用于辅助编写&lt;/p&gt;
