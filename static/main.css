@@ -179,20 +179,20 @@ article {
     -moz-animation-iteration-count: infinite;
 }
 @-webkit-keyframes sunshine {
-    0% {top:330px;left:20%;background-color: red;}
-    20% {top:225px;left:32%;background-color:gold;}
-    40% {top:100px;left:44%;background-color: rgba(255,255,255,0.75);}
-    60% {top:100px;left:56%%;background-color:rgba(255,255,255,0.75);}
-    80% {top:225px;left:68%;background-color: gold;}
-    100% {top:330px;left:80%;background-color: red;}
+    0% {top:330px;left:10%;background-color: red;}
+    20% {top:225px;left:26%;background-color:gold;}
+    40% {top:100px;left:42%;background-color: rgba(255,255,255,0.75);}
+    60% {top:100px;left:58%%;background-color:rgba(255,255,255,0.75);}
+    80% {top:225px;left:74%;background-color: gold;}
+    100% {top:330px;left:90%;background-color: red;}
 }
 @-moz-keyframes sunshine {
-    0% {top:330px;left:20%;background-color: red;}
-    20% {top:225px;left:32%;background-color:gold;}
-    40% {top:100px;left:44%;background-color: rgba(255,255,255,0.75);}
-    60% {top:100px;left:56%%;background-color:rgba(255,255,255,0.75);}
-    80% {top:225px;left:68%;background-color: gold;}
-    100% {top:330px;left:80%;background-color: red;}
+    0% {top:330px;left:10%;background-color: red;}
+    20% {top:225px;left:26%;background-color:gold;}
+    40% {top:100px;left:42%;background-color: rgba(255,255,255,0.75);}
+    60% {top:100px;left:58%%;background-color:rgba(255,255,255,0.75);}
+    80% {top:225px;left:74%;background-color: gold;}
+    100% {top:330px;left:90%;background-color: red;}
 }
 
 .horizon {
@@ -219,9 +219,9 @@ article {
     -moz-column-rule: 1px solid white;
     -webkit-column-rule: 1px solid white;
     
-    column-gap: 35px;
-    -moz-column-gap: 35px;
-    -webkit-column-gap: 35px;
+    column-gap: 5px;
+    -moz-column-gap: 5px;
+    -webkit-column-gap: 5px;
 }
 
 
