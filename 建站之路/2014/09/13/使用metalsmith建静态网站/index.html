@@ -335,7 +335,10 @@ html+css+js+各种js模板。重心在js</p>
 <pre><code>// 用=号输出,会被escape转义编码
 &lt;%= 输出变量 %&gt;
 // 用“-”输出原始内容, 不会被escape
-&lt;%-输出变量是不会对 &amp; 等符号进行转义的 &lt;%# 注释 %&gt; &lt;%%  输出一 &lt;%
+&lt;%-输出变量是不会对 &amp; 等符号进行转义的
+&lt;%# 注释 %&gt;
+&lt;%%  输出一 &lt;%
+// 选择器用点号 . 
 &lt;% if (names.length) { %&gt;
   &lt;ul&gt;
     &lt;% names.forEach(function(name){ %&gt;

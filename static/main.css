@@ -47,7 +47,11 @@ article {
         -webkit-column-width: 95%;
         -moz-column-width: 95%;
         column-width: 95%;
+        
         margin: 0;
+    }
+    article {
+        padding: 0;
     }
 }
 
