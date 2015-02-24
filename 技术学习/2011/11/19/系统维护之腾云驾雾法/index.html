@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>系统维护之”腾云驾雾“法</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2011/11/19/%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4%E4%B9%8B%E8%85%BE%E4%BA%91%E9%A9%BE%E9%9B%BE%E6%B3%95/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="系统维护之”腾云驾雾“法">系统维护之”腾云驾雾“法</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>【摘要】：</b><br/></p>
+      
+
+      
+      <p class="post-tag"><b>【话题】：</b>
+        
+        <a href="/话题列表/#系统维护-ref">系统维护
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#腾云驾雾法-ref">腾云驾雾法
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#云维护-ref">云维护
+        <sup>1</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#技术学习-ref">【技术学习】</a>
+        
+      </span>
+      
+      
+      创建时间：2011-11-19 13:28:34
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <p><strong>思路起源：</strong></p>
+
+<p>来自于一次刻骨铭心的数据丢失事件，同时，由于本身条件的极端匮乏和不可救药的懒惰成性，同时又不想浪费自己的任何时间，于是，发展出了这种可以在以后大规模普及的方法。</p>
+
+<p>一：<strong>数据丢失事件的解决——》虚拟机中转恢复法：</strong></p>
+
+<p>一个分区坏了，数据全没了，(<a href="/技术学习/2011/11/17/恢复数据中/">就是这贴里说的</a>，而发现linux下好用的工具匮乏，自己又没装windows，于是，在刻废了几张盘后——恰好我又没有优盘，不然做优盘系统就好办多了。懒得去买，于是，想到了下面一个办法——因为思路有非常好的扩展性，所以写下来，大家可以从这个思路中挖掘更多东西：</p>
+
+<p>甲、<strong>原因：</strong>
+因为平时用的是linux，而linux下缺乏一些比较“好用”的工具：此处说的“好用”，是个人感受，可能也是因为不熟悉，所以如果有这方面的达人，欢迎交流。</p>
+
+<p>乙、<strong>原理：</strong>
+用 虚拟机安装windows（或者不安装，直接使用专门用于维护的镜像，比如刻有winpe的镜像），然后挂载两个硬盘，一个是用于修复的原数据盘（母盘） ——只读方式，一个是用于备份修复数据的备份盘（子盘）——可读写方式，用虚拟机windows中的“好用的”工具，分析母盘，提取文件，然后复制到子 盘。</p>
+
+<p>丙、<strong>好处：</strong></p>
+
+<ol>
+  <li>不用刻盘，也就不会因为刻盘出现各种问题，比如刻坏了</li>
+  <li>不用使用优盘操作系统，优盘速度很快，但本身和电脑的传输通道并不一定足够，影响整体表现了。</li>
+  <li>可以通过控制虚拟机的性能，控制进度：空闲时可以多给几个芯片、内存空间，繁忙时则少给几个芯片、内存空间</li>
+  <li>直接在原有电脑上使用，可以使用原电脑的功能，使得恢复过程不那么枯燥：可以边工作、听音乐、上网，边恢复。</li>
+</ol>
+
+<p>丁、<strong>不好的地方：</strong>
+速度明显没有直接电脑上使用快</p>
+
+<p>二、<strong>更多应用：</strong></p>
+
+<p>甲、<strong>原理：</strong>
+既然可以虚拟机中使用虚拟系统，挂载母盘和子盘，那么，同样的原理，就可以实现“远程”的系统、数据修复了——<strong>远程维护</strong>（或者起个流行点的名字：云维护/腾云驾雾法）：某个处在云端的服务器，挂载本地的母盘，然后挂载也在本地或者在别处的子盘。</p>
+
+<p>乙、<strong>示例一：</strong>
+如果是挂载在别处的子盘，那会很好玩，比如公司总部在上海，而分公司在拉萨，分公司电脑出问题，总部则可利用远程维护，把拉萨的电脑里的东西全拷到上海的总部，人就不用过去了，直接在总部检查相关情况——这样可以大大节省差旅开支和相应的时间成本。</p>
+
+<p>丙、<strong>感觉：</strong>
+其实没那么玄，这种方法早就在机房广泛使用了，只不过还没普及到寻常百姓家而已，呵呵。借用虚拟机，让这种方法的适用范围变得更广了而已。</p>
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+  
+  <!-- 有言评论 -->
+  <div id="uyan_frame">
+    <h2>■评论</h2>
+  </div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a href="/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2011/11/17/%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE%E4%B8%AD/">恢复数据中……◁◀前篇</a>
+    </div>
+    
+    
+    <!--回到头部-->
+    <div class="back-top"><a href="#系统维护之”腾云驾雾“法">△▲回头▲△</a></div> 
+    
+    
+    <div class="post-next">
+      <a href="/%E6%8A%80%E6%9C%AF%E6%99%AE%E5%8F%8A/2011/11/22/html5%E5%8F%A4%E6%96%87%E7%AB%96%E6%8E%92%E6%96%87%E5%AD%97%E6%98%BE%E7%A4%BA/">后篇▶▷古文竖排+从左向右在html中的处理方法</a>
+    </div>
+    
+    
+  </div>
+
+  <!--页面底部自动浮现-->
+  <div class="post-reletive">
+    <!--相关文章-->
+
+  </div>
+
+</div>
+
+
+  <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2015版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接，谢谢合作！</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+      <span>致谢： </br>
+        <a href="http://www.github.com">空间：github</a>，
+        <a href="http://jekyllrb.com">构建：jekyll</a>，
+        <a href="http://freenom.com/">域名：freenom</a>，
+        以及一切对本人有帮助的人事物！</span>
+      <span>
+        <!--百度统计-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+      </span>
+    </li>
+  </ul>
+</footer>
+
+
+    
+
+  
+</div>
+
+
+
+
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>

@@ -6,10 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>哈哈，刚刚收到ubuntu的盘</title>
+<title>恢复数据中……</title>
 <meta name="description" content="黑传说的学习笔记">
 
-<link rel="canonical" href="http://jobinson.ga/%E6%8A%80%E6%9C%AF%E8%A7%86%E9%87%8E/2007/08/30/%E5%88%9A%E5%88%9A%E6%94%B6%E5%88%B0%E6%9C%89%E5%A5%94%E5%A4%B4%E7%9B%98/">
+<link rel="canonical" href="http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2011/11/17/%E6%81%A2%E5%A4%8D%E6%95%B0%E6%8D%AE%E4%B8%AD/">
 
 <!-- 皮肤样式 -->
 <link rel="stylesheet" href="/themes/atlas/css/style.css">
@@ -51,7 +51,7 @@
       <div class="post">
   
   <header class="post-header">
-    <h1 id="哈哈，刚刚收到ubuntu的盘">哈哈，刚刚收到ubuntu的盘</h1>
+    <h1 id="恢复数据中……">恢复数据中……</h1>
 
     <div class="post-abstract">
       
@@ -61,11 +61,15 @@
       
       <p class="post-tag"><b>【话题】：</b>
         
-        <a href="/话题列表/#有奔头-ref">有奔头
+        <a href="/话题列表/#数据恢复-ref">数据恢复
         <sup>1</sup></a>
         &nbsp;
         
-        <a href="/话题列表/#光盘-ref">光盘
+        <a href="/话题列表/#虚拟机中转恢复法-ref">虚拟机中转恢复法
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#虚拟维护-ref">虚拟维护
         <sup>1</sup></a>
         &nbsp;
         
@@ -78,12 +82,12 @@
       
       <span class="post-categories">类别：
         
-        <a href="/分类列表/#技术视野-ref">【技术视野】</a>
+        <a href="/分类列表/#技术学习-ref">【技术学习】</a>
         
       </span>
       
       
-      创建时间：2007-08-30 13:43:02
+      创建时间：2011-11-17 16:40:04
       
       
     </p>
@@ -91,12 +95,40 @@
   </header>
 
   <article class="post-content">
-    <p>好像是月初登记的索要ubuntu系统操作系统，没想到现在就收到了！表扬一下canonical公司！</p>
+    <p>不知道为什么，竟然会误操作，把/home挂载为swap，然后悲剧一路开始，好不容易修复了/home的分区表，挂载后，又不小心新建了一个同名账户，于是，/home里好不容易恢复过来的东西全部不见了……</p>
 
-<p>刚刚打开光盘，好像比下载的多了点东西，比如里面有个3d软件，杀毒软件，abiword，thunderbird浏览器，更可贵的是，盘的附文里竟然智能化地是中文的！</p>
+<p>不过还好，最重要的部分我已经备份了，但不重要的也有很多，尤其是其中一个目录，因为太大，我忘了备份了，还是等着修复吧。</p>
 
-<p>好久就对ubuntu的盘垂涎欲滴了，今天第一次拿到，虽然电脑已经装了这个系统，但还是要体验下canonical的态度！我相信ubuntu会超越windows！</p>
+<p>不过也还不错，因此了解了一些关于磁盘和文件急救的东西。</p>
 
+<h2 id="section">一、认识我呢提</h2>
+
+<p>要抢救处于水火中的数据，需要<strong>先了解问题属性，然后根据属性，选择合适工具：</strong></p>
+
+<ol>
+  <li>操作系统回收站：这种比较好办。</li>
+  <li>分区表错乱：testdisk（linux下）windows下也有一堆好工具，这个错误导致的文件丢失可以说是经常性的。</li>
+  <li>文件系统：easyrecovery（windows下），linux下目前还在找相关好用的工具，可用的工具： ddrecovery extundelete photorec(testdisk)，可惜都不够直观。</li>
+  <li>坏扇区：safecopy</li>
+  <li>磁盘直接损毁：即使是这个程度，也能恢复，但这个 已经  不是我的能力范围了。。</li>
+</ol>
+
+<h2 id="section-1">二、所需条件</h2>
+
+<h2 id="section-2">三、经验总结：</h2>
+
+<ol>
+  <li>根据个人和其他人数据失控的情况来看：做好备份是必须的，而且，一般<strong>至少需要1：3以上的空间用于备份</strong>（也就是如果你电脑上的磁盘是100G，至少需要300G的额外硬盘，才能保证基本的数据安全），并且最好一周一备份。</li>
+  <li><strong>病毒隔离</strong>：总有些文件会染毒，那么，备份的时候如何减少影响呢？</li>
+  <li><strong>所分区不要太大</strong>，否则恢复起来也麻烦、费时，从而变相扩大了数据的风险。</li>
+  <li><strong>重要数据不要放在/home，而是放在独立的分区/data里</strong>，需要时挂载或者自动挂载即可。原因是：/home一个新建和删除账户（多用户环境下或者测试帐号环境下更是如此！！！），就是执行批量的操作，命令简单，风险巨大，而/data则较少出现这种执行批量化的工作，因为最大可能危害的程度相对/home来说，就较小。通过降低“最大可能危害”的程度，从而控制风险。</li>
+</ol>
+
+<h2 id="section-3">四、虚拟机中转恢复法</h2>
+
+<p>发展出一种可广泛应用的数据恢复法：<strong>虚拟机中转恢复法——》虚拟维护法</strong></p>
+
+<p>因为有普遍意义，所以单独发成一文了。</p>
 
   </article>
 
@@ -116,16 +148,16 @@
     <!--上一篇 话题 下一篇-->
     
     <div class="post-pre">
-      <a href="/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2007/07/31/%E7%9C%8B%E6%88%91%E6%80%8E%E4%B9%88%E6%8A%98%E8%85%BE%E6%90%9C%E7%8B%97%E8%BE%93%E5%85%A5%E6%B3%953/">看看我怎么折腾搜狗输入法v3.1论坛预览版◁◀前篇</a>
+      <a href="/%E6%B6%85%E7%A3%90/2011/11/05/%E6%88%90%E5%B9%B4%E4%BA%BA%E9%83%BD%E6%98%AF%E5%B8%A6%E7%97%85%E7%94%9F%E5%AD%98%E7%9A%84/">如何面对绝症：成年人都是带病生存的◁◀前篇</a>
     </div>
     
     
     <!--回到头部-->
-    <div class="back-top"><a href="#哈哈，刚刚收到ubuntu的盘">△▲回头▲△</a></div> 
+    <div class="back-top"><a href="#恢复数据中……">△▲回头▲△</a></div> 
     
     
     <div class="post-next">
-      <a href="/%E6%8A%80%E6%9C%AF%E8%A7%86%E9%87%8E/2008/01/27/%E9%B8%A1%E5%90%8C%E9%B8%AD%E8%AE%B2%E6%89%AF%E7%9A%84macbookair%E6%B5%8B%E8%AF%84/">后篇▶▷鸡同鸭讲：扯的macbookair测评</a>
+      <a href="/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2011/11/19/%E7%B3%BB%E7%BB%9F%E7%BB%B4%E6%8A%A4%E4%B9%8B%E8%85%BE%E4%BA%91%E9%A9%BE%E9%9B%BE%E6%B3%95/">后篇▶▷系统维护之”腾云驾雾“法</a>
     </div>
     
     
