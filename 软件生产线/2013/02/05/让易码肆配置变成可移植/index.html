@@ -6,10 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>今年还会叛逃arch么？</title>
+<title>让易码肆配置变成可移植：windows部分</title>
 <meta name="description" content="黑传说的学习笔记">
 
-<link rel="canonical" href="http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2013/01/17/%E4%BB%8A%E5%B9%B4%E8%BF%98%E4%BC%9A%E5%8F%9B%E9%80%83arch%E4%B9%88/">
+<link rel="canonical" href="http://jobinson.ga/%E8%BD%AF%E4%BB%B6%E7%94%9F%E4%BA%A7%E7%BA%BF/2013/02/05/%E8%AE%A9%E6%98%93%E7%A0%81%E8%82%86%E9%85%8D%E7%BD%AE%E5%8F%98%E6%88%90%E5%8F%AF%E7%A7%BB%E6%A4%8D/">
 
 <!-- 皮肤样式 -->
 <link rel="stylesheet" href="/themes/atlas/css/style.css">
@@ -51,7 +51,7 @@
       <div class="post">
   
   <header class="post-header">
-    <h1 id="今年还会叛逃arch么？">今年还会叛逃arch么？</h1>
+    <h1 id="让易码肆配置变成可移植：windows部分">让易码肆配置变成可移植：windows部分</h1>
 
     <div class="post-abstract">
       
@@ -61,16 +61,12 @@
       
       <p class="post-tag"><b>【话题】：</b>
         
-        <a href="/话题列表/#arch-ref">arch
+        <a href="/话题列表/#配置-ref">配置
         <sup>1</sup></a>
         &nbsp;
         
-        <a href="/话题列表/#叛逃-ref">叛逃
-        <sup>1</sup></a>
-        &nbsp;
-        
-        <a href="/话题列表/#你牛叉-ref">你牛叉
-        <sup>4</sup></a>
+        <a href="/话题列表/#易码肆-ref">易码肆
+        <sup>2</sup></a>
         &nbsp;
         
       </p>
@@ -82,12 +78,12 @@
       
       <span class="post-categories">类别：
         
-        <a href="/分类列表/#技术学习-ref">【技术学习】</a>
+        <a href="/分类列表/#软件生产线-ref">【软件生产线】</a>
         
       </span>
       
       
-      创建时间：2013-01-17 12:40:43
+      创建时间：2013-02-05 21:26:31
       
       
     </p>
@@ -95,17 +91,57 @@
   </header>
 
   <article class="post-content">
-    <p>自从2006年遭遇“有奔头”（ubuntu），感觉情投意合之后，一直就在你牛叉（linux）里混，很少进入视窗（windows）了。</p>
+    <p>以前一直在linux下用emacs，今天切到windows，想沿用linux下的配置，于是，琢磨了一番。</p>
 
-<p>在折腾有奔头有些时间后，在kde3.5那里找到了爽快的感觉，但有奔头恰好是故意败坏kde名声的主，于是了解了另一个发行版arch，之后对其各种欲罢不能，爱恨纠结，意乱情迷，颠鸾倒凤……</p>
+<p>emacs默认配置在windows的目录是 <em>C:/Documents and Settings/xxx/Application Data</em>
+太难找了，改进下，统一放到一个目录下：emacs安装位置所在的site-lisp，把我以前所有配置都放里面，以后可以直接把emacs安装文件夹打包，放到优盘里面即可使用。备份也只需要备份site-lisp文件夹，不用到处找。</p>
 
-<p>虽然很满意，但也同时带着巨大的不满，于是，几乎每年的年初，我都想叛逃之，不过折腾来折腾去，还是还是发现这货算是最适合我的，虽然心中已经有了更好的标准，但这货还算凑合，满足了我主要的需求，就将就着吧。</p>
+<p>最终目录结构如下：
+代码:</p>
 
-<p>不过，对于你牛叉这种贱命，只需要很低配置就可以搞很大工程的东东，我这电脑还承担得起，承担不起的是微软的视窗和苹果的系统，尤其是苹果的特别娇贵，硬件需求太高了，于是，虚拟机渐渐玩不起这东东，而由于开发需要，总是需要用到这两个系统来测试。</p>
+<pre><code>emacs安装目录：
+     | -- bin 启动文件所在
+     | -- site-lisp 所有自定义配置所在
+     | --  ……  其他文件
+     ……
+</code></pre>
 
-<p>可能吧，可能会换一下电脑吧，借着换电脑的机会，估计也会抛弃arch这种折腾的东东，换个稳定点的，目前两个选项：一个是gentoo，一个是slackware。gentoo主要是编译耗时间，耗电，不环保。slackware更多的是对其社区运营模式不信任，对其社区的热度不信任，但喜欢其脚本化和稳定的内核。</p>
+<p>在解压的emacs目录中，在site-lisp文件夹下，新建一文件 site-start.el，输入如下内容：</p>
 
-<p>或许吧，人生就是这样，总是见着这山总比那山高，脚下的土地总感觉这不舒服那不舒服的，爱恨情仇，内心的波涛汹涌，也是常态吧。</p>
+<pre><code>;;设置根目录，init.el和linux下通用
+
+(if (memq window-system '(w32))
+    (progn
+      (defvar present-emacs-directory (substring data-directory 0 -4)) ;;找到当前emacs安装目录
+      (defvar portable-home-directory (format "%s" (concat present-emacs-directory "site-lisp/"))) ;;设定的新根目录
+      (setenv "HOME" portable-home-directory)
+      (setenv "PATH" portable-home-directory)
+      ))
+</code></pre>
+
+<p>目前在win xp emacs24测试有效，其他的大家去测试吧。</p>
+
+<p>win7 emacs24.4 则上面代码结构有变</p>
+
+<pre><code>emacs安装目录：
+     | -- bin 启动文件所在
+     | -- share -- emacs -- 24.4 -- site-lisp 所有自定义配置所在
+     | --  ……  其他文件
+     ……
+</code></pre>
+
+<p>代码改为：</p>
+
+<pre><code>;;设置根目录，init.el和linux下通用
+
+(if (eq system-type 'windows-nt)
+    (progn
+      (defvar present-emacs-directory (substring data-directory 0 -4)) ;;找到当前emacs安装目录
+      (defvar portable-home-directory (format "%s" (concat present-emacs-directory "site-lisp/"))) ;;设定的新根目录
+      (setenv "HOME" portable-home-directory)
+      (setenv "PATH" portable-home-directory)
+      ))
+</code></pre>
 
 
   </article>
@@ -126,16 +162,16 @@
     <!--上一篇 话题 下一篇-->
     
     <div class="post-pre">
-      <a href="/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2013/01/07/%E7%9C%BC%E7%9D%9B%E4%B8%8D%E5%A5%BD%E8%A6%81%E6%80%8E%E4%B9%88%E6%89%8D%E8%83%BD%E7%9C%8B%E6%B8%85/">眼睛不好，要怎么才能看清呢？◁◀前篇</a>
+      <a href="/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2013/01/17/%E4%BB%8A%E5%B9%B4%E8%BF%98%E4%BC%9A%E5%8F%9B%E9%80%83arch%E4%B9%88/">今年还会叛逃arch么？◁◀前篇</a>
     </div>
     
     
     <!--回到头部-->
-    <div class="back-top"><a href="#今年还会叛逃arch么？">△▲回头▲△</a></div> 
+    <div class="back-top"><a href="#让易码肆配置变成可移植：windows部分">△▲回头▲△</a></div> 
     
     
     <div class="post-next">
-      <a href="/%E8%BD%AF%E4%BB%B6%E7%94%9F%E4%BA%A7%E7%BA%BF/2013/02/05/%E8%AE%A9%E6%98%93%E7%A0%81%E8%82%86%E9%85%8D%E7%BD%AE%E5%8F%98%E6%88%90%E5%8F%AF%E7%A7%BB%E6%A4%8D/">后篇▶▷让易码肆配置变成可移植：windows部分</a>
+      <a href="/%E4%BB%96%E5%B1%B1%E4%B9%8B%E7%9F%B3/2013/02/20/%E6%9C%8D%E8%A3%85%E9%9D%A2%E6%96%99%E7%89%B9%E6%80%A7%E5%A4%A7%E5%85%A8/">后篇▶▷【整理】服装面料特性大全</a>
     </div>
     
     
