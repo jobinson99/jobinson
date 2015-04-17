@@ -167,10 +167,54 @@ Hard disk space : 16GB
 
 &lt;p&gt;然后&lt;a href=&quot;http://developer.apple.com/programs/register/&quot;&gt;注册苹果账号&lt;/a&gt;，下载Xcode  和 iOS SDK。&lt;/p&gt;
 
+&lt;p&gt;打开工程项目文件  hello/platforms/ios/hello.xcodeproj&lt;/p&gt;
+
 &lt;h3 id=&quot;section-4&quot;&gt;手机&lt;/h3&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://www.appsfinder.fr&quot;&gt;查找应用&lt;/a&gt;
 &lt;a href=&quot;http://appcrawlr.com&quot;&gt;另一个查找应用的地方&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;在手机上运行各种应用&lt;/h3&gt;
+
+&lt;p&gt;有空可探索：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Android + Linux Chroot + Node.js&lt;/li&gt;
+  &lt;li&gt;firefoxos + &lt;/li&gt;
+  &lt;li&gt;JXCore One of the key features in the recent release was the ability to run Node.js applications on mobile, both Android and iOS, while leveraging the full Node.js ecosystem on npm.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;除去直接硬刷linux系统到手机上外，还有三个软办法：&lt;/p&gt;
+
+&lt;p&gt;一是获得root权限，然后安装busybox之类的。另一个是编译安装 一个包管理器（等有空折腾debian的dpkg），最后一个比较方便的是 安卓上的编程环境 terminalIDE。&lt;/p&gt;
+
+&lt;p&gt;英文输入键盘：手写用 writepad
+英文虚拟电脑键盘用：terminal ide的键盘&lt;/p&gt;
+
+&lt;p&gt;生成 身份认证：和linux上的ssh-keygen不同。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mkdir ~/.ssh        
+dropbearkey -t rsa -f ~/.ssh/id_rsa
+dropbearkey -y -f ~/.ssh/id_rsa | grep &quot;^ssh-rsa&quot; &amp;gt;&amp;gt; my_keydropbearkey -y -f ~/.ssh/id_rsa | sed -n 2p &amp;gt; ~/.ssh/id_rsa.pub
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;第一条命令是新建文件夹，第二条命令是 生成 私钥，第三条是本地安全管道开启密钥认证，第四条是把公钥拷到 &lt;em&gt;my_key&lt;/em&gt; 上，然后把 &lt;em&gt;my_key&lt;/em&gt; 拷到所需的git服务器上。&lt;/p&gt;
+
+&lt;p&gt;修改下本地的配置&lt;/p&gt;
+
+&lt;p&gt;新建一文件 ~/sssh （名字随意，只要下面相应改下对应的），内容如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;#!/data/data/com.spartacusrex.spartacuside/files/system/bin/bash
+exec ssh -i ~/.ssh/id_rsa &quot;$@&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;修改下执行权限和修改配置文件 ~/.bashrc&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;chmod 755 ~/sssh
+echo export GIT_SSH=~/sssh &amp;gt;&amp;gt; .bashrc
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;到这步搞定！&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 2015 Apr 14 22:34:19 +0800</pubDate>

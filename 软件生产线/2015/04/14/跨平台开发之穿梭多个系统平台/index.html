@@ -250,10 +250,54 @@ Hard disk space : 16GB
 
 <p>然后<a href="http://developer.apple.com/programs/register/">注册苹果账号</a>，下载Xcode  和 iOS SDK。</p>
 
+<p>打开工程项目文件  hello/platforms/ios/hello.xcodeproj</p>
+
 <h3 id="section-4">手机</h3>
 
 <p><a href="http://www.appsfinder.fr">查找应用</a>
 <a href="http://appcrawlr.com">另一个查找应用的地方</a></p>
+
+<h3 id="section-5">在手机上运行各种应用</h3>
+
+<p>有空可探索：</p>
+
+<ul>
+  <li>Android + Linux Chroot + Node.js</li>
+  <li>firefoxos + </li>
+  <li>JXCore One of the key features in the recent release was the ability to run Node.js applications on mobile, both Android and iOS, while leveraging the full Node.js ecosystem on npm.</li>
+</ul>
+
+<p>除去直接硬刷linux系统到手机上外，还有三个软办法：</p>
+
+<p>一是获得root权限，然后安装busybox之类的。另一个是编译安装 一个包管理器（等有空折腾debian的dpkg），最后一个比较方便的是 安卓上的编程环境 terminalIDE。</p>
+
+<p>英文输入键盘：手写用 writepad
+英文虚拟电脑键盘用：terminal ide的键盘</p>
+
+<p>生成 身份认证：和linux上的ssh-keygen不同。</p>
+
+<pre><code>mkdir ~/.ssh        
+dropbearkey -t rsa -f ~/.ssh/id_rsa
+dropbearkey -y -f ~/.ssh/id_rsa | grep "^ssh-rsa" &gt;&gt; my_keydropbearkey -y -f ~/.ssh/id_rsa | sed -n 2p &gt; ~/.ssh/id_rsa.pub
+</code></pre>
+
+<p>第一条命令是新建文件夹，第二条命令是 生成 私钥，第三条是本地安全管道开启密钥认证，第四条是把公钥拷到 <em>my_key</em> 上，然后把 <em>my_key</em> 拷到所需的git服务器上。</p>
+
+<p>修改下本地的配置</p>
+
+<p>新建一文件 ~/sssh （名字随意，只要下面相应改下对应的），内容如下：</p>
+
+<pre><code>#!/data/data/com.spartacusrex.spartacuside/files/system/bin/bash
+exec ssh -i ~/.ssh/id_rsa "$@"
+</code></pre>
+
+<p>修改下执行权限和修改配置文件 ~/.bashrc</p>
+
+<pre><code>chmod 755 ~/sssh
+echo export GIT_SSH=~/sssh &gt;&gt; .bashrc
+</code></pre>
+
+<p>到这步搞定！</p>
 
 
   </article>
