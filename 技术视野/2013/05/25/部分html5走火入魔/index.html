@@ -144,10 +144,10 @@
 
 <ol>
   <li>
-    <p>部分是通用性不足的：比如ruby标识，难道在标准中设定所有的编程语言都有一个标识？那标准何时完成？还是用<code>&lt;pre class="ruby"&gt;</code>这种方式通用且灵活。</p>
+    <p>部分是通用性不足的：比如ruby标识，难道在标准中设定所有的注音都要有一个标识？那标准何时完成？还是用<code>&lt;ruby class="zh"&gt;</code>这种方式通用且灵活。</p>
   </li>
   <li>
-    <p>另外，原先html4的部分标签，有必要清理掉。比如<code>&lt;sub&gt;</code> ，比如关于列表的几个标签<code>&lt;ul&gt;&lt;ol&gt;&lt;dl&gt;</code>，可以统一为一个，然后通过class或者id来控制实现的效果。</p>
+    <p>另外，原先html4的部分标签，有必要清理掉。比如上下标 <code>&lt;sub&gt;</code> ，用<code>label class="sub"</code>即可，比如关于列表的几个标签<code>&lt;ul&gt;&lt;ol&gt;&lt;dl&gt;</code>，可以统一为一个，然后通过class或者id来控制实现的效果。</p>
   </li>
 </ol>
 
@@ -157,11 +157,13 @@
 
 <pre><code>&lt;div class="content" id=""&gt; 用于表示固定的布局
 &lt;splash&gt; 浮动区块：需经常更新渲染的区块，和canvas一样调用系统图形加速——也可以就canvas，然后通过class来区分画图和浮动区块。——添加兼容代码，使得canvas应用更广泛。
-&lt;header class="h1"&gt; 用于表示文档大纲级结构
-&lt;p class="abstract" id=""&gt; 用于表示段落
-&lt;span class="" id=""&gt; 用于表示段落内文本
+&lt;label class="sub sup"&gt; 用于表示上下标
+&lt;header class="h1 h2 "&gt; 用于表示文档大纲级结构
+&lt;p class="abstract" id=""&gt; 用于表示段落：摘要
+&lt;span class="" id=""&gt; 用于表示段落内文本的特殊样式
 &lt;list class="orderlist" id=""&gt; 用于表示列表
-&lt;pre class="ruby"&gt; 用于表示程序语言类别
+&lt;ruby class="zh"&gt; 用于表示中文注音
+&lt;pre class="python"&gt; 用于表示程序语言类别
 </code></pre>
 
 <h2 id="section-1">更大的改进：后台内建机制</h2>
