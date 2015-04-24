@@ -7,6 +7,80 @@
     <atom:link href="http://jobinson.ga/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>五笔划+智能输入真的快</title>
+        <description>&lt;p&gt;中文笔划输入法还是很不错的。&lt;/p&gt;
+
+&lt;p&gt;今天试了下中文笔划输入法，该笔划输入法只有五个笔划（横竖撇点钩）联想，速度丝毫不差于拼音，对于我这新手都没感觉学习有难度和输入迟滞。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;手写输入法：5笔划+智能联想&lt;/h3&gt;
+
+&lt;p&gt;5笔划+智能联想&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;汉字笔画&lt;/td&gt;
+      &lt;td&gt;横&lt;/td&gt;
+      &lt;td&gt;竖&lt;/td&gt;
+      &lt;td&gt;撇&lt;/td&gt;
+      &lt;td&gt;捺&lt;/td&gt;
+      &lt;td&gt;折&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;对应编码&lt;/td&gt;
+      &lt;td&gt;1&lt;/td&gt;
+      &lt;td&gt;2&lt;/td&gt;
+      &lt;td&gt;3&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;5&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;对应书写顺序&lt;/td&gt;
+      &lt;td&gt;从左到右：横 提笔&lt;/td&gt;
+      &lt;td&gt;从上到下：竖 竖左勾&lt;/td&gt;
+      &lt;td&gt;从右上到左下：撇&lt;/td&gt;
+      &lt;td&gt;从左上到右下 点 捺&lt;/td&gt;
+      &lt;td&gt;所有带转折弯勾 横勾 竖右勾 弯勾&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;位置表示法：
+数字键盘 轨迹 表示 笔划 起点 拐点 终点&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;横交&lt;/li&gt;
+  &lt;li&gt;竖交&lt;/li&gt;
+  &lt;li&gt;撇交&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;捺交&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;合体字：二分结构 前2后3取码&lt;/li&gt;
+  &lt;li&gt;独体字：首4末1取码&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;词组：每字各取前三码。&lt;/p&gt;
+
+&lt;p&gt;全键盘：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;1 2 3 4 5 6 7 8 9 0&lt;/li&gt;
+  &lt;li&gt;gfdsa t r e w&lt;/li&gt;
+  &lt;li&gt;yuiop hjkl&lt;/li&gt;
+  &lt;li&gt;选字：zxcvbnm 空格&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;划为四区，每区笔划相同，以起笔所在区定位，作为开始。共20键。&lt;/p&gt;
+
+&lt;p&gt;识别的关键在于：方向，路径和位置&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 2015 Apr 19 19:43:45 +0800</pubDate>
+        <link>http://jobinson.ga/%E6%8A%80%E6%9C%AF%E8%A7%86%E9%87%8E/2015/04/19/%E4%BA%94%E7%AC%94%E5%88%92%E6%99%BA%E8%83%BD%E8%BE%93%E5%85%A5%E6%B3%95%E7%9C%9F%E7%9A%84%E5%BF%AB/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E6%8A%80%E6%9C%AF%E8%A7%86%E9%87%8E/2015/04/19/%E4%BA%94%E7%AC%94%E5%88%92%E6%99%BA%E8%83%BD%E8%BE%93%E5%85%A5%E6%B3%95%E7%9C%9F%E7%9A%84%E5%BF%AB/</guid>
+      </item>
+    
+      <item>
         <title>跨平台开发：穿梭多个系统平台的统一开发环境</title>
         <description>&lt;h2 id=&quot;section&quot;&gt;遇到的问题：&lt;/h2&gt;
 
@@ -1756,298 +1830,6 @@ MACROXXX(a, (a-&amp;gt;cell[0]-&amp;gt;count != 0        ), &quot;Function &#39;
         <pubDate>Mon, 2014 May 12 22:38:00 +0800</pubDate>
         <link>http://jobinson.ga/%E6%8A%80%E6%9C%AF%E6%99%AE%E5%8F%8A/2014/05/12/%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E9%A3%8E%E6%A0%BC/</link>
         <guid isPermaLink="true">http://jobinson.ga/%E6%8A%80%E6%9C%AF%E6%99%AE%E5%8F%8A/2014/05/12/%E5%B8%B8%E8%A7%81%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E9%A3%8E%E6%A0%BC/</guid>
-      </item>
-    
-      <item>
-        <title>【公开课】编程语言解剖</title>
-        <description>&lt;p&gt;杂七杂八之后，接下来，说说能够组合出程序的编程语言：&lt;/p&gt;
-
-&lt;p&gt;先说说这世界上有啥编程语言。对于正常人而言，计算机编程语言大概就是下面这四种类型：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;计算机电子信号——&amp;gt;编码为二进制——&amp;gt;助记符（汇编）——&amp;gt;抽象以方便人类操作的语言（比如C）
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;对于前面三种，现在一般人都不需要去直接接触，对于第四种，就是我们日常需要接触掌握的，第四种是非常丰富的，有各种各样，而且，日常编程生产作业中，都是不可避免地需要同时掌握好几个编程语言，才能写出一个可用的程序的，因此，为了快速掌握它们，需要了解它们的一些共有规律。&lt;/p&gt;
-
-&lt;p&gt;另外，对于有些特殊要求的，比如前面说到的瘫痪的人，可能其计算机编程语言就演变成如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;计算机电子信号——&amp;gt;编码为二进制——&amp;gt;助记符（汇编）——&amp;gt;摩斯码或者可能的盲文编程语言（目前还不存在这种语言）
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&quot;section&quot;&gt;为什么会有这么多的语言呢？&lt;/h3&gt;
-
-&lt;p&gt;从打孔机时代一路走来&lt;/p&gt;
-
-&lt;p&gt;为了表达 &lt;code&gt;1 + 2 + ... + 10 = 55&lt;/code&gt; 并打印出结果，需要：&lt;/p&gt;
-
-&lt;p&gt;其特点：操作 操作对象 内存位置。再复杂的逻辑，都可以简化为如此形式。
-初看运算范围是有限的：不超过8位二进制所能表达的范围，当然，有办法表达所有数字，就是运用科学计数法。
-这是没有资源回收的版本，会导致有三个内存位置一直被占用。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;00110001 00000000 00000000
-00110001 00000001 00000001
-00110011 00000001 00000010
-01010001 00001011 00000010
-00100010 00000010 00001000
-01000011 00000001 00000000
-01000001 00000001 00000001
-00010000 00000010 00000000
-01100010 00000000 00000000
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;每句解释：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;[结果]把数字0 存放到 内存位置 0 中&lt;/li&gt;
-  &lt;li&gt;[运算材料]把数字1 存放到 内存位置 1 中&lt;/li&gt;
-  &lt;li&gt;[运算]把 内存位置1的&lt;strong&gt;值&lt;/strong&gt; 存放到内存位置 2 中&lt;/li&gt;
-  &lt;li&gt;[设定范围] 内存位置 2 的值 减去 11&lt;/li&gt;
-  &lt;li&gt;[设定范围] 若 内存位置2的值为0 ，则跳转到第九步&lt;/li&gt;
-  &lt;li&gt;[累计结果]把内存位置1的值 加入到内存位置 0 中&lt;/li&gt;
-  &lt;li&gt;[递增] 把内存位置1的值 加1&lt;/li&gt;
-  &lt;li&gt;[跳转]继续第三步&lt;/li&gt;
-  &lt;li&gt;[输出]把 位于内存位置 0 的值 输出。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;进一步发展编程语言，利用借记符：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Set “total” to 0
- Set “count” to 1
-[loop]
- Set “compare” to “count”
- Subtract 11 from “compare”
- If “compare” is zero, continue at [end]
- Add “count” to “total”
- Add 1 to “count”
- Continue at [loop]
-[end]
- Output “total”
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;中文解释：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;设 “总值” 初始值为 0&lt;/li&gt;
-  &lt;li&gt;设 “累加值”初始值为 1&lt;/li&gt;
-  &lt;li&gt;[循环执行]&lt;/li&gt;
-  &lt;li&gt;设 “范围” 为 “累加值”&lt;/li&gt;
-  &lt;li&gt;“范围” - 11&lt;/li&gt;
-  &lt;li&gt;如果 “范围” = 0 转到 [结果]&lt;/li&gt;
-  &lt;li&gt;总值 = 累加值&lt;/li&gt;
-  &lt;li&gt;累加值 = 累加值 + 1&lt;/li&gt;
-  &lt;li&gt;转到 [循环执行]&lt;/li&gt;
-  &lt;li&gt;[结果]&lt;/li&gt;
-  &lt;li&gt;输出 “总值”&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;现代编程语言 js：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;var total = 0, count = 1;
-while (count &amp;lt;= 10) {
-  total += count;
-  count += 1;
-}
-console.log(total);
-// → 55
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;当然，理论上还可以进一步简化：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;(sum(range(1, 10)));
-// → 55
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;问题&lt;/strong&gt;：8位二进制可以表达多少？
-示例：13，用二进制表示：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;  0   0   0   0   1   1   0   1
-128  64  32  16   8   4   2   1
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;也就是： &lt;code&gt;00001101&lt;/code&gt; 或者 &lt;code&gt;8+4+1=13&lt;/code&gt; 。依此类推，8位数可以一共表达256，ascii的基础码共128（编码还不够简约，其实26个大写字母可以只用加一位即可判断，不需要硬编码进去），包含扩展码后共256个。&lt;/p&gt;
-
-&lt;aside&gt;个人观点：其实，汉字如果用笔画+位置来编码的话，也不需要那么多：假设10个基本笔画，42个位置信息，则可以编码 10^42=10e+42&lt;/aside&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;语言发展的动力&lt;/h3&gt;
-
-&lt;p&gt;编程语言是不完美的，现实情况的变化，编程语言也是需要不断发展的。&lt;/p&gt;
-
-&lt;p&gt;编程语言进化的动力，就是不满！&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;ul&gt;
-    &lt;li&gt;Algol: 汇编太底层了。&lt;/li&gt;
-    &lt;li&gt;Pascal: Algol语言缺少足够的数据类型。&lt;/li&gt;
-    &lt;li&gt;Modula: Pascal语言对于系统应用编程来说太弱了。&lt;/li&gt;
-    &lt;li&gt;Simula: Algol语言在仿真模拟方面不够好。&lt;/li&gt;
-    &lt;li&gt;Smalltalk: Simula语言里并不是所有的东西都是对象。&lt;/li&gt;
-    &lt;li&gt;&lt;/li&gt;
-    &lt;li&gt;Fortran: 汇编太底层了。&lt;/li&gt;
-    &lt;li&gt;Cobol: Fortran语言不好用。&lt;/li&gt;
-    &lt;li&gt;PL/1: Fortran语言缺少足够的数据类型。&lt;/li&gt;
-    &lt;li&gt;Ada: 所有现存的编程语言都有缺失。&lt;/li&gt;
-    &lt;li&gt;Basic: Fortran语言不好用。&lt;/li&gt;
-    &lt;li&gt;APL: Fortran语言在数组操作上不好用。&lt;/li&gt;
-    &lt;li&gt;J: APL语言需要自己的字符集。&lt;/li&gt;
-    &lt;li&gt;&lt;/li&gt;
-    &lt;li&gt;C: 汇编太底层了。&lt;/li&gt;
-    &lt;li&gt;C++: C语言太底层了。&lt;/li&gt;
-    &lt;li&gt;Java: C++太笨重。微软在压迫我们。&lt;/li&gt;
-    &lt;li&gt;C#: Java是Sun公司控制的。&lt;/li&gt;
-    &lt;li&gt;&lt;/li&gt;
-    &lt;li&gt;Lisp: 用图灵机方式描述计算机计算太别扭。&lt;/li&gt;
-    &lt;li&gt;Scheme: MacLisp语言太笨拙。&lt;/li&gt;
-    &lt;li&gt;T: Scheme语言没有程序库。&lt;/li&gt;
-    &lt;li&gt;Common Lisp: Lisp方言太多了。&lt;/li&gt;
-    &lt;li&gt;Dylan: Scheme语言没有程序库，Lisp语法太疯狂。&lt;/li&gt;
-    &lt;li&gt;&lt;/li&gt;
-    &lt;li&gt;Perl: Shell脚本/awk/sed都不像编程语言。&lt;/li&gt;
-    &lt;li&gt;Python: Perl语言太让人受不了。&lt;/li&gt;
-    &lt;li&gt;Ruby: Perl语言太笨拙，Lisp语法太疯狂。&lt;/li&gt;
-    &lt;li&gt;Prolog: 编程不够逻辑。&lt;/li&gt;
-    &lt;li&gt;&lt;/li&gt;
-    &lt;li&gt;js： java不适合新手&lt;/li&gt;
-    &lt;li&gt;易语言:你们都不支持中文编程 &lt;/li&gt;
-    &lt;li&gt;爱编：你们都不国际化&lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;目前处于大整合阶段：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;界面使用统一跨平台语言：html+css+js&lt;/li&gt;
-  &lt;li&gt;效率：开发效率，运行效率需要平衡&lt;/li&gt;
-  &lt;li&gt;国际化： 更易用、高效的编程——提升开发效率，降低学习难度&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;语法流派&lt;/h3&gt;
-
-&lt;p&gt;先说说语法，人类社会中存在大概三种下命令方式：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;领导说：“甲乙丙丁！”甲乙丙丁：“在！”领导：“你们去ooxx！”甲乙丙丁：“是！”&lt;/li&gt;
-  &lt;li&gt;另一种是：领导说：我们要去ooxx，嗯，甲乙丙丁，你们去做这件事吧！&lt;/li&gt;
-  &lt;li&gt;简化命令法：甲乙丙丁 去xxx&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;第一种是一般常见的编程语言，比如c，js。&lt;/li&gt;
-  &lt;li&gt;第二种是链码等各种前置标识表达式或者成对标识语言会采用的方式。&lt;/li&gt;
-  &lt;li&gt;第三种一般是用在脚本语言，好处是快速简洁，但程序一长，就很难懂。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;第一种和第三种都是直抒式，第二种是抽象式。为什么会有这么些方式呢？&lt;/p&gt;
-
-&lt;p&gt;第一种和第三种是： &lt;code&gt;2+3+0=5&lt;/code&gt;  （需要写2个+号）&lt;/p&gt;
-
-&lt;p&gt;第二种是：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;    2
-    3
-+   0
--------
-    5
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;好处：节省笔墨，语义化易懂。（只需要写一个+号，可见设计者明显是个有办法的懒人）&lt;/p&gt;
-
-&lt;p&gt;前置标识表达式有很多种：比如链码，markdown，比如json，其实C和JS也算部分的前置表达，但其表达式内部都是直抒式的。&lt;/p&gt;
-
-&lt;p&gt;网标码的成对语义化表达方式，太过浪费笔墨。&lt;/p&gt;
-
-&lt;p&gt;另外几种特殊的编码，比如摩斯码、简符码等简化命令式，则很难懂。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;程序的共有特征&lt;/h2&gt;
-
-&lt;h3 id=&quot;section-4&quot;&gt;编程语言的构成要素&lt;/h3&gt;
-
-&lt;p&gt;一套编程语言，无非是：&lt;strong&gt;表达的类型+操作（读、写、查），穷尽各种组合就是了。&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;一般而言，编程语言之间的不同，在于抽象方式各异：各个语言为了达成自己的主要目的，在着眼点上会极尽所能的抽象方式，提供该方面尽可能大的可操控能力，该方面的稳定性，该方面的可测试性。&lt;/p&gt;
-
-&lt;p&gt;```&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;         类型 |纵坐标：操作对象
-              |
-         与非 |
-         数字 |
-         字符 |
-         内名 |
-    横坐标____|______________________________________
-    操作      |    读     查    写
-       字符串 |
-       数据流 |
-           树 |
-           表 |
-         函数 |
-         向量 |
-         链串 |
-         拓扑 |
-         闭合 |
-       连续统 |
-     提示信息 |
-     文件路径 |
-       程序包 |
-              |
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;```&lt;/p&gt;
-
-&lt;p&gt;进一步细分：&lt;/p&gt;
-
-&lt;p&gt;【类型】：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;数字（整数、单数、复数、浮点数……进制，关联操作加减乘除可以看成是合并、删除、拆分等操作）&lt;/li&gt;
-  &lt;li&gt;名-属性类（集、数组、数列、链串、清单、拓扑、散列表、列联表、对应表、字典、n维表、向量、序列……）&lt;/li&gt;
-  &lt;li&gt;程序包级别（类、名位、包、系统……）&lt;/li&gt;
-  &lt;li&gt;提示信息（提示、示警、出错仍继续、出错中止）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;【操作】：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;读（读法，列出所有，统计）&lt;/li&gt;
-  &lt;li&gt;查[判断，查有没有，要哪个，在哪]&lt;/li&gt;
-  &lt;li&gt;写[改变（类型/值/位置），新造，删除，合并，拆分]&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;【怎么操作】：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;默认：按先后顺序操作&lt;/li&gt;
-  &lt;li&gt;流程控制：条件控制&lt;/li&gt;
-  &lt;li&gt;重复操作：宏
-    &lt;ul&gt;
-      &lt;li&gt;自动脚本&lt;/li&gt;
-      &lt;li&gt;统筹法&lt;/li&gt;
-      &lt;li&gt;框架&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;新设计语言可以参考神编和sibilant的构造经验：&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;设定存在的类型，&lt;/li&gt;
-  &lt;li&gt;批量判断输入输出类型是否正确，逐个判断还是批量判断？，&lt;/li&gt;
-  &lt;li&gt;具体设定各个函数的功能，但不判断类型，只读入读出？。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;section-5&quot;&gt;编程语言常有的机制&lt;/h3&gt;
-
-&lt;p&gt;命名：对每个操作和操作对象都命名，以方便调用。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-6&quot;&gt;程序设计思路：抽象，化整为零&lt;/h3&gt;
-
-&lt;p&gt;抽象化，自动化&lt;/p&gt;
-
-&lt;p&gt;化整为零，简化问题解决方式&lt;/p&gt;
-
-</description>
-        <pubDate>Mon, 2014 May 05 00:00:00 +0800</pubDate>
-        <link>http://jobinson.ga/%E6%8A%80%E6%9C%AF%E6%99%AE%E5%8F%8A/2014/05/05/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E8%A7%A3%E5%89%96/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E6%8A%80%E6%9C%AF%E6%99%AE%E5%8F%8A/2014/05/05/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E8%A7%A3%E5%89%96/</guid>
       </item>
     
   </channel>
