@@ -113,13 +113,56 @@ window下搞开发实在很不方便，比如nodejs之类的构建就很麻烦�
 
 &lt;p&gt;win版emacs？也装了，总之三处配置是统一的，为了使用跨平台的终端，配置了eshell和emacs git。&lt;/p&gt;
 
-&lt;p&gt;手机：&lt;/p&gt;
+&lt;p&gt;手机：一个编辑器+一个可管理git的工具。&lt;/p&gt;
 
-&lt;p&gt;一个编辑器+一个可管理git的工具。&lt;/p&gt;
+&lt;h3 id=&quot;cygwin&quot;&gt;cygwin增强&lt;/h3&gt;
 
-&lt;h3 id=&quot;cygwin-&quot;&gt;【转】cygwin 配置&lt;/h3&gt;
+&lt;p&gt;cygwin有一个软件管理工具apt-cyg 类似于debian的apt-get，有了这个就方便多了。&lt;/p&gt;
 
-&lt;p&gt;cygserver 服务器，用于运行大型的应用。Cygwin有一些特殊的功能, 如IPC Message Queues, XSI IPC Semaphores, XSI IPCShared Memory.默认是没有打开的，要想使用这些功能, 必须先启动cygserver程序或服务&lt;/p&gt;
+&lt;p&gt;安装：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg &amp;gt; apt-cyg
+install apt-cyg /bin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;apt-cyg install nano
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;可用操作：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;remove 删除&lt;/li&gt;
+  &lt;li&gt;update 升级&lt;/li&gt;
+  &lt;li&gt;depends 某软件的依赖的列表&lt;/li&gt;
+  &lt;li&gt;rdepends 依赖某软件的列表&lt;/li&gt;
+  &lt;li&gt;list 列出本地软件&lt;/li&gt;
+  &lt;li&gt;listall 列出本地和远程软件&lt;/li&gt;
+  &lt;li&gt;show 某软件信息&lt;/li&gt;
+  &lt;li&gt;category 列出某类软件列表&lt;/li&gt;
+  &lt;li&gt;search 搜寻本地软件&lt;/li&gt;
+  &lt;li&gt;seacrchall 搜寻本地和远程软件&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如果自己配置觉得麻烦，可以使用已经配置好cygwin的 &lt;a href=&quot;http://babun.github.io/&quot;&gt;Babun&lt;/a&gt; ，其中有些功能，比如：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;pact – 软件包管理器&lt;/li&gt;
+  &lt;li&gt;集成oh-my-zsh&lt;/li&gt;
+  &lt;li&gt;配置好的git和shell&lt;/li&gt;
+  &lt;li&gt;自动升级&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Babun的安装也非常简单，从它的主页下载压缩包，解压，双击执行install.bat。&lt;/p&gt;
+
+&lt;p&gt;但是：在win7下好像emacs有问题！！！&lt;/p&gt;
+
+&lt;p&gt;有个我没研究的问题，在babun下搞定了，就是配置可以访问win的其他目录：把几个关于window的盘符文件拷贝到cygwin的顶级目录下，即可。&lt;/p&gt;
+
+&lt;h4 id=&quot;cygwin-&quot;&gt;【转】cygwin 增强配置&lt;/h4&gt;
+
+&lt;p&gt;cygserver 服务器，用于运行大型的应用。Cygwin有一些特殊的功能, 如IPC Message Queues（消息队列）, XSI IPC Semaphores, XSI IPC Shared Memory（共享内存）.默认是没有打开的，要想使用这些功能, 必须先启动cygserver程序或服务&lt;/p&gt;
 
 &lt;p&gt;cygserver可以作为一个服务安装, 启用的方法如下：终端执行:&lt;/p&gt;
 
@@ -153,7 +196,7 @@ export CYGWIN
 
 &lt;p&gt;cygwin崩溃信息收集&lt;/p&gt;
 
-&lt;p&gt;在缺省的 cygwin 环境下出错时并不产生 core 文件，而是产生一个stackdump文件，该文件所含信息比core文件少,不能当作core文件使用.为了产生真正的core文件，可以配置好下面的环境变量：&lt;/p&gt;
+&lt;p&gt;在缺省的 cygwin 环境下出错时并不产生 core 文件，而是产生一个stackdump文件，该文件所含信息比core文件少，不能当作core文件使用，为了产生真正的core文件，可以配置好下面的环境变量：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;set CYGWIN=&quot;$CYGWIN error_start=dumper.exe -d %1 %2&quot;(在d:\cygwin\Cygwin.bat文件里)
 &lt;/code&gt;&lt;/pre&gt;
@@ -163,14 +206,15 @@ export CYGWIN
 &lt;pre&gt;&lt;code&gt;export CYGWIN=&quot;$CYGWIN error_start=dumper.exe -d %1 %2&quot;(在.bashrc文件里)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;coredump时, cygwin会调用dumper.exe程序在当前目录下产生core文件. 但是不是对这个core文件抱太大的指望. 根据我的经验, 很多时候用bt列出的调用栈都是不可用的. 我也不知道为什么. 全局变量好像可以查看.&lt;/p&gt;
+&lt;p&gt;coredump时, cygwin会调用dumper.exe程序在当前目录下产生core文件. 但是不要对这个core文件抱太大的指望. 根据我的经验, 很多时候用bt列出的调用栈都是不可用的. 我也不知道为什么. 全局变量好像可以查看.&lt;/p&gt;
 
-&lt;h3 id=&quot;section-3&quot;&gt;几个虚拟机：&lt;/h3&gt;
+&lt;h2 id=&quot;section-3&quot;&gt;几个虚拟机：&lt;/h2&gt;
 
-&lt;p&gt;思考：与其在一台电脑上构建一个cygwin，还不如直接虚拟机，或者闪盘系统呢！！！这样统一。
-如果是小系统拷到内存中。反正现在内存够。&lt;/p&gt;
+&lt;p&gt;思考：与其在一台电脑上构建一个cygwin，还不如直接虚拟机+快照，或者闪盘系统呢！！！这样完整且统一。&lt;/p&gt;
 
-&lt;p&gt;准备工作：&lt;/p&gt;
+&lt;p&gt;如果是小系统拷到内存中。反正现在内存够。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;准备工作：&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;看看自己主板是不是开启支持 硬件虚拟技术（Hardware Virtualization Technology (VT)），没开启就到bois开启。&lt;/li&gt;
@@ -181,8 +225,18 @@ export CYGWIN
 
 &lt;ul&gt;
   &lt;li&gt;路径不含中文名&lt;/li&gt;
+  &lt;li&gt;恢复系统主题&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;section-5&quot;&gt;安装操作系统&lt;/h3&gt;
+
+&lt;p&gt;可以直接安装，也可直接下载已经安装好的系统镜像，节省时间。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://virtualboxes.org/tag/ova&quot;&gt;下载已有的镜像&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kickass.to&quot;&gt;搜镜像种子&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;恢复系统主题&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://mirrors.neusoft.edu.cn/android/repository/&quot;&gt;开源镜像站&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;开发用：sabayon 或者 archlinux+lxde 或者其他小型窗口管理器。用户名：archdev，密码：archdev。开发环境emacs，编译环境io.js cordova &lt;/li&gt;
   &lt;li&gt;运行应用用：
@@ -200,7 +254,7 @@ export CYGWIN
 &lt;/ul&gt;
 
 &lt;p&gt;sabayon 虽然根源于gentoo，但其灵活机制，使得大部分不用编译。多版本支持。
-两套：&lt;/p&gt;
+支持两套软件管理工具：&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;entropy用来管理二进制包，相当于archlinux pacman&lt;/li&gt;
@@ -209,11 +263,9 @@ export CYGWIN
 
 &lt;p&gt;安装有问题，直接下载镜像解决。两个预定的用户名和密码： root/sabayon; sabayon/sabayon&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://virtualboxes.org/tag/ova&quot;&gt;虚拟机镜像下载&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;section-6&quot;&gt;配置文件共享和网络服务&lt;/h3&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://kickass.to&quot;&gt;镜像搜索&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;主要配置：文件共享和网络服务&lt;/p&gt;
+&lt;p&gt;安装完成后，主要配置：文件共享和网络服务&lt;/p&gt;
 
 &lt;p&gt;window下：&lt;/p&gt;
 
@@ -243,12 +295,14 @@ Hard disk space : 16GB
 
 &lt;p&gt;打开工程项目文件  hello/platforms/ios/hello.xcodeproj&lt;/p&gt;
 
-&lt;h3 id=&quot;section-4&quot;&gt;手机&lt;/h3&gt;
+&lt;h2 id=&quot;section-7&quot;&gt;手机开发测试环境配置&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://www.appsfinder.fr&quot;&gt;查找应用&lt;/a&gt;
-&lt;a href=&quot;http://appcrawlr.com&quot;&gt;另一个查找应用的地方&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.appsfinder.fr&quot;&gt;查找应用&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://appcrawlr.com&quot;&gt;另一个查找应用的地方&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h3 id=&quot;section-5&quot;&gt;在手机上运行各种应用&lt;/h3&gt;
+&lt;h3 id=&quot;section-8&quot;&gt;在手机上运行各种应用&lt;/h3&gt;
 
 &lt;p&gt;有空可探索：&lt;/p&gt;
 
@@ -260,10 +314,15 @@ Hard disk space : 16GB
 
 &lt;p&gt;除去直接硬刷linux系统到手机上外，还有三个软办法：&lt;/p&gt;
 
-&lt;p&gt;一是获得root权限，然后安装busybox之类的。另一个是编译安装 一个包管理器（等有空折腾debian的dpkg），最后一个比较方便的是 安卓上的编程环境 terminalIDE。&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;一是获得root权限，然后安装busybox之类的。&lt;/li&gt;
+  &lt;li&gt;另一个是编译安装 一个包管理器（等有空折腾debian的dpkg），&lt;/li&gt;
+  &lt;li&gt;最后一个比较方便的是 安卓上的编程环境 terminalIDE。&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;英文输入键盘：手写用 writepad
-英文虚拟电脑键盘用：terminal ide的键盘&lt;/p&gt;
+&lt;p&gt;英文输入键盘：手写用 writepad&lt;/p&gt;
+
+&lt;p&gt;英文虚拟电脑键盘用：terminal ide的键盘&lt;/p&gt;
 
 &lt;p&gt;生成 身份认证：和linux上的ssh-keygen不同。&lt;/p&gt;
 
