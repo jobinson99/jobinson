@@ -93,36 +93,46 @@
   <article class="post-content">
     <h2 id="section">遇到的问题：</h2>
 
-<p>刚好接了朋友一个烂尾工程，工程一开始是用.net开发的，很乱。</p>
+<p>刚好接了朋友一个烂尾工程，工程用.net开发的，很乱。</p>
 
-<p>由于本人已经好多年在linux下生存，所有的生态链全部是用linux的，我需要用命令行，需要用软链，需要用emacs等，我需要统一整齐的管理文件。对win实在用的不习惯。
-window下搞开发实在很不方便，比如nodejs之类的构建就很麻烦，而且用我的emacs之类的也很不方便。</p>
+<p>由于本人已经好多年在linux下生存，所有的生态链全部是用linux的，我需要用命令行，需要用软链，需要用emacs等，我需要统一整齐的管理文件，我不想用盗版软件！！！</p>
 
-<p>于是，经过几天郁闷的双电脑+双手机开发后，终于想到怎么解决 穿梭在各个平台设备的 问题。</p>
+<p>win实在太慢了，配置那么高级的电脑用各种软件却比我十年前标准配置的电脑还慢。</p>
 
-<p>另外，项目经过分析之后，因为考虑到还需要构建两个适用于 安卓和苹果 系统的应用，未来可能还需要更多的应用编译。发现其实可以：.net继续后台，前台全部换用js。</p>
+<p>window下搞开发实在很不方便，虽说有各种整合开发环境，但还是这欠缺那短少，比如iojs之类的构建、一些命令行下才可用的包，emacs之类的也很不方便……太多需要配置了。</p>
+
+<p>还有另一个问题：由于开发用的电脑不是我的，没法重装系统。</p>
+
+<p>项目经过分析之后，因为考虑到还需要构建两个适用于 安卓和苹果 系统的应用，未来可能还需要更多的应用编译。发现其实可以：.net继续后台，前台全部换用js。</p>
 
 <p>如果，后面如果还是我负责，那就全换了。</p>
+
+<p>经过几天郁闷的双电脑+双手机开发后，终于想到办法，解决这个 穿梭在各个平台设备开发的问题。</p>
 
 <p>先总结下：</p>
 
 <h2 id="section-1">我的需求：</h2>
 
-<p>我的设备：一个手机（应该是两部，一部刚好换掉了），两台电脑（一台自己多年用的，所有东西都在上面，一台是项目的，里面有各种）</p>
+<p>我的设备：一个手机（应该是两部，一部刚好换掉了），两台电脑（一台自己多年用的，所有东西都在上面，一台是项目的，里面已经备有各种相应开发工具，但不适用于我）</p>
 
-<p>需求：平时开发只用一台电脑，碎片时间用手机，在这台电脑和手机里，使用我熟悉和方便的工具。</p>
+<p>需求：平时开发只用一台电脑（当然是性能最好的那台），碎片时间用手机，在这台电脑和手机里，使用我熟悉和方便的工具，同时，收集到的经验，可以同步到我自己的电脑上。</p>
 
 <h2 id="section-2">解决方案</h2>
 
-<p>自己电脑：开发所需的东西，全用 git管理起来，可公开的全部github，不好公开的全部bitbucket 私库。</p>
+<p>自己电脑：开发所需的东西，全用 git管理起来，可公开的全部github，不好公开的全部bitbucket或者gitlab 私库。</p>
 
-<p>项目的电脑：使用虚拟机，并且把虚拟机快照化，这样可以快速启动所需的环境。</p>
+<p>项目的电脑：尽可能少用其本身软件，只用虚拟机，并且把虚拟机快照化，这样可以快速启动所需的环境。</p>
 
 <p>为了以备不时之需，还装了cygwin+emacs。</p>
 
-<p>win版emacs？也装了，总之三处配置是统一的，为了使用跨平台的终端，配置了eshell和emacs git。</p>
+<p>软件：
+cygwin和虚拟机都装了git emacs</p>
 
 <p>手机：一个编辑器+一个可管理git的工具。</p>
+
+<h2 id="wincygwin">试图和win融合：cygwin</h2>
+
+<p>一开始是想到用cygwin来实现，收集到了下面的工具和配置。</p>
 
 <h3 id="cygwin">cygwin增强</h3>
 
@@ -154,6 +164,8 @@ install apt-cyg /bin
   <li>seacrchall 搜寻本地和远程软件</li>
 </ul>
 
+<h3 id="cygwinbabun">配置好的cygwin：babun</h3>
+
 <p>如果自己配置觉得麻烦，可以使用已经配置好cygwin的 <a href="http://babun.github.io/">Babun</a> ，其中有些功能，比如：</p>
 
 <ul>
@@ -165,7 +177,7 @@ install apt-cyg /bin
 
 <p>Babun的安装也非常简单，从它的主页下载压缩包，解压，双击执行install.bat。</p>
 
-<p>但是：在win7下好像emacs有问题！！！</p>
+<p>但是：在win7 babun下，emacs图形界面版有问题！！！</p>
 
 <p>有个我没研究的问题，在babun下搞定了，就是配置可以访问win的其他目录：把几个关于window的盘符文件拷贝到cygwin的顶级目录下，即可。</p>
 
@@ -217,16 +229,18 @@ export CYGWIN
 
 <p>coredump时, cygwin会调用dumper.exe程序在当前目录下产生core文件. 但是不要对这个core文件抱太大的指望. 根据我的经验, 很多时候用bt列出的调用栈都是不可用的. 我也不知道为什么. 全局变量好像可以查看.</p>
 
-<h2 id="section-3">几个虚拟机：</h2>
+<h2 id="section-3">虚拟机模拟</h2>
 
-<p>思考：与其在一台电脑上构建一个cygwin，还不如直接虚拟机+快照，或者闪盘系统呢！！！这样完整且统一。</p>
+<p>摸索了几天cygwin后，感觉与其在一台电脑上构建一个cygwin，还不如直接虚拟机+快照，或者闪盘系统呢！！！这样完整且统一。</p>
 
 <p>如果是小系统拷到内存中。反正现在内存够。</p>
+
+<p>主要问题：cygwin的软件管理工具才刚起步，没有 类似 archlinux的 用户自治资源区（aur），没法方便查找和编译各种软件。</p>
 
 <h3 id="section-4">准备工作：</h3>
 
 <ul>
-  <li>看看自己主板是不是开启支持 硬件虚拟技术（Hardware Virtualization Technology (VT)），没开启就到bois开启。</li>
+  <li>看看电脑主板是不是开启支持 硬件虚拟技术（Hardware Virtualization Technology (VT)），没开启就到bois开启。</li>
   <li><a href="https://www.virtualbox.org/wiki/Downloads">vbox下载地址</a>，根据宿主机操作系统类型选择下载。另外，还需要扩展下载，也就是那个<a href="">VirtualBox 4.3.26 Oracle VM VirtualBox Extension Pack</a></li>
 </ul>
 
@@ -262,8 +276,9 @@ export CYGWIN
   </li>
 </ul>
 
-<p>sabayon 虽然根源于gentoo，但其灵活机制，使得大部分不用编译。多版本支持。
-支持两套软件管理工具：</p>
+<p>sabayon 虽然根源于gentoo，但其内建双套软件管理工具的灵活机制，使得大部分不用编译。可支持开发经常需要的多版本共存。</p>
+
+<p>支持两套软件管理工具：</p>
 
 <ul>
   <li>entropy用来管理二进制包，相当于archlinux pacman</li>
@@ -272,27 +287,82 @@ export CYGWIN
 
 <p>安装有问题，直接下载镜像解决。两个预定的用户名和密码： root/sabayon; sabayon/sabayon</p>
 
-<h3 id="section-6">配置文件共享和网络服务</h3>
+<h3 id="section-6">配置强化虚拟机系统</h3>
 
-<p>安装完成后，主要配置：文件共享和网络服务</p>
+<p>安装完成后，就可以用了，但为了更方便使用，需要进行下面的配置，其中重点是配置：文件共享和网络服务</p>
 
-<p>window下：</p>
+<h4 id="vboxlinux">vbox虚拟机里的linux配置</h4>
 
-<pre><code>net use x: \\vboxsvr\share
+<p>默认安装就可以进入虚拟系统了，想要更多功能，需要进行下面配置。</p>
+
+<h4 id="archlinux-">archlinux 各种服务配置：</h4>
+
+<p>安装 virtualbox-guest-modules  virtualbox-guest-utils virtualbox-guest-dkms</p>
+
+<p>按安装后的提示，生成模块</p>
+
+<p>加载模块：</p>
+
+<pre><code>modprobe -a vboxguest vboxsf vboxvideo
 </code></pre>
 
-<h3 id="win">win系统需求</h3>
+<p>启动服务</p>
 
-<p>win10的虚拟机所需资源:</p>
-
-<pre><code>Processor : 1GHz or faster with support for PAE, NX, and SSE2
-RAM : 1GB (32-bit) or 2GB (64-bit)
-Hard disk space : 16GB
+<pre><code>systemctl enable vboxservice
 </code></pre>
 
-<p>Enable PAE/NX</p>
+<p>手动启动各种vbox的服务：比如双向粘贴，双向拖动文件，无缝模式……</p>
 
-<h3 id="ios">ios虚拟机安装手记</h3>
+<pre><code>VBoxClient
+</code></pre>
+
+<p>也可以一次启动所有 </p>
+
+<pre><code>VBoxClientAll
+</code></pre>
+
+<p>让其启动即可使用这些服务：不过不建议这么做，因为出问题的时候，就没法救。如果有桌面，把VBoxClientAll 加入到autostart中，如果没有，就加入到  .xinitrc</p>
+
+<h4 id="section-7">文件共享设置：</h4>
+
+<p>把用户加入到vboxsf组中。</p>
+
+<pre><code>gpasswd -a $USER vboxsf
+</code></pre>
+
+<p>使用 <code>VboxControl sharefolder</code> 自动加载</p>
+
+<p>也可以手动加载：</p>
+
+<pre><code>mount -t vboxsf shared_folder_name mount_point_on_guest_system
+比如：
+mount -t vboxsf -o uid=1000,gid=1000 home /mnt/
+</code></pre>
+
+<p>或者：</p>
+
+<pre><code>mount.vboxsf
+</code></pre>
+
+<p>注意加载文件夹的权限：755</p>
+
+<p>软链到桌面</p>
+
+<pre><code>ln -s /media/ ~/my_documents
+</code></pre>
+
+<p>启动时自动加载：修改fstab</p>
+
+<pre><code>xxx   /media/xxx    vboxsf  uid=user,gid=group,rw,dmode=700,fmode=600,comment=systemd.automount 0 0
+</code></pre>
+
+<p>换漂亮点的图标</p>
+
+<p><a href="http://content.wuala.com/contents/csslayer/eyecandy/icons/oxygen-old.tar.bz2">kde4.6之前的图标好看，不足的部分应该可以用之后的图标补上</a></p>
+
+<h3 id="mac-os">mac os虚拟机安装手记</h3>
+
+<p>需要引导工具</p>
 
 <p>下载镜像后，选择导入即可。</p>
 
@@ -304,14 +374,16 @@ Hard disk space : 16GB
 
 <p>打开工程项目文件  hello/platforms/ios/hello.xcodeproj</p>
 
-<h2 id="section-7">手机开发测试环境配置</h2>
+<h3 id="linuxioscygwin">linux系统下的ios开发环境/cygwin也类似</h3>
+
+<h2 id="section-8">手机开发测试环境配置</h2>
 
 <ul>
   <li><a href="http://www.appsfinder.fr">查找应用</a></li>
   <li><a href="http://appcrawlr.com">另一个查找应用的地方</a></li>
 </ul>
 
-<h3 id="section-8">在手机上运行各种应用</h3>
+<h3 id="section-9">在手机上运行各种应用</h3>
 
 <p>有空可探索：</p>
 
@@ -357,6 +429,22 @@ echo export GIT_SSH=~/sssh &gt;&gt; .bashrc
 </code></pre>
 
 <p>到这步搞定！</p>
+
+<h3 id="section-10">附带几句牢骚：</h3>
+
+<p>这几天被苹果系统问题卡住了所有的进度了：不是因为技术难度高，而是烦，尽搞些没用的限制——就有点像当年某些游戏用了俄国某种特别变态的加密程序，导致正版玩家体验也严重不爽一样，纯粹就是防贼防过头了。</p>
+
+<p>你牛叉系统可以说是为了提升效率，所以虽然入门有点难度，但经历过入门的不适应期后，简直如鱼得水。</p>
+
+<p>微软的系统可以说是为了适合一般人使用电脑，是以易用为追求的——虽然这个“易用”实在做得惨不忍睹。</p>
+
+<p>苹果呢？号称是为了设计师，可是再怎么强大的苹果电脑，再怎么定制的软件，有 电脑+云渲染牛叉么？</p>
+
+<p>苹果操作系统是专用系统？为最大化发挥苹果电脑硬件威力而造？是为了自己兼容性差找接口吧？苹果的根bsd也是高大上，可人家兼容性一点也没荒废，甚至还有号称兼容性举世无双的netbsd，人家也不难用，更不要说难装到其他系统上。</p>
+
+<p>设定了一堆没必要的门槛，拦的是什么人呢？好像是自己用户，制造了一堆门槛，让没事干的人去琢磨，去消耗时间，获得一定的成就感，然后用来炫……这用户心理实在把握得不错。</p>
+
+<p>结合苹果的娱乐消费倾向，还真的是一脉相承。</p>
 
 
   </article>

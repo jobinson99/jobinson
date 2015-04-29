@@ -84,36 +84,46 @@
         <title>跨平台开发：穿梭多个系统平台的统一开发环境</title>
         <description>&lt;h2 id=&quot;section&quot;&gt;遇到的问题：&lt;/h2&gt;
 
-&lt;p&gt;刚好接了朋友一个烂尾工程，工程一开始是用.net开发的，很乱。&lt;/p&gt;
+&lt;p&gt;刚好接了朋友一个烂尾工程，工程用.net开发的，很乱。&lt;/p&gt;
 
-&lt;p&gt;由于本人已经好多年在linux下生存，所有的生态链全部是用linux的，我需要用命令行，需要用软链，需要用emacs等，我需要统一整齐的管理文件。对win实在用的不习惯。
-window下搞开发实在很不方便，比如nodejs之类的构建就很麻烦，而且用我的emacs之类的也很不方便。&lt;/p&gt;
+&lt;p&gt;由于本人已经好多年在linux下生存，所有的生态链全部是用linux的，我需要用命令行，需要用软链，需要用emacs等，我需要统一整齐的管理文件，我不想用盗版软件！！！&lt;/p&gt;
 
-&lt;p&gt;于是，经过几天郁闷的双电脑+双手机开发后，终于想到怎么解决 穿梭在各个平台设备的 问题。&lt;/p&gt;
+&lt;p&gt;win实在太慢了，配置那么高级的电脑用各种软件却比我十年前标准配置的电脑还慢。&lt;/p&gt;
 
-&lt;p&gt;另外，项目经过分析之后，因为考虑到还需要构建两个适用于 安卓和苹果 系统的应用，未来可能还需要更多的应用编译。发现其实可以：.net继续后台，前台全部换用js。&lt;/p&gt;
+&lt;p&gt;window下搞开发实在很不方便，虽说有各种整合开发环境，但还是这欠缺那短少，比如iojs之类的构建、一些命令行下才可用的包，emacs之类的也很不方便……太多需要配置了。&lt;/p&gt;
+
+&lt;p&gt;还有另一个问题：由于开发用的电脑不是我的，没法重装系统。&lt;/p&gt;
+
+&lt;p&gt;项目经过分析之后，因为考虑到还需要构建两个适用于 安卓和苹果 系统的应用，未来可能还需要更多的应用编译。发现其实可以：.net继续后台，前台全部换用js。&lt;/p&gt;
 
 &lt;p&gt;如果，后面如果还是我负责，那就全换了。&lt;/p&gt;
+
+&lt;p&gt;经过几天郁闷的双电脑+双手机开发后，终于想到办法，解决这个 穿梭在各个平台设备开发的问题。&lt;/p&gt;
 
 &lt;p&gt;先总结下：&lt;/p&gt;
 
 &lt;h2 id=&quot;section-1&quot;&gt;我的需求：&lt;/h2&gt;
 
-&lt;p&gt;我的设备：一个手机（应该是两部，一部刚好换掉了），两台电脑（一台自己多年用的，所有东西都在上面，一台是项目的，里面有各种）&lt;/p&gt;
+&lt;p&gt;我的设备：一个手机（应该是两部，一部刚好换掉了），两台电脑（一台自己多年用的，所有东西都在上面，一台是项目的，里面已经备有各种相应开发工具，但不适用于我）&lt;/p&gt;
 
-&lt;p&gt;需求：平时开发只用一台电脑，碎片时间用手机，在这台电脑和手机里，使用我熟悉和方便的工具。&lt;/p&gt;
+&lt;p&gt;需求：平时开发只用一台电脑（当然是性能最好的那台），碎片时间用手机，在这台电脑和手机里，使用我熟悉和方便的工具，同时，收集到的经验，可以同步到我自己的电脑上。&lt;/p&gt;
 
 &lt;h2 id=&quot;section-2&quot;&gt;解决方案&lt;/h2&gt;
 
-&lt;p&gt;自己电脑：开发所需的东西，全用 git管理起来，可公开的全部github，不好公开的全部bitbucket 私库。&lt;/p&gt;
+&lt;p&gt;自己电脑：开发所需的东西，全用 git管理起来，可公开的全部github，不好公开的全部bitbucket或者gitlab 私库。&lt;/p&gt;
 
-&lt;p&gt;项目的电脑：使用虚拟机，并且把虚拟机快照化，这样可以快速启动所需的环境。&lt;/p&gt;
+&lt;p&gt;项目的电脑：尽可能少用其本身软件，只用虚拟机，并且把虚拟机快照化，这样可以快速启动所需的环境。&lt;/p&gt;
 
 &lt;p&gt;为了以备不时之需，还装了cygwin+emacs。&lt;/p&gt;
 
-&lt;p&gt;win版emacs？也装了，总之三处配置是统一的，为了使用跨平台的终端，配置了eshell和emacs git。&lt;/p&gt;
+&lt;p&gt;软件：
+cygwin和虚拟机都装了git emacs&lt;/p&gt;
 
 &lt;p&gt;手机：一个编辑器+一个可管理git的工具。&lt;/p&gt;
+
+&lt;h2 id=&quot;wincygwin&quot;&gt;试图和win融合：cygwin&lt;/h2&gt;
+
+&lt;p&gt;一开始是想到用cygwin来实现，收集到了下面的工具和配置。&lt;/p&gt;
 
 &lt;h3 id=&quot;cygwin&quot;&gt;cygwin增强&lt;/h3&gt;
 
@@ -145,6 +155,8 @@ install apt-cyg /bin
   &lt;li&gt;seacrchall 搜寻本地和远程软件&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;h3 id=&quot;cygwinbabun&quot;&gt;配置好的cygwin：babun&lt;/h3&gt;
+
 &lt;p&gt;如果自己配置觉得麻烦，可以使用已经配置好cygwin的 &lt;a href=&quot;http://babun.github.io/&quot;&gt;Babun&lt;/a&gt; ，其中有些功能，比如：&lt;/p&gt;
 
 &lt;ul&gt;
@@ -156,7 +168,7 @@ install apt-cyg /bin
 
 &lt;p&gt;Babun的安装也非常简单，从它的主页下载压缩包，解压，双击执行install.bat。&lt;/p&gt;
 
-&lt;p&gt;但是：在win7下好像emacs有问题！！！&lt;/p&gt;
+&lt;p&gt;但是：在win7 babun下，emacs图形界面版有问题！！！&lt;/p&gt;
 
 &lt;p&gt;有个我没研究的问题，在babun下搞定了，就是配置可以访问win的其他目录：把几个关于window的盘符文件拷贝到cygwin的顶级目录下，即可。&lt;/p&gt;
 
@@ -208,16 +220,18 @@ export CYGWIN
 
 &lt;p&gt;coredump时, cygwin会调用dumper.exe程序在当前目录下产生core文件. 但是不要对这个core文件抱太大的指望. 根据我的经验, 很多时候用bt列出的调用栈都是不可用的. 我也不知道为什么. 全局变量好像可以查看.&lt;/p&gt;
 
-&lt;h2 id=&quot;section-3&quot;&gt;几个虚拟机：&lt;/h2&gt;
+&lt;h2 id=&quot;section-3&quot;&gt;虚拟机模拟&lt;/h2&gt;
 
-&lt;p&gt;思考：与其在一台电脑上构建一个cygwin，还不如直接虚拟机+快照，或者闪盘系统呢！！！这样完整且统一。&lt;/p&gt;
+&lt;p&gt;摸索了几天cygwin后，感觉与其在一台电脑上构建一个cygwin，还不如直接虚拟机+快照，或者闪盘系统呢！！！这样完整且统一。&lt;/p&gt;
 
 &lt;p&gt;如果是小系统拷到内存中。反正现在内存够。&lt;/p&gt;
+
+&lt;p&gt;主要问题：cygwin的软件管理工具才刚起步，没有 类似 archlinux的 用户自治资源区（aur），没法方便查找和编译各种软件。&lt;/p&gt;
 
 &lt;h3 id=&quot;section-4&quot;&gt;准备工作：&lt;/h3&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;看看自己主板是不是开启支持 硬件虚拟技术（Hardware Virtualization Technology (VT)），没开启就到bois开启。&lt;/li&gt;
+  &lt;li&gt;看看电脑主板是不是开启支持 硬件虚拟技术（Hardware Virtualization Technology (VT)），没开启就到bois开启。&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;https://www.virtualbox.org/wiki/Downloads&quot;&gt;vbox下载地址&lt;/a&gt;，根据宿主机操作系统类型选择下载。另外，还需要扩展下载，也就是那个&lt;a href=&quot;&quot;&gt;VirtualBox 4.3.26 Oracle VM VirtualBox Extension Pack&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -253,8 +267,9 @@ export CYGWIN
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;sabayon 虽然根源于gentoo，但其灵活机制，使得大部分不用编译。多版本支持。
-支持两套软件管理工具：&lt;/p&gt;
+&lt;p&gt;sabayon 虽然根源于gentoo，但其内建双套软件管理工具的灵活机制，使得大部分不用编译。可支持开发经常需要的多版本共存。&lt;/p&gt;
+
+&lt;p&gt;支持两套软件管理工具：&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;entropy用来管理二进制包，相当于archlinux pacman&lt;/li&gt;
@@ -263,27 +278,82 @@ export CYGWIN
 
 &lt;p&gt;安装有问题，直接下载镜像解决。两个预定的用户名和密码： root/sabayon; sabayon/sabayon&lt;/p&gt;
 
-&lt;h3 id=&quot;section-6&quot;&gt;配置文件共享和网络服务&lt;/h3&gt;
+&lt;h3 id=&quot;section-6&quot;&gt;配置强化虚拟机系统&lt;/h3&gt;
 
-&lt;p&gt;安装完成后，主要配置：文件共享和网络服务&lt;/p&gt;
+&lt;p&gt;安装完成后，就可以用了，但为了更方便使用，需要进行下面的配置，其中重点是配置：文件共享和网络服务&lt;/p&gt;
 
-&lt;p&gt;window下：&lt;/p&gt;
+&lt;h4 id=&quot;vboxlinux&quot;&gt;vbox虚拟机里的linux配置&lt;/h4&gt;
 
-&lt;pre&gt;&lt;code&gt;net use x: \\vboxsvr\share
+&lt;p&gt;默认安装就可以进入虚拟系统了，想要更多功能，需要进行下面配置。&lt;/p&gt;
+
+&lt;h4 id=&quot;archlinux-&quot;&gt;archlinux 各种服务配置：&lt;/h4&gt;
+
+&lt;p&gt;安装 virtualbox-guest-modules  virtualbox-guest-utils virtualbox-guest-dkms&lt;/p&gt;
+
+&lt;p&gt;按安装后的提示，生成模块&lt;/p&gt;
+
+&lt;p&gt;加载模块：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;modprobe -a vboxguest vboxsf vboxvideo
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&quot;win&quot;&gt;win系统需求&lt;/h3&gt;
+&lt;p&gt;启动服务&lt;/p&gt;
 
-&lt;p&gt;win10的虚拟机所需资源:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;Processor : 1GHz or faster with support for PAE, NX, and SSE2
-RAM : 1GB (32-bit) or 2GB (64-bit)
-Hard disk space : 16GB
+&lt;pre&gt;&lt;code&gt;systemctl enable vboxservice
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Enable PAE/NX&lt;/p&gt;
+&lt;p&gt;手动启动各种vbox的服务：比如双向粘贴，双向拖动文件，无缝模式……&lt;/p&gt;
 
-&lt;h3 id=&quot;ios&quot;&gt;ios虚拟机安装手记&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;VBoxClient
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;也可以一次启动所有 &lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;VBoxClientAll
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;让其启动即可使用这些服务：不过不建议这么做，因为出问题的时候，就没法救。如果有桌面，把VBoxClientAll 加入到autostart中，如果没有，就加入到  .xinitrc&lt;/p&gt;
+
+&lt;h4 id=&quot;section-7&quot;&gt;文件共享设置：&lt;/h4&gt;
+
+&lt;p&gt;把用户加入到vboxsf组中。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;gpasswd -a $USER vboxsf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用 &lt;code&gt;VboxControl sharefolder&lt;/code&gt; 自动加载&lt;/p&gt;
+
+&lt;p&gt;也可以手动加载：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mount -t vboxsf shared_folder_name mount_point_on_guest_system
+比如：
+mount -t vboxsf -o uid=1000,gid=1000 home /mnt/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mount.vboxsf
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;注意加载文件夹的权限：755&lt;/p&gt;
+
+&lt;p&gt;软链到桌面&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ln -s /media/ ~/my_documents
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;启动时自动加载：修改fstab&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;xxx   /media/xxx    vboxsf  uid=user,gid=group,rw,dmode=700,fmode=600,comment=systemd.automount 0 0
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;换漂亮点的图标&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://content.wuala.com/contents/csslayer/eyecandy/icons/oxygen-old.tar.bz2&quot;&gt;kde4.6之前的图标好看，不足的部分应该可以用之后的图标补上&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;mac-os&quot;&gt;mac os虚拟机安装手记&lt;/h3&gt;
+
+&lt;p&gt;需要引导工具&lt;/p&gt;
 
 &lt;p&gt;下载镜像后，选择导入即可。&lt;/p&gt;
 
@@ -295,14 +365,16 @@ Hard disk space : 16GB
 
 &lt;p&gt;打开工程项目文件  hello/platforms/ios/hello.xcodeproj&lt;/p&gt;
 
-&lt;h2 id=&quot;section-7&quot;&gt;手机开发测试环境配置&lt;/h2&gt;
+&lt;h3 id=&quot;linuxioscygwin&quot;&gt;linux系统下的ios开发环境/cygwin也类似&lt;/h3&gt;
+
+&lt;h2 id=&quot;section-8&quot;&gt;手机开发测试环境配置&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;http://www.appsfinder.fr&quot;&gt;查找应用&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://appcrawlr.com&quot;&gt;另一个查找应用的地方&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;section-8&quot;&gt;在手机上运行各种应用&lt;/h3&gt;
+&lt;h3 id=&quot;section-9&quot;&gt;在手机上运行各种应用&lt;/h3&gt;
 
 &lt;p&gt;有空可探索：&lt;/p&gt;
 
@@ -348,6 +420,22 @@ echo export GIT_SSH=~/sssh &amp;gt;&amp;gt; .bashrc
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;到这步搞定！&lt;/p&gt;
+
+&lt;h3 id=&quot;section-10&quot;&gt;附带几句牢骚：&lt;/h3&gt;
+
+&lt;p&gt;这几天被苹果系统问题卡住了所有的进度了：不是因为技术难度高，而是烦，尽搞些没用的限制——就有点像当年某些游戏用了俄国某种特别变态的加密程序，导致正版玩家体验也严重不爽一样，纯粹就是防贼防过头了。&lt;/p&gt;
+
+&lt;p&gt;你牛叉系统可以说是为了提升效率，所以虽然入门有点难度，但经历过入门的不适应期后，简直如鱼得水。&lt;/p&gt;
+
+&lt;p&gt;微软的系统可以说是为了适合一般人使用电脑，是以易用为追求的——虽然这个“易用”实在做得惨不忍睹。&lt;/p&gt;
+
+&lt;p&gt;苹果呢？号称是为了设计师，可是再怎么强大的苹果电脑，再怎么定制的软件，有 电脑+云渲染牛叉么？&lt;/p&gt;
+
+&lt;p&gt;苹果操作系统是专用系统？为最大化发挥苹果电脑硬件威力而造？是为了自己兼容性差找接口吧？苹果的根bsd也是高大上，可人家兼容性一点也没荒废，甚至还有号称兼容性举世无双的netbsd，人家也不难用，更不要说难装到其他系统上。&lt;/p&gt;
+
+&lt;p&gt;设定了一堆没必要的门槛，拦的是什么人呢？好像是自己用户，制造了一堆门槛，让没事干的人去琢磨，去消耗时间，获得一定的成就感，然后用来炫……这用户心理实在把握得不错。&lt;/p&gt;
+
+&lt;p&gt;结合苹果的娱乐消费倾向，还真的是一脉相承。&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 2015 Apr 14 22:34:19 +0800</pubDate>
