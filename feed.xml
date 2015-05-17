@@ -125,6 +125,8 @@ cygwin和虚拟机都装了git emacs&lt;/p&gt;
 
 &lt;p&gt;一开始是想到用cygwin来实现，收集到了下面的工具和配置。&lt;/p&gt;
 
+&lt;p&gt;cygwin如何读取本地分区？在cygdrive里，有本地分区的连接。&lt;/p&gt;
+
 &lt;h3 id=&quot;cygwin&quot;&gt;cygwin增强&lt;/h3&gt;
 
 &lt;p&gt;cygwin有一个软件管理工具apt-cyg 类似于debian的apt-get，有了这个就方便多了。&lt;/p&gt;
@@ -157,7 +159,7 @@ install apt-cyg /bin
 
 &lt;h3 id=&quot;cygwinbabun&quot;&gt;配置好的cygwin：babun&lt;/h3&gt;
 
-&lt;p&gt;如果自己配置觉得麻烦，可以使用已经配置好cygwin的 &lt;a href=&quot;http://babun.github.io/&quot;&gt;Babun&lt;/a&gt; ，其中有些功能，比如：&lt;/p&gt;
+&lt;p&gt;如果自己配置觉得麻烦（其实也没啥需要配置的），可以使用已经配置好cygwin的 &lt;a href=&quot;http://babun.github.io/&quot;&gt;Babun&lt;/a&gt; ，其中有些功能，比如：&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;pact – 软件包管理器&lt;/li&gt;
@@ -169,8 +171,6 @@ install apt-cyg /bin
 &lt;p&gt;Babun的安装也非常简单，从它的主页下载压缩包，解压，双击执行install.bat。&lt;/p&gt;
 
 &lt;p&gt;但是：在win7 babun下，emacs图形界面版有问题！！！&lt;/p&gt;
-
-&lt;p&gt;有个我没研究的问题，在babun下搞定了，就是配置可以访问win的其他目录：把几个关于window的盘符文件拷贝到cygwin的顶级目录下，即可。&lt;/p&gt;
 
 &lt;h4 id=&quot;cygwin-&quot;&gt;【转】cygwin 增强配置&lt;/h4&gt;
 
@@ -252,11 +252,11 @@ export CYGWIN
   &lt;li&gt;
     &lt;p&gt;&lt;a href=&quot;http://mirrors.neusoft.edu.cn/android/repository/&quot;&gt;开源镜像站&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;开发用：sabayon 或者 archlinux+lxde 或者其他小型窗口管理器。用户名：archdev，密码：archdev。开发环境emacs，编译环境io.js cordova &lt;/li&gt;
+  &lt;li&gt;开发用：sabayon 或者 archlinux+lxde 或者其他小型窗口管理器。开发环境emacs，编译环境io.js cordova &lt;/li&gt;
   &lt;li&gt;运行应用用：
     &lt;ul&gt;
-      &lt;li&gt;给php的：coreos（网络不通！！！！）或者其他极简部署用系统 使用ubuntu server php 密码 php。 运行php类，java类，&lt;/li&gt;
-      &lt;li&gt;给 .net的：win 2008 server运行.net类，主机极致化。密码：1234567890&lt;/li&gt;
+      &lt;li&gt;给php的：coreos（网络不通！！！！所以只能作罢）或者其他极简部署用系统，其他可选 ubuntu server 或者 centos等，运行php类，java类，&lt;/li&gt;
+      &lt;li&gt;给 .net的：win 2008 server运行.net类，主机极致化。&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;编译测试需要：
@@ -267,7 +267,7 @@ export CYGWIN
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;sabayon 虽然根源于gentoo，但其内建双套软件管理工具的灵活机制，使得大部分不用编译。可支持开发经常需要的多版本共存。&lt;/p&gt;
+&lt;p&gt;sabayon 虽然根源于gentoo，但其内建双套软件管理工具的灵活机制，使得大部分不用编译。可支持开发经常需要的&lt;strong&gt;多版本共存&lt;/strong&gt;。&lt;/p&gt;
 
 &lt;p&gt;支持两套软件管理工具：&lt;/p&gt;
 
@@ -353,6 +353,21 @@ mount -t vboxsf -o uid=1000,gid=1000 home /mnt/
 
 &lt;h3 id=&quot;mac-os&quot;&gt;mac os虚拟机安装手记&lt;/h3&gt;
 
+&lt;p&gt;macos 软件安装模式：拖入图标到Application，复制完成后，打开 Lauchpad ，点击该图标，根据提示安装。&lt;/p&gt;
+
+&lt;p&gt;xcode挺大的！&lt;/p&gt;
+
+&lt;h4 id=&quot;win--vbox-macos&quot;&gt;win + vbox 安装macos&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://bbs.feng.com/read-htm-tid-8474315.html&quot;&gt;win7 vbox 安装 mac os 10.10 参考&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://bbs.feng.com/read-htm-tid-7625465.html&quot;&gt;win7 vbox 安装 mac os 10.9 参考&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://bbs.zol.com.cn/nbbbs/d160_148114.html&quot;&gt;win7 vbox 安装 mac os 10.7 参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;调整虚拟机系统分辨率：
+在引导界面，添加 &lt;code&gt;&quot;Graphics Mode&quot;=&quot;1366x768x32&quot;&lt;/code&gt;&lt;/p&gt;
+
 &lt;p&gt;需要引导工具&lt;/p&gt;
 
 &lt;p&gt;下载镜像后，选择导入即可。&lt;/p&gt;
@@ -364,6 +379,13 @@ mount -t vboxsf -o uid=1000,gid=1000 home /mnt/
 &lt;p&gt;然后&lt;a href=&quot;http://developer.apple.com/programs/register/&quot;&gt;注册苹果账号&lt;/a&gt;，下载Xcode  和 iOS SDK。&lt;/p&gt;
 
 &lt;p&gt;打开工程项目文件  hello/platforms/ios/hello.xcodeproj&lt;/p&gt;
+
+&lt;h4 id=&quot;linux--qemu-macos&quot;&gt;linux + qemu 安装macos&lt;/h4&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://blog.definedcode.com/osx-qemu-kvm&quot;&gt;参考&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.contrib.andrew.cmu.edu/~somlo/OSXKVM/&quot;&gt;参考&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h3 id=&quot;linuxioscygwin&quot;&gt;linux系统下的ios开发环境/cygwin也类似&lt;/h3&gt;
 
@@ -421,7 +443,13 @@ echo export GIT_SSH=~/sssh &amp;gt;&amp;gt; .bashrc
 
 &lt;p&gt;到这步搞定！&lt;/p&gt;
 
-&lt;h3 id=&quot;section-10&quot;&gt;附带几句牢骚：&lt;/h3&gt;
+&lt;h3 id=&quot;section-10&quot;&gt;三平台多终端开发环境搭建&lt;/h3&gt;
+
+&lt;p&gt;实质是两种：本地编译（编译的工具链和编译量都很大！）或者两个虚拟机（linux和mac os）里的cordova编译&lt;/p&gt;
+
+&lt;p&gt;另文说明。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-11&quot;&gt;附带几句牢骚：&lt;/h3&gt;
 
 &lt;p&gt;这几天被苹果系统问题卡住了所有的进度了：不是因为技术难度高，而是烦，尽搞些没用的限制——就有点像当年某些游戏用了俄国某种特别变态的加密程序，导致正版玩家体验也严重不爽一样，纯粹就是防贼防过头了。&lt;/p&gt;
 

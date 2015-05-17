@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>【个人小超算】实战资料汇编</title>
+<title>【整理】【个人小超算】实战资料汇编</title>
 <meta name="description" content="黑传说的学习笔记">
 
 <link rel="canonical" href="http://jobinson.ga/%E7%A1%AC%E4%BB%B6/2012/09/17/%E4%B8%AA%E4%BA%BA%E5%B0%8F%E8%B6%85%E7%AE%97%E5%AE%9E%E6%88%98%E8%B5%84%E6%96%99%E6%B1%87%E7%BC%96/">
@@ -51,7 +51,7 @@
       <div class="post">
   
   <header class="post-header">
-    <h1 id="【个人小超算】实战资料汇编">【个人小超算】实战资料汇编</h1>
+    <h1 id="【整理】【个人小超算】实战资料汇编">【整理】【个人小超算】实战资料汇编</h1>
 
     <div class="post-abstract">
       
@@ -844,15 +844,15 @@ This cluster’s theoretical peak performance is about 500 Gflops (single-precis
 
 <p>对比下其他的超算。</p>
 
-<p>专门进行节能设计的超算Green Destiny 使用了非常节能的芯片，只需要较低的冷切，240核消耗了3.2千瓦，获得的运算性能是1010亿次，性耗比为3.1瓦/亿次。是我们这个自制的小超算的两倍哦！！！</p>
+<p>专门进行节能设计的超算Green Destiny 使用了非常节能的芯片，只需要较低的冷切，240核消耗了3.2千瓦，获得的运算性能是1010亿次，性耗比为3.1瓦/亿次。是我们这个自制的小超算的两倍！！！</p>
 
-<p>Another interesting comparison is to the Orion Multisystems clusters. Orion is no longer around, but a few years ago they sold two commercial clusters: a 12-node desktop cluster (the DS-12) and a 96-node deskside cluster (the DS-96). Both machines used Transmeta CPUs. The DS-12 used 170W under load, and its performance was about 13.8 GFLOPS. This gives it a performance/power ratio of 12.31W/GLFOP (much better than Microwulf). The DS-96 consumed 1580W under load, with a performance of 109.4 GFLOPS. This gives it a performance/power ratio of 14.44W/GFLOP, which again beats Microwulf.</p>
+<p>the Orion Multisystems clusters. Orion is no longer around, but a few years ago they sold two commercial clusters: a 12-node desktop cluster (the DS-12) and a 96-node deskside cluster (the DS-96). Both machines used Transmeta CPUs. The DS-12 used 170W under load, and its performance was about 13.8 GFLOPS. This gives it a performance/power ratio of 12.31W/GLFOP (much better than Microwulf). The DS-96 consumed 1580W under load, with a performance of 109.4 GFLOPS. This gives it a performance/power ratio of 14.44W/GFLOP, which again beats Microwulf.</p>
 
-<p>Another way to look at power consumption and price is to use the metric from Green 500. Their metric is MFLOPS/Watt (the bigger the number the better). Microwulf comes in at 58.33, the DS-12 is 81.18, and the deskside unit is 69.24. So using the Green 500 metric we can see that the Orion systems are more power efficient than Microwulf. But let’s look a little deeper at the Orion systems.</p>
+<p>绿色500强： 每瓦性能产出 MFLOPS/Watt (数字越大越好). Microwulf comes in at 58.33, the DS-12 is 81.18, and the deskside unit is 69.24. 初步可见，Orion系统比我们造的系统单位用电效率高。但我们更深入看下：</p>
 
 <p>The Orion systems look great at Watts/GFLOP and considering the age of the Transmeta chips, that is no small feat. But let’s look at the price/performance metric. The DS-12 desktop model had a list price of about $10,000, giving it a price/performance ratio of $724/GFLOP. The DS-96 deskside unit had a list price of about $100,000, so it’s price/performance is about $914/GFLOP. That is, while the Orion systems were much more power efficient, their price per GFLOP is much higher than that of Microwulf, making them much less cost efficient than Microwulf.</p>
 
-<p>Since Microwulf is better than the Orion systems in price/performance, and the Orion systems are better than Microwulf in power/performance, let’s try some experiments with metrics to see if we can find a useful way to combine the metrics. Ideally we’d like a single metric that encompasses a system’s price, performance, and power usage. As an experiment, let’s compute MFLOP/Watt/$. It may not be perfect, but at least it combines all 3 numbers into a single metric, by extending the Green 500 metric to include price. You want a large MFLOP/Watt to get the most processing power per unit of power as possible. We also want price to be as small as possible so that means we want the inverse of price to be as large as possible. This means that we want MFLOP/Watt/$ to be as large as possible. With this in mind, let’s see how Microwulf and Orion did.</p>
+<p>基于Orion用电效率高，但Microwulf资金效率高，我们用一个统合的测算方法，来对比下： MFLOP/Watt/$ 单位价格单位用电下的产出。microwulf系统的追求就是<strong>最小的价格，最小的功耗，更大的运算能力！！！！</strong></p>
 
 <ul>
   <li>Microwulf: 0.2362</li>
@@ -860,9 +860,9 @@ This cluster’s theoretical peak performance is about 500 Gflops (single-precis
   <li>Orion DS-96: 0.00069 </li>
 </ul>
 
-<p>From these numbers (even though they are quite small), Microwulf is almost 3 times better than the DS-12 and almost 35 times better than the DS-96 using this metric. We have no idea if this metric is truly meaningful but it give us something to ponder. It’s basically the performance per unit power per unit cost. (OK, that’s a little strange, but we think it could be a useful way to compare the overall efficiency of different systems.)</p>
+<p>计算结果对比悬殊。</p>
 
-<p>We might also compute the inverse of the MFLOP/Watt/$ metric: – $/Watt/MFLOP – where you want this number to be as small as possible. (You want price to be small and you want Watt/MFLOP to be small). So using this metric we can see the following:</p>
+<p>再来算算 $/Watt/MFLOP 单位运算能力单位功耗，所需的资金量。——用来测算下自己财力和能构建的系统运算能力。</p>
 
 <ul>
   <li>Microwulf: 144,083</li>
@@ -870,19 +870,18 @@ This cluster’s theoretical peak performance is about 500 Gflops (single-precis
   <li>Orion DS-96: 6,924,050 </li>
 </ul>
 
-<p>This metric measures the price per unit power per unit performance. Comparing Microwulf to the Orion systems, we find that Microwulf is about 5.63 times better than the DS-12, and 48 times better than the DS-96. It’s probably a good idea to stop here, before we drive ourselves nuts with metrics.</p>
-
-<p>While most clusters publicize their performance data, Very few clusters publicize their power consumption data.</p>
+<p>结果还是很悬殊。</p>
 
 <p>Some notable exceptions are:</p>
 
-<p>Green Destiny, an experimental blade cluster built at Los Alamos National Labs in 2002. Green Destiny was built expressly to minimze power consumption, using 240 Transmeta TM560 CPUs. Green Destiny consumed 3.2 kilowatts and produced 101 Gflops (on Linpack), yielding a power/performance ratio of 31 watts/Gflop. Microwulf’s 17.14 watts/Gflop is much better.</p>
+<p>Green Destiny, an experimental blade cluster built at Los Alamos National Labs in 2002. 使用 240 Transmeta TM560 CPUs，耗电3.2 kilowatts，运算速度101 Gflops (on Linpack)，平均 耗电/性能 = 
+ 31 watts/Gflop. 上面那个自造的 Microwulf 才 17.14 watts/Gflop，比这好。</p>
 
-<pre><code>The (apparently defunct) Orion Multisystems DS-12 and DS-96 systems: 
+<p>The (apparently defunct) Orion Multisystems DS-12 and DS-96 systems: </p>
 
-The DS-12 "desktop" system consumed 170 watts under load, and produced 13.8 Gflops (Linpack), for a power/performance ratio of 12.31 watts/Gflop. (The DS-12's list price was about $10,000, making its price/performance ratio $724/Gflop.)
-The DS-96 "under desk" system consumed 1580 watts under load, and produced 109.4 Gflops (Linpack), for a power/performance ratio of 14.44 watts/Gflop. (The DS-96's list price was about $100,000, making its price/performance ratio about $914/Gflop.)
-</code></pre>
+<p>The DS-12 “desktop” system 消耗 170 watts under load, 速度为 13.8 Gflops (Linpack), 耗电/性能 = 12.31 watts/Gflop. (但其价格 $10,000，价格/性能 = $724/Gflop.)</p>
+
+<p>The DS-96 “under desk” system consumed 1580 watts under load, and produced 109.4 Gflops (Linpack), for a power/performance ratio of 14.44 watts/Gflop. (The DS-96’s list price was about $100,000, making its price/performance ratio about $914/Gflop.)</p>
 
 <p>Orion Multisystems DS-12 and DS-96</p>
 
@@ -1046,7 +1045,7 @@ The DS-96 "under desk" system consumed 1580 watts under load, and produced 109.4
   <li>
     <p>这小超算可以卖么？</p>
 
-    <p>否，主要是对商业我们不在行。</p>
+    <p>否，主要是我们对商业不在行。</p>
 
     <p>But we are trying to build an endowment to provide in-house funding for student projects like Microwulf, so if you’ve found this site to be useful, please consider making a (tax-deductible) donation to it:</p>
 
@@ -1080,7 +1079,7 @@ The DS-96 "under desk" system consumed 1580 watts under load, and produced 109.4
 
 <p>University of Southampton, SO17 1BJ, UK.</p>
 
-<p>版本：V0.2: 8th September 2012</p>
+<p>版本：V0.2: 2012-09-08</p>
 
 <h3 id="section-19">第一步 硬件构建过程</h3>
 
@@ -1116,7 +1115,7 @@ The DS-96 "under desk" system consumed 1580 watts under load, and produced 109.4
     <p>下载 <a href="http://www.raspberrypi.org/downloads">底层驱动镜像</a>。此处用的是: <a href="http://downloads.raspberrypi.org/images/raspbian/2012-08-16-wheezy-raspbian/2012-08-16-wheezy-raspbian.zip">2012-08-16-wheezy-raspbian.zip</a></p>
   </li>
   <li>
-    <p>烧录底层驱动到闪存盘：可用<a href="http://www.softpedia.com/get/CD-DVD-Tools/Data-CD-DVD-Burning/Win32-Disk-Imager.shtml">win32磁盘烧录工具</a>或者你牛叉、苹果系统内置的dd程序。use the “Write” option to put the image from the disk to your card</p>
+    <p>烧录底层驱动到闪存盘：可用<a href="http://www.softpedia.com/get/CD-DVD-Tools/Data-CD-DVD-Burning/Win32-Disk-Imager.shtml">win32磁盘烧录工具“Write”把镜像写入到闪盘上</a>或者你牛叉、苹果系统内置的dd程序。</p>
   </li>
   <li>
     <p>启动第一块树莓派</p>
@@ -1648,7 +1647,7 @@ PATH="$PATH:/home/rpimpi_shared/mpich2-install_shared/bin"
     
     
     <!--回到头部-->
-    <div class="back-top"><a href="#【个人小超算】实战资料汇编">△▲回头▲△</a></div> 
+    <div class="back-top"><a href="#【整理】【个人小超算】实战资料汇编">△▲回头▲△</a></div> 
     
     
     <div class="post-next">
