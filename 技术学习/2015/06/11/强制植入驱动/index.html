@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>强制植入驱动</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2015/06/11/%E5%BC%BA%E5%88%B6%E6%A4%8D%E5%85%A5%E9%A9%B1%E5%8A%A8/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="强制植入驱动">强制植入驱动</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>【摘要】：</b><br/></p>
+      
+
+      
+      <p class="post-tag"><b>【话题】：</b>
+        
+        <a href="/话题列表/#驱动-ref">驱动
+        <sup>1</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#技术学习-ref">【技术学习】</a>
+        
+      </span>
+      
+      
+      创建时间：2015-06-11 13:11:07
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <p>这段时间每天都跑 临汾街道 机房去，为的是解决 服务器系统安装问题。</p>
+
+<p>先总结下，遇到的问题很变态：惠普服务器硬盘需要特殊驱动，而其提供的驱动有问题！！！</p>
+
+<p>于是，正常的系统安装无法进行，只能使用特殊办法了，由于这方法有通用性，于是记下。</p>
+
+<h2 id="section">系统安装盘里没有驱动</h2>
+
+<p>解决方法有下面几种：</p>
+
+<ol>
+  <li>引导的时候，载入驱动</li>
+  <li>如果引导的时候驱动载入错误，则强制加载模块法解决——前提是驱动是对的版本</li>
+  <li>如果强制加载模块也失败，则强制插入模块法——前提是驱动是对的版本</li>
+</ol>
+
+<h3 id="section-1">第一种办法：</h3>
+
+<p>准备：一个usb盘，把驱动镜像放进去。</p>
+
+<p>然后插入安装u盘，和驱动u盘，</p>
+
+<p>启动系统，在引导的时候，载入驱动。方法如下：</p>
+
+<p>如果是centos，引导的时候，添加</p>
+
+<pre><code>linux dd # dd是驱动位置，上面usb刷盘刷成dd了
+</code></pre>
+
+<p>如果是ubuntu</p>
+
+<pre><code>modprobe.blacklist=ahci anna/choose_modules=driver-injection disk-detect
+</code></pre>
+
+<h3 id="section-2">第二种办法</h3>
+
+<p>如果第一种办法找不到驱动时，可能是版本不符合，可以强制加载：</p>
+
+<p>安装界面启动时，使用 ctrl+alt+f2 输入： <code>modprobe -f hpvsa</code> 强制加载且不检查版本。</p>
+
+<p>回 图形 安装界面，重新 扫描硬盘。</p>
+
+<h3 id="section-3">第三种办法</h3>
+
+<p>如果还是不行，就强制复制进去，然后启用模块</p>
+
+<p>解压 hpvsa.ko …… tubuntu2.tag.gz，把hpvsa.ko放到 安装盘的一个文件夹下</p>
+
+<pre><code>mkdir /mnt/hpdrive
+mount /dev/sdx1 /mnt/hpdrive
+cd /mnt/hpdrive
+cp hpvsa.ko /lib/modules/3.13.0-32-generic/kernel/drivers/scsi/
+depmod -a
+modprobe hpvsa
+</code></pre>
+
+<p>这里最终发现了一个严重的问题：</p>
+
+<p>因为是版本不对！！！！现在的是 3.13，而我下载的安装盘是3.16。最后发现，是 12.04的！！！！那个ppa编译的也是12.04。根本就没有编译 14.04的！！！！换盘。</p>
+
+<h2 id="section-4">测试是否已经加载好驱动</h2>
+
+<p>按 <ctrl>-<alt>-<f2>。 按 <enter> 开始控制台会话。</enter></f2></alt></ctrl></p>
+
+<pre><code># lsmod | grep hp
+</code></pre>
+
+<p>结果应类似如下：</p>
+
+<pre><code>hpvsa 2485516 2
+</code></pre>
+
+<p>这表明驱动程序已加载且正在使用。</p>
+
+<p>检查 /proc/scsi/scsi：</p>
+
+<pre><code># cat /proc/scsi/scsi
+</code></pre>
+
+<p>会显示连接的设备：</p>
+
+<pre><code>主机： scsi0 Channel: 00 Id: 00 Lun: 00
+Vendor: HP 机型： USB 闪存盘修订版： 8192
+类型： Direct-Access ANSI SCSI 修订版： 04
+主机： scsi7 Channel: 00 Id: 00 Lun: 00
+Vendor: HP 机型： 逻辑卷修订版： 4.50
+类型： Direct-Access ANSI SCSI 修订版： 05
+主机： scsi7 Channel: 01 Id: 00 Lun: 00
+Vendor: HP 机型： B320i 修订版： 4.50
+类型： RAID ANSI SCSI 修订版： 05
+</code></pre>
+
+<p>智能阵列控制器和逻辑卷将同时显示。</p>
+
+<h2 id="section-5">安装完后挂载服务器</h2>
+
+<p>安装完成后，不重启，切换到另一个终端 ctrl-alt-f2 挂载服务器。</p>
+
+<p>尤其要挂载了 /proc /dev</p>
+
+<pre><code>mkdir /mnt/hpserver
+mkdir /mnt/hpserver/{boot,home}
+mount /dev/sdd1 /mnt/hpserver/boot
+mount /dev/sdd2 /mnt/hpserver/
+
+# mount --bind /dev  /mnt/dev    ## 关键
+# mount --bind /proc /mnt/proc   ## 关键
+# mount --bind /sys  /mnt/sys
+# mount --bind /usr/ /mnt/usr
+
+mount /dev/sdd5 /mnt/hpserver/home
+</code></pre>
+
+<h4 id="section-6">篡权</h4>
+
+<pre><code>chroot /mnt/hpserver /bin/bash
+</code></pre>
+
+<p>添加ppa，安装驱动</p>
+
+<pre><code>add-apt-repository ppa:hp-iss-team/hp-storage
+apt-get update
+apt-get install hpvsa-3.13.0-32-generic
+</code></pre>
+
+<p>然后 添加默认启动加载模块</p>
+
+<pre><code>nano /etc/initramfs-tools/modules
+nano /etc/modules
+</code></pre>
+
+<p>更新启动镜像</p>
+
+<pre><code>update-initramfs -u
+</code></pre>
+
+<p>更新 grub引导</p>
+
+<pre><code>nano etc/default/grub
+
+GRUB_CMDLINE_LINUX_DEFAULT="modprobe.blacklist=ahci"
+
+update-grub
+</code></pre>
+
+<p>交还权力。</p>
+
+<pre><code>exit
+</code></pre>
+
+<p>重启</p>
+
+<pre><code>reboot
+</code></pre>
+
+<p>篡权期间还可以干的活：</p>
+
+<p>安装中文字体，安装简单桌面，安装虚拟机程序，安装远程桌面工具，配置安全隧道端口。</p>
+
+<p>软链地址到home</p>
+
+<pre><code>ln -s /workspace ~/workspace
+ln -s /db ~/db
+ln -s /virtualos ~/virtualos
+</code></pre>
+
+<p>甚至复制镜像到服务器中</p>
+
+<p>新建虚拟机</p>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+  
+  <!-- 有言评论 -->
+  <div id="uyan_frame">
+    <h2>■评论</h2>
+  </div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a href="/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/05/19/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%89%8D%E9%80%94%E5%86%B3%E5%AE%9A%E5%9B%A0%E7%B4%A0/">软件系统前途决定因素◁◀前篇</a>
+    </div>
+    
+    
+    <!--回到头部-->
+    <div class="back-top"><a href="#强制植入驱动">△▲回头▲△</a></div> 
+    
+    
+    <div class="post-next">
+      <a href="/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2015/09/12/%E5%BC%BA%E5%88%B6%E5%86%85%E5%AD%98%E5%A4%B1%E5%BF%86%E7%A0%B4%E8%A7%A3%E4%BB%BB%E4%BD%95%E7%B3%BB%E7%BB%9F/">后篇▶▷强制内存失忆破解任何系统</a>
+    </div>
+    
+    
+  </div>
+
+  <!--页面底部自动浮现-->
+  <div class="post-reletive">
+    <!--相关文章-->
+
+  </div>
+
+</div>
+
+
+  <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2015版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接，谢谢合作！</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+      <span>致谢： </br>
+        <a href="http://www.github.com">空间：github</a>，
+        <a href="http://jekyllrb.com">构建：jekyll</a>，
+        <a href="http://freenom.com/">域名：freenom</a>，
+        以及一切对本人有帮助的人事物！</span>
+      <span>
+        <!--百度统计-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+      </span>
+    </li>
+  </ul>
+</footer>
+
+
+    
+
+  
+</div>
+
+
+
+
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>

@@ -7,6 +7,210 @@
     <atom:link href="http://jobinson.ga/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>强制内存失忆破解任何系统</title>
+        <description>&lt;p&gt;我的山寨手机系统是 阿里云os2.9，内置一个变态的应用：aliantiroot.apk，也就是专门用来反root的程序。&lt;/p&gt;
+
+&lt;p&gt;导致的结果是，目前网上所有的root程序，不管是手机上刷，还是连电脑刷，完全无效。&lt;/p&gt;
+
+&lt;p&gt;刚好今天看到了一个非常折腾的手机刷root办法：&lt;/p&gt;
+
+&lt;p&gt;仔细一想，不就是利用了 强制内存失忆嘛！！！&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;root之&lt;/li&gt;
+  &lt;li&gt;清空内存&lt;/li&gt;
+  &lt;li&gt;获得临时授权&lt;/li&gt;
+  &lt;li&gt;重新挂载为可读写&lt;/li&gt;
+  &lt;li&gt;植入root程序或者删除妨碍root的程序。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;可做成一个应用：&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 2015 Sep 12 18:48:25 +0800</pubDate>
+        <link>http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2015/09/12/%E5%BC%BA%E5%88%B6%E5%86%85%E5%AD%98%E5%A4%B1%E5%BF%86%E7%A0%B4%E8%A7%A3%E4%BB%BB%E4%BD%95%E7%B3%BB%E7%BB%9F/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2015/09/12/%E5%BC%BA%E5%88%B6%E5%86%85%E5%AD%98%E5%A4%B1%E5%BF%86%E7%A0%B4%E8%A7%A3%E4%BB%BB%E4%BD%95%E7%B3%BB%E7%BB%9F/</guid>
+      </item>
+    
+      <item>
+        <title>强制植入驱动</title>
+        <description>&lt;p&gt;这段时间每天都跑 临汾街道 机房去，为的是解决 服务器系统安装问题。&lt;/p&gt;
+
+&lt;p&gt;先总结下，遇到的问题很变态：惠普服务器硬盘需要特殊驱动，而其提供的驱动有问题！！！&lt;/p&gt;
+
+&lt;p&gt;于是，正常的系统安装无法进行，只能使用特殊办法了，由于这方法有通用性，于是记下。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;系统安装盘里没有驱动&lt;/h2&gt;
+
+&lt;p&gt;解决方法有下面几种：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;引导的时候，载入驱动&lt;/li&gt;
+  &lt;li&gt;如果引导的时候驱动载入错误，则强制加载模块法解决——前提是驱动是对的版本&lt;/li&gt;
+  &lt;li&gt;如果强制加载模块也失败，则强制插入模块法——前提是驱动是对的版本&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;第一种办法：&lt;/h3&gt;
+
+&lt;p&gt;准备：一个usb盘，把驱动镜像放进去。&lt;/p&gt;
+
+&lt;p&gt;然后插入安装u盘，和驱动u盘，&lt;/p&gt;
+
+&lt;p&gt;启动系统，在引导的时候，载入驱动。方法如下：&lt;/p&gt;
+
+&lt;p&gt;如果是centos，引导的时候，添加&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;linux dd # dd是驱动位置，上面usb刷盘刷成dd了
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;如果是ubuntu&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;modprobe.blacklist=ahci anna/choose_modules=driver-injection disk-detect
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;第二种办法&lt;/h3&gt;
+
+&lt;p&gt;如果第一种办法找不到驱动时，可能是版本不符合，可以强制加载：&lt;/p&gt;
+
+&lt;p&gt;安装界面启动时，使用 ctrl+alt+f2 输入： &lt;code&gt;modprobe -f hpvsa&lt;/code&gt; 强制加载且不检查版本。&lt;/p&gt;
+
+&lt;p&gt;回 图形 安装界面，重新 扫描硬盘。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;第三种办法&lt;/h3&gt;
+
+&lt;p&gt;如果还是不行，就强制复制进去，然后启用模块&lt;/p&gt;
+
+&lt;p&gt;解压 hpvsa.ko …… tubuntu2.tag.gz，把hpvsa.ko放到 安装盘的一个文件夹下&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mkdir /mnt/hpdrive
+mount /dev/sdx1 /mnt/hpdrive
+cd /mnt/hpdrive
+cp hpvsa.ko /lib/modules/3.13.0-32-generic/kernel/drivers/scsi/
+depmod -a
+modprobe hpvsa
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这里最终发现了一个严重的问题：&lt;/p&gt;
+
+&lt;p&gt;因为是版本不对！！！！现在的是 3.13，而我下载的安装盘是3.16。最后发现，是 12.04的！！！！那个ppa编译的也是12.04。根本就没有编译 14.04的！！！！换盘。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;测试是否已经加载好驱动&lt;/h2&gt;
+
+&lt;p&gt;按 &lt;ctrl&gt;-&lt;alt&gt;-&lt;f2&gt;。 按 &lt;enter&gt; 开始控制台会话。&lt;/enter&gt;&lt;/f2&gt;&lt;/alt&gt;&lt;/ctrl&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# lsmod | grep hp
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;结果应类似如下：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;hpvsa 2485516 2
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;这表明驱动程序已加载且正在使用。&lt;/p&gt;
+
+&lt;p&gt;检查 /proc/scsi/scsi：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# cat /proc/scsi/scsi
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;会显示连接的设备：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;主机： scsi0 Channel: 00 Id: 00 Lun: 00
+Vendor: HP 机型： USB 闪存盘修订版： 8192
+类型： Direct-Access ANSI SCSI 修订版： 04
+主机： scsi7 Channel: 00 Id: 00 Lun: 00
+Vendor: HP 机型： 逻辑卷修订版： 4.50
+类型： Direct-Access ANSI SCSI 修订版： 05
+主机： scsi7 Channel: 01 Id: 00 Lun: 00
+Vendor: HP 机型： B320i 修订版： 4.50
+类型： RAID ANSI SCSI 修订版： 05
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;智能阵列控制器和逻辑卷将同时显示。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;安装完后挂载服务器&lt;/h2&gt;
+
+&lt;p&gt;安装完成后，不重启，切换到另一个终端 ctrl-alt-f2 挂载服务器。&lt;/p&gt;
+
+&lt;p&gt;尤其要挂载了 /proc /dev&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;mkdir /mnt/hpserver
+mkdir /mnt/hpserver/{boot,home}
+mount /dev/sdd1 /mnt/hpserver/boot
+mount /dev/sdd2 /mnt/hpserver/
+
+# mount --bind /dev  /mnt/dev    ## 关键
+# mount --bind /proc /mnt/proc   ## 关键
+# mount --bind /sys  /mnt/sys
+# mount --bind /usr/ /mnt/usr
+
+mount /dev/sdd5 /mnt/hpserver/home
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&quot;section-6&quot;&gt;篡权&lt;/h4&gt;
+
+&lt;pre&gt;&lt;code&gt;chroot /mnt/hpserver /bin/bash
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;添加ppa，安装驱动&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;add-apt-repository ppa:hp-iss-team/hp-storage
+apt-get update
+apt-get install hpvsa-3.13.0-32-generic
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;然后 添加默认启动加载模块&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nano /etc/initramfs-tools/modules
+nano /etc/modules
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更新启动镜像&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;update-initramfs -u
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;更新 grub引导&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nano etc/default/grub
+
+GRUB_CMDLINE_LINUX_DEFAULT=&quot;modprobe.blacklist=ahci&quot;
+
+update-grub
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;交还权力。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;exit
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;重启&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;reboot
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;篡权期间还可以干的活：&lt;/p&gt;
+
+&lt;p&gt;安装中文字体，安装简单桌面，安装虚拟机程序，安装远程桌面工具，配置安全隧道端口。&lt;/p&gt;
+
+&lt;p&gt;软链地址到home&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ln -s /workspace ~/workspace
+ln -s /db ~/db
+ln -s /virtualos ~/virtualos
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;甚至复制镜像到服务器中&lt;/p&gt;
+
+&lt;p&gt;新建虚拟机&lt;/p&gt;
+
+</description>
+        <pubDate>Thu, 2015 Jun 11 13:11:07 +0800</pubDate>
+        <link>http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2015/06/11/%E5%BC%BA%E5%88%B6%E6%A4%8D%E5%85%A5%E9%A9%B1%E5%8A%A8/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2015/06/11/%E5%BC%BA%E5%88%B6%E6%A4%8D%E5%85%A5%E9%A9%B1%E5%8A%A8/</guid>
+      </item>
+    
+      <item>
         <title>软件系统前途决定因素</title>
         <description>&lt;p&gt;有感于yum作者去世，fedora换用dnf作为默认软件包管理工具。据说，有三个原因导致这个结果：文档不足，有bug无法修复，缺人维护。&lt;/p&gt;
 
@@ -113,53 +317,10 @@
       </item>
     
       <item>
-        <title>跨平台开发：穿梭多个系统平台的统一开发环境</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;遇到的问题：&lt;/h2&gt;
+        <title>cygwin配置之包管理和伺服</title>
+        <description>&lt;p&gt;由于用了大概半年左右的cygwin，把使用过程中遇到的问题和解决方法整理记录下。&lt;/p&gt;
 
-&lt;p&gt;刚好接了朋友一个烂尾工程，工程用.net开发的，很乱。&lt;/p&gt;
-
-&lt;p&gt;由于本人已经好多年在linux下生存，所有的生态链全部是用linux的，我需要用命令行，需要用软链，需要用emacs等，我需要统一整齐的管理文件，我不想用盗版软件！！！&lt;/p&gt;
-
-&lt;p&gt;win实在太慢了，配置那么高级的电脑用各种软件却比我十年前标准配置的电脑还慢。&lt;/p&gt;
-
-&lt;p&gt;window下搞开发实在很不方便，虽说有各种整合开发环境，但还是这欠缺那短少，比如iojs之类的构建、一些命令行下才可用的包，emacs之类的也很不方便……太多需要配置了。&lt;/p&gt;
-
-&lt;p&gt;还有另一个问题：由于开发用的电脑不是我的，没法重装系统。&lt;/p&gt;
-
-&lt;p&gt;项目经过分析之后，因为考虑到还需要构建两个适用于 安卓和苹果 系统的应用，未来可能还需要更多的应用编译。发现其实可以：.net继续后台，前台全部换用js。&lt;/p&gt;
-
-&lt;p&gt;如果，后面如果还是我负责，那就全换了。&lt;/p&gt;
-
-&lt;p&gt;经过几天郁闷的双电脑+双手机开发后，终于想到办法，解决这个 穿梭在各个平台设备开发的问题。&lt;/p&gt;
-
-&lt;p&gt;先总结下：&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;我的需求：&lt;/h2&gt;
-
-&lt;p&gt;我的设备：一个手机（应该是两部，一部刚好换掉了），两台电脑（一台自己多年用的，所有东西都在上面，一台是项目的，里面已经备有各种相应开发工具，但不适用于我）&lt;/p&gt;
-
-&lt;p&gt;需求：平时开发只用一台电脑（当然是性能最好的那台），碎片时间用手机，在这台电脑和手机里，使用我熟悉和方便的工具，同时，收集到的经验，可以同步到我自己的电脑上。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;解决方案&lt;/h2&gt;
-
-&lt;p&gt;自己电脑：开发所需的东西，全用 git管理起来，可公开的全部github，不好公开的全部bitbucket或者gitlab 私库。&lt;/p&gt;
-
-&lt;p&gt;项目的电脑：尽可能少用其本身软件，只用虚拟机，并且把虚拟机快照化，这样可以快速启动所需的环境。&lt;/p&gt;
-
-&lt;p&gt;为了以备不时之需，还装了cygwin+emacs。&lt;/p&gt;
-
-&lt;p&gt;软件：
-cygwin和虚拟机都装了git emacs&lt;/p&gt;
-
-&lt;p&gt;手机：一个编辑器+一个可管理git的工具。&lt;/p&gt;
-
-&lt;h2 id=&quot;wincygwin&quot;&gt;试图和win融合：cygwin&lt;/h2&gt;
-
-&lt;p&gt;一开始是想到用cygwin来实现，收集到了下面的工具和配置。&lt;/p&gt;
-
-&lt;p&gt;cygwin如何读取本地分区？在cygdrive里，有本地分区的连接。&lt;/p&gt;
-
-&lt;h3 id=&quot;cygwin&quot;&gt;cygwin增强&lt;/h3&gt;
+&lt;h2 id=&quot;cygwin-&quot;&gt;cygwin 包管理工具&lt;/h2&gt;
 
 &lt;p&gt;cygwin有一个软件管理工具apt-cyg 类似于debian的apt-get，有了这个就方便多了。&lt;/p&gt;
 
@@ -176,20 +337,121 @@ install apt-cyg /bin
 
 &lt;p&gt;可用操作：&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;remove 删除&lt;/li&gt;
-  &lt;li&gt;update 升级&lt;/li&gt;
-  &lt;li&gt;depends 某软件的依赖的列表&lt;/li&gt;
-  &lt;li&gt;rdepends 依赖某软件的列表&lt;/li&gt;
-  &lt;li&gt;list 列出本地软件&lt;/li&gt;
-  &lt;li&gt;listall 列出本地和远程软件&lt;/li&gt;
-  &lt;li&gt;show 某软件信息&lt;/li&gt;
-  &lt;li&gt;category 列出某类软件列表&lt;/li&gt;
-  &lt;li&gt;search 搜寻本地软件&lt;/li&gt;
-  &lt;li&gt;seacrchall 搜寻本地和远程软件&lt;/li&gt;
-&lt;/ul&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;命令&lt;/th&gt;
+      &lt;th&gt;说明&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;apt-cyg remove&lt;/td&gt;
+      &lt;td&gt;删除&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;apt-cyg update&lt;/td&gt;
+      &lt;td&gt;升级&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;apt-cyg depends&lt;/td&gt;
+      &lt;td&gt;某软件的依赖的列表&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;apt-cyg rdepends&lt;/td&gt;
+      &lt;td&gt;依赖某软件的列表&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;apt-cyg list&lt;/td&gt;
+      &lt;td&gt;列出本地软件&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;apt-cyg listall&lt;/td&gt;
+      &lt;td&gt;列出本地和远程软件&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;apt-cyg show&lt;/td&gt;
+      &lt;td&gt;某软件信息&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;apt-cyg category&lt;/td&gt;
+      &lt;td&gt;列出某类软件列表&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;apt-cyg search&lt;/td&gt;
+      &lt;td&gt;搜寻本地软件&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;apt-cyg seacrchall&lt;/td&gt;
+      &lt;td&gt;搜寻本地和远程软件&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
-&lt;h3 id=&quot;cygwinbabun&quot;&gt;配置好的cygwin：babun&lt;/h3&gt;
+&lt;h2 id=&quot;cygwin--1&quot;&gt;【转】cygwin 伺服模式&lt;/h2&gt;
+
+&lt;p&gt;cygserver 服务器，用于运行大型的应用。Cygwin有一些特殊的功能, 如IPC Message Queues（消息队列）, XSI IPC Semaphores, XSI IPC Shared Memory（共享内存），默认是没有打开的，要想使用这些功能, 必须先启动cygserver程序或服务。&lt;/p&gt;
+
+&lt;p&gt;启用的方法如下：终端执行:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cygserver-config # 按照提示配置
+net start cygserver #cygserver作为Windows操作系统的一个服务运行
+net stop cygserver #停止cygserver, 也可以在Windows任务管理器里结束进程
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;在$CYGWIN/Cygwin.bat里添加下面的配置:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$set CYGWIN=server
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;当然你也可以在每次需要的时候手动启动:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cygwinserver &amp;amp;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者在 ~/.bashrc 添加如下内容（或者在windows环境变量里面配置）&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;CYGWIN=server
+export CYGWIN
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;执行&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;. ~/.bashrc  #让其生效。
+cygserver-config
+net start cygserver
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;cygwin&quot;&gt;cygwin崩溃信息收集&lt;/h2&gt;
+
+&lt;p&gt;在缺省的 cygwin 环境下出错时并不产生 core 文件，而是产生一个stackdump文件，该文件所含信息比core文件少，不能当作core文件使用，为了产生真正的core文件，可以配置好下面的环境变量：&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;set CYGWIN=&quot;$CYGWIN error_start=dumper.exe -d %1 %2&quot;(在d:\cygwin\Cygwin.bat文件里)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;或者:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;export CYGWIN=&quot;$CYGWIN error_start=dumper.exe -d %1 %2&quot;(在.bashrc文件里)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;coredump时, cygwin会调用dumper.exe程序在当前目录下产生core文件. 但是不要对这个core文件抱太大的指望. 根据我的经验, 很多时候用bt列出的调用栈都是不可用的. 我也不知道为什么. 全局变量好像可以查看.&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;字体设定&lt;/h2&gt;
+
+&lt;p&gt;cygwin使用windows的字体：默认不使用win的字体，下面命令把win字体软链到cygwin环境下，然后刷新字体缓存（给cygwin安装新字体也需要步骤），最后列出字体看看是不是已经加进来了。&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;ln -s /cygdrive/c/Windows/Fonts /usr/share/fonts/win-fonts
+fc-cache
+fc-list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;mintty的字体：？？？&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;读取本地分区&lt;/h2&gt;
+
+&lt;p&gt;cygwin如何读取本地分区？在cygdrive里，有本地分区的连接。&lt;/p&gt;
+
+&lt;h2 id=&quot;cygwinbabun&quot;&gt;配置好的cygwin：babun&lt;/h2&gt;
 
 &lt;p&gt;如果自己配置觉得麻烦（其实也没啥需要配置的），可以使用已经配置好cygwin的 &lt;a href=&quot;http://babun.github.io/&quot;&gt;Babun&lt;/a&gt; ，其中有些功能，比如：&lt;/p&gt;
 
@@ -204,63 +466,70 @@ install apt-cyg /bin
 
 &lt;p&gt;但是：在win7 babun下，emacs图形界面版有问题！！！&lt;/p&gt;
 
-&lt;h4 id=&quot;cygwin-&quot;&gt;【转】cygwin 增强配置&lt;/h4&gt;
+</description>
+        <pubDate>Wed, 2015 Apr 15 15:59:02 +0800</pubDate>
+        <link>http://jobinson.ga/%E8%BD%AF%E4%BB%B6%E7%94%9F%E4%BA%A7%E7%BA%BF/2015/04/15/cygwin%E9%85%8D%E7%BD%AE%E4%B9%8B%E5%8C%85%E7%AE%A1%E7%90%86%E5%92%8C%E6%9C%8D%E5%8A%A1/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E8%BD%AF%E4%BB%B6%E7%94%9F%E4%BA%A7%E7%BA%BF/2015/04/15/cygwin%E9%85%8D%E7%BD%AE%E4%B9%8B%E5%8C%85%E7%AE%A1%E7%90%86%E5%92%8C%E6%9C%8D%E5%8A%A1/</guid>
+      </item>
+    
+      <item>
+        <title>跨平台开发：穿梭多个系统平台的统一开发环境【初探】</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;遇到的问题：&lt;/h2&gt;
 
-&lt;p&gt;cygserver 服务器，用于运行大型的应用。Cygwin有一些特殊的功能, 如IPC Message Queues（消息队列）, XSI IPC Semaphores, XSI IPC Shared Memory（共享内存）.默认是没有打开的，要想使用这些功能, 必须先启动cygserver程序或服务&lt;/p&gt;
+&lt;p&gt;刚好接了朋友一个烂尾工程，工程用.net开发的，很乱。&lt;/p&gt;
 
-&lt;p&gt;cygserver可以作为一个服务安装, 启用的方法如下：终端执行:&lt;/p&gt;
+&lt;p&gt;项目经过分析之后，因为考虑到还需要构建两个适用于 安卓和苹果 系统的应用，未来可能还需要更多的应用编译。发现其实可以：.net继续后台，前台全部换用js。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$cygserver-config(按照提示配置)
-$net start cygserver(cygserver作为Windows操作系统的一个服务运行)
-$net stop cygserver(停止cygserver, 也可以在Windows任务管理器里结束进程)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果，后面如果还是我负责，那就全换了。&lt;/p&gt;
 
-&lt;p&gt;在$CYGWIN/Cygwin.bat里添加下面的配置:&lt;/p&gt;
+&lt;h2 id=&quot;section-1&quot;&gt;我的需求和遇到的问题&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code&gt;$set CYGWIN=server
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;需要：由于本人已经好多年在linux下生存，所有的生态链全部是用linux的，我需要用命令行，需要用软链，需要用emacs等，我需要统一整齐的管理文件，我不想用盗版软件！！！&lt;/p&gt;
 
-&lt;p&gt;当然你也可以在每次需要的时候手动启动:&lt;/p&gt;
+&lt;p&gt;遇到的问题：win实在太慢了，配置那么高级的电脑用各种软件却比我十年前标准配置的电脑还慢。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$cygwinserver &amp;amp;
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;window下搞开发实在很不方便，虽说有各种整合开发环境，但还是各种欠缺欠缺，比如iojs之类的构建、一些命令行下才可用的包，emacs之类的也很不方便……太多需要配置了。&lt;/p&gt;
 
-&lt;p&gt;或者在 ~/.bashrc 添加如下内容（或者在windows环境变量里面配置）&lt;/p&gt;
+&lt;p&gt;还有另一个让我头疼的问题：由于开发用的电脑不是我的，没法重装系统。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;CYGWIN=server
-export CYGWIN
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;经过几天郁闷的双电脑+双手机开发后，终于想到办法，解决这个 穿梭在各个平台设备开发的问题。&lt;/p&gt;
 
-&lt;p&gt;执行 . ~/.bashrc 让其生效&lt;/p&gt;
+&lt;h2 id=&quot;section-2&quot;&gt;我需要实现的功能：&lt;/h2&gt;
 
-&lt;p&gt;执行cygserver-config，并启动cygserver，&lt;/p&gt;
+&lt;p&gt;我的设备：一个手机（应该是两部，一部刚好换掉了），两台电脑（一台自己多年用的，所有东西都在上面，但配置低；一台是项目的，配置前沿，里面已经备有各种相应开发工具，但不适用于我）&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;net start cygserver
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;需要实现的功能：三机同步。平时开发只用一台电脑（当然是性能最好的那台），碎片时间用手机，在这台电脑和手机里，使用我熟悉和方便的工具，同时，收集到的经验，可以同步到我自己的电脑上。&lt;/p&gt;
 
-&lt;p&gt;cygwin崩溃信息收集&lt;/p&gt;
+&lt;h2 id=&quot;section-3&quot;&gt;解决方案&lt;/h2&gt;
 
-&lt;p&gt;在缺省的 cygwin 环境下出错时并不产生 core 文件，而是产生一个stackdump文件，该文件所含信息比core文件少，不能当作core文件使用，为了产生真正的core文件，可以配置好下面的环境变量：&lt;/p&gt;
+&lt;p&gt;自己电脑：开发所需的东西，全用 git管理起来，可公开的全部github，不好公开的全部bitbucket或者gitlab 私库。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;set CYGWIN=&quot;$CYGWIN error_start=dumper.exe -d %1 %2&quot;(在d:\cygwin\Cygwin.bat文件里)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;项目的电脑：尽可能少用其本身软件，只用虚拟机，并且把虚拟机快照化，这样可以快速启动所需的环境。&lt;/p&gt;
 
-&lt;p&gt;或者:&lt;/p&gt;
+&lt;p&gt;更多探索：可自定义一个 某人开发专用 标箱 一劳永逸解决。vagrant 使用 vbox或者qemu。&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;export CYGWIN=&quot;$CYGWIN error_start=dumper.exe -d %1 %2&quot;(在.bashrc文件里)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;为了以备不时之需，还装了cygwin+emacs。&lt;/p&gt;
 
-&lt;p&gt;coredump时, cygwin会调用dumper.exe程序在当前目录下产生core文件. 但是不要对这个core文件抱太大的指望. 根据我的经验, 很多时候用bt列出的调用栈都是不可用的. 我也不知道为什么. 全局变量好像可以查看.&lt;/p&gt;
+&lt;p&gt;软件：
+cygwin和虚拟机都装了git 和 emacs，emacs配置全部拷自我电脑。&lt;/p&gt;
 
-&lt;h2 id=&quot;section-3&quot;&gt;虚拟机模拟&lt;/h2&gt;
+&lt;p&gt;手机：一个编辑器+一个可管理git的工具。&lt;/p&gt;
+
+&lt;h2 id=&quot;cygwin-win&quot;&gt;初探：使用 cygwin 试图和win融合&lt;/h2&gt;
+
+&lt;p&gt;一开始是想到用cygwin或者是cygwin的集成版babun来实现，配置另文表达。&lt;/p&gt;
 
 &lt;p&gt;摸索了几天cygwin后，感觉与其在一台电脑上构建一个cygwin，还不如直接虚拟机+快照，或者闪盘系统呢！！！这样完整且统一。&lt;/p&gt;
+
+&lt;p&gt;而且，配置多了后，如果不启用伺服模式，cygwin速度非常慢，比vbox快照慢多了。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;虚拟机模拟&lt;/h2&gt;
 
 &lt;p&gt;如果是小系统拷到内存中。反正现在内存够。&lt;/p&gt;
 
 &lt;p&gt;主要问题：cygwin的软件管理工具才刚起步，没有 类似 archlinux的 用户自治资源区（aur），没法方便查找和编译各种软件。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-4&quot;&gt;准备工作：&lt;/h3&gt;
+&lt;h3 id=&quot;section-5&quot;&gt;准备工作：&lt;/h3&gt;
 
 &lt;ul&gt;
   &lt;li&gt;看看电脑主板是不是开启支持 硬件虚拟技术（Hardware Virtualization Technology (VT)），没开启就到bois开启。&lt;/li&gt;
@@ -274,7 +543,7 @@ export CYGWIN
   &lt;li&gt;恢复系统主题&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;section-5&quot;&gt;安装操作系统&lt;/h3&gt;
+&lt;h3 id=&quot;section-6&quot;&gt;安装操作系统&lt;/h3&gt;
 
 &lt;p&gt;可以直接安装，也可直接下载已经安装好的系统镜像，节省时间。&lt;/p&gt;
 
@@ -284,7 +553,7 @@ export CYGWIN
   &lt;li&gt;
     &lt;p&gt;&lt;a href=&quot;http://mirrors.neusoft.edu.cn/android/repository/&quot;&gt;开源镜像站&lt;/a&gt;&lt;/p&gt;
   &lt;/li&gt;
-  &lt;li&gt;开发用：sabayon 或者 archlinux+lxde 或者其他小型窗口管理器。开发环境emacs，编译环境io.js cordova &lt;/li&gt;
+  &lt;li&gt;开发用：sabayon 或者 archlinux+lxde 或者其他小型窗口管理器。开发环境emacs，编译环境io.js cordova&lt;/li&gt;
   &lt;li&gt;运行应用用：
     &lt;ul&gt;
       &lt;li&gt;给php的：coreos（网络不通！！！！所以只能作罢）或者其他极简部署用系统，其他可选 ubuntu server 或者 centos等，运行php类，java类，&lt;/li&gt;
@@ -310,7 +579,7 @@ export CYGWIN
 
 &lt;p&gt;安装有问题，直接下载镜像解决。两个预定的用户名和密码： root/sabayon; sabayon/sabayon&lt;/p&gt;
 
-&lt;h3 id=&quot;section-6&quot;&gt;配置强化虚拟机系统&lt;/h3&gt;
+&lt;h3 id=&quot;section-7&quot;&gt;配置强化虚拟机系统&lt;/h3&gt;
 
 &lt;p&gt;安装完成后，就可以用了，但为了更方便使用，需要进行下面的配置，其中重点是配置：文件共享和网络服务&lt;/p&gt;
 
@@ -339,25 +608,36 @@ export CYGWIN
 &lt;pre&gt;&lt;code&gt;VBoxClient
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;也可以一次启动所有 &lt;/p&gt;
+&lt;p&gt;也可以一次启动所有&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;VBoxClientAll
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;让其启动即可使用这些服务：不过不建议这么做，因为出问题的时候，就没法救。如果有桌面，把VBoxClientAll 加入到autostart中，如果没有，就加入到  .xinitrc&lt;/p&gt;
+&lt;p&gt;让其启动即可使用这些服务：不过不建议这么做，因为出问题的时候，就没法救。如果有桌面，把VBoxClientAll 加入到autostart中，如果没有，就加入到  &lt;code&gt;.xinitrc&lt;/code&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;section-7&quot;&gt;文件共享设置：&lt;/h4&gt;
+&lt;h4 id=&quot;section-8&quot;&gt;文件共享设置：&lt;/h4&gt;
+
+&lt;h5 id=&quot;section-9&quot;&gt;自动加载&lt;/h5&gt;
 
 &lt;p&gt;把用户加入到vboxsf组中。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;gpasswd -a $USER vboxsf
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;使用 &lt;code&gt;VboxControl sharefolder&lt;/code&gt; 自动加载&lt;/p&gt;
+&lt;p&gt;查看下已经存在的共享目录&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;VboxControl sharefolder list
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;使用 &lt;code&gt;VboxControl sharefolder&lt;/code&gt; 自动加载。&lt;/p&gt;
+
+&lt;p&gt;如果：仍然无法自动加载，可手动新建一目录：/media/sf_共享文件夹名字&lt;/p&gt;
+
+&lt;h5 id=&quot;section-10&quot;&gt;手动加载&lt;/h5&gt;
 
 &lt;p&gt;也可以手动加载：&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;mount -t vboxsf shared_folder_name mount_point_on_guest_system
+&lt;pre&gt;&lt;code&gt;mount -t vboxsf 共享文件夹名 挂载点
 比如：
 mount -t vboxsf -o uid=1000,gid=1000 home /mnt/
 &lt;/code&gt;&lt;/pre&gt;
@@ -369,7 +649,7 @@ mount -t vboxsf -o uid=1000,gid=1000 home /mnt/
 
 &lt;p&gt;注意加载文件夹的权限：755&lt;/p&gt;
 
-&lt;p&gt;软链到桌面&lt;/p&gt;
+&lt;p&gt;软链到桌面，方便使用。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;ln -s /media/ ~/my_documents
 &lt;/code&gt;&lt;/pre&gt;
@@ -421,34 +701,40 @@ mount -t vboxsf -o uid=1000,gid=1000 home /mnt/
 
 &lt;h3 id=&quot;linuxioscygwin&quot;&gt;linux系统下的ios开发环境/cygwin也类似&lt;/h3&gt;
 
-&lt;h2 id=&quot;section-8&quot;&gt;手机开发测试环境配置&lt;/h2&gt;
+&lt;h2 id=&quot;section-11&quot;&gt;手机开发测试环境配置&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;http://www.appsfinder.fr&quot;&gt;查找应用&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://appcrawlr.com&quot;&gt;另一个查找应用的地方&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;section-9&quot;&gt;在手机上运行各种应用&lt;/h3&gt;
+&lt;h3 id=&quot;section-12&quot;&gt;在手机上运行各种应用&lt;/h3&gt;
 
 &lt;p&gt;有空可探索：&lt;/p&gt;
 
 &lt;ul&gt;
+  &lt;li&gt;android + linux deploy 或者 debkit：需要root&lt;/li&gt;
   &lt;li&gt;Android + Linux Chroot + Node.js&lt;/li&gt;
-  &lt;li&gt;firefoxos + &lt;/li&gt;
+  &lt;li&gt;firefoxos +&lt;/li&gt;
   &lt;li&gt;JXCore One of the key features in the recent release was the ability to run Node.js applications on mobile, both Android and iOS, while leveraging the full Node.js ecosystem on npm.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;除去直接硬刷linux系统到手机上外，还有三个软办法：&lt;/p&gt;
+&lt;p&gt;除去直接硬刷linux系统到手机上外，还有四个软办法：&lt;/p&gt;
 
 &lt;ul&gt;
   &lt;li&gt;一是获得root权限，然后安装busybox之类的。&lt;/li&gt;
   &lt;li&gt;另一个是编译安装 一个包管理器（等有空折腾debian的dpkg），&lt;/li&gt;
-  &lt;li&gt;最后一个比较方便的是 安卓上的编程环境 terminalIDE。&lt;/li&gt;
+  &lt;li&gt;比较方便的是 安卓上的编程环境 terminalIDE。&lt;/li&gt;
+  &lt;li&gt;比较自由的：不用root，直接安装一个linux到手机上：gnuroot&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;英文输入键盘：手写用 writepad&lt;/p&gt;
 
 &lt;p&gt;英文虚拟电脑键盘用：terminal ide的键盘&lt;/p&gt;
+
+&lt;h4 id=&quot;terminal-ide&quot;&gt;terminal ide&lt;/h4&gt;
+
+&lt;p&gt;terminal ide帮助比较全面，可以当linux 操作入门。&lt;/p&gt;
 
 &lt;p&gt;生成 身份认证：和linux上的ssh-keygen不同。&lt;/p&gt;
 
@@ -475,13 +761,17 @@ echo export GIT_SSH=~/sssh &amp;gt;&amp;gt; .bashrc
 
 &lt;p&gt;到这步搞定！&lt;/p&gt;
 
-&lt;h3 id=&quot;section-10&quot;&gt;三平台多终端开发环境搭建&lt;/h3&gt;
+&lt;h3 id=&quot;section-13&quot;&gt;三平台多终端开发环境搭建&lt;/h3&gt;
 
 &lt;p&gt;实质是两种：本地编译（编译的工具链和编译量都很大！）或者两个虚拟机（linux和mac os）里的cordova编译&lt;/p&gt;
 
 &lt;p&gt;另文说明。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-11&quot;&gt;附带几句牢骚：&lt;/h3&gt;
+&lt;h3 id=&quot;section-14&quot;&gt;更多探索&lt;/h3&gt;
+
+&lt;p&gt;其实这样还是不够方便的，除了开发，测试也需要类似的环境，所以，最后探索的应该是 容器类工具。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-15&quot;&gt;附带几句牢骚：&lt;/h3&gt;
 
 &lt;p&gt;这几天被苹果系统问题卡住了所有的进度了：不是因为技术难度高，而是烦，尽搞些没用的限制——就有点像当年某些游戏用了俄国某种特别变态的加密程序，导致正版玩家体验也严重不爽一样，纯粹就是防贼防过头了。&lt;/p&gt;
 
@@ -510,7 +800,7 @@ echo export GIT_SSH=~/sssh &amp;gt;&amp;gt; .bashrc
 &lt;ol&gt;
   &lt;li&gt;有严重困难么？一般地，我给人做事都是别人有困难来找我，事情做完我就撤，继续做自己的事。&lt;/li&gt;
   &lt;li&gt;平等合作么？以我现在实力，现在也还不到我能和你公司平起平坐谈合作的时候，既不是危机也不是合作，那是什么？你们公司有我没我不是一样的么？&lt;/li&gt;
-  &lt;li&gt;我弱点：我不是适合一般公司里平平稳稳的职位的。 &lt;/li&gt;
+  &lt;li&gt;我弱点：我不是适合一般公司里平平稳稳的职位的。&lt;/li&gt;
   &lt;li&gt;我过去：我快十年都是处于主导地位，虽然很窘迫，但到底也是开始进入收益期了。突然拱手让出主导？？？凭什么？我自己一个一个小项目都可以做起来，积累起来的。&lt;/li&gt;
   &lt;li&gt;我会失去：以后还有这样逐步积累的机会么？以后估计都是高大上，浮在表层上创业了吧？再也没有可以同甘共苦的同志了！！！！——但目前我却也还没有合适的办法，找到合适的同等级的同伴，同样是居高临下的！！！！&lt;/li&gt;
 &lt;/ol&gt;
@@ -574,7 +864,7 @@ echo export GIT_SSH=~/sssh &amp;gt;&amp;gt; .bashrc
 
 &lt;h3 id=&quot;linux&quot;&gt;linux之路&lt;/h3&gt;
 
-&lt;p&gt;早在进千寻之前，就已经开始接触，恰好和我先前秉持的理念非常契合。在千寻时，开始使用ubuntu，正式开启了我对开源领域的参与。 &lt;/p&gt;
+&lt;p&gt;早在进千寻之前，就已经开始接触，恰好和我先前秉持的理念非常契合。在千寻时，开始使用ubuntu，正式开启了我对开源领域的参与。&lt;/p&gt;
 
 &lt;h3 id=&quot;pega&quot;&gt;pega的印象&lt;/h3&gt;
 
@@ -628,85 +918,6 @@ echo export GIT_SSH=~/sssh &amp;gt;&amp;gt; .bashrc
         <pubDate>Mon, 2015 Feb 09 10:10:57 +0800</pubDate>
         <link>http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2015/02/09/%E6%88%91%E5%9D%8E%E5%9D%B7%E7%9A%84%E6%8A%80%E6%9C%AF%E4%B9%8B%E8%B7%AF/</link>
         <guid isPermaLink="true">http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2015/02/09/%E6%88%91%E5%9D%8E%E5%9D%B7%E7%9A%84%E6%8A%80%E6%9C%AF%E4%B9%8B%E8%B7%AF/</guid>
-      </item>
-    
-      <item>
-        <title>今天小雨</title>
-        <description>&lt;p&gt;今天小雨。&lt;/p&gt;
-
-&lt;p&gt;我自己有一堆值得关注的人要我去关注。不再关注乱七八糟的！&lt;/p&gt;
-
-&lt;p&gt;对我有恩的人，绝大部分在上海，是我需要报答的。&lt;/p&gt;
-
-&lt;p&gt;有的曾在我流浪街头的时候给过我饭吃，收留过我的，有的曾在我骨折的时候照顾我的……&lt;/p&gt;
-
-&lt;p&gt;要不是我刚好需要转型，应该会一直在上海呆着的。我是觉得：发展好了才去报答，而不是让别人来提携我。&lt;/p&gt;
-
-&lt;p&gt;下一步在哪，我不知道，要看缘分。现在只知道把我手头的事情搞定，因为这样到哪都不影响我事业发展。&lt;/p&gt;
-
-&lt;p&gt;然后等，等一个机缘：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;有可能是我家里老人都不在了&lt;/li&gt;
-  &lt;li&gt;或者某个女人刚好走进我生活&lt;/li&gt;
-  &lt;li&gt;或者是刚好某个好朋友召唤我&lt;/li&gt;
-  &lt;li&gt;或者是我自己打开局面&lt;/li&gt;
-  &lt;li&gt;……&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;注：我不稀罕女人，&lt;strong&gt;我只稀罕有情有义的人&lt;/strong&gt;，如果是女人那更好。&lt;/p&gt;
-
-&lt;p&gt;老家这边，实在无语！！！！一个极品人渣的破坏力极大，让我无论怎么做都里外不是人。&lt;/p&gt;
-
-&lt;p&gt;我现在需要安宁，但却整天被各方面折腾！！！&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 2015 Feb 03 21:51:31 +0800</pubDate>
-        <link>http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/02/03/%E5%B0%8F%E9%9B%A8/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/02/03/%E5%B0%8F%E9%9B%A8/</guid>
-      </item>
-    
-      <item>
-        <title>认真的会喜欢认真的</title>
-        <description>&lt;p&gt;如果你觉得领导在吹毛求疵，那是因为你们不在同一个频道上，你觉得的重点，和他觉得的重点不同。&lt;/p&gt;
-
-&lt;p&gt;先顺着他的想法几次，摸透他的做法，后面就好说了。&lt;/p&gt;
-
-&lt;p&gt;认真的人挺好的，因为一般&lt;strong&gt;认真的往往会带来意外收获，而蒙混过关的往往会带来意外遗漏&lt;/strong&gt;。&lt;/p&gt;
-
-&lt;p&gt;一般按领导说的做更对，因为毕竟最终是他去操作去负责，所以和他同个频道的话，会更好办。如果不是一个频道的，会形成牵扯，内耗，他无法以自己擅长的方式处理，可能处理效果就难以在其可控范围了，失败可能性相对大点。&lt;/p&gt;
-
-&lt;p&gt;所以，顾全大局的做法是一般顺着领导，而不是任由自己思维。&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 2015 Jan 27 16:40:00 +0800</pubDate>
-        <link>http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/01/27/%E8%AE%A4%E7%9C%9F%E7%9A%84%E4%BC%9A%E5%96%9C%E6%AC%A2%E8%AE%A4%E7%9C%9F%E7%9A%84/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/01/27/%E8%AE%A4%E7%9C%9F%E7%9A%84%E4%BC%9A%E5%96%9C%E6%AC%A2%E8%AE%A4%E7%9C%9F%E7%9A%84/</guid>
-      </item>
-    
-      <item>
-        <title>《大漠苍狼》感</title>
-        <description>&lt;p&gt;《大漠苍狼》看了两集：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;个人能力意志磨练：这段时间最长，最痛苦&lt;/li&gt;
-  &lt;li&gt;无所畏惧：已无亲人，唯恨&lt;/li&gt;
-  &lt;li&gt;意志较量&lt;/li&gt;
-  &lt;li&gt;建立威望&lt;/li&gt;
-  &lt;li&gt;整合队伍&lt;/li&gt;
-  &lt;li&gt;丈量地形&lt;/li&gt;
-  &lt;li&gt;找到要道重点设卡&lt;/li&gt;
-  &lt;li&gt;设税局筹资金&lt;/li&gt;
-  &lt;li&gt;扩充势力&lt;/li&gt;
-  &lt;li&gt;渗透反击&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;只有男儿配讲情！&lt;/p&gt;
-
-</description>
-        <pubDate>Sun, 2015 Jan 25 19:10:48 +0800</pubDate>
-        <link>http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/01/25/%E5%A4%A7%E6%BC%A0%E8%8B%8D%E7%8B%BC%E6%84%9F/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/01/25/%E5%A4%A7%E6%BC%A0%E8%8B%8D%E7%8B%BC%E6%84%9F/</guid>
       </item>
     
   </channel>

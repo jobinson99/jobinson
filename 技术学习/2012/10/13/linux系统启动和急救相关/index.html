@@ -277,7 +277,7 @@ Try to boot without rhgb and quiet on the kernel command line. If you see some m
 
 <p>To boot directly into rescue target add systemd.unit=rescue.target or just 1 to the kernel command line. This target is useful if the problem occurs somewhere after the basic system is brought up, during the starting of “normal” services. If this is the case, you should be able to disable the bad service from here. If the rescue target will not boot either, the more minimal emergency target might.</p>
 
-<p>To boot directly into emergency shell add systemd.unit=emergency.target or emergency to the kernel command line. Note that in the emergency shell you will have to remount the root filesystem read-write by yourself before editing any files: </p>
+<p>To boot directly into emergency shell add systemd.unit=emergency.target or emergency to the kernel command line. Note that in the emergency shell you will have to remount the root filesystem read-write by yourself before editing any files:</p>
 
 <pre><code>mount -o remount,rw /
 </code></pre>
@@ -295,7 +295,7 @@ systemctl enable debug-shell.service</p>
 
 <p>Tip: If your version of systemd is not new enough to have debug-shell.service, you can download the unit file from systemd git. Substitute /bin/bash for @sushell@ in the file.</p>
 
-<p>Tip: If you find yourself in a situation where you cannot use systemctl (e.g. when setting this up from a different booted system), you can enable the service manually: </p>
+<p>Tip: If you find yourself in a situation where you cannot use systemctl (e.g. when setting this up from a different booted system), you can enable the service manually:</p>
 
 <pre><code>cd $PATH_TO_YOUR_ROOT_FS/etc/systemd/system
 mkdir -p sysinit.target.wants
@@ -308,19 +308,19 @@ ln -s /lib/systemd/system/debug-shell.service sysinit.target.wants/
 
 <p>If You Can Get a Shell</p>
 
-<p>When you have systemd running to the extent that it can provide you with a shell, please use it to extract useful information for debugging. Boot with these parameters on the kernel command line: </p>
+<p>When you have systemd running to the extent that it can provide you with a shell, please use it to extract useful information for debugging. Boot with these parameters on the kernel command line:</p>
 
 <pre><code>systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M
 </code></pre>
 
-<p>in order to increase the verbosity of systemd, to let systemd write its logs to the kernel log buffer, and to increase the size of the kernel log buffer. After reaching the shell, save the log: </p>
+<p>in order to increase the verbosity of systemd, to let systemd write its logs to the kernel log buffer, and to increase the size of the kernel log buffer. After reaching the shell, save the log:</p>
 
 <pre><code>dmesg &gt; dmesg.txt
 </code></pre>
 
 <p>When reporting a bug, attach the dmesg.txt file.</p>
 
-<p>To check for possibly stuck jobs use: </p>
+<p>To check for possibly stuck jobs use:</p>
 
 <pre><code>systemctl list-jobs
 </code></pre>
@@ -329,9 +329,9 @@ ln -s /lib/systemd/system/debug-shell.service sysinit.target.wants/
 
 <p>Diagnosing Shutdown Problems</p>
 
-<p>Just like with boot problems, when you encounter a hang during shutting down, make sure you wait at least 5 minutes to distinguish a permanent hang from a broken service that’s just timing out. Then it’s worth testing whether the system reacts to CTRL+ALT+DEL in any way. </p>
+<p>Just like with boot problems, when you encounter a hang during shutting down, make sure you wait at least 5 minutes to distinguish a permanent hang from a broken service that’s just timing out. Then it’s worth testing whether the system reacts to CTRL+ALT+DEL in any way.</p>
 
-<p>If shutdown (whether it be to reboot or power-off) of your system gets stuck, first test if the kernel itself is able to reboot or power-off the machine forcedly using one of these commands: </p>
+<p>If shutdown (whether it be to reboot or power-off) of your system gets stuck, first test if the kernel itself is able to reboot or power-off the machine forcedly using one of these commands:</p>
 
 <pre><code>sync &amp;&amp; reboot -f
 sync &amp;&amp; poweroff -f
@@ -368,14 +368,14 @@ reboot
 
 <p>Status and Logs of Services</p>
 
-<p>When the start of a service fails, systemctl will give you a generic error message: </p>
+<p>When the start of a service fails, systemctl will give you a generic error message:</p>
 
 <pre><code># systemctl start foo.service
 </code></pre>
 
 <p>Job failed. See system journal and ‘systemctl status’ for details.</p>
 
-<p>The service may have printed its own error message, but you do not see it, because services run by systemd are not related to your login session and their outputs are not connected to your terminal. That does not mean the output is lost though. By default the stdout, stderr of services are directed to the systemd journal and the logs that services produce via syslog(3) go there too. systemd also stores the exit code of failed services. Let’s check: </p>
+<p>The service may have printed its own error message, but you do not see it, because services run by systemd are not related to your login session and their outputs are not connected to your terminal. That does not mean the output is lost though. By default the stdout, stderr of services are directed to the systemd journal and the logs that services produce via syslog(3) go there too. systemd also stores the exit code of failed services. Let’s check:</p>
 
 <pre><code># systemctl status foo.service
 foo.service - mmm service
@@ -440,34 +440,34 @@ Systemd boot parameters</p>
 <p>The following boot parameters are also available to further assist with debugging boot issues.</p>
 
 <p>systemd.unit= 
-Overrides the unit to activate on boot. This may be used to temporarily boot into a different boot unit, for example rescue.target or emergency.target. ( Defaults to default.target. ) </p>
+Overrides the unit to activate on boot. This may be used to temporarily boot into a different boot unit, for example rescue.target or emergency.target. ( Defaults to default.target. )</p>
 
 <p>systemd.dump_core= 
-Takes a boolean argument. If true systemd dumps core when it crashes. Otherwise no core dump is created. ( Defaults to true ) </p>
+Takes a boolean argument. If true systemd dumps core when it crashes. Otherwise no core dump is created. ( Defaults to true )</p>
 
 <p>systemd.crash_shell= 
-Takes a boolean argument. If true systemd spawns a shell when it crashes. Otherwise no core dump is created. Defaults to false, for security reasons, as the shell is not protected by any password authentication. </p>
+Takes a boolean argument. If true systemd spawns a shell when it crashes. Otherwise no core dump is created. Defaults to false, for security reasons, as the shell is not protected by any password authentication.</p>
 
 <p>systemd.crash_chvt= 
-Takes an integer argument. If positive systemd activates the specified virtual terminal when it crashes. ( Defaults to -1 ) </p>
+Takes an integer argument. If positive systemd activates the specified virtual terminal when it crashes. ( Defaults to -1 )</p>
 
 <p>systemd.confirm_spawn= 
-Takes a boolean argument. If true asks for confirmation when spawning processes. ( Defaults to false ) </p>
+Takes a boolean argument. If true asks for confirmation when spawning processes. ( Defaults to false )</p>
 
 <p>systemd.show_status= 
-Takes a boolean argument. If true shows terse service status updates on the console during bootup. ( Defaults to true ) </p>
+Takes a boolean argument. If true shows terse service status updates on the console during bootup. ( Defaults to true )</p>
 
 <p>systemd.sysv_console= 
-Takes a boolean argument. If true output of SysV init scripts will be directed to the console. ( Defaults to true, unless quiet is passed as kernel command line option in which case it defaults to false. ) </p>
+Takes a boolean argument. If true output of SysV init scripts will be directed to the console. ( Defaults to true, unless quiet is passed as kernel command line option in which case it defaults to false. )</p>
 
 <p>systemd.log_target= 
-Set log target. Argument must be one of console, syslog, kmsg, syslog-or-kmsg, null. </p>
+Set log target. Argument must be one of console, syslog, kmsg, syslog-or-kmsg, null.</p>
 
 <p>systemd.log_level= 
-Set log level. As argument this accepts a numerical log level or the well-known syslog symbolic names (lowercase): emerg, alert, crit, err, warning, notice, info, debug. </p>
+Set log level. As argument this accepts a numerical log level or the well-known syslog symbolic names (lowercase): emerg, alert, crit, err, warning, notice, info, debug.</p>
 
 <p>systemd.log_color= 
-Highlight important log messages. Argument is a boolean value. If the argument is omitted it defaults to true. </p>
+Highlight important log messages. Argument is a boolean value. If the argument is omitted it defaults to true.</p>
 
 <p>systemd.log_location= 
 Include code location in log messages. This is mostly relevant for debugging purposes. Argument is a boolean value. If the argument is omitted it defaults to true.</p>
