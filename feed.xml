@@ -7,6 +7,22 @@
     <atom:link href="http://jobinson.ga/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>终于翻译完mesos文档了</title>
+        <description>&lt;p&gt;mesos，apache.org上的一个集群管理工具：把所有资源放到一个资源池里，统一调配。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;2015-09-21 开始翻译&lt;/li&gt;
+  &lt;li&gt;2015-09-23 今天终于啃掉了最难啃的两部分（配置和监控），剩下的，话比较多，但不算长，明天再搞定一点。&lt;/li&gt;
+  &lt;li&gt;2015-09-24 文字部分终于全部翻译完！&lt;/li&gt;
+&lt;/ul&gt;
+
+</description>
+        <pubDate>Thu, 2015 Sep 24 23:25:17 +0800</pubDate>
+        <link>http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/09/24/%E7%BB%88%E4%BA%8E%E7%BF%BB%E8%AF%91%E5%AE%8Cmesos%E6%96%87%E6%A1%A3%E4%BA%86/</link>
+        <guid isPermaLink="true">http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/09/24/%E7%BB%88%E4%BA%8E%E7%BF%BB%E8%AF%91%E5%AE%8Cmesos%E6%96%87%E6%A1%A3%E4%BA%86/</guid>
+      </item>
+    
+      <item>
         <title>强制内存失忆破解任何系统</title>
         <description>&lt;p&gt;我的山寨手机系统是 阿里云os2.9，内置一个变态的应用：aliantiroot.apk，也就是专门用来反root的程序。&lt;/p&gt;
 
@@ -218,7 +234,7 @@ ln -s /virtualos ~/virtualos
 
 &lt;p&gt;什么软件系统会被没救了：&lt;strong&gt;缺少文档！！！！结构混乱，又问题重重的系统&lt;/strong&gt;。&lt;/p&gt;
 
-&lt;p&gt;遇到这样的系统，彻底推翻无悬念！！！而且最好是一开始就彻底推翻，而不是试图在其上修修补补，只是浪费时间而已！！！&lt;/p&gt;
+&lt;p&gt;遇到这样的系统，彻底推翻无悬念！！！而且&lt;strong&gt;最好是一开始就彻底推翻&lt;/strong&gt;，而不是试图在其上修修补补，只是浪费时间而已！！！&lt;/p&gt;
 
 &lt;p&gt;以后自己做软件，一定要做到文档详尽。&lt;/p&gt;
 
@@ -498,7 +514,9 @@ fc-list
 
 &lt;p&gt;我的设备：一个手机（应该是两部，一部刚好换掉了），两台电脑（一台自己多年用的，所有东西都在上面，但配置低；一台是项目的，配置前沿，里面已经备有各种相应开发工具，但不适用于我）&lt;/p&gt;
 
-&lt;p&gt;需要实现的功能：三机同步。平时开发只用一台电脑（当然是性能最好的那台），碎片时间用手机，在这台电脑和手机里，使用我熟悉和方便的工具，同时，收集到的经验，可以同步到我自己的电脑上。&lt;/p&gt;
+&lt;p&gt;工作方式：平时开发只用一台电脑（当然是性能最好的那台），碎片时间用手机，在这台电脑和手机里，使用我熟悉和方便的工具，同时，收集到的经验，可以同步到我自己的电脑上。&lt;/p&gt;
+
+&lt;p&gt;需要实现的功能：三机同步。&lt;/p&gt;
 
 &lt;h2 id=&quot;section-3&quot;&gt;解决方案&lt;/h2&gt;
 
@@ -506,7 +524,7 @@ fc-list
 
 &lt;p&gt;项目的电脑：尽可能少用其本身软件，只用虚拟机，并且把虚拟机快照化，这样可以快速启动所需的环境。&lt;/p&gt;
 
-&lt;p&gt;更多探索：可自定义一个 某人开发专用 标箱 一劳永逸解决。vagrant 使用 vbox或者qemu。&lt;/p&gt;
+&lt;p&gt;更多探索：可自定义一个 &lt;strong&gt;某人开发专用 标箱&lt;/strong&gt; 一劳永逸解决。vagrant 使用 vbox或者qemu。&lt;/p&gt;
 
 &lt;p&gt;为了以备不时之需，还装了cygwin+emacs。&lt;/p&gt;
 
@@ -515,7 +533,9 @@ cygwin和虚拟机都装了git 和 emacs，emacs配置全部拷自我电脑。&l
 
 &lt;p&gt;手机：一个编辑器+一个可管理git的工具。&lt;/p&gt;
 
-&lt;h2 id=&quot;cygwin-win&quot;&gt;初探：使用 cygwin 试图和win融合&lt;/h2&gt;
+&lt;h2 id=&quot;section-4&quot;&gt;项目用电脑&lt;/h2&gt;
+
+&lt;h3 id=&quot;cygwin-win&quot;&gt;初探：使用 cygwin 试图和win融合&lt;/h3&gt;
 
 &lt;p&gt;一开始是想到用cygwin或者是cygwin的集成版babun来实现，配置另文表达。&lt;/p&gt;
 
@@ -523,37 +543,16 @@ cygwin和虚拟机都装了git 和 emacs，emacs配置全部拷自我电脑。&l
 
 &lt;p&gt;而且，配置多了后，如果不启用伺服模式，cygwin速度非常慢，比vbox快照慢多了。&lt;/p&gt;
 
-&lt;h2 id=&quot;section-4&quot;&gt;虚拟机模拟&lt;/h2&gt;
+&lt;p&gt;另外，cygwin的软件管理工具才刚起步，没有 类似 archlinux的 用户自治资源区（aur），没法方便查找和编译各种软件。&lt;/p&gt;
 
-&lt;p&gt;如果是小系统拷到内存中。反正现在内存够。&lt;/p&gt;
+&lt;h3 id=&quot;section-5&quot;&gt;虚拟机模拟&lt;/h3&gt;
 
-&lt;p&gt;主要问题：cygwin的软件管理工具才刚起步，没有 类似 archlinux的 用户自治资源区（aur），没法方便查找和编译各种软件。&lt;/p&gt;
+&lt;p&gt;如果是小系统拷到内存中，反正现在内存够。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-5&quot;&gt;准备工作：&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;看看电脑主板是不是开启支持 硬件虚拟技术（Hardware Virtualization Technology (VT)），没开启就到bois开启。&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.virtualbox.org/wiki/Downloads&quot;&gt;vbox下载地址&lt;/a&gt;，根据宿主机操作系统类型选择下载。另外，还需要扩展下载，也就是那个&lt;a href=&quot;&quot;&gt;VirtualBox 4.3.26 Oracle VM VirtualBox Extension Pack&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;本人的宿主机是win7，安装vbox问题，解决办法：&lt;/p&gt;
+&lt;p&gt;平台规划：&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;路径不含中文名&lt;/li&gt;
-  &lt;li&gt;恢复系统主题&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;section-6&quot;&gt;安装操作系统&lt;/h3&gt;
-
-&lt;p&gt;可以直接安装，也可直接下载已经安装好的系统镜像，节省时间。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://virtualboxes.org/tag/ova&quot;&gt;下载已有的镜像&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://kickass.to&quot;&gt;搜镜像种子&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;a href=&quot;http://mirrors.neusoft.edu.cn/android/repository/&quot;&gt;开源镜像站&lt;/a&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;开发用：sabayon 或者 archlinux+lxde 或者其他小型窗口管理器。开发环境emacs，编译环境io.js cordova&lt;/li&gt;
+  &lt;li&gt;开发用：sabayon（开发需要底层版本可控+多版本共存，所以选择了gentoo系），桌面系统使用 lxde 或者其他小型窗口管理器。开发环境emacs，编译环境node.js cordova&lt;/li&gt;
   &lt;li&gt;运行应用用：
     &lt;ul&gt;
       &lt;li&gt;给php的：coreos（网络不通！！！！所以只能作罢）或者其他极简部署用系统，其他可选 ubuntu server 或者 centos等，运行php类，java类，&lt;/li&gt;
@@ -577,23 +576,49 @@ cygwin和虚拟机都装了git 和 emacs，emacs配置全部拷自我电脑。&l
   &lt;li&gt;portage 用来管理源码包，相当于 archlinux makepkg abs&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;安装有问题，直接下载镜像解决。两个预定的用户名和密码： root/sabayon; sabayon/sabayon&lt;/p&gt;
+&lt;p&gt;安装时有问题，直接下载镜像解决。两个预定的用户名和密码： root/sabayon; sabayon/sabayon&lt;/p&gt;
 
-&lt;h3 id=&quot;section-7&quot;&gt;配置强化虚拟机系统&lt;/h3&gt;
+&lt;h4 id=&quot;vbox&quot;&gt;vbox模拟&lt;/h4&gt;
 
-&lt;p&gt;安装完成后，就可以用了，但为了更方便使用，需要进行下面的配置，其中重点是配置：文件共享和网络服务&lt;/p&gt;
+&lt;h5 id=&quot;section-6&quot;&gt;准备工作：&lt;/h5&gt;
 
-&lt;h4 id=&quot;vboxlinux&quot;&gt;vbox虚拟机里的linux配置&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;看看电脑主板是不是开启支持 硬件虚拟技术（Hardware Virtualization Technology (VT)），没开启就到bois开启。&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://www.virtualbox.org/wiki/Downloads&quot;&gt;vbox下载地址&lt;/a&gt;，根据宿主机操作系统类型选择下载。另外，还需要扩展下载，也就是那个&lt;a href=&quot;&quot;&gt;VirtualBox 4.3.26 Oracle VM VirtualBox Extension Pack&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;本人的宿主机是win7，安装vbox有问题，解决办法：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;路径不含中文名&lt;/li&gt;
+  &lt;li&gt;恢复系统主题&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-7&quot;&gt;安装操作系统&lt;/h5&gt;
+
+&lt;p&gt;可以直接安装，也可直接下载已经安装好的系统镜像，节省时间。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://virtualboxes.org/tag/ova&quot;&gt;下载已有的镜像&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://kickass.to&quot;&gt;搜镜像种子&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://mirrors.neusoft.edu.cn/android/repository/&quot;&gt;开源镜像站&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&quot;section-8&quot;&gt;配置强化虚拟机系统&lt;/h5&gt;
+
+&lt;p&gt;安装完成后，就可以用了，但为了更方便使用，需要进行下面的配置，其中重点是配置：文件共享和网络服务。&lt;/p&gt;
+
+&lt;h5 id=&quot;vboxlinux&quot;&gt;vbox虚拟机里的linux配置&lt;/h5&gt;
 
 &lt;p&gt;默认安装就可以进入虚拟系统了，想要更多功能，需要进行下面配置。&lt;/p&gt;
 
-&lt;h4 id=&quot;archlinux-&quot;&gt;archlinux 各种服务配置：&lt;/h4&gt;
+&lt;h5 id=&quot;archlinux-&quot;&gt;虚拟机 archlinux 各种服务配置：&lt;/h5&gt;
 
-&lt;p&gt;安装 virtualbox-guest-modules  virtualbox-guest-utils virtualbox-guest-dkms&lt;/p&gt;
+&lt;p&gt;安装 virtualbox-guest-modules virtualbox-guest-utils virtualbox-guest-dkms&lt;/p&gt;
 
-&lt;p&gt;按安装后的提示，生成模块&lt;/p&gt;
+&lt;p&gt;按安装后的提示，生成模块。&lt;/p&gt;
 
-&lt;p&gt;加载模块：&lt;/p&gt;
+&lt;p&gt;然后，加载模块：&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;modprobe -a vboxguest vboxsf vboxvideo
 &lt;/code&gt;&lt;/pre&gt;
@@ -603,7 +628,7 @@ cygwin和虚拟机都装了git 和 emacs，emacs配置全部拷自我电脑。&l
 &lt;pre&gt;&lt;code&gt;systemctl enable vboxservice
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;手动启动各种vbox的服务：比如双向粘贴，双向拖动文件，无缝模式……&lt;/p&gt;
+&lt;p&gt;也可以手动启动vbox的各种服务：比如双向粘贴，双向拖动文件，无缝模式……&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;VBoxClient
 &lt;/code&gt;&lt;/pre&gt;
@@ -615,9 +640,9 @@ cygwin和虚拟机都装了git 和 emacs，emacs配置全部拷自我电脑。&l
 
 &lt;p&gt;让其启动即可使用这些服务：不过不建议这么做，因为出问题的时候，就没法救。如果有桌面，把VBoxClientAll 加入到autostart中，如果没有，就加入到  &lt;code&gt;.xinitrc&lt;/code&gt;&lt;/p&gt;
 
-&lt;h4 id=&quot;section-8&quot;&gt;文件共享设置：&lt;/h4&gt;
+&lt;h5 id=&quot;section-9&quot;&gt;文件共享设置：&lt;/h5&gt;
 
-&lt;h5 id=&quot;section-9&quot;&gt;自动加载&lt;/h5&gt;
+&lt;h5 id=&quot;section-10&quot;&gt;自动加载&lt;/h5&gt;
 
 &lt;p&gt;把用户加入到vboxsf组中。&lt;/p&gt;
 
@@ -633,7 +658,7 @@ cygwin和虚拟机都装了git 和 emacs，emacs配置全部拷自我电脑。&l
 
 &lt;p&gt;如果：仍然无法自动加载，可手动新建一目录：/media/sf_共享文件夹名字&lt;/p&gt;
 
-&lt;h5 id=&quot;section-10&quot;&gt;手动加载&lt;/h5&gt;
+&lt;h5 id=&quot;section-11&quot;&gt;手动加载&lt;/h5&gt;
 
 &lt;p&gt;也可以手动加载：&lt;/p&gt;
 
@@ -661,15 +686,15 @@ mount -t vboxsf -o uid=1000,gid=1000 home /mnt/
 
 &lt;p&gt;换漂亮点的图标&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://content.wuala.com/contents/csslayer/eyecandy/icons/oxygen-old.tar.bz2&quot;&gt;kde4.6之前的图标好看，不足的部分应该可以用之后的图标补上&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://bitbucket.org/jobinson99/oxygen4-icons&quot;&gt;kde4.6之前的图标好看，不足的部分应该可以用之后的图标补上，我fork了一个，同时补上这个版本后更新的图标&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;mac-os&quot;&gt;mac os虚拟机安装手记&lt;/h3&gt;
+&lt;h4 id=&quot;mac-os&quot;&gt;mac os虚拟机安装手记&lt;/h4&gt;
 
 &lt;p&gt;macos 软件安装模式：拖入图标到Application，复制完成后，打开 Lauchpad ，点击该图标，根据提示安装。&lt;/p&gt;
 
 &lt;p&gt;xcode挺大的！&lt;/p&gt;
 
-&lt;h4 id=&quot;win--vbox-macos&quot;&gt;win + vbox 安装macos&lt;/h4&gt;
+&lt;h5 id=&quot;win--vbox-macos&quot;&gt;win + vbox 安装macos&lt;/h5&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;http://bbs.feng.com/read-htm-tid-8474315.html&quot;&gt;win7 vbox 安装 mac os 10.10 参考&lt;/a&gt;&lt;/li&gt;
@@ -692,7 +717,11 @@ mount -t vboxsf -o uid=1000,gid=1000 home /mnt/
 
 &lt;p&gt;打开工程项目文件  hello/platforms/ios/hello.xcodeproj&lt;/p&gt;
 
-&lt;h4 id=&quot;linux--qemu-macos&quot;&gt;linux + qemu 安装macos&lt;/h4&gt;
+&lt;h3 id=&quot;qemu&quot;&gt;qemu模拟&lt;/h3&gt;
+
+&lt;h4 id=&quot;qemulinux&quot;&gt;qemu模拟linux&lt;/h4&gt;
+
+&lt;h5 id=&quot;linux--qemu-macos&quot;&gt;linux + qemu 安装macos&lt;/h5&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;http://blog.definedcode.com/osx-qemu-kvm&quot;&gt;参考&lt;/a&gt;&lt;/li&gt;
@@ -701,14 +730,14 @@ mount -t vboxsf -o uid=1000,gid=1000 home /mnt/
 
 &lt;h3 id=&quot;linuxioscygwin&quot;&gt;linux系统下的ios开发环境/cygwin也类似&lt;/h3&gt;
 
-&lt;h2 id=&quot;section-11&quot;&gt;手机开发测试环境配置&lt;/h2&gt;
+&lt;h2 id=&quot;section-12&quot;&gt;手机开发测试环境配置&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;http://www.appsfinder.fr&quot;&gt;查找应用&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://appcrawlr.com&quot;&gt;另一个查找应用的地方&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;section-12&quot;&gt;在手机上运行各种应用&lt;/h3&gt;
+&lt;h3 id=&quot;section-13&quot;&gt;在手机上运行各种应用&lt;/h3&gt;
 
 &lt;p&gt;有空可探索：&lt;/p&gt;
 
@@ -761,17 +790,17 @@ echo export GIT_SSH=~/sssh &amp;gt;&amp;gt; .bashrc
 
 &lt;p&gt;到这步搞定！&lt;/p&gt;
 
-&lt;h3 id=&quot;section-13&quot;&gt;三平台多终端开发环境搭建&lt;/h3&gt;
+&lt;h3 id=&quot;section-14&quot;&gt;三平台多终端开发环境搭建&lt;/h3&gt;
 
 &lt;p&gt;实质是两种：本地编译（编译的工具链和编译量都很大！）或者两个虚拟机（linux和mac os）里的cordova编译&lt;/p&gt;
 
 &lt;p&gt;另文说明。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-14&quot;&gt;更多探索&lt;/h3&gt;
+&lt;h3 id=&quot;section-15&quot;&gt;更多探索&lt;/h3&gt;
 
 &lt;p&gt;其实这样还是不够方便的，除了开发，测试也需要类似的环境，所以，最后探索的应该是 容器类工具。&lt;/p&gt;
 
-&lt;h3 id=&quot;section-15&quot;&gt;附带几句牢骚：&lt;/h3&gt;
+&lt;h3 id=&quot;section-16&quot;&gt;附带几句牢骚：&lt;/h3&gt;
 
 &lt;p&gt;这几天被苹果系统问题卡住了所有的进度了：不是因为技术难度高，而是烦，尽搞些没用的限制——就有点像当年某些游戏用了俄国某种特别变态的加密程序，导致正版玩家体验也严重不爽一样，纯粹就是防贼防过头了。&lt;/p&gt;
 
@@ -844,80 +873,6 @@ echo export GIT_SSH=~/sssh &amp;gt;&amp;gt; .bashrc
         <pubDate>Sat, 2015 Mar 07 17:15:31 +0800</pubDate>
         <link>http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/03/07/%E4%B8%8D%E8%A6%81%E5%92%8C%E8%87%AD%E6%A3%8B%E7%AF%93%E5%AD%90%E4%B8%8B%E6%A3%8B/</link>
         <guid isPermaLink="true">http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/03/07/%E4%B8%8D%E8%A6%81%E5%92%8C%E8%87%AD%E6%A3%8B%E7%AF%93%E5%AD%90%E4%B8%8B%E6%A3%8B/</guid>
-      </item>
-    
-      <item>
-        <title>我坎坷的技术之路</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;我的基础&lt;/h2&gt;
-
-&lt;p&gt;首先，我是因为色弱被迫放弃理科的，物理化学生物等都学得是很不错的，我在理科上是很有基础的。记得初三我还利用电磁方向差异，设计了一个永动机！（当时没考虑过 原动力、损耗、逆变所需能量阈值）&lt;/p&gt;
-
-&lt;p&gt;其次，在大学寒假期间，我几乎把我嫂子的所有编程方面的书都翻了一遍，所以还是有基础的。&lt;/p&gt;
-
-&lt;p&gt;再次，大学时就用frontpage，dreamweaver做过静态网站几个。大学时用vfp做过一个简陋的拨号程序。&lt;/p&gt;
-
-&lt;p&gt;再次，大学毕业后，可以说不间断接触到网络相关技术。&lt;/p&gt;
-
-&lt;p&gt;最后，在千寻之后，自己在独立开始一项事业的时候，遭遇了严重的人才和产品开发速度跟不上市场发展的制约，于是，开始了漫长的转型：从产品设计、营销、管理、运营转型为全能（也就是多了一项技能：技术开发）。——————————————详细原因在另外一文说过。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;转型路：主要的技术轨迹&lt;/h2&gt;
-
-&lt;h3 id=&quot;linux&quot;&gt;linux之路&lt;/h3&gt;
-
-&lt;p&gt;早在进千寻之前，就已经开始接触，恰好和我先前秉持的理念非常契合。在千寻时，开始使用ubuntu，正式开启了我对开源领域的参与。&lt;/p&gt;
-
-&lt;h3 id=&quot;pega&quot;&gt;pega的印象&lt;/h3&gt;
-
-&lt;p&gt;在千寻的时候，刚好了解到一个系统pega，可以快速编程。让我看到快速编程的潜力。&lt;/p&gt;
-
-&lt;h3 id=&quot;cms&quot;&gt;选cms来建网站&lt;/h3&gt;
-
-&lt;p&gt;先是选了几个cms来快速搭建网站（joomla drupal xoops），发现了很多优秀的东西，但发现离满足我需求还非常远。这一步是2008-2010年初，感谢在一个&lt;a href=&quot;http://www.ronsung.com&quot;&gt;写动态密码，内网监控，省墨打印&lt;/a&gt;朋友的指点提示下，我开始想到自己需要更多编程实现。&lt;/p&gt;
-
-&lt;h3 id=&quot;python&quot;&gt;转入python&lt;/h3&gt;
-
-&lt;p&gt;转入了python，选了需要更多编程技术的 web2py turbogears，web2py的第一版中文版就是我翻译的。但是，发现python处于升级换代的混乱期，使我意识到一个问题：标准要稳定，才好做扩展，才好长期投入，后来的发展，应该建构在稳定基础上。另外一个就是我感觉对编程语言缺乏足够全面的掌握，使得我非常被动。&lt;/p&gt;
-
-&lt;p&gt;这个时候，了解了数据库兼容层，对数据库有了全新的认识，翻译了 wwwsqldesigner，重写了其sqlarchemy模块。&lt;/p&gt;
-
-&lt;h3 id=&quot;lisp&quot;&gt;转入lisp全面学习+全面理工科化&lt;/h3&gt;
-
-&lt;p&gt;选了一个设计非常全面，且标准稳定的 commonlisp，这是一条漫漫的路，从2010年底到2014年，我一直都在里面徘徊，中间因为自己的一些私人问题，导致学习效率极其低下。由于资料过少，自己甚至翻译了所有的内建 内名。同时也对编程的方方面面技术，有了更全面的了解和深刻掌握。&lt;/p&gt;
-
-&lt;p&gt;另外，也想到以此为基础，设计一套复合自己需求的语言：当时叫由码（international lisp = il ，发音刚好是 由），现在叫爱编（international programing language）&lt;/p&gt;
-
-&lt;p&gt;这个阶段，个人也全面回归理工科化&lt;/p&gt;
-
-&lt;p&gt;对 光，热，阵列，智能操控等有了全新的掌握。&lt;/p&gt;
-
-&lt;h3 id=&quot;js&quot;&gt;使用js&lt;/h3&gt;
-
-&lt;p&gt;使用js的时间很长，2012年到2014年还一直利用jquerymobile 和appframework做app应用，但都比较浅层。&lt;/p&gt;
-
-&lt;p&gt;2014年初，在又一次研究了神码后，发现其很有意思，可以运行在浏览器上，可以运行在 lisp上……实际上，如果普及后，估计可以独立出一个编译器。所以，问题在于快速学习和普及！！！！&lt;/p&gt;
-
-&lt;p&gt;另外，在心灰意冷中，感觉需要找点存在感，于是开始网上教小朋友编程，发现了很多制约编程学习和普及的问题，比如语言（英语不过关），设备（需要每人配一电脑），配置（需要复杂的编程环境配置，对新手来说，很可能这一步就把自己搞残废了），应用（大部分人想开网店而不知道可能有更多的应用）……——————————————另外文章里提过。&lt;/p&gt;
-
-&lt;p&gt;在当时的阶段，是根本无法做到有效的、低门槛的教学。&lt;/p&gt;
-
-&lt;p&gt;另外，由于对js的接触日益多了起来，于是，痛下决心，决定全面学习javascript，并至少先在其上实现一个可用的 爱编解析器，这样可以不用过多复杂配置，直观见效，方便学习使用。&lt;/p&gt;
-
-&lt;p&gt;也是在这个时候，我正式把我的博客从原先的托管，转为利用github page。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;打通任督二脉后……&lt;/h3&gt;
-
-&lt;p&gt;拭目以待！&lt;/p&gt;
-
-&lt;h3 id=&quot;section-3&quot;&gt;总结&lt;/h3&gt;
-
-&lt;p&gt;个人从技术上的伸手党，追随者，变成了生产者。&lt;/p&gt;
-
-&lt;p&gt;其实，要不是被人严重干扰，至少可以早三年完成转型！！！&lt;/p&gt;
-
-</description>
-        <pubDate>Mon, 2015 Feb 09 10:10:57 +0800</pubDate>
-        <link>http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2015/02/09/%E6%88%91%E5%9D%8E%E5%9D%B7%E7%9A%84%E6%8A%80%E6%9C%AF%E4%B9%8B%E8%B7%AF/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2015/02/09/%E6%88%91%E5%9D%8E%E5%9D%B7%E7%9A%84%E6%8A%80%E6%9C%AF%E4%B9%8B%E8%B7%AF/</guid>
       </item>
     
   </channel>
