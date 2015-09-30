@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>【2012】本人Arch Linux安装、配置备份</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/2009/05/14/%E6%9C%AC%E4%BA%BAarch%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AE%E5%A4%87%E4%BB%BD/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="【2012】本人Arch Linux安装、配置备份">【2012】本人Arch Linux安装、配置备份</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>【摘要】：</b><br/></p>
+      
+
+      
+      <p class="post-tag"><b>【话题】：</b>
+        
+        <a href="/话题列表/#archlinux-ref">archlinux
+        <sup>2</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#linux-ref">linux
+        <sup>3</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#安装-ref">安装
+        <sup>1</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#操作系统-ref">【操作系统】</a>
+        
+      </span>
+      
+      
+      创建时间：2009-05-14 10:18:20
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <p>更新时间：20120526</p>
+
+<h1 id="atlas-arch-setup-step-by-step">atlas arch setup step by step</h1>
+
+<blockquote>
+  <p>此部分需要在终端中阅读，所以使用英文。</p>
+</blockquote>
+
+<h2 id="install">install</h2>
+
+<ol>
+  <li>install the arch base base-devel</li>
+  <li>reboot</li>
+  <li>Update the System«===<code>pacman -Sy pacman</code>, <code>pacman -Syu</code></li>
+  <li>Get Yaourt«===<code>nano /etc/pacman.conf</code> (add <code>http://repo.archlinux.fr/x86_64</code>)</li>
+  <li>Quicker Download Package «===<code>nano /etc/pacman.conf</code> use curl</li>
+  <li>Sound«===<code>pacman -S alsa-utils alsa-oss</code> ===»<code>alsaconf</code></li>
+  <li>
+    <p>Video«===<code>pacman -S xorg xf86-video-ati ati-dri
+libgl</code>===»systemctl start dbus–» Xorg (optional: Xorg -configure)  or pacman -S catalyst ===»aticonfig –initial</p>
+  </li>
+  <li>install desktop manager «==== systemctl enable sddm «=== pacman -S sddm</li>
+</ol>
+
+<p>note: only one dm can be enabled, so if you had been enabled another one ,please disable it at fist</p>
+
+<ol>
+  <li>
+    <p>Laptop Configuration «===pacman -S acpi acpid laptop-mode-tools
+cpufrequtils (acpid laptop-init) i8kutils i8kmon(for my dell laptop) 
+powertop(for exact programe power consume phc-k8)</p>
+  </li>
+  <li>
+    <p>Desktop and Office Software«===</p>
+
+    <pre><code> pacman -S kde kde-l10n-zh_cn lxde unzip unrar w3m
+ wqy-zenhei ttf-dejavu ttf-liberation ttf-ms-fonts monaco-linux-font ttf-bitstream-vera
+ basket k3b 
+ calligra calligra-l10n-zh_cn libreoffice libreoffice-zh-CN
+ gimp inkscape blender dia 
+ amarok clementine smplayer vlc qt-recordmydesktop
+ goldendict poppler-data
+ fcitx fcitx-gtk3 fcitx-qt fcitx-gtk2 fcitx-rime
+ emacs
+ mldonkey kmldonkey ktorrent
+ jre8-openjdk jdk8-openjdk firefox firefox-i18n
+ r stellarium celestia
+ freeciv wesnoth
+ ntfs-3g
+ testdisk
+ git abs nodejs ekiga cheese qt-curve
+ dosbox virtualbox virtualbox-additions qemu qtemu
+</code></pre>
+  </li>
+  <li>
+    <p>add/del user/group«=== <code>adduser gpasswd -a xxx</code> <code>userdel -r xxx</code>  <code>groupdel xxx</code>
+<code>passwd -a username groupname</code> <code>passwd -d username groupname</code></p>
+  </li>
+  <li>
+    <p>config chinese input «=== <code>nano ~/.xprofile</code></p>
+
+    <pre><code> export LC_COLLATE="zh_CN.UTF-8"
+ export LC_CTYPE="zh_CN.UTF-8"
+ export XMODIFIERS="@im=fcitx"
+ export GTK_IM_MODULE=xim
+ export QT_IM_MODULE=xim
+ fcitx &amp;
+</code></pre>
+  </li>
+  <li>Configure:nano /etc/rc.conf (en_US.utf8–»zh_CN.UTF-8 ,deamon,modules ：acpid dbus) 
+nano /etc/profile(or add ~/.xprofile)
+(vboxdrv,/etc/fstab,usbfs)</li>
+  <li>fall asleep</li>
+  <li>reboot</li>
+  <li>
+    <p>yaourt b43-firmware(b43),xmind,pcmanx-gtk(qterm??),aurvote, google-chrome
+aliwangwang,gmchess,kchmviewer,linuxqq, kde-gtk-config,laptop-init fbterm fcitx-fbterm .etc</p>
+  </li>
+  <li>
+    <p>Fonts for Chinese«=== nano /etc/fonts/conf.avail/65-nonlatin.conf
+===»move wqy up</p>
+  </li>
+  <li>arch ultimate install script
+    <ul>
+      <li>Install git: <code>pacman -S git</code></li>
+      <li>get the script: <code>git clone git://github.com/helmuthdu/aui</code>
+Without git:</li>
+      <li>get the script: <code>wget --no-check-certificate https://github.com/helmuthdu/aui/tarball/master -O - | tar xz</code>
+How to use:</li>
+      <li>default mode:<code> cd &lt;dir&gt; &amp;&amp; ./aui</code></li>
+      <li>ais mode: <code>cd &lt;dir&gt; &amp;&amp; ./aui --ais</code></li>
+    </ul>
+  </li>
+</ol>
+
+<p>可以换成一个shell：</p>
+
+<pre><code>#!/bin/bash
+echo "第一步：升级系统"
+echo "第二步：改进软件管理系统"
+echo "第三步：音频、视频、笔记本"
+echo "第四步：安装软件"
+echo "第五步：新建用户"
+echo "第六步：配置个人用户"
+#脚本制作：黑传说，时间：2012/09/22
+</code></pre>
+
+<h2 id="section">超级严重问题解决</h2>
+
+<ol>
+  <li>
+    <p>作为一个基于网络的发行版，网络连接是首要核心问题：</p>
+
+    <pre><code> dhcp problem: no mtu interface /etc/dhcpd.conf
+</code></pre>
+  </li>
+</ol>
+
+<p>开启无线网络设备： <code>ifconfig wlan0 up</code>
+配置无线： netcfg2</p>
+
+<p>最麻烦的是网络模块挂了，网络不通，很麻烦，所以尽量保留dhcpcd等相关老包，以防不测。
+注意，这个比保留kernel更重要，因为arch没有网络，啥都搞不定。</p>
+
+<p>ifconfig和iwconfig，侦测有线端口和无线端口是eth0还是eth1</p>
+
+<p>ipv6 
+改DNS：</p>
+
+<pre><code>sudo nano /etc/resolv.conf
+</code></pre>
+
+<p>添加上：</p>
+
+<pre><code>nameserver 8.8.8.8
+nameserver 8.8.4.4
+nameserver 2001:470:20::2
+</code></pre>
+
+<p>改Hosts文件：</p>
+
+<pre><code>sudo nano /etc/hosts
+</code></pre>
+
+<p>添加上：</p>
+
+<p>重启网络：</p>
+
+<pre><code>sudo systemctl restart NetworkManager
+</code></pre>
+
+<p>执行以下命令锁定 /etc/resolv.conf 文件，使得它不能每次重启被覆盖：</p>
+
+<pre><code>sudo chattr +i /etc/resolv.conf
+</code></pre>
+
+<p>翻墙：</p>
+
+<p>免费vpn，或者使用vpn访问国外网站。</p>
+
+<p>或者：利用git类服务复制 google上的smarthost，然后把smarthost里的列表导入到 /etc/hosts</p>
+
+<p>goagent 只支持 HTTP(S) 协议代理，并不支持 socket 协议，shadowsocks，支持 socks5 的代理工具。</p>
+
+<ol>
+  <li>
+    <p>有时无法通过修改 /etc/pacman.conf 下载 yaourt，可以用w3m连接到 <code>http://repo.archlinux.fr</code> ，然后下载下来，用 <code>pacman -U 安装包</code> 安装。</p>
+  </li>
+  <li>
+    <p>一些软件无法下载的解决办法：
+翻墙 或者 使用bitbucket或者github的导入仓库功能，把软件导入到这些仓库中，然后下载。
+（注意不要把仓库设为私有，那样会需要麻烦的身份验证）</p>
+  </li>
+  <li>
+    <p>启动时屏幕花屏：</p>
+  </li>
+</ol>
+
+<p>这个问题是因为3d加速引起，关闭3d加速方可解决
+<code>nano /etc/X11/xorg.conf.auto</code> 中，改<code>NoAccel</code>为<code>True</code></p>
+
+<p>或者</p>
+
+<p>到kdm阶段，登录，然后用快捷键休眠到内存，即可解决！其实重启x也是种办法！</p>
+
+<pre><code>systemd-halt.service
+systemd-hibernate.service
+systemd-shutdownd.service
+systemd-suspend.service
+</code></pre>
+
+<p>kde shift-f4 休眠到内存</p>
+
+<p>或者</p>
+
+<p>在启动引导器配置文件，比如 /boot/grub/menu.lst的 kernel 所在行，加 “radeon.modeset=0”
+若 <code>radeon.modeset=0</code>不起作用，加 <code>nomodeset</code>试试</p>
+
+<p>若在mkinitcpio.conf 的  MODULES 中，加有 radeon ，则删除之。
+然后重新生成启动用镜像 initramfs ： <code>mkinitcpio -p kernel</code></p>
+
+<p>lsmod | grep radeon , you can switch off KMS by creating a file specifying the module options e.g. /etc/modprobe.d/radeon.conf
+options radeon modeset=0</p>
+
+<p>4) 重启系统</p>
+
+<ol>
+  <li>一般通用急救办法：
+在grub引导的时候，第二行，加一个参数，比如3 （具体的参数作用说明可见：/etc/inittab）</li>
+</ol>
+
+<p>按Scroll Lock可以暂停启动</p>
+
+<p>新内核：崩溃可通过扫描条形码在别的终端查看详细信息</p>
+
+<ol>
+  <li>更新周期：每周更新一次，并且只在周末更新；遇到重大更新，再延后一周，出现问题的立马更新；
+凡是涉及 <strong>网络连接/内核/硬件识别相关</strong> 的更新，注意保留旧有软件包，以备不测。</li>
+</ol>
+
+<h2 id="section-1">安装问题解决</h2>
+
+<ol>
+  <li>终端下的常用软件快捷键：
+    <ul>
+      <li>查看文件 <code>less 文件名</code>：按 “q” =quit!</li>
+      <li>nano快捷键：<code>shift-f3</code> 做选择标记（再按一次取消选择），可以实现任意选择。</li>
+    </ul>
+  </li>
+  <li>
+    <p>最新的xorg不需要生成xorg也可使用！ 但如果有问题，还是需要修改配置文件。</p>
+  </li>
+  <li>
+    <p>让中文文件照拼音顺序排序</p>
+
+    <pre><code> export LC_COLLATE="zh_CN.UTF-8"
+</code></pre>
+  </li>
+  <li>
+    <p>grub颜色：cyan/blue white/blue</p>
+  </li>
+  <li>
+    <p>皮肤一致：用kde-gtk-config （gtk-kde4和gtk-qt-engine都需要重启程序才见效，kde-gtk-config可即时显示效果)</p>
+  </li>
+  <li>
+    <p>摄像头 webcam:/etc/devfsd.conf</p>
+
+    <pre><code> REGISTER        video0       PERMISSIONS     root.users 0660
+</code></pre>
+  </li>
+  <li>运行java类程序: <code>java -jar XXX.jar</code></li>
+</ol>
+
+<p>java加速，在 Java 应用程序的启动命令中加入如下选项（使用 OpenGL硬件加速来进行渲染，
+但eclipse等swt都没有效果，因为所需要的gtk版本不同）：<code>-Dsun.java2d.opengl=true</code></p>
+
+<p>openjdk 乱码：/usr/lib/jvm/java-6-openjdk/jre/lib/fontconfig.properties.src 中，文泉绎地址指错了（改好不能立即生效，需要另存为 fontconfig.properties）
+如果是jre，则只需要链接一个字体到fonts目录下即可（比如）：</p>
+
+<pre><code>sudo ln -s /usr/share/fonts/wenquanyi/wqy-zenhei/wqy-zenhei.ttc /opt/java/jre/lib/fonts/fallback/
+cd /opt/java/jre/lib/fonts/fallback/
+sudo mkfontdir
+sudo mkfontscale
+</code></pre>
+
+<ol>
+  <li>
+    <p>附带日志的分区格式，改时间会出现错乱：如有问题，fsck查一遍分区就行了</p>
+  </li>
+  <li>
+    <p>开启模块：modprobe 模块名 关闭模块： rmmod 模块名</p>
+  </li>
+  <li>
+    <p>linux的启动加密:</p>
+
+    <blockquote>
+      <p>前段时间工作需要就将机子搬到实验室使用，安装mandriva的2010，下面提到的linux就是他了，另外一个是xp，采用的是grub引导的。
+实验室人来人往的很杂，所以密码自然是设置的很复杂了，但是经常发现机子被人打开，发现有密码之后，对键盘的蹂躏是少不了，乱按一通，所以有了下面的措施，让我们的linux的grub启动不了，同样对由grub引导的windows也同样能够加密。</p>
+
+      <p>一、用超级用户执行 <code>grub-md5-crypt</code>,对grub的密码使用md5的加密方式，如果直接使用明码加密这个步骤可以省略。输入密码，需要两遍，然后就会出现加密过的密码，一串字符串，复制字符串</p>
+
+      <p>二、编辑/boot/grub/menu.lst 文件，在time out下面加上这行password –md5 $1$iMJtJ/$C4UwL2VrOH7Ttvb3aBWQA. 其中md5后面那串就是你刚才复制的字符串。</p>
+
+      <p>三、在title linux 下面加上 lock 表示启动到那里就锁住，没有输入密码就停下来，在对应的windows的title的下面也加上个lock就可以对windows的加密了。</p>
+
+      <p>四、重启，在grub的启动那里就停下来，你按p键，输入密码，就可以正常引导系统了。</p>
+
+      <p>收工，完成。</p>
+    </blockquote>
+  </li>
+  <li>
+    <p>把log留一段时间、大小限定 /etc/logroatate.conf</p>
+  </li>
+  <li>
+    <p>dmidecode 用于获取硬件信息</p>
+  </li>
+  <li>
+    <p>安装老版本软件，cd到该目录，然后 <code>pacman -U 软件包名字</code></p>
+  </li>
+</ol>
+
+<p>15、中文化终端：fbterm</p>
+
+<blockquote>
+  <p>显示8万汉字，可以采取多种方案，如：unifonts5.4、宋体-方正超大字符集+新细明体EXTB、宋体-方正超大字符集+中易宋体EXTB、宋体GB18030+新细明体ExtB、宋体18030+宋体ExtB等等。
+喜欢MinLiu就装Minliu+MinliuExtB，喜欢楷体就装方正楷体ExtA和ExtB。目前单个字体最多收字数无法突破超过65535，采用字体链接技术才能收录更多汉字。
+FZKaiS-Extended(SIP)应该是类似于孙海峰的超大字符集字体支持包内的Sun-ExtB.ttf。
+若是使用“楷体_GB2312”作为输入法外观的中文字体、而又想尽可能少些天窗或者宋体字，需要进行专门的系统字体链接。</p>
+</blockquote>
+
+<p>16、字体问题修正：</p>
+
+<p>修改/etc/fonts/conf.avail/65-nonlatin.conf文件（需root权限）：</p>
+
+<p>在serif（衬线）的字体族里面，您可以保留SimSun作为中文中最优先的衬线字体（因为SimSun本身就是一种衬线字体），当然也可以把 WenQuanYi Micro Hei移到SimSun之前，以使其作为最优先的衬线字体。但需要知道，实际上WenQuanYi Micro Hei（文泉驿微米黑）是一种sans-serif（非衬线）字体。</p>
+
+<p>在sans-serif（非衬线）的字体族里面，把WenQuanYi Micro Hei移到SimSun之前，以使其作为最优先的非衬线字体。</p>
+
+<p>在monospace（等宽）的字体组里面，把WenQuanYi Micro Hei Mono移到NSimSun之前，以使其作为最优先的等宽字体。</p>
+
+<ol>
+  <li>
+    <p>提升qt图形性能</p>
+
+    <pre><code> yaourt kcm-qt-graphicssystem
+ mkdir .kde4/env
+</code></pre>
+  </li>
+</ol>
+
+<p>系统设置：qt-graphicsystem选raster、</p>
+
+<ol>
+  <li>重载 Plasma</li>
+</ol>
+
+<p>有时你可能想重新载入 Plasma，像是修改了系统语言后为了能直接出效果，或是因为桌面出了什么问题。
+可以这样操作，打开终端，运行下列命令：</p>
+
+<pre><code>kquitapp plasma-desktop
+plasma-desktop
+</code></pre>
+
+<p>另一种方法，是直接退出桌面：</p>
+
+<pre><code>systemctl restart kdm
+</code></pre>
+
+<ol>
+  <li>KDM 的鼠标主题</li>
+</ol>
+
+<p>改成跟 Plasma 的 Oxygen White 鼠标一致的，新建文件：
+<code>/usr/share/icons/default/index.theme</code></p>
+
+<p>内容：</p>
+
+<pre><code>[Icon Theme]
+Name = Oxygen White
+Comment = Default icon theme.(Oxygen mouse theme. Oxygenize your desktop!)
+Inherits = Oxygen_White
+</code></pre>
+
+<ol>
+  <li>kde头像不能更改，提示管理员禁止你更改图像
+系统设置-登录屏幕-用户-用户图像来源-改成“用户，系统”或是“用户”，（但是这里下边的“用户图片”貌似和账户细节中的图像不相关，改了好像没用）然后应用保存亦可注销一下。上面的步骤之后再回到“账户细节”里面更改图像。</li>
+</ol>
+
+<p>21、笔记本降压设定：phc 或者cpupowerd
+laptop-init(cpufreq pm-utils laptop-mode之总开关)</p>
+
+<ol>
+  <li>如何实现在虚拟机下让玩的游戏全屏？ 比如星际和暗黑，把主系统的分辨率调成游戏分辨率，我玩暗黑2的时候就是这样的。</li>
+</ol>
+
+<p>主系统1024x768，暗黑分辨率是800x600，我的显示器是19寸的。</p>
+
+<ol>
+  <li>
+    <p>如何限制某个进程的io，以免被占用过大而卡死系统：cgroup</p>
+  </li>
+  <li>
+    <p>简单的备份脚本</p>
+  </li>
+</ol>
+
+<p>备份目录： $HOME/local/bak
+重命名：年月日时分秒_文件名（空格转换为下划线）</p>
+
+<pre><code>#!/bin/bash
+
+dir_bak=${HOME}/local/bak
+
+if [ ! -d ${dir_bak} ]; then
+mkdir -p ${dir_bak}
+fi
+
+no_white_space=$(echo "$1"|sed *s/ /_/g*)
+cp "$1" ${dir_bak}/$(date +%y%m%d%H%M%S)_${no_white_space}
+</code></pre>
+
+<ol>
+  <li>
+    <p>获取md5sum sha1sum等……</p>
+
+    <pre><code> md5sum xxx
+ sha1sum xxx
+</code></pre>
+  </li>
+</ol>
+
+<h2 id="section-2">学习和应急技巧：</h2>
+
+<ol>
+  <li>样例学习：先安装archlive 或者chakra之类的，看看别人搞定之后的模样和配置</li>
+  <li>记得安装kernel-lts kernel-lts-header这样升内核挂了的话，可以从这个内核启动</li>
+</ol>
+
+<p>滚挂过好几次了，一次最严重的是引导器，搞得我现在还有120G的备份等着恢复，一般的崩溃就是x起不来，或者显卡驱动挂了。
+还有一种滚挂的情况是升级的时候断电，这种最严重，台式机会经常出现。升级过程中断电的严重性，是因为这种可以把pacman啊什么的最基础的东西都给滚没了，
+而且你还不知道问题出在那，一般遇到这种情况，都是直接从别处复制最基本的东西进去，然后几乎完全重装一次。</p>
+
+<ol>
+  <li>arch硬盘安装：</li>
+</ol>
+
+<p>A、先提取光盘中的/boot下的两个文件夹，分别是64和32位的启动引导程序，把这两个文件夹放到U盘的/arch文件夹下。</p>
+
+<p>然后把光盘拷到U盘根目录下。</p>
+
+<p>B、写menu.lst</p>
+
+<pre><code>title arch64
+root (hd0,3)
+kernel /arch/x86_64/vmlinuz26 archisolabel=ARCH_201005
+initrd /arch/x86_64/archiso.img
+</code></pre>
+
+<p>root (hd0,3)是我的U盘。然后用U盘启动，U盘我安装了grub4dos来引导。</p>
+
+<p>C、启动后和2009.08的ISO一样，貌似会找不到光盘，进入一个shell。
+下来先mount 硬盘分区（我挂的当然是U盘），然后使用losetup将ISO文件挂到某个loop设备上面，退出shell就行了，</p>
+
+<p>和2009.08ISO的硬盘安装不一样的是，这里不需要将这个loop设备进行软链接这一步。我试了一下，多了这一步貌似还出问题。</p>
+
+<pre><code>#mkdir /usb
+#mount -t vfat /dev/sdb4 /usb
+#modprobe loop
+#losetup /dev/loop3 /usb/archlinux-2010.05-netinstall-dual.iso
+</code></pre>
+
+<p>这是个例子，您需要把有关参数改成您自己的。需说明的是，我的U盘，在U盘启动时被认成(hd0,3)/sda4，但进入shell之前，系统提示扫描了sdb4，这时挂载/dev/sdb4就可以，挂/dev/sda4就错了，挺奇怪的。
+这是我以前硬盘安装2009.08ISO时发现的，所以，如果进入shell后，您挂不对放光盘的硬盘分区，其实进入shell之前是有提示的。</p>
+
+<p>挂完后退出shell，系统就正常进入到安装环境。然后输入root，回车，再输入/arch/setup进行安装。
+接下来我没有继续尝试安装，由于是用的网络安装，应该不牵扯链接本地源的问题。这个就是让新手少走弯路，有需要硬盘安装的，可以试试，仅做参考。</p>
+
+<h2 id="section-3">软件：</h2>
+
+<ol>
+  <li>
+    <p>rpmunpack转rpm，deb2targz转deb arch下编一个PKGBUILD，用bsdtar直接解压deb，rpm有rpmextract</p>
+  </li>
+  <li>
+    <p>共享文件：NFS（linux之间交换文件分区比较好），SAMBA(需要和win交换文件时用)</p>
+  </li>
+  <li>
+    <p>恢复误删文件，软件：ext3grep
+umount /该分区，查询所有Inode，（执行需要几分钟～十多分钟）：<code>ext3grep /dev/sda1 --ls --inode 2</code>
+逐级查找Inode，看是否能找到误删的文件（此步骤也可省略），恢复/data0/tcsql/cankao/phpcws-1.5.0/httpcws.cpp文件：
+<code>ext3grep /dev/sdb1 --restore-file tcsql/cankao/phpcws-1.5.0/httpcws.cpp</code>
+如果提示以下信息，则表示恢复成功：Restoring tcsql/cankao/phpcws-1.5.0/httpcws.cpp
+这时，执行ext3grep命令的当前目录下将会自动生成一个名为RESTORED_FILES的文件夹，文件夹下的tcsql/cankao/phpcws-1.5.0/httpcws.cpp即为恢复的文件。查看了一下，和被删除前的内容一样，大功告成。</p>
+  </li>
+</ol>
+
+<p>重新mount /data0分区：<code>mount /dev/sdb1 /data0</code></p>
+
+<ol>
+  <li>
+    <p>Web压力测试软件： Siege</p>
+  </li>
+  <li>
+    <p>Bilbo Blogger离线blog</p>
+  </li>
+  <li>
+    <p>httrack：离线浏览</p>
+  </li>
+  <li>
+    <p>下载工具集成：pointdown
+迅雷linux版：xware-desktop
+xware这东西好是好，不过非常不稳定，如非必要还是用离线拖到aria2上下载
+可以用rTorrent配合Web管理界面ruTorrent，下和谐片速度那是杠杠的
+<a href="https://github.com/iambus/xunlei-lixian">迅雷离线客户端</a>，基于Python2，似乎有GUI，树莓派上用速度刚刚的。
+用百度个人云离线下载和迅雷离线下载后用浏览器下载</p>
+  </li>
+</ol>
+
+<p>you-get+mplayer 网络视频播放方式</p>
+
+<ol>
+  <li>
+    <p>远程桌面：rdp-xrdp或者vnc</p>
+  </li>
+  <li>
+    <p>tiv 是一个有意思的图片查看器，它将所要查看的图片直接显示在终端中。</p>
+  </li>
+  <li>
+    <p>装修类：sweethome3d wine天正建筑，maya…… k3d  blender,qcad google-schetch 游戏模拟人生等，都可以做</p>
+  </li>
+  <li>
+    <p>图片比较diffimg
+规律形状图创作工具：knotter</p>
+  </li>
+  <li>
+    <p>将EPS转换为SVG：linux下libreoffice对eps支持不好，再分享一下这个不错的脚本。
+运行此脚本后，会将原EPS删除并重命名备份在 <em>$HOME/local/bak</em> 目录下。
+一共转化了两次啊！！！</p>
+
+    <pre><code> #!/bin/bash
+    
+ dir_bak=${HOME}/local/bak
+ dir_eps=${HOME}/local/bak/eps
+    
+ if [ ! -d ${dir_bak} ]; then
+ mkdir -p ${dir_bak}
+ fi
+    
+ if [ ! -d "${dir_eps}" ]; then
+ mkdir -p ${dir_eps}
+ fi
+    
+ check=$(ls|grep eps)
+ if [ ! -z "${check}" ]; then
+ for fullfile in *.eps; do
+ filename="${fullfile%.*}"
+ extension="${fullfile##*.}"
+ # if [ ! -f ${filename}.svg ]; then
+ echo "${fullfile} --&gt; ${filename}.svg"
+ ps2pdf -dEPSCrop ${fullfile} tmp.pdf
+ pdf2svg tmp.pdf ${filename}.svg
+ rm tmp.pdf
+ mv ${fullfile} ${dir_eps}
+ mv ${dir_eps}/${fullfile} ${dir_eps}/$(date +%y%m%d%H%M%S)_${fullfile}
+ # fi
+ done
+ fi
+</code></pre>
+  </li>
+  <li>
+    <p>制作 syslinux背景图：640×480，制作成png，后转为16色png</p>
+
+    <pre><code> convert -depth 16 -colors 65536 xxx.png splash.png
+ sudo mv splash.png /boot/syslinux/splash.png
+</code></pre>
+  </li>
+  <li>
+    <p>Celestia 是一款自由的太空模拟软件</p>
+  </li>
+  <li>
+    <p>轻量级桌面系统：e17 lxqt xfce等
+lxde的安装 <code>sudo pacman -S lxde</code>
+配置：新建 <code>~/.config/openbox/autostart</code>
+里面写  <code>lxpanel</code>
+即可自动启动面板。
+kdm没有识别lxde，需要：</p>
+
+    <pre><code> sudo cp /usr/share/xsessions/LXDE.desktop /usr/share/apps/kdm/sessions/lxde.desktop
+</code></pre>
+  </li>
+</ol>
+
+<p>快捷键配置： <code>~/.config/openbox/lxde-rc.xml</code></p>
+
+<pre><code>W win键
+C ctrl键
+S shift键
+A alt键
+&lt;action name="命令"&gt;  对应执行的命令
+&lt;startupnotify&gt; -表示执行内容的起始标签。
+&lt;enabled&gt; -该标签作用暂时未知。
+&lt;name&gt; -名字，例子中是PCManFM。
+&lt;command&gt; -执行的命令行。
+
+&lt;keybind key="W-e"&gt;
+    &lt;action name="Execute"&gt;
+        &lt;startupnotify&gt;
+            &lt;enabled&gt;true&lt;/enabled&gt;
+            &lt;name&gt;PCManFM&lt;/name&gt;
+        &lt;/startupnotify&gt;
+    &lt;command&gt;pcmanfm&lt;/command&gt;
+    &lt;/action&gt;
+&lt;/keybind&gt;
+</code></pre>
+
+<p>不退出openbox，刷新设置</p>
+
+<pre><code>$ openbox --reconfigure
+</code></pre>
+
+<p>或者打开窗口管理器菜单选择“刷新”选项。</p>
+
+<p>轻量级对应</p>
+
+<blockquote>
+  <p>Gnome -&gt; LXDE -&gt; lxqt</p>
+
+  <p>Nautilus -&gt; PCManFM -&gt; pcmanfm-qt</p>
+
+  <p>Banshee -&gt; Aqualung -&gt;</p>
+
+  <p>Terminal -&gt; LXTerminal -&gt; qterminal</p>
+
+  <p>gEdit -&gt; Leafpad -&gt; juffed</p>
+
+  <p>Firefox -&gt; Chromium -&gt;</p>
+
+  <p>GIMP -&gt; mtPaint -&gt;</p>
+
+  <p>Libreoffice-&gt; Abiword，Gnumeric -&gt;</p>
+
+  <p>Evolution -&gt; Sylpheed/Osmo -&gt;</p>
+
+  <p>Brasero -&gt; Xfburn -&gt;</p>
+
+  <p>Totem -&gt;MPlayer -&gt;</p>
+</blockquote>
+
+<p>配置文件所在： <code>~/.config/lxqt/session.conf</code></p>
+
+<pre><code>screengrab: Screenshot capture
+qps: Task Monitoring
+</code></pre>
+
+<ol>
+  <li>zsh+oh-my-zsh 搭配</li>
+</ol>
+
+<p>升级可 <code>git pull</code></p>
+
+<ol>
+  <li>
+    <p>安装 systemd提示信息</p>
+
+    <pre><code> ln -s '/usr/lib/systemd/system/getty@.service' '/etc/systemd/system/getty.target.wants/getty@tty1.service'
+</code></pre>
+
+    <p>systemd 的可选依赖</p>
+
+    <ul>
+      <li>initscripts: legacy support for hostname and vconsole setup</li>
+      <li>initscripts-systemd: legacy generator for initialization scripts 使用原有的initscipts和sysvinit的配置方式</li>
+      <li>python2-cairo: systemd-analyze</li>
+      <li>python2-dbus: systemd-analyze</li>
+      <li>systemd-arch-units: collection of native unit files for Arch daemon/init
+  scripts 服务启动</li>
+      <li>systemd-sysvcompat: symlink package to provide sysvinit binaries——与sysvinit有冲突
+注意：udev等一些程序需要/usr在启动阶段挂载——udev也被取代为systemd-tools</li>
+    </ul>
+  </li>
+  <li>
+    <p>安全方面：屏蔽某个ip：Fail2ban 或者iptables里面设置——主要是防止被密码穷举什么的</p>
+  </li>
+  <li>
+    <p>linux安装win游戏：playonlinux
+游戏机全能模拟器：retroarch</p>
+  </li>
+  <li>
+    <p>辅助软件：
+手势识别：kde自带 或者 easystroke
+jailkit 囚 境工具</p>
+  </li>
+  <li>
+    <p>同一软件多版本共存：SoftwareCollections或者gentoo 或者npm</p>
+  </li>
+  <li>
+    <p>数字激光干涉模拟器 Finesse：可以用来计算各种各样的干涉仪信号控制系统,包括纵向控制,定位控制和热补偿。</p>
+  </li>
+  <li>
+    <p>利用chromeos-apk运行apk程序：</p>
+
+    <ol>
+      <li>
+        <p>安装转化环境，顺手转化apk文件：</p>
+
+        <p>npm install chromeos-apk -g
+ chromeos-apk [path to apk file]   # 格式
+ chromeos-apk com.qq.android.apk # 普通手机
+ chromeos-apk com.qq.android.apk –tablet # 平板</p>
+      </li>
+      <li>
+        <p>下载运行环境：根据自己系统架构，下载 ARChon 
+ <a href="https://bitbucket.org/vladikoff/archon">下载地址</a></p>
+      </li>
+      <li>
+        <p>载入应用：打开<em>chrome://extensions/</em>，载入archon，然后再载入转化好的apk文件夹，启动即可。</p>
+      </li>
+    </ol>
+
+    <p>如果想一次装入和运行多个chrome应用，需要打包为crx文件。</p>
+  </li>
+  <li>
+    <p>android上部署linux 使用 linux deploy</p>
+  </li>
+  <li>
+    <p>linux上读超大文件法：
+分析和编辑大文件可以考虑使用head/tail/grep/split/less/more
+split分割文件,cat合并文件:</p>
+
+    <pre><code> split -b 51200k your_file
+ cat xa* &gt; your_file
+</code></pre>
+  </li>
+</ol>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+  
+  <!-- 有言评论 -->
+  <div id="uyan_frame">
+    <h2>■评论</h2>
+  </div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a href="/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2009/05/09/%E6%B8%B8%E6%88%8F%E6%98%AF%E6%9C%80%E6%96%B0%E7%9A%84%E6%96%87%E5%8C%96%E4%BC%A0%E6%89%BF%E6%A8%A1%E5%BC%8F/">游戏是最新的文化传承模式◁◀前篇</a>
+    </div>
+    
+    
+    <!--回到头部-->
+    <div class="back-top"><a href="#【2012】本人Arch Linux安装、配置备份">△▲回头▲△</a></div> 
+    
+    
+    <div class="post-next">
+      <a href="/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2009/05/14/%E4%B8%8D%E5%86%8D%E8%8D%92%E4%BA%86%E5%87%BA%E5%B1%B1/">后篇▶▷不再荒了，出山</a>
+    </div>
+    
+    
+  </div>
+
+  <!--页面底部自动浮现-->
+  <div class="post-reletive">
+    <!--相关文章-->
+
+  </div>
+
+</div>
+
+
+  <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2015版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接，谢谢合作！</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+      <span>致谢： </br>
+        <a href="http://www.github.com">空间：github</a>，
+        <a href="http://jekyllrb.com">构建：jekyll</a>，
+        <a href="http://freenom.com/">域名：freenom</a>，
+        以及一切对本人有帮助的人事物！</span>
+      <span>
+        <!--百度统计-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+      </span>
+    </li>
+  </ul>
+</footer>
+
+
+    
+
+  
+</div>
+
+
+
+
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>
