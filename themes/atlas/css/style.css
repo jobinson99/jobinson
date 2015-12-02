@@ -1087,7 +1087,7 @@ nav {
 }
 .outline {
   bottom: 8%;
-  right: 0i;
+  right: 0;
   overflow: scroll;
   overflow-x: hidden;
   overflow-y: auto;
