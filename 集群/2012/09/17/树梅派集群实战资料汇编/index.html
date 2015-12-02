@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>【整理】树梅派集群实战</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/集群/2012/09/17/%E6%A0%91%E6%A2%85%E6%B4%BE%E9%9B%86%E7%BE%A4%E5%AE%9E%E6%88%98%E8%B5%84%E6%96%99%E6%B1%87%E7%BC%96/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="【整理】树梅派集群实战">【整理】树梅派集群实战</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>【摘要】：</b><br/>个人小超算实战资料汇编</p>
+      
+
+      
+      <p class="post-tag"><b>【话题】：</b>
+        
+        <a href="/话题列表/#小超算-ref">小超算
+        <sup>3</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#树莓派-ref">树莓派
+        <sup>3</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#阵列-ref">阵列
+        <sup>3</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#集群-ref">【集群】</a>
+        
+      </span>
+      
+      
+      创建时间：2012-09-17 00:00:00
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <p>小型化：卡片阵列</p>
+
+<p><a href="http://www.southampton.ac.uk/~sjc/raspberrypi/pi_supercomputer_southampton.htm">此部分原文</a></p>
+
+<p>南安普敦大学的计算机工程师们用 64 个树莓派（Raspberry Pi）构建了一个小超算，<strong>1TB 的内存</strong>（每块树莓派主板上装备了一张 16GB SD 卡），总造价在 2500 英镑以下，命名为 Iridis-Pi，取自该校的另外一台<a href="http://www.southampton.ac.uk/research/new_boundaries/supercomputer.shtml">超级计算机 Iridis（全欧洲最快的运行 Win Server 的超算）</a>。</p>
+
+<p><img src="/static/images/个人小超算实战资料汇编/树莓派阵列.jpg" alt="树莓派阵列" /></p>
+
+<p><strong>说明：</strong>其总的运算速度和前一部分差不多，但内存上提升了不少。</p>
+
+<h2 id="section">树莓派组超算的步骤</h2>
+
+<p>作者：Simon Cox 教授</p>
+
+<p>Computational Engineering and Design Research Group</p>
+
+<p>Faculty of Engineering and the Environment</p>
+
+<p>University of Southampton, SO17 1BJ, UK.</p>
+
+<p>版本：V0.2: 2012-09-08</p>
+
+<h2 id="section-1">第一步 硬件构建过程</h2>
+
+<p>固定用的承载托盘</p>
+
+<p><img src="/static/images/个人小超算实战资料汇编/固定用托盘.jpg" alt="固定用托盘" /></p>
+
+<p>承载托盘2</p>
+
+<p><img src="/static/images/个人小超算实战资料汇编/承载托盘.jpg" alt="承载托盘" /></p>
+
+<p>所有树莓派板卡：
+<img src="/static/images/个人小超算实战资料汇编/树莓派板卡.jpg" alt="树莓派板卡" /></p>
+
+<p>近照</p>
+
+<p><img src="/static/images/个人小超算实战资料汇编/树莓派近照.jpg" alt="树莓派近照" /></p>
+
+<p>电源：</p>
+
+<p><img src="/static/images/个人小超算实战资料汇编/密布电源.jpg" alt="密布电源" /></p>
+
+<aside>此处还需要一个智能变压的，这么多的插座也是很不妥当的。</aside>
+
+<p>最后插入电源效果：</p>
+
+<p><img src="/static/images/个人小超算实战资料汇编/完工图.jpg" alt="完工图" /></p>
+
+<h2 id="section-2">第二步 让机器运行起来</h2>
+
+<ol>
+  <li>
+    <p>下载 <a href="http://www.raspberrypi.org/downloads">底层驱动镜像</a>。此处用的是: <a href="http://downloads.raspberrypi.org/images/raspbian/2012-08-16-wheezy-raspbian/2012-08-16-wheezy-raspbian.zip">2012-08-16-wheezy-raspbian.zip</a></p>
+  </li>
+  <li>
+    <p>烧录底层驱动到闪存盘：可用<a href="http://www.softpedia.com/get/CD-DVD-Tools/Data-CD-DVD-Burning/Win32-Disk-Imager.shtml">win32磁盘烧录工具“Write”把镜像写入到闪盘上</a>或者你牛叉、苹果系统内置的dd程序。</p>
+  </li>
+</ol>
+
+<h3 id="section-3">安装第一台机器</h3>
+
+<ol>
+  <li>
+    <p>启动第一块树莓派</p>
+  </li>
+  <li>
+    <p>配置并安装：Expand image to fill card using the option on screen when you first boot. If you don’t do this on first boot, then you need to use，<a href="http://elinux.org/RPi_raspi-config">参见</a></p>
+
+    <pre><code> $ sudo raspi-config
+</code></pre>
+  </li>
+  <li>
+    <p>登录，<a href="http://www.simonthepiman.com/beginners_guide_change_my_default_password.php">修改密码</a></p>
+
+    <pre><code> $ passwd
+</code></pre>
+  </li>
+  <li>
+    <p>注销</p>
+
+    <pre><code> $ exit
+</code></pre>
+  </li>
+  <li>
+    <p>然后再登录，看看是否正确</p>
+  </li>
+  <li>
+    <p>更新可用的程序包</p>
+
+    <pre><code> $ sudo apt-get update
+</code></pre>
+  </li>
+  <li>
+    <p>为了稳定性，注意不要和普通电脑一样，进行全局升级（<code>sudo apt-get upgrade</code>），此处只是为了获取可安装程序的列表。</p>
+  </li>
+  <li>
+    <p>安装Fortran等，因为科学运算大都需要这个，所以预先安装了。</p>
+
+    <pre><code> $ sudo apt-get install gfortran
+</code></pre>
+  </li>
+  <li>
+    <p>为了可以在多节点运行程序，需要构建MPI，<a href="http://westcoastlabs.blogspot.co.uk/2012/06/parallel-processing-on-pi-bramble.html">参看手册</a>。要注意两件事：</p>
+
+    <ol>
+      <li>把 Fortran加进来，可以方便后面做很多事。</li>
+      <li>手册中提到的软件包是为 <em>armel</em> 打的，而此处我们需要的是 <em>armhf</em> ，因此需要自己构建MPI。</li>
+    </ol>
+  </li>
+  <li>
+    <p>在继续之前，<a href="http://www.mcs.anl.gov/research/projects/mpich2/documentation/files/mpich2-1.4.1-installguide.pdf">可阅读此链接内容</a>，了解更多信息，下面将安装此连接中的第2.2步开始。</p>
+  </li>
+  <li>
+    <p>新建一目录，用于存放源码</p>
+
+    <pre><code>$ mkdir /home/pi/mpich2
+$ cd ~/mpich2
+</code></pre>
+  </li>
+  <li>
+    <p>获取MPI源码</p>
+
+    <pre><code>$ wget http://www.mcs.anl.gov/research/projects/mpich2/downloads/tarballs/1.4.1p1/mpich2-1.4.1p1.tar.gz
+</code></pre>
+  </li>
+  <li>
+    <p>解压</p>
+
+    <pre><code>$ tar xfz mpich2-1.4.1p1.tar.gz
+</code></pre>
+  </li>
+  <li>
+    <p>新建一路径，存放编译好的文件。此处用 “rpimpi” 替换了原文中的 “you” ，并且用两步来新建路径</p>
+
+    <pre><code>$ sudo mkdir /home/rpimpi/        
+$ sudo mkdir /home/rpimpi/mpich2-install
+</code></pre>
+  </li>
+  <li>
+    <p>新建一路径，用于编译（开编译专用路径的好处是保持源码目录的干净）</p>
+
+    <pre><code>mkdir /home/pi/mpich_build
+</code></pre>
+  </li>
+  <li>
+    <p>切换到编译用的目录</p>
+
+    <pre><code>$ cd /home/pi/mpich_build
+</code></pre>
+  </li>
+  <li>
+    <p>配置编译选项：</p>
+
+    <pre><code>$ sudo /home/pi/mpich2/mpich2-1.4.1p1/configure -prefix=/home/rpimpi/mpich2-install
+</code></pre>
+  </li>
+  <li>
+    <p>开始编译文件：坐下来喝功夫茶吧，因为这步会花很长时间……</p>
+
+    <p>$ sudo make</p>
+  </li>
+  <li>
+    <p>安装编译好的程序：这步时间也会有点长，不过相比编译，还是快多了，哈哈……</p>
+
+    <pre><code>$ sudo make install
+</code></pre>
+  </li>
+  <li>
+    <p>把安装路径加入 可启动目录PATH</p>
+
+    <pre><code>$ export PATH=$PATH:/home/rpimpi/mpich2-install/bin
+</code></pre>
+  </li>
+</ol>
+
+<p>可以写入 <code>~/.profile</code> 中，这样永久有效。</p>
+
+<pre><code>    $ nano ~/.profile
+</code></pre>
+
+<p>然后写入下面两行：</p>
+
+<pre><code>    # Add MPI to path
+    PATH="$PATH:/home/rpimpi/mpich2-install/bin"
+</code></pre>
+
+<ol>
+  <li>
+    <p>检查下看看是否安装正确</p>
+
+    <pre><code>$ which mpicc
+$ which mpiexec
+</code></pre>
+  </li>
+  <li>
+    <p>回到家目录，新建一测试目录，并切换到该目录：</p>
+
+    <pre><code>$ cd ~
+$ mkdir mpi_testing
+$ cd mpi_testing
+</code></pre>
+  </li>
+  <li>
+    <p>测试下在单一节点上，MPI的运行状况：</p>
+
+    <pre><code>mpiexec -f machinefile -n &lt;number&gt; hostname
+</code></pre>
+  </li>
+</ol>
+
+<p>输出会包含一个IP地址的列表，因为只有一台机器，此处只输出一行。</p>
+
+<pre><code>1. 获知你的ip地址
+
+        $ ifconfig
+
+2. 把结果放入 文件 *machinefile* 中
+</code></pre>
+
+<ol>
+  <li>
+    <p>修改 <code>machinefile</code></p>
+
+    <pre><code>$ nano machinefile
+</code></pre>
+  </li>
+</ol>
+
+<p>加入此行:</p>
+
+<pre><code>    192.168.1.161
+</code></pre>
+
+<p>[或者其他你设定的ip地址]</p>
+
+<ol>
+  <li>
+    <p>运行一下：</p>
+
+    <pre><code>$ mpiexec -f machinefile –n 1 hostname
+</code></pre>
+  </li>
+</ol>
+
+<p>输出下面的信息:</p>
+
+<pre><code>    raspberrypi
+</code></pre>
+
+<ol>
+  <li>
+    <p>测试点C程序。在编译的MPI文件夹下，就有一个CPI例子。使用MPI来计算圆周率：</p>
+
+    <pre><code>$ cd /home/pi/mpi_testing
+$ mpiexec -f machinefile -n 2 ~/mpich_build/examples/cpi
+</code></pre>
+  </li>
+</ol>
+
+<p>下面是输出的信息:</p>
+
+<pre><code>    Process 0 of 2 is on raspberrypi
+    Process 1 of 2 is on raspberrypi
+    pi is approximately 3.1415926544231318, Error is 0.0000000008333387
+</code></pre>
+
+<p>完成此步，说明第一节已经成功了！</p>
+
+<h3 id="section-4">二、给子节点刷机</h3>
+
+<ol>
+  <li>
+    <p>主节点搞定后，因为里面安装有所有需要的程序，可以把这闪存卡当父卡，接下来就是克隆此卡。</p>
+  </li>
+  <li>
+    <p>关闭Pi：</p>
+
+    <pre><code> $ sudo poweroff
+</code></pre>
+  </li>
+</ol>
+
+<p>拔出闪存卡，插回电脑（或者其他用来写卡的机器）上的写卡器，然后，把这闪存卡上的镜像克隆回电脑上，<a href="http://www.softpedia.com/get/CD-DVD-Tools/Data-CD-DVD-Burning/Win32-Disk-Imager.shtml">参见此文</a>。用的工具和第2步一样。此处用的是 <code>Read</code> 选项。</p>
+
+<p>这镜像存为 <em>2012-08-16-wheezy-raspbian_backup_mpi_master.img</em> ，姑且叫 <em>父镜像</em></p>
+
+<ol>
+  <li>
+    <p>拔出这张父卡，插回第一台树莓派。然后，电脑上插入想写入的新卡，安装第2步，把父镜像刷入这新卡中。注意：因为父镜像里面的软件都是安装好的，所以此处可以不用重复第4步。</p>
+  </li>
+  <li>
+    <p>测试下这新刷的卡：把这新刷的卡插入第二台树莓派中，启动之，看看效果。已经搞定了两台树莓派，接下来进入下面的测试。</p>
+  </li>
+</ol>
+
+<h3 id="ssh-">使用 SSH 登录替换密码方式</h3>
+
+<p>这么做的目的是简化登录，否则那么多树莓派要登录，搞死人。</p>
+
+<p><strong>说明：</strong> 下面所有的命令行，如果没有特别说明，就都是在主节点输入的。</p>
+
+<ol>
+  <li>
+    <p><a href="http://steve.dynedge.co.uk/2012/05/30/logging-into-a-rasberry-pi-using-publicprivate-keys/">参看文档</a>。生成RSA密钥：</p>
+
+    <pre><code> $ cd ~
+ $ ssh-keygen -t rsa –C “raspberrypi@raspberrypi”
+</code></pre>
+  </li>
+</ol>
+
+<p>密钥存储在 <code>/home/pi/.ssh/id_rsa</code> 。创建过程会要求输入一些信息，比如 “myfirstpicluster”（不输入也可以，不过不建议这样）。然后放入第二台树莓派中。</p>
+
+<pre><code>    $ cat ~/.ssh/id_rsa.pub | ssh pi@192.168.1.162 "cat &gt;&gt; .ssh/authorized_keys"
+</code></pre>
+
+<ol>
+  <li>
+    <p>登录第二台树莓派，看看刚刚操作结果：</p>
+
+    <p>$ ls –al ~/.ssh</p>
+  </li>
+</ol>
+
+<p>应该可以看到一个文件叫： “authorized_keys”</p>
+
+<ol>
+  <li>
+    <p>在第二台树莓派中，获取下IP地址，然后回到主节点，把获取到的IP加入到主节点的 machinefile。</p>
+
+    <pre><code> $ nano machinefile
+</code></pre>
+  </li>
+</ol>
+
+<p>添加一行：（或者你获取到的其他地址）</p>
+
+<pre><code>    192.168.1.161
+    192.168.1.162
+</code></pre>
+
+<ol>
+  <li>
+    <p>测试下两台树莓派运行C代码。</p>
+
+    <pre><code> $ cd /home/pi/mpi_testing
+ $ mpiexec -f machinefile -n 2 ~/mpich_build/examples/cpi
+</code></pre>
+  </li>
+</ol>
+
+<p>下面是输出的信息:</p>
+
+<pre><code>    Process 0 of 2 is on raspberrypi
+    Process 1 of 2 is on raspberrypi
+    pi is approximately 3.1415926544231318, Error is 0.0000000008333387
+</code></pre>
+
+<p>注意：此处还没改主机名，因此会看到此处的主机名是一样的。</p>
+
+<ol>
+  <li>
+    <p>到第二台树莓派上，改下主机名 (看附录1 “Hostname Script”) ，测试下效果：</p>
+
+    <pre><code> $ mpiexec -f machinefile -n 2 ~/mpich_build/examples/cpi
+</code></pre>
+  </li>
+</ol>
+
+<p>下面是输出的信息:</p>
+
+<pre><code>    Process 0 of 2 is on raspberrypi
+    Process 1 of 2 is on iridispi002
+</code></pre>
+
+<blockquote>
+  <p>恭喜，到已经完成了构建2节点超算</p>
+</blockquote>
+
+<h3 id="section-5">构建64节点（甚至更多）的超算</h3>
+
+<ol>
+  <li>
+    <p>关闭所有树莓派</p>
+
+    <pre><code> $ sudo poweroff
+</code></pre>
+  </li>
+  <li>
+    <p>拔出第二台树莓派的闪存卡，插到电脑上，把其镜像提取出来，存为 <em>2012-08-16-wheezy-raspbian_backup_mpi_worker.img</em>，然后把这镜像作为其他子节点的母卡：这张母卡上比父卡多了一个 密钥。然后，按照上面的第2步，插入新的闪存卡，刷入镜像。</p>
+  </li>
+</ol>
+
+<p>之后不断重复这步，直到所有的树莓派都刷完。</p>
+
+<ol>
+  <li>
+    <p>刷完机后，需要登录到主节点，修改 <em>machinefile</em> 添加IP地址 </p>
+  </li>
+  <li>
+    <p>重命名下各个树莓派的主机名，比如可在主节点输入：</p>
+
+    <pre><code> ssh pi@192.168.1.162 'sudo echo "iridispi002" | sudo tee /etc/hostname'
+ ssh pi@192.168.1.163 'sudo echo "iridispi003" | sudo tee /etc/hostname'
+ ssh pi@192.168.1.164 'sudo echo "iridispi004" | sudo tee /etc/hostname'
+ ……
+</code></pre>
+  </li>
+</ol>
+
+<p>依次类推。当然，64个节点，逐个写会累死人的，还是写个脚本自动命名吧。</p>
+
+<h2 id="section-6">改进下工作</h2>
+
+<h3 id="section-7">自动命名</h3>
+
+<p>使用脚本来自动命名，此处用的是python的<a href="http://mpi4py.scipy.org/docs/usrman/index.html">mpi4py</a></p>
+
+<ol>
+  <li>
+    <p>安装软件</p>
+
+    <pre><code> $ sudo apt-get install python-mpi4py
+</code></pre>
+  </li>
+  <li>
+    <p>放入软件</p>
+
+    <pre><code> $ cd ~
+ $ mkdir mpi4py
+ $ cd mpi4py
+ $ wget http://mpi4py.googlecode.com/files/mpi4py-1.3.tar.gz
+ $ tar xfz mpi4py-1.3.tar.gz
+ $ cd mpi4py-1.3/demo
+</code></pre>
+  </li>
+  <li>
+    <p>不断在每个节点上重复第一二步（之前因为没考虑到这步，所以没有把这个也烧录进母镜像中，所以需要逐个写入，下次制作母镜像的时候，最好这个也加进去）</p>
+  </li>
+  <li>
+    <p>在主节点运行一个示例：使用2节点</p>
+
+    <pre><code> $ mpirun.openmpi -np 2 -machinefile /home/pi/mpi_testing/machinefile python helloworld.py
+</code></pre>
+  </li>
+</ol>
+
+<p>下面是输出的信息:</p>
+
+<pre><code>    Hello, World! I am process 0 of 2 on raspberrypi.
+    Hello, World! I am process 1 of 2 on iridispi002.
+</code></pre>
+
+<ol>
+  <li>
+    <p>使用4节点看看</p>
+
+    <pre><code> $ mpiexec.openmpi -n 4 -machinefile /home/pi/mpi_testing/machinefile python helloworld.py
+</code></pre>
+  </li>
+</ol>
+
+<p>下面是输出的信息:</p>
+
+<pre><code>    Hello, World! I am process 2 of 4 on raspberrypi.
+    Hello, World! I am process 3 of 4 on iridispi002.
+    Hello, World! I am process 1 of 4 on iridispi002.
+    Hello, World! I am process 0 of 4 on raspberrypi.
+</code></pre>
+
+<ol>
+  <li>
+    <p>These are handy to remove things if your attempts to get mpi4py don’t quite pan out</p>
+
+    <pre><code> $ sudo apt-get install python-mpi4py
+ $ sudo apt-get autoremove
+</code></pre>
+  </li>
+</ol>
+
+<h3 id="section-8">密钥也需要自动化脚本</h3>
+
+<pre><code>cat ~/.ssh/id_rsa.pub | ssh pi@192.168.1.161 "cat &gt;&gt; .ssh/authorized_keys"
+cat ~/.ssh/id_rsa.pub | ssh pi@192.168.1.162 "cat &gt;&gt; .ssh/authorized_keys"
+cat ~/.ssh/id_rsa.pub | ssh pi@192.168.1.163 "cat &gt;&gt; .ssh/authorized_keys"
+...
+</code></pre>
+
+<p>如果修改了密钥，这么多操作可就惨了，因此，也需要自动化脚本来帮忙。</p>
+
+<h3 id="pythonpip">改进下python安装方式：Pip</h3>
+
+<ol>
+  <li>
+    <p><a href="http://www.pip-installer.org/en/latest/installing.html">PIP是python包管理工具</a>，新建安装目录：</p>
+
+    <pre><code> $ cd ~
+ $ mkdir pip_testing
+ $ cd pip_testing
+</code></pre>
+  </li>
+  <li>
+    <p>下载并安装之</p>
+
+    <pre><code> $ curl http://python-distribute.org/distribute_setup.py | sudo python
+ $ curl https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python
+</code></pre>
+  </li>
+</ol>
+
+<h3 id="mpi-">编译适用于 树莓派 的 MPI 共享库</h3>
+
+<p>MPI可以共享库方式被动态加载：共享库扩展名为 “.so” 而非 “.a”。 步骤和上面一样，只是参数改为： “_shared” ，如下：</p>
+
+<pre><code>$ mkdir /home/pi/mpich2_shared
+$ cd ~/mpich2_shared
+$ wget http://www.mcs.anl.gov/research/projects/mpich2/downloads/tarballs/1.4.1p1/mpich2-1.4.1p1.tar.gz
+$ tar xfz mpich2-1.4.1p1.tar.gz
+$ sudo mkdir /home/rpimpi_shared/
+$ sudo mkdir /home/rpimpi_shared/mpich2-install_shared
+$ mkdir /home/pi/mpich_build_shared
+$ cd /home/pi/mpich_build_shared
+$ sudo /home/pi/mpich2_shared/mpich2-1.4.1p1/configure -prefix=/home/rpimpi_shared/mpich2-install_shared --enable-shared
+$ sudo make
+$ sudo make install
+$ export PATH=$PATH:/home/rpimpi_shared/mpich2-install_shared/bin
+</code></pre>
+
+<p>若想永久性添加此路径，需要编辑 .profile文件</p>
+
+<pre><code>$ nano ~/.profile
+</code></pre>
+
+<p>在最后添加下面两行:</p>
+
+<pre><code># Add MPI Shared to path
+PATH="$PATH:/home/rpimpi_shared/mpich2-install_shared/bin"
+</code></pre>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+  
+  <!-- 有言评论 -->
+  <div id="uyan_frame">
+    <h2>■评论</h2>
+  </div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a href="/集群/2012/09/17/%E5%9B%9B%E8%8A%82%E7%82%B9%E5%BB%89%E4%BB%B7%E5%B0%8F%E8%B6%85%E7%AE%97%E5%AE%9E%E6%88%98%E8%B5%84%E6%96%99%E6%B1%87%E7%BC%96/">【整理】廉价四节点集群实战资料◁◀前篇</a>
+    </div>
+    
+    
+    <!--回到头部-->
+    <div class="back-top"><a href="#【整理】树梅派集群实战">△▲回头▲△</a></div> 
+    
+    
+    <div class="post-next">
+      <a href="/敦煌之路/2012/09/22/%E9%80%BC%E4%BB%84%E6%96%B9%E8%83%BD%E6%8C%BA%E7%AB%8B/">后篇▶▷逼仄方能挺立</a>
+    </div>
+    
+    
+  </div>
+
+  <!--页面底部自动浮现-->
+  <div class="post-reletive">
+    <!--相关文章-->
+
+  </div>
+
+</div>
+
+
+  <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2015版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接，谢谢合作！</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+      <span>致谢： </br>
+        <a href="http://www.github.com">空间：github</a>，
+        <a href="http://jekyllrb.com">构建：jekyll</a>，
+        <a href="http://freenom.com/">域名：freenom</a>，
+        以及一切对本人有帮助的人事物！</span>
+      <span>
+        <!--百度统计-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+      </span>
+    </li>
+  </ul>
+</footer>
+
+
+    
+
+  
+</div>
+
+
+
+
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>

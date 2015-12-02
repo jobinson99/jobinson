@@ -6,10 +6,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>linux系统启动和急救相关</title>
+<title>linux系统启动和急救汇总</title>
 <meta name="description" content="黑传说的学习笔记">
 
-<link rel="canonical" href="http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2012/10/13/linux%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%92%8C%E6%80%A5%E6%95%91%E7%9B%B8%E5%85%B3/">
+<link rel="canonical" href="http://jobinson.ga/技术学习/2012/10/13/linux%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E5%92%8C%E6%80%A5%E6%95%91%E7%9B%B8%E5%85%B3/">
 
 <!-- 皮肤样式 -->
 <link rel="stylesheet" href="/themes/atlas/css/style.css">
@@ -51,7 +51,7 @@
       <div class="post">
   
   <header class="post-header">
-    <h1 id="linux系统启动和急救相关">linux系统启动和急救相关</h1>
+    <h1 id="linux系统启动和急救汇总">linux系统启动和急救汇总</h1>
 
     <div class="post-abstract">
       
@@ -147,24 +147,25 @@
 
 <p>下面只收集最严重的几种情况解决法，其他情况很容易解决。</p>
 
-<h2 id="section">五、最严重问题的解决法</h2>
+<h2 id="section">五、问题的解决法</h2>
 
 <h3 id="section-1">1. 别的介质启动：</h3>
 
 <p>进入系统后可挂载，修改配置，移入文件，删除文件等操作……————————系统安装就是这种方式</p>
 
-<p>1、准备工作：任何一张linux系统安装光盘／可启动优盘／闪盘／移动硬盘等
-2、过程：</p>
+<p>一、准备工作：任何一张linux系统安装光盘／可启动优盘／闪盘／移动硬盘等，最好工具全面的，可以图形界面，也可以直接命令行界面。本人常用 <a href="http://slax.org">slax</a>（图形界面，可自己安装东西） 和 <a href="http://www.sysresccd.org">SystemRescuedCd</a>，基于gentoo的，命令行。</p>
 
-<p>a、进入安装系统</p>
+<p>二、过程：</p>
 
-<p>b、建立挂载目录，挂载所需要的硬盘</p>
+<p>1、进入安装系统</p>
+
+<p>2、建立挂载目录，挂载所需要的硬盘</p>
 
 <pre><code>mkdir /mnt/xxx
 mount /dev/sdaX /mnt/xxx
 </code></pre>
 
-<p>c、篡权：切换到所需急救的主宰权限，
+<p>3、篡权：切换到所需急救的主宰权限，
 然后，挂载其他所需，比如：</p>
 
 <pre><code>cd /mnt/arch
@@ -184,7 +185,7 @@ mount -t devpts pts dev/pts/
 <pre><code>chroot /mnt/xxx
 </code></pre>
 
-<p>d、做所需的活</p>
+<p>4、做所需的活</p>
 
 <p>比如启动网络</p>
 
@@ -196,17 +197,17 @@ mount -t devpts pts dev/pts/
 <pre><code>mkinitcpio -p linux
 </code></pre>
 
-<p>e、退出（还权、让权）</p>
+<p>5、退出（还权、让权）</p>
 
 <pre><code>exit
 </code></pre>
 
-<p>f、卸下挂载的硬盘</p>
+<p>6、卸下挂载的硬盘</p>
 
 <pre><code>umount /mnt/xxx
 </code></pre>
 
-<p>g、重启</p>
+<p>7、重启</p>
 
 <pre><code>reboot
 </code></pre>
@@ -240,53 +241,48 @@ sh# mount -o remount,ro /         只读方式
 
 <p>The reason for such “drastic” action is that otherwise, e.g. if you typed reboot at the prompt, your system would try to stop myriad of services that are not actually running when you have booted with the above parameters to the kernel. So the reboot would take longer (it could even get stuck at some point) and the output of all those failed init.d scripts is definitely not for everybody’s eyes. :)</p>
 
-<p>急救级别 Diagnosing Boot Problems</p>
+<h2 id="section-3">开机问题</h2>
 
 <p>If your machine gets stuck during boot, first check if the hang happens before or after control passes to systemd.
 Try to boot without rhgb and quiet on the kernel command line. If you see some messages like these:</p>
 
-<p>Welcome to Fedora VERSION (codename)!”</p>
+<p>```
+Welcome to Fedora VERSION (codename)!”</p>
 
 <p>Starting name…</p>
 
 <p>[ OK ] Started name.</p>
 
-<p>then systemd is running. (See an actual screenshot.)</p>
+<p>then systemd is running. (See an actual screenshot.)
+```</p>
 
 <p>Debugging always gets easier if you can get a shell. If you do not get a login prompt, try switching to a different virtual terminal using CTRL+ALT+F<number>. Problems with X server startup may manifest themselves as a missing login on tty1, but other VTs working.</number></p>
 
 <p>If the boot stops without presenting you with a login on any virtual console, let it retry for up to 5 minutes before declaring it definitely stuck. There is a chance that a service that has trouble starting will be killed after this timeout and the boot will continue normally. Another possibility is that a device for an important mountpoint will fail to appear and you will be presented with emergency mode.</p>
 
-<p>If You Get No Shell</p>
+<p>若无法 进入 到登录界面或者也没进入 急救shell（emergency mode shell），则组合键 <code>CTRL+ALT+DEL</code> 重启</p>
 
-<p>If you get neither a normal login nor the emergency mode shell, you will need to do additional steps to get debugging information out of the machine. 
-组合键 <code>CTRL+ALT+DEL</code> 重启</p>
+<p>若无法重启，使用 SysRq或者机箱按重启键强制重启。</p>
 
-<p>If it does not reboot, mention it in your bugreport. Meanwhile force the reboot with SysRq or hard reset.</p>
-
-<p>When booting the next time, you will have to add some kernel command line arguments depending on which of the debugging strategies you choose from the following options.</p>
-
-<p>Debug Logging to a Serial Console</p>
+<p>重启时，进去 串口终端（Serial Console）</p>
 
 <p>If you have a hardware serial console available or if you are debugging in a virtual machine (e.g. using virt-manager you can switch your view to a serial console in the menu View -&gt; Text Consoles), you can ask systemd to log lots of useful debugging information to it by booting with:</p>
 
 <pre><code>systemd.log_level=debug systemd.log_target=console console=ttyS0,38400
 </code></pre>
 
-<p>Booting into Rescue or Emergency Targets</p>
+<p>进入 救护模式（rescue）：可在引导器在kernel行 添加 <code>systemd.unit=rescue.target</code> 或者 最后 加 1，此模式用于基本系统能正常启动而其他后面的无法启动时。</p>
 
-<p>To boot directly into rescue target add systemd.unit=rescue.target or just 1 to the kernel command line. This target is useful if the problem occurs somewhere after the basic system is brought up, during the starting of “normal” services. If this is the case, you should be able to disable the bad service from here. If the rescue target will not boot either, the more minimal emergency target might.</p>
-
-<p>To boot directly into emergency shell add systemd.unit=emergency.target or emergency to the kernel command line. Note that in the emergency shell you will have to remount the root filesystem read-write by yourself before editing any files:</p>
+<p>进入后可根据情况，开关其他 服务。若仍然无效，则需要进入 急救模式（emergency），启动时，在kernel行 添加 <code>systemd.unit=emergency.target</code> 或者 <code>emergency</code>，此模式需要手动 挂载根分区为可读写，如下：</p>
 
 <pre><code>mount -o remount,rw /
 </code></pre>
 
-<p>Common issues that can be resolved in the emergency shell are bad lines in /etc/fstab. After fixing /etc/fstab, run systemctl daemon-reload to let systemd refresh its view of it.</p>
+<p>看看挂载情况是否正常，<code>/etc/fstab</code>，若正常，可运行 <code>systemctl daemon-reload</code>刷新。</p>
 
-<p>If not even the emergency target works, you can boot directly into a shell with init=/bin/sh. This may be necessary in case systemd itself or some libraries it depends on are damaged by filesystem corruption. You may need to reinstall working versions of the affected packages.</p>
+<p>若 急救模式也无效，可直接在 kernel行添加 <code>init=/bin/sh</code>，此步一般用于 systemd本身损坏，或者其他基本的库损毁，解决办法一般是重新安装这些软件和库。</p>
 
-<p>若 init=/bin/sh 不起作用，则需要使用其他介质启动了。</p>
+<p>若 <code>init=/bin/sh</code>仍然不起作用，则需要使用其他介质启动了。</p>
 
 <p>Early Debug Shell</p>
 
@@ -295,7 +291,7 @@ systemctl enable debug-shell.service</p>
 
 <p>Tip: If your version of systemd is not new enough to have debug-shell.service, you can download the unit file from systemd git. Substitute /bin/bash for @sushell@ in the file.</p>
 
-<p>Tip: If you find yourself in a situation where you cannot use systemctl (e.g. when setting this up from a different booted system), you can enable the service manually:</p>
+<p>Tip: If you find yourself in a situation where you cannot use systemctl (e.g. when setting this up from a different booted system), you can enable the service manually: </p>
 
 <pre><code>cd $PATH_TO_YOUR_ROOT_FS/etc/systemd/system
 mkdir -p sysinit.target.wants
@@ -308,30 +304,30 @@ ln -s /lib/systemd/system/debug-shell.service sysinit.target.wants/
 
 <p>If You Can Get a Shell</p>
 
-<p>When you have systemd running to the extent that it can provide you with a shell, please use it to extract useful information for debugging. Boot with these parameters on the kernel command line:</p>
+<p>When you have systemd running to the extent that it can provide you with a shell, please use it to extract useful information for debugging. Boot with these parameters on the kernel command line: </p>
 
 <pre><code>systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M
 </code></pre>
 
-<p>in order to increase the verbosity of systemd, to let systemd write its logs to the kernel log buffer, and to increase the size of the kernel log buffer. After reaching the shell, save the log:</p>
+<p>in order to increase the verbosity of systemd, to let systemd write its logs to the kernel log buffer, and to increase the size of the kernel log buffer. After reaching the shell, save the log: </p>
 
 <pre><code>dmesg &gt; dmesg.txt
 </code></pre>
 
 <p>When reporting a bug, attach the dmesg.txt file.</p>
 
-<p>To check for possibly stuck jobs use:</p>
+<p>To check for possibly stuck jobs use: </p>
 
 <pre><code>systemctl list-jobs
 </code></pre>
 
 <p>The jobs that are listed as “running” are the ones that must complete before the “waiting” ones will be allowed to start executing.</p>
 
-<p>Diagnosing Shutdown Problems</p>
+<h2 id="section-4">关机问题</h2>
 
-<p>Just like with boot problems, when you encounter a hang during shutting down, make sure you wait at least 5 minutes to distinguish a permanent hang from a broken service that’s just timing out. Then it’s worth testing whether the system reacts to CTRL+ALT+DEL in any way.</p>
+<p>Just like with boot problems, when you encounter a hang during shutting down, make sure you wait at least 5 minutes to distinguish a permanent hang from a broken service that’s just timing out. Then it’s worth testing whether the system reacts to CTRL+ALT+DEL in any way. </p>
 
-<p>If shutdown (whether it be to reboot or power-off) of your system gets stuck, first test if the kernel itself is able to reboot or power-off the machine forcedly using one of these commands:</p>
+<p>If shutdown (whether it be to reboot or power-off) of your system gets stuck, first test if the kernel itself is able to reboot or power-off the machine forcedly using one of these commands: </p>
 
 <pre><code>sync &amp;&amp; reboot -f
 sync &amp;&amp; poweroff -f
@@ -339,26 +335,25 @@ sync &amp;&amp; poweroff -f
 
 <p>若这两条命令都不起作用，是核心的问题，不是systemd的问题。</p>
 
-<p>Shutdown Completes Eventually</p>
+<h3 id="section-5">关机时间较长</h3>
 
-<p>If normal reboot or poweroff work, but take a suspiciously long time, then 
-boot with the debug options:</p>
+<p>若重启和关机都可用，但就是时间较长，可在启动时加入 调试功能：</p>
 
 <pre><code>systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M enforcing=0
 </code></pre>
 
-<p>save the following script as /lib/systemd/system-shutdown/debug.sh and make it executable:</p>
-
-<pre><code>#!/bin/sh
+<p>把下面的代码保存为  <code>/lib/systemd/system-shutdown/debug.sh</code>，并更改为 可执行。
+<code>
+#!/bin/sh
 mount -o remount,rw /
 dmesg &gt; /shutdown-log.txt
 mount -o remount,ro /
 reboot
-</code></pre>
+</code></p>
 
 <p>Look for timeouts logged in the resulting file shutdown-log.txt and/or attach it to a bugreport.</p>
 
-<p>Shutdown Never Finishes</p>
+<h3 id="section-6">机器关不掉</h3>
 
 <p>If normal reboot or poweroff never finish even after waiting a few minutes, the above method to create the shutdown log will not help and the log must be obtained using other methods. Two options that are useful for debugging boot problems can be used also for shutdown problems:</p>
 
@@ -368,30 +363,29 @@ reboot
 
 <p>Status and Logs of Services</p>
 
-<p>When the start of a service fails, systemctl will give you a generic error message:</p>
+<p>When the start of a service fails, systemctl will give you a generic error message: </p>
 
 <pre><code># systemctl start foo.service
 </code></pre>
 
 <p>Job failed. See system journal and ‘systemctl status’ for details.</p>
 
-<p>The service may have printed its own error message, but you do not see it, because services run by systemd are not related to your login session and their outputs are not connected to your terminal. That does not mean the output is lost though. By default the stdout, stderr of services are directed to the systemd journal and the logs that services produce via syslog(3) go there too. systemd also stores the exit code of failed services. Let’s check:</p>
+<p>The service may have printed its own error message, but you do not see it, because services run by systemd are not related to your login session and their outputs are not connected to your terminal. That does not mean the output is lost though. By default the stdout, stderr of services are directed to the systemd journal and the logs that services produce via syslog(3) go there too. systemd also stores the exit code of failed services. Let’s check: </p>
 
-<pre><code># systemctl status foo.service
+<p>```
+# systemctl status foo.service
 foo.service - mmm service
-          Loaded: loaded (/etc/systemd/system/foo.service; static)
-          Active: failed (Result: exit-code) since Fri, 11 May 2012 20:26:23 +0200; 4s ago
-         Process: 1329 ExecStart=/usr/local/bin/foo (code=exited, status=1/FAILURE)
-          CGroup: name=systemd:/system/foo.service
-</code></pre>
+   Loaded: loaded (/etc/systemd/system/foo.service; static)
+   Active: failed (Result: exit-code) since Fri, 11 May 2012 20:26:23 +0200; 4s ago
+   Process: 1329 ExecStart=/usr/local/bin/foo (code=exited, status=1/FAILURE)
+   CGroup: name=systemd:/system/foo.service</p>
 
-<p>May 11 20:26:23 scratch foo[1329]: Failed to parse config</p>
+<p>May 11 20:26:23 scratch foo[1329]: Failed to parse config
+```</p>
 
-<p>In this example the service ran as a process with PID 1329 and exited with error code 1. If you run systemctl status as root or as a user from the adm group, you will get a few lines from the journal that the service wrote. In the example the service produced just one error message.</p>
+<p>示例中，服务是运行在 PID 1329 进程里，但出错退出，出错状态是 1。此处列出的信息非常有限，要更完整的信息，可用 <code>journalctl</code>。</p>
 
-<p>To list the journal, use the journalctl command.</p>
-
-<p>If you have a syslog service (such as rsyslog) running, the journal will also forward the messages to it, so you’ll find them in /var/log/messages (depending on rsyslog’s configuration).</p>
+<p>若已经运行有 系统日志服务（比如 rsyslog），the journal 也会把信息发送给它，可在 <code>/var/log/messages</code>（具体在哪个位置，根据rsyslog设置）中查看。</p>
 
 <p>Reporting systemd Bugs</p>
 
@@ -407,155 +401,80 @@ foo.service - mmm service
 
 <p>A copy of the file /var/log/messages</p>
 
-<p>The output of the dmesg command: dmesg &gt; dmesg.txt</p>
+<p>The output of the dmesg command: <code>dmesg &gt; dmesg.txt</code></p>
 
-<p>ideally after booting with systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M</p>
+<p>ideally after booting with <code>systemd.log_level=debug systemd.log_target=kmsg log_buf_len=1M</code></p>
 
 <p>The output of a systemd dump: <code>systemctl dump &gt; systemd-dump.txt</code>
 The output of <code>/usr/bin/systemd --test --system --log-level=debug &gt; systemd-test.txt 2&gt;&amp;1</code></p>
 
-<p>Various useful systemd related commands 
-Run <code>systemctl list-jobs</code></p>
+<h3 id="systemd">常用 systemd命令</h3>
 
-<p>To identify slow boot and look for the jobs that are “running” those jobs are the ones where boot waits for completion on and the ones that listed as “waiting” will be executed only after those which are “running” are completed. 
-查看所有可用 systemd服务和其运转状态： <code>systemctl list-units -t service --all</code></p>
+<p>查看运行中的工作： <code>systemctl list-jobs</code>，To identify slow boot and look for the jobs that are “running” those jobs are the ones where boot waits for completion on and the ones that listed as “waiting” will be executed only after those which are “running” are completed. </p>
 
-<p>To show all active services Run <code>systemctl list-units -t service</code></p>
+<p>查看所有可用 systemd服务和其运转状态： <code>systemctl list-units -t service --all</code></p>
 
-<p>Run <code>systemctl status sshd.service</code></p>
+<p>查看所有 活跃的服务（services）： <code>systemctl list-units -t service</code></p>
 
-<p>To examine the current runtime status of a service. (In the above example the ssh service)</p>
+<p>查看某个服务是否 活跃，比如看看ssh服务： <code>systemctl status sshd.service</code></p>
 
-<p>To show all available targets. Run <code>systemctl list-units -t target --all</code></p>
+<p>查看可用的 标的（targets）：<code>systemctl list-units -t target --all</code></p>
 
-<p>To show all active targets.Run <code>systemctl list-units -t target</code></p>
+<p>查看活跃的标的： <code>systemctl list-units -t target</code></p>
 
-<p>To see which services a target pulls in. ( In the above example the multi-user.target )Run systemctl show -p “Wants” multi-user.target</p>
+<p>查看某个标的的依赖关系：<code>systemctl list-dependencies multi-user.target</code></p>
 
-<p>Run <code>systemd --test --system --unit=multi-user.target</code></p>
+<h3 id="systemd-1">启动时，可用Systemd的参数</h3>
 
-<p>To examine what gets started when when booted into a specific target. ( In the above example the multi-user.target ) 
-Systemd boot parameters</p>
+<p>下面是常用的用于 调试启动的参数：</p>
 
-<p>The following boot parameters are also available to further assist with debugging boot issues.</p>
+<ul>
+  <li>
+    <p>‘systemd.unit=’ 
+Overrides the unit to activate on boot. This may be used to temporarily boot into a different boot unit, for example rescue.target or emergency.target. ( Defaults to default.target. ) </p>
+  </li>
+  <li>
+    <p>‘systemd.dump_core=’ 
+Takes a boolean argument. If true systemd dumps core when it crashes. Otherwise no core dump is created. ( Defaults to true ) </p>
+  </li>
+  <li>
+    <p>‘systemd.crash_shell=’ 
+Takes a boolean argument. If true systemd spawns a shell when it crashes. Otherwise no core dump is created. Defaults to false, for security reasons, as the shell is not protected by any password authentication. </p>
+  </li>
+  <li>
+    <p>‘systemd.crash_chvt=’ 
+Takes an integer argument. If positive systemd activates the specified virtual terminal when it crashes. ( Defaults to -1 ) </p>
+  </li>
+  <li>
+    <p>‘systemd.confirm_spawn=’ 
+Takes a boolean argument. If true asks for confirmation when spawning processes. ( Defaults to false ) </p>
+  </li>
+  <li>
+    <p>‘systemd.show_status=’ 
+Takes a boolean argument. If true shows terse service status updates on the console during bootup. ( Defaults to true ) </p>
+  </li>
+  <li>
+    <p>‘systemd.sysv_console=’ 
+Takes a boolean argument. If true output of SysV init scripts will be directed to the console. ( Defaults to true, unless quiet is passed as kernel command line option in which case it defaults to false. ) </p>
+  </li>
+  <li>
+    <p>‘systemd.log_target=’ 
+设置日志发送方向，是这几个之一：console, syslog, kmsg, syslog-or-kmsg, null。</p>
+  </li>
+  <li>
+    <p>‘systemd.log_level=’ 
+设置日志级别，可以是数字也可以是这些代称（注意全部是小写）：emerg, alert, crit, err, warning, notice, info, debug. </p>
+  </li>
+  <li>
+    <p>‘systemd.log_color=’ 
+是否对日志中重要的信息高亮，阴阳型，默认 true。</p>
+  </li>
+  <li>
+    <p>‘systemd.log_location=’ 
+设置是否在日志信息中包含代码位置，一般用于调试，阴阳型，默认是 true。</p>
+  </li>
+</ul>
 
-<p>systemd.unit= 
-Overrides the unit to activate on boot. This may be used to temporarily boot into a different boot unit, for example rescue.target or emergency.target. ( Defaults to default.target. )</p>
-
-<p>systemd.dump_core= 
-Takes a boolean argument. If true systemd dumps core when it crashes. Otherwise no core dump is created. ( Defaults to true )</p>
-
-<p>systemd.crash_shell= 
-Takes a boolean argument. If true systemd spawns a shell when it crashes. Otherwise no core dump is created. Defaults to false, for security reasons, as the shell is not protected by any password authentication.</p>
-
-<p>systemd.crash_chvt= 
-Takes an integer argument. If positive systemd activates the specified virtual terminal when it crashes. ( Defaults to -1 )</p>
-
-<p>systemd.confirm_spawn= 
-Takes a boolean argument. If true asks for confirmation when spawning processes. ( Defaults to false )</p>
-
-<p>systemd.show_status= 
-Takes a boolean argument. If true shows terse service status updates on the console during bootup. ( Defaults to true )</p>
-
-<p>systemd.sysv_console= 
-Takes a boolean argument. If true output of SysV init scripts will be directed to the console. ( Defaults to true, unless quiet is passed as kernel command line option in which case it defaults to false. )</p>
-
-<p>systemd.log_target= 
-Set log target. Argument must be one of console, syslog, kmsg, syslog-or-kmsg, null.</p>
-
-<p>systemd.log_level= 
-Set log level. As argument this accepts a numerical log level or the well-known syslog symbolic names (lowercase): emerg, alert, crit, err, warning, notice, info, debug.</p>
-
-<p>systemd.log_color= 
-Highlight important log messages. Argument is a boolean value. If the argument is omitted it defaults to true.</p>
-
-<p>systemd.log_location= 
-Include code location in log messages. This is mostly relevant for debugging purposes. Argument is a boolean value. If the argument is omitted it defaults to true.</p>
-
-<p>附上我的一段systemd的短命令设定</p>
-
-<pre><code># 简化systemd命令，例如sudo systemctl stop xxx.service 简化后变成 0.stop xxx
-if ! systemd-notify --booted;
-then  # 兼容不用 systemd 的情况
-    0.start() {
-        sudo rc.d start $1
-    }
-
-    0.restart() {
-        sudo rc.d restart $1
-    }
-
-    0.stop() {
-        sudo rc.d stop $1
-    }
-else
-# start systemd service
-# 运行一个守护进程
-    0.start() {
-        sudo systemctl start $1.service
-    }
-# restart systemd service
-# 重启一个守护进程
-    0.restart() {
-        sudo systemctl restart $1.service
-    }
-# stop systemd service
-# 关闭一个守护进程
-    0.stop() {
-        sudo systemctl stop $1.service
-    }
-# enable systemd service
-# 启用一个守护进程
-    0.enable() {
-        sudo systemctl enable $1.service
-    }
-# disable a systemd service
-# 停用一个守护进程
-    0.disable() {
-        sudo systemctl disable $1.service
-    }
-# reload a service configuration
-# 重新加载一个守护进程的配置文件
-    0.reload() {
-        sudo systemctl reload $1.service
-    }
-# show the status of a service
-# 查看一个守护进程状态
-    0.status() {
-        systemctl status $1.service
-    }
-# list all running service
-# 列出所有运行中的守护进程
-    0.list() {
-        systemctl
-    }
-# list all failed service
-# 列出所有运行失败的守护进程
-    0.list-failed () {
-        systemctl --failed
-    }
-# list all systemd available unit files
-# 列出所有可用的进程文件
-    0.list-all() {
-        systemctl list-unit-files
-    }
-# show wants
-# 列出某个目标所需要的进程
-    0.wants() {
-        systemctl show -p "Wants" $1.target
-    }   
-# check the log
-# 查看系统日志
-    0.log() {
-        sudo journalctl
-    }
-# analyze the system
-# 查看启动进程所耗时间
-    0.analyze() {
-        systemd-analyze $1
-    }
-fi
-</code></pre>
 
   </article>
 
@@ -575,16 +494,16 @@ fi
     <!--上一篇 话题 下一篇-->
     
     <div class="post-pre">
-      <a href="/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2012/10/01/%E6%95%A6%E7%9B%9B%E4%B9%8B%E8%B7%AF%E4%B9%9D%E6%9C%88/">【敦盛之路】九月◁◀前篇</a>
+      <a href="/敦煌之路/2012/10/01/%E6%95%A6%E7%9B%9B%E4%B9%8B%E8%B7%AF%E4%B9%9D%E6%9C%88/">【敦盛之路】九月◁◀前篇</a>
     </div>
     
     
     <!--回到头部-->
-    <div class="back-top"><a href="#linux系统启动和急救相关">△▲回头▲△</a></div> 
+    <div class="back-top"><a href="#linux系统启动和急救汇总">△▲回头▲△</a></div> 
     
     
     <div class="post-next">
-      <a href="/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2012/10/17/%E6%84%9F%E8%A7%89%E7%90%86%E5%BA%94%E5%85%A8%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/">后篇▶▷感觉理应全系统使用“版本管理工具”</a>
+      <a href="/技术视野/2012/10/17/%E6%84%9F%E8%A7%89%E7%90%86%E5%BA%94%E5%85%A8%E7%B3%BB%E7%BB%9F%E4%BD%BF%E7%94%A8%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/">后篇▶▷感觉理应全系统使用“版本管理工具”</a>
     </div>
     
     

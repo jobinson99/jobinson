@@ -7,6 +7,496 @@
     <atom:link href="http://jobinson.ga/feed.xml" rel="self" type="application/rss+xml" />
     
       <item>
+        <title>【整理】公私动态调节集群研究</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;需求&lt;/h2&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;可实现的硬件方式&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;多机集群：好处是可按需启动，不用的机子还可以另外给别人用。灵活，可获得无限扩容能力，当然也麻烦。
+    &lt;ul&gt;
+      &lt;li&gt;二手台式机集群&lt;/li&gt;
+      &lt;li&gt;二手笔记本集群&lt;/li&gt;
+      &lt;li&gt;小型版集群：实际上也会像单路使用。&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;单机多路：性能强劲，但耗电太多，噪音问题。
+    &lt;ul&gt;
+      &lt;li&gt;1366双路，&lt;/li&gt;
+      &lt;li&gt;1366四路&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;如果预算充足的话，当然是至少一台性能强劲的机子，另外再配其他的。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;使用方式：灵活组队&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;可以用usb制作一个好一个系统，可以克隆到内存：操作系统需要极简，只有基础的服务（比如ssh，集群注册）&lt;/li&gt;
+  &lt;li&gt;真实的机子都把 引导设为usb第一，装日常系统&lt;/li&gt;
+  &lt;li&gt;需要用到资源的时候，用usb插入分机，引导后拔出&lt;/li&gt;
+  &lt;li&gt;主控机通过服务发现，整合所有分机的资源：mesos&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;远程启动是否可以指定载入的系统？？？？&lt;/p&gt;
+
+&lt;h2 id=&quot;section-3&quot;&gt;价格&lt;/h2&gt;
+
+&lt;h2 id=&quot;section-4&quot;&gt;软件配套&lt;/h2&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;附录：&lt;/h2&gt;
+
+&lt;p&gt;主板类型：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;ATX 普通家用电脑的大板，长方形。尺寸为30.5厘米×24.4厘米&lt;/li&gt;
+  &lt;li&gt;MicroATX有两种，一种是缩小了比例的ATX，一种是减少了长度的ATX，差不多正方形，尺寸为24.4厘米×24.4厘米。&lt;/li&gt;
+  &lt;li&gt;MiniITX 更小，只有16厘米×16厘米的尺寸，适合用来建家庭影院电脑。&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;uATX 比MicroATX小，准系统或HDPC使用的迷你主板，超小型机箱用，接口和平常看到的不太一样，可插独立显卡，但插槽位置方向可能不太一样。尺寸为24.4×18.4厘米&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;EATX&lt;/li&gt;
+  &lt;li&gt;手机和平板电脑的主板，则更小，不过基于其目前这两种的芯片性能仍然有限，竞争力上不是很给力。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;机箱：中塔可放ATX，微塔可放MicroATX&lt;/p&gt;
+
+&lt;p&gt;家庭影院电脑（home theater personal computer=HTPC）一般特征是外形小，功耗低，静音，高性能，可遥控——控制媒体播放器用的，价格3000内。备有各种接口，用于电视、视频监控等，一般硬盘容量较大。——小超算的组建和家庭影院电脑的组建有些部分很接近，呵呵。要是我的话，还会增加投影部分的配置。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-6&quot;&gt;第四部分：多开虚拟机的配置&lt;/h2&gt;
+
+&lt;h2 id=&quot;section-7&quot;&gt;更多探索&lt;/h2&gt;
+
+&lt;p&gt;固态硬盘改进读写速度，PCI-E提升读写速度&lt;/p&gt;
+
+&lt;p&gt;大内存+软件系统改进运算速度&lt;/p&gt;
+
+&lt;p&gt;图吧200战lol系列贴&lt;/p&gt;
+
+&lt;p&gt;显卡多路交火实现更高性能的渲染功能&lt;/p&gt;
+
+&lt;h2 id=&quot;section-8&quot;&gt;黑传说的看法：&lt;/h2&gt;
+
+&lt;p&gt;组廉价小集群的意义：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;海量运算：比如大型统计、加密解密、图形运算等&lt;/li&gt;
+  &lt;li&gt;灵活处理：放在自己家里或者办公室里，想用就用，不用到计算中心排队。&lt;/li&gt;
+  &lt;li&gt;便宜：3000左右的价格。&lt;/li&gt;
+  &lt;li&gt;性能强悍：针对个人电脑而言的，这也意味着可以用好多年，以后如果超过运算能力了，就当个人电脑用。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;另外，以前两例虽然使用了极其便宜的机器，但相对中国人来说，这个价格还是贵了，如果换成国内的产品的话，可以把价格做到3000人民币左右。&lt;/p&gt;
+
+&lt;p&gt;咳咳，工作用小超算，娱乐用家庭影院电脑，呵呵，性能都比普通的商业产品强，逐步构建强大的工作环境和生活娱乐环境，真的是很有成就感的事情啊，最好找一个喜欢的人，这样幸福感更强，哈哈，各位一起努力吧……&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 2015 Nov 21 00:00:00 +0800</pubDate>
+        <link>http://jobinson.ga/集群/2015/11/21/%E5%85%AC%E7%A7%81%E5%8A%A8%E6%80%81%E8%B0%83%E8%8A%82%E9%9B%86%E7%BE%A4%E7%A0%94%E7%A9%B6/</link>
+        <guid isPermaLink="true">http://jobinson.ga/集群/2015/11/21/%E5%85%AC%E7%A7%81%E5%8A%A8%E6%80%81%E8%B0%83%E8%8A%82%E9%9B%86%E7%BE%A4%E7%A0%94%E7%A9%B6/</guid>
+      </item>
+    
+      <item>
+        <title>操作系统NixOS：系统安装</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;系统安装：&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;先分区：可使用镜像里带的gparted，如果下载的镜像没这东西，随便找张linux安装盘，利用里面的工具分区格式化之……然后退出，使用nixos镜像。&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;挂载和启用swap&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; mount /dev/sdx1 /mnt/
+ swapon /dev/sdx2
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;生成系统配置文件模板：会生成两个配置文件 configuration.nix（总控） 和 hardware-configuration.nix（分区设定）&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code&gt; nixos-generate-config --root /mnt
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;修改配置：行首是&lt;code&gt;#&lt;/code&gt;的表示不执行，默认大部分都不执行，需要改为可执行（去掉行首的&lt;code&gt;#&lt;/code&gt;）&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;需要修改的项：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;boot.loader.grub.device  指定引导器安装位置&lt;/li&gt;
+  &lt;li&gt;networking.hostName 设定主机名&lt;/li&gt;
+  &lt;li&gt;i18n 设定语言，此处暂时不改，以免终端下乱码&lt;/li&gt;
+  &lt;li&gt;time.timeZone 设定时区&lt;/li&gt;
+  &lt;li&gt;environment.systemPackages 设定系统级软件，默认只有wget&lt;/li&gt;
+  &lt;li&gt;services.openssh.enable 启用的守护进程，有一系列，根据需要开启关闭。&lt;/li&gt;
+  &lt;li&gt;设置新用户名和权限组（密码稍候设置）&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;具体设置可&lt;code&gt;man configuration.nix&lt;/code&gt; 查看。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://nixos.org/repos/nix/configurations/trunk/&quot;&gt;简单配置示例&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/Fuuzetsu/nix-project-defaults/blob/master/nixos-config/configuration.nix&quot;&gt;haskel开发者的配置示例&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://beyermatthias.de/blog/2014/12/05/first-steps-to-nixos/&quot;&gt;多机配置&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;配置完成后，安装系统：&lt;/p&gt;
+
+    &lt;p&gt;nixos-install&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;若因为网络啥的问题安装失败或者更改了configuration.nix，要继续安装或者刷新配置，也是这个命令&lt;code&gt;nixos-install&lt;/code&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;安装到最后一步，会要求设置root密码：修改密码用 &lt;code&gt;passwd&lt;/code&gt;&lt;/p&gt;
+
+    &lt;p&gt;setting root password…
+ Enter new UNIX password: &lt;em&gt;**
+ Retype new UNIX password: **&lt;/em&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;全部搞定后，重启&lt;/p&gt;
+
+    &lt;p&gt;reboot&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;进入系统后，新建用户：比如下面&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;useradd -c 'Eelco Dolstra' -m eelco
+passwd eelco
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;看看有啥软件可安装&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nix-env -qa \*
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;安装&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;nix-env -i w3m
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;其他&lt;/h2&gt;
+
+&lt;p&gt;nixos安装操作：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;alt-F1 安装图形界面&lt;/li&gt;
+  &lt;li&gt;alt-F2 终端1&lt;/li&gt;
+  &lt;li&gt;alt-F3 终端2&lt;/li&gt;
+  &lt;li&gt;atl-F4 输出信息&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-2&quot;&gt;配置示例&lt;/h2&gt;
+
+&lt;p&gt;```
+# Edit this configuration file to define what should be installed on
+# your system.  Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).&lt;/p&gt;
+
+&lt;p&gt;{ config, pkgs, … }:&lt;/p&gt;
+
+&lt;p&gt;{
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];&lt;/p&gt;
+
+&lt;p&gt;# Use the GRUB 2 boot loader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  # Define on which hard drive you want to install Grub.
+  boot.loader.grub.device = “/dev/sda”;&lt;/p&gt;
+
+&lt;h1 id=&quot;file-system-mount-point&quot;&gt;file system mount point&lt;/h1&gt;
+
+&lt;p&gt;fileSystems = [
+      { mountPoint = “/home”;
+        device = “/dev/disk/by-uuid/4955738b-a555-4e5c-8bc7-a9b42599f777”;
+        fsType = “ext4”;
+      }
+      { mountPoint = “/docs”;
+        device = “/dev/disk/by-uuid/b645272f-dad7-40aa-9701-6cd6a1657eb0d”;
+        fsType = “ext4”;
+      }
+  ];&lt;/p&gt;
+
+&lt;p&gt;# networking setting&lt;/p&gt;
+
+&lt;p&gt;networking = {
+        # nameservers = [ “8.8.8.8” ];
+      hostName = “atlas”; # Define your hostname.
+        extraHosts = “74.125.206.93 dl-ssl.google.com”;
+      # networkmanager.enable = true;
+      wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+      enableB43Firmware = true;  # for my laptop wireless card firmware
+  };&lt;/p&gt;
+
+&lt;p&gt;# Select internationalisation properties.
+  i18n = {
+     consoleFont = “Lat2-Terminus16”;
+     consoleKeyMap = “us”;
+     defaultLocale = “en_US.UTF-8”;
+     supportedLocales = [ “en_US.UTF-8/UTF-8”
+                “zh_CN.UTF-8/UTF-8”
+                “zh_CN/GB2312”
+                “zh_CN.GBK/GBK”
+                “zh_CN.GB18030/GB18030”
+                “zh_TW.UTF-8/UTF-8”
+                “zh_TW/BIG5” ];
+   };&lt;/p&gt;
+
+&lt;p&gt;# Set your time zone.
+   time.timeZone = “Asia/Shanghai”;&lt;/p&gt;
+
+&lt;p&gt;# List packages installed in system profile. To search by name, run:
+  # $ nix-env -qaP | grep wget
+  environment.systemPackages = with pkgs; [
+     wget
+     openbox
+     sddm
+     git
+     w3m
+     luakit
+     firefox fcitx goldendict
+     calligra emacs libreoffice okular
+    wqy-zenhei kde-l10n-zh_CN virt-manager
+    openjdk openjre
+    android-sdk
+    gwenview gimp inkscape blender
+   ];&lt;/p&gt;
+
+&lt;p&gt;# allow unfree packages
+  nixpkgs.config.allowUnfree = true;&lt;/p&gt;
+
+&lt;p&gt;# nix mirrors
+  nix.trustedBinaryCaches = [
+      “http://cache.nixos.org”
+  ];&lt;/p&gt;
+
+&lt;p&gt;boot.kernelModules = [ “kvm-amd” “wl” “tun” “virtio” ];&lt;/p&gt;
+
+&lt;p&gt;# 虚拟化
+  virtualisation = {
+        # qemu&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    # libvirtd for virt-manager
+     libvirtd.enable = true;
+};
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;# List services that you want to enable:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    # Enable the OpenSSH daemon.
+    # services.openssh.enable = true;
+
+    # Enable CUPS to print documents.
+    # services.printing.enable = true;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;# GUI configuration
+  services.xserver = {
+        # Enable the X11 windowing system.
+        enable = true;
+        layout = “us”;
+        xkbOptions = “eurosign:e”;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;    ## for my ati graphics card
+    # services.xserver.videoDrivers = [ &quot;ati_unfree&quot; ];
+
+    # Enable the KDE Desktop Environment.
+    displayManager.sddm.enable = true;
+    # displayManager.kdm.enable = true;
+    desktopManager.kde4.enable = true;
+    # Enable openbox
+    windowManager.openbox.enable = true;    };
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;## hardware acceleration for 32-bit programs
+  # hardware.opengl.driSupport32Bit = true;
+  # Define a user account. Don’t forget to set a password with ‘passwd’.
+  # users.extraUsers.guest = {
+  #   isNormalUser = true;
+  #   uid = 1000;
+  # };
+  users.extraUsers.atlas = {
+        uid = 1000;
+        group = “users”;
+        extraGroups = [“wheel” “audio” “video” “libvirtd”];
+        home = “/home/atlas”;
+        isSystemUser = false;
+        useDefaultShell = true;
+        initialPassword = “1234567890”;
+        };&lt;/p&gt;
+
+&lt;p&gt;# The NixOS release to be compatible with for stateful data such as databases.
+  system.stateVersion = “15.09”;
+}
+```&lt;/p&gt;
+</description>
+        <pubDate>Fri, 2015 Oct 02 21:41:38 +0800</pubDate>
+        <link>http://jobinson.ga/操作系统/2015/10/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FNixOS%E5%AE%89%E8%A3%85/</link>
+        <guid isPermaLink="true">http://jobinson.ga/操作系统/2015/10/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FNixOS%E5%AE%89%E8%A3%85/</guid>
+      </item>
+    
+      <item>
+        <title>从archlinux切换到NixOS</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;生命不息，折腾不止，但折腾是有代价，如何最大限度降低代价呢？——黑传说&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;不知不觉地，发现自己已经用了archlinux快9年，这9年，几乎每年年初和年终，都有想换了操作系统的冲动，不过最后都失败了，原因是暂时找不到更好的替代。&lt;/p&gt;
+
+&lt;p&gt;对于我，archlinux有两个问题严重制约我的工作：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;更新后要折腾&lt;/strong&gt;：不是怕折腾，而是需要更多精力用在其他更重要的工作上。&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;开发需要“多版本共存”&lt;/strong&gt;，这个就需要自己编译了，但因为arch更新太快，日常使用中，往往不仅仅是编译某个部件，而是编译整个系统，工作量极大。而且这样编译的频率一直不低，导致用在编译上的时间过多。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;其实吧，整个系统都自己编译了，和用gentoo区别不大了，不过懒癌晚期，最终还是没有去吃那兔子。&lt;/p&gt;
+
+&lt;p&gt;前段日子，终于有机会需要重装系统了：多年前分区 &lt;code&gt;/&lt;/code&gt; 分太少了，30G，根本撑不住 android-sdk+android-ndk+ant+……临时的解决办法有二：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;挂载新硬盘：不过我想主硬盘换成大硬盘或者固态硬盘了。&lt;/li&gt;
+  &lt;li&gt;软链到其他空闲分区。不过这样软链随着时间变迁越来越多，后面维护越来越复杂，还不如重新分区。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;因为之前已经对arch更新带来的问题的深刻切身肉痛体会，决定趁此机会，换主系统。候选对象初步确定为gentoo funtoo或者sabayon。&lt;/p&gt;
+
+&lt;p&gt;最近这段时间，就一直在阅读这几个系统的文档，以便能够顺利切换过去。&lt;/p&gt;
+
+&lt;p&gt;昨天，在把sabayon写入u盘后，准备对实体机进行开刀了。在&lt;a href=&quot;http://www.distrowatch.com&quot;&gt;发行版动态&lt;/a&gt;发现了一个新奇的系统：NixOS，2003年就开始了，号称 开拓性。
+这系统目前排名65，介绍里说，这是一个完全独立开发的发行版，我就在想了，这世界上所有的linux特色大致我都了解，这个能有啥新玩法？不会又是重复造轮子吧？&lt;/p&gt;
+
+&lt;p&gt;一看吓一跳，还真的是特立独行！！！&lt;/p&gt;
+
+&lt;p&gt;国庆没出去泡妞的，有新玩具了。&lt;/p&gt;
+
+&lt;h2 id=&quot;nixos&quot;&gt;给更新癌推荐一个折腾不死，工作用的系统：NixOS&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;还在 更新后挂，挂了修，修完再更新，更新再挂，挂了再修……的噩梦里沉沦么？醒醒吧骚年，世界这么大，风景那么好，美女那么靓，多出去走走，感受世界  ——黑传说&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;多版本共存&lt;/h3&gt;
+
+&lt;p&gt;nixos是比较特别的一个系统，可以&lt;strong&gt;多版本共存&lt;/strong&gt;，可以还原回任意版本。&lt;/p&gt;
+
+&lt;p&gt;为了实现多版本共存，使用了下面方式：实现方式类似 &lt;code&gt;npm&lt;/code&gt;（都把相关依赖封在一个空间里，用的软链，但npm最外层的版本还是一致的，只是关联软件版本允许不一样的版本，而且包存储位置分散）。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;大量使用软链&lt;/strong&gt;。&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;/bin&lt;/code&gt; &lt;code&gt;/sbin&lt;/code&gt; &lt;code&gt;/lib&lt;/code&gt; &lt;code&gt;/usr&lt;/code&gt;等目录里面全是软链。&lt;/li&gt;
+  &lt;li&gt;&lt;code&gt;/etc&lt;/code&gt;里的配置 软链到 &lt;code&gt;/nix/store&lt;/code&gt;，由 &lt;code&gt;/nixos/configuration.nix&lt;/code&gt; 统一配置，用户级配置仍然在用户家目录 &lt;code&gt;~/&lt;/code&gt; 里配置。&lt;/li&gt;
+  &lt;li&gt;所有软件实际全安装在 &lt;code&gt;/nix/store&lt;/code&gt;，除了 &lt;code&gt;/bin/sh&lt;/code&gt;。调用全靠各个空间的软链。&lt;/li&gt;
+  &lt;li&gt;同软件同版本全系统只装一份：也就是用户不同，安装的软件相同，系统智慧存一次，而不是多次。&lt;/li&gt;
+  &lt;li&gt;不同版本的软件，其不同的关联软件也会同时保留。这样可以让用户可同时有多个运行环境（测试和交叉编译常见这种情况）&lt;/li&gt;
+  &lt;li&gt;用户不需要root身份安装软件，安装的软件也在 &lt;code&gt;/nix/store&lt;/code&gt;里。—— &lt;code&gt;/nix/store&lt;/code&gt;过大的权限是否是个安全隐患呢？？？否，用户间相互隔离，用户的配置只影响用户自身。&lt;/li&gt;
+  &lt;li&gt;多用户情况下：不同用户安装的软件也在&lt;code&gt;/nix/store&lt;/code&gt;里，然后通过软链到各个用户的系统空间。&lt;/li&gt;
+  &lt;li&gt;多用户情况下：不同用户可以有不同的软件，不同的软件版本。除了系统级软件是都有的，不同用户间的软件环境对另外的用户是不可见的。&lt;/li&gt;
+  &lt;li&gt;基于多用户机制，平时安装软件不需要root身法，除非希望root也装某软件，才需要&lt;code&gt;sudo nix-env -i xxx&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;这不就是传说中的绿软么？&lt;/p&gt;
+
+&lt;p&gt;另外还有几个特点：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;软件安装方式&lt;/strong&gt;：支持 二进制安装 或者 源码编译。编译脚本&lt;code&gt;xxx.nix&lt;/code&gt;相对 &lt;em&gt;PKGBUILD&lt;/em&gt; 来说，比较智能，和gentoo的差不多。&lt;/li&gt;
+  &lt;li&gt;配置集中，可以方便的克隆配置。&lt;/li&gt;
+  &lt;li&gt;可沙箱&lt;/li&gt;
+  &lt;li&gt;文件安装路径使用 hash-名字-版本，海量软件查询速度方面相对还好。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;当然，&lt;strong&gt;保留全版本&lt;/strong&gt;这样的设计，比较消耗磁盘空间。如果是滚动更新，且积累多年，系统将非常庞大！！！——不过可以设置清理周期。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;其优势&lt;/h2&gt;
+
+&lt;p&gt;结构简单清晰，系统设计稳健（实际稳健还需要时间），快速方便，一次配置终身受用。&lt;/p&gt;
+
+&lt;p&gt;这样的系统（如果够稳健的话，目前应该还不算稳健），&lt;strong&gt;非常适合当 服务器，编程用&lt;/strong&gt;桌面，是个干活用的好系统。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;非常适合当服务器系统&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;软件包独立安装的方式，结构简单，非常适合软件包不多的专用服务器！！！&lt;/li&gt;
+  &lt;li&gt;随时还原：服务器更新的话，即使是安全更新，也是有失败风险的，随时可倒退回去，可以大幅度减少 服务中断 时间。&lt;/li&gt;
+  &lt;li&gt;全方位还原方式：硬件不坏的情况下，遇到崩溃，如何快速还原：系统内软件还原回旧版，集群虚拟机镜像还原，主机还原……
+或者，重建软件和相关依赖——可以重装软件，或者重新编译软件。
+注：zfs、btfs类提供的是文件系统级还原。&lt;/li&gt;
+  &lt;li&gt;配置集中统一，方便不同机器间克隆。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;非常适合追求稳定，而又必须要保持更新的服务器，这是目前其他系统仍然做不到的。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-3&quot;&gt;非常适合当软件开发工作平台&lt;/h3&gt;
+
+&lt;p&gt;编程的话，常见的问题及其解决方式：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;多版本冲突问题：开发用的和系统版本不同，项目间用的版本不同，升级后老版本和新版本不同……靠多版本共存机制，互不污染，不因其他部分升级而影响关联依赖的可用性。&lt;/li&gt;
+  &lt;li&gt;需要快速编译：开发完编译测试的时候，需要不断编译同样的东西，nixos提供了语言级的沙箱环境，可缓存关联软件，这样编译时，不用重复编译该部分，加快 开发-编译-测试 流程。&lt;/li&gt;
+  &lt;li&gt;需要快速测试：沙箱环境。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;section-4&quot;&gt;资源：&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://www.nixos.org&quot;&gt;官网地址&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/NixOS&quot;&gt;开发团队&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://github.com/NixOS/nixpkgs&quot;&gt;源码：包括包管理器、系统、应用&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://nixos.org/nixpkgs&quot;&gt;软件包一览&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://nixos.org/nixos/manual/&quot;&gt;操作系统手册&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://nixos.org/nixos/download.html&quot;&gt;系统下载&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;从github的统计看，目前
+系统开发：9人，
+包维护：34人，
+从更新频率上看，开发越来越活跃。&lt;/p&gt;
+
+&lt;p&gt;2003年3月9日开始，管理器Nix设计者是 &lt;a href=&quot;https://github.com/peti&quot;&gt;Eelco Dolstra&lt;/a&gt;，NixOS最初的设计者是&lt;a href=&quot;http://www.tjaldur.nl/&quot;&gt;Armijn Hemel&lt;/a&gt;，目前最活跃的开发者是 &lt;a href=&quot;https://github.com/edolstra&quot;&gt;peti&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;主基地是在荷兰阿姆斯特丹。&lt;/p&gt;
+
+&lt;p&gt;目前稳定版本：15.09&lt;/p&gt;
+
+&lt;p&gt;几个主要开发组织：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Nix 软件包管理器，可进行独立的包升级而不会影响其他包，而且可以回滚到以前的版本。同一个软件允许同时存在多个版本。管理所有的 内核，应用程序，系统软件包，配置文件。可升级，还原 系统配置，软件包彼此分离。&lt;/li&gt;
+  &lt;li&gt;Nixpkgs：软件构建脚本库（类似于gentoo的portage），包含了大量的软件包，包括nix和nixos的源码，可通过 Nix 包管理器进行编译。&lt;/li&gt;
+  &lt;li&gt;NixOS：基于 Nix管理工具 的 Linux 发行版，支持原子升级、回滚、多用户包管理，以及可轻松的在不同机器间同步配置。&lt;/li&gt;
+  &lt;li&gt;Hydra：基于 Nix 的持续构建系统，一个自动编译、测试软件，编译出的二进制会供应给官方仓库。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;section-5&quot;&gt;使用&lt;/h2&gt;
+
+&lt;p&gt;需要熟读的文档，共三份：&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;http://nixos.org/nix/manual&quot;&gt;nix手册&lt;/a&gt; 包管理工具&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://nixos.org/releases/nixpkgs/&quot;&gt;nixpkg手册&lt;/a&gt; 文件夹下的manual，包编译控制脚本&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://nixos.org/nixos/manual/&quot;&gt;nixos手册&lt;/a&gt; 操作系统&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://github.com/nixos/nixpkgs&quot;&gt;源码&lt;/a&gt; 源码是最好的文档。&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        <pubDate>Thu, 2015 Oct 01 12:52:09 +0800</pubDate>
+        <link>http://jobinson.ga/操作系统/2015/10/01/%E5%B7%A5%E4%BD%9C%E7%94%A8%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FNixOS/</link>
+        <guid isPermaLink="true">http://jobinson.ga/操作系统/2015/10/01/%E5%B7%A5%E4%BD%9C%E7%94%A8%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FNixOS/</guid>
+      </item>
+    
+      <item>
         <title>热电转换</title>
         <description>&lt;h3 id=&quot;section&quot;&gt;温差发电+热管保持温差&lt;/h3&gt;
 
@@ -21,6 +511,8 @@
 或者反过来，当&lt;strong&gt;一根金属棒&lt;/strong&gt;的两端温度不同时，金属棒两端会形成电势差。这一现象后叫汤姆孙效应（Thomson effect）。&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;p&gt;&lt;strong&gt;温差越大，产生的电量越多。&lt;/strong&gt;&lt;/p&gt;
+
 &lt;p&gt;最早用的温差发电材料为ZnSb合金(P型),用康铜片(N型)连接，其热端温度可达400。Bi2Te3-Bi2Se3固溶体(N型)和Bi2Te3-Sb2Te3固溶体在0～300范围内具有较高品质因数(),是较好的低温温差发电材料。
 在300到600的中等温区,常采用PbTe或PbTe与SnTe或 PbSe的固溶体、GeTe、AgSbTe2等作温差发电材料。600以上的高温发电材料有Ge-Si合金、MnTe等。人们对稀土元素的硫化物、碳硼化合物以及In-Ga-As系已作了较多的研究。&lt;/p&gt;
 
@@ -28,7 +520,7 @@
 
 &lt;p&gt;太阳能光伏发电需要有阳光和开阔的朝阳空间，风力发电需要持续的风力和安装场地。半导体温差发电不受天气、场地的制约，日益激发着人们新的绿色欲望。&lt;/p&gt;
 
-&lt;p&gt;它的核心部件是半导体温差电偶模块(因多用于制冷，亦称半导体致冷片，电子元器件市场大多有售)。将它的两根引出线连接到万用表的电压或电流挡，用体温传导到它的一个面，使其两面形成温差，指针就会偏转，实实在在的温差发电就展现在你的面前。但是，目前半导体温差电偶模块热电转化效率低，近年有研究表明最高不到5%，这是半导体温差发电实用化的最大障碍。&lt;/p&gt;
+&lt;p&gt;它的核心部件是半导体温差电偶模块(因多用于制冷，亦称半导体致冷片，电子元器件市场大多有售)。将它的两根引出线连接到万用表的电压或电流挡，用体温传导到它的一个面，使其两面形成温差，指针就会偏转，实实在在的温差发电就展现在你的面前。但是，目前&lt;strong&gt;半导体温差电偶模块热电转化效率&lt;/strong&gt;低，不到5%，这是半导体温差发电实用化的最大障碍。&lt;/p&gt;
 
 &lt;h4 id=&quot;section-1&quot;&gt;温差发电装置制作&lt;/h4&gt;
 
@@ -44,38 +536,50 @@
 
 &lt;p&gt;但是，利用起来必须满足方便获得、经济、持续和有足够的能量的要求。实验表明，对目前通常的半导体温差发电模块每提供摄氏1度的温差可相应产生约0.03V电压，可见温差小就没有实际利用价值。&lt;/p&gt;
 
-&lt;p&gt;本人之所以选择蜂窝煤热水炉的进出水为温差源，是因为炉火昼夜不熄，炉灶热水与进水(自来水)的温差大，夏季摄氏60多度，冬季可达摄氏90多度，且比较稳定。同时利用自来水的压力解决了能量无耗输送的难题，只要家庭成员洗菜、洗碗、洗手、洗脸、洗澡等一用热水，就能获得理想的温差。
-特别需要强调的是，半导体温差电偶模块是良好的导热体，如果两面没有高低温两种能量的输送，温差就不能维持，保温做得再好，模块两面的温度接近也是枉然。这是许多失败案例的根本原因。本发电装置用的是“过路水”，能耗视同为零，同时对热水的降温也不十分明显。&lt;/p&gt;
+&lt;p&gt;本人之所以选择蜂窝煤热水炉的进出水为温差源，是因为炉火昼夜不熄，炉灶热水与进水(自来水)的温差大，夏季摄氏60多度，冬季可达摄氏90多度，且比较稳定。同时利用自来水的压力解决了能量无耗输送的难题，只要家庭成员洗菜、洗碗、洗手、洗脸、洗澡等一用热水，就能获得理想的温差。&lt;/p&gt;
+
+&lt;p&gt;特别需要强调的是，半导体温差电偶模块是良好的导热体，如果两面没有高低温两种能量的输送，&lt;strong&gt;温差&lt;/strong&gt;就不能维持，保温做得再好，模块两面的温度接近也是枉然。这是许多失败案例的根本原因。本发电装置用的是“过路水”，能耗视同为零，同时对热水的降温也不十分明显。&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;冷介质：水==============
-保温层_______________
-冷端传导层______________
-发电装置——————————————
-热端传导层____________
-保温层_____________
+保温层    _______________
+冷端传导层 ______________
+发电装置   ——————————————
+热端传导层 ____________
+保温层    _____________
 热介质：水================
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;制作要点如下：&lt;/p&gt;
 
-&lt;p&gt;1.介质导管和高低温差面的制作&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;介质导管和高低温差面的制作&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;p&gt;将两根直径30.5mm、长1000mm的铝管两端车丝，以便在使用时经活接头接入蜂窝煤热水炉的冷、热水管路，按图2剖面的形状加工后，分别和宽 60mm、厚3mm、长1000mm的铝条焊在一起，焊接要充分、厚实。铝条与半导体温差发电模块相贴的冷热端传导面要平整光滑。&lt;/p&gt;
 
 &lt;p&gt;再试着将要安装的半导体温差发电模块在冷热传导面间间隔排列(笔者一共用了10块)，然后在铝板边缘按每个模块每边两个紧固螺栓钻好孔。用绝缘板做一个尺寸合适的槽子，用空调保温套管作保温材料，将其剪开卡套在热(水)介质导管上，再将绝缘板槽固定上即可；冷(水)介质导管则无需保温。&lt;/p&gt;
 
-&lt;p&gt;2.半导体温差发电模块的测试选用与装配&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;半导体温差发电模块的测试选用与装配&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;正规厂商提供的半导体温差模块一般都有性能指标，你可别让上面十几伏几十安的数值弄得眉开眼笑，那是它们致冷制热的耗电指标，发电它们可低能呢。笔者曾经测试过同一批产品的发电性能，空载电压有的3.4V有的2.7V，空载电流有的1.6A有的0.7A。只有采用对温差特别敏感的，才有可能DIY出较理想的发电装置来。具体的测试方法是：下面用一块大功率音响拆下的铝散热块什冷源(散热)，上面把电熨斗拨到低温挡作热源，用万用表进行测试。注意测试一块要停顿一下，让铝散热块冷下来再测下一块，否则不准。接下来就是对模块厚度一致性的把握，把稍薄和稍厚的拿下不用，不然整个组件都没法装紧。这些工作完后就可以进行温差发电模块组件的装配了，均匀地在模块双面薄薄涂上导热硅脂，逐片拧上四个紧固螺栓，模块被卡紧不能移动就算装好。&lt;/p&gt;
+&lt;p&gt;正规厂商提供的半导体温差模块一般都有性能指标，你可别让上面十几伏几十安的数值弄得眉开眼笑，那是它们致冷制热的耗电指标，发电它们可低能呢。笔者曾经测试过同一批产品的发电性能，空载电压有的3.4V有的2.7V，空载电流有的1.6A有的0.7A。只有采用&lt;strong&gt;对温差特别敏感的&lt;/strong&gt;，才有可能DIY出较理想的发电装置来。具体的测试方法是：下面用一块大功率音响拆下的铝散热块什冷源(散热)，上面把电熨斗拨到低温挡作热源，用万用表进行测试。注意测试一块要停顿一下，让铝散热块冷下来再测下一块，否则不准。接下来就是对模块厚度一致性的把握，把稍薄和稍厚的拿下不用，不然整个组件都没法装紧。这些工作完后就可以进行温差发电模块组件的装配了，均匀地在模块双面薄薄涂上导热硅脂，逐片拧上四个紧固螺栓，模块被卡紧不能移动就算装好。&lt;/p&gt;
 
-&lt;p&gt;3.发电模块组件的连接。&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;发电模块组件的连接。&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;将温差发电装置接入冷、热水管路，机械装配完成。接着就是对发电模块单体发电工作状态的检测，看看有没有电压电流明显偏低的。如果有多半是没有被紧固螺栓卡紧，需要采取措施解决，否则在并联中将成为负载，在串联中成为电流“瓶颈”。半导体温差发电模块正反向电阻很低。
-且差别不太大，摄氏10度温差时仅几欧至十几欧，这时它难与负载匹配，发电效率极低，但随着温差的加大迅速上升至干欧级。由于安装面向的关系，红黑引线并不代表实际的正负，检测单体发电工作状态的同时也弄清了正负极。
-可以根据负载的情况进行并联、串联的连接。半导体发电模块组件的总功率并不等于单体功率的简单相加，会远小于它，尤其是并联状态。笔者将10块单体发电模块全部串联。
-小流量使用热水，开路电压为13.93V，开路电流345mA(时为夏季，冬季自来水温度将下降摄氏20～25 度，温差增加摄氏15～20度，功率要比夏季大得多)：热水停用，开路电压为6.23V，开路电流7mA。&lt;/p&gt;
+&lt;p&gt;将温差发电装置接入冷、热水管路，机械装配完成。接着就是对发电模块单体发电工作状态的检测，看看有没有电压电流明显偏低的。如果有多半是没有被紧固螺栓卡紧，需要采取措施解决，否则在并联中将成为负载，在串联中成为电流“瓶颈”。半导体温差发电模块正反向电阻很低。&lt;/p&gt;
 
-&lt;p&gt;4.控制电路的制作。&lt;/p&gt;
+&lt;p&gt;且差别不太大，摄氏10度温差时仅几欧至十几欧，这时它难与负载匹配，发电效率极低，但随着温差的加大迅速上升至干欧级。由于安装面向的关系，红黑引线并不代表实际的正负，检测单体发电工作状态的同时也弄清了正负极。&lt;/p&gt;
+
+&lt;p&gt;可以根据负载的情况进行并联、串联的连接。半导体发电模块组件的总功率并不等于单体功率的简单相加，会远小于它，尤其是并联状态。笔者将10块单体发电模块全部串联。&lt;/p&gt;
+
+&lt;p&gt;小流量使用热水，开路电压为13.93V，开路电流345mA(时为夏季，冬季自来水温度将下降摄氏20～25 度，温差增加摄氏15～20度，功率要比夏季大得多)：热水停用，开路电压为6.23V，开路电流7mA。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;控制电路的制作。&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;p&gt;该发电装置在夏季便可以直接带动9V的直流小风扇或50粒的LED灯，但只能与热水同步。如要扩大供电范围灵活用电，需要配置控制电路和蓄电池。笔者使用的控制电路是依据《电子报》上一款充电控制器原理图制作的，因尊重设计者的劳动在此就不依样画葫芦。&lt;/p&gt;
 
@@ -95,7 +599,7 @@
 
 &lt;p&gt;&lt;strong&gt;发电效率与温差发电半导体的两面温差有关&lt;/strong&gt; ，允许条件下，温差越大，发电量越大。而要在薄薄的3mm-6mm 的厚度上保持如此大的温差，没有高效的导热和散热装置是办不到的。而且必须是无能耗散热装置才能保证热电转换装置的高效益。&lt;/p&gt;
 
-&lt;p&gt;一种 &lt;strong&gt;高效环路热管&lt;/strong&gt; 扮演了这个角色。大大提高了温差发电片的发电效益。它能在常温下保持热发电片的温差不低于100摄氏度甚至更高（指不用任何外加动力，仅利用 &lt;strong&gt;自然风冷&lt;/strong&gt; 就能够将热电转换半导体的冷端温度降低至环境温度左右，不高于环境温度15摄氏度）。&lt;/p&gt;
+&lt;p&gt;一种 &lt;strong&gt;高效环路热管&lt;/strong&gt; 扮演了这个角色。大大提高了温差发电片的发电效益。它能在常温下保持热发电片的温差不低于100摄氏度甚至更高（指不用任何外加动力，仅利用 &lt;strong&gt;自然风冷&lt;/strong&gt; 就能够将热电转换半导体的冷端温度降低至环境温度左右，不高于环境温度15摄氏度）。 &lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/static/images/热电转换/简易温差发电机.jpg&quot; alt=&quot;简易温差发电机&quot; /&gt;&lt;/p&gt;
 
@@ -104,7 +608,7 @@
 &lt;p&gt;此前，“热电转换半导体”无法获得高效率和走向实用化，主要是无法实现 &lt;strong&gt;无源高效散热&lt;/strong&gt; 。因此，得不偿失。现在利用新型 &lt;strong&gt;高效低温环路热管&lt;/strong&gt; 解决了高效散热难题。只要利用常温水或空气进行自然对流冷却就能保持冷端温度接近室温或自然环境温度。这样就大大提高了其热电转换效率。
 甚至可达到利用自然界或局部环境的温差就能发电的地步。这样，一种在自然界中大量蕴藏着的能量：&lt;strong&gt;温差能量&lt;/strong&gt; ，就可能被我们利用，并成为一种取之不尽，用之不绝，清洁环保的新能源。&lt;/p&gt;
 
-&lt;p&gt;因为，其利用了热这种具有几乎是最广泛的转换“中介”能量。（至少是最广泛的转换“中介”能量之一。）热可以从各种能量形态转换过来，又能向各种能量形态转换过去，具有广泛的多向，多形态，多渠道，多层次，快速循环转换的特性。因此，也就具有可以永续循环利用的特点。半导体温差发电器件为这种温差能量的利用奠定了最重要的基础，而低温高效热传导器件使热电转换装置真正走向了实用化。目前，各种简易高效的固态热电转换装置正在开发，投产之中。&lt;/p&gt;
+&lt;p&gt;因为，其利用了热这种 几乎是最广泛的转换“中介”能量。（至少是最广泛的转换“中介”能量之一。）热可以从各种能量形态转换过来，又能向各种能量形态转换过去，具有广泛的多向，多形态，多渠道，多层次，快速循环转换的特性。因此，也就具有可以永续循环利用的特点。半导体温差发电器件为这种温差能量的利用奠定了最重要的基础，而低温高效热传导器件使热电转换装置真正走向了实用化。目前，各种简易高效的固态热电转换装置正在开发，投产之中。&lt;/p&gt;
 
 &lt;p&gt;当半导体器件的两面发生温差时，其两输出端就会产生正负电势。当将电路接通后，由于电流的运动，使得热迅速地从热端向冷端转移。如果，不能迅速地有效地将转移过来的热输送出去，并导入其他空间或物质体，温差发电半导体的两面的温差就会消失，从而电势也就消失了。
 因此，温差发电装置是否能发电或高效发电，不仅仅取决于温差发电半导体的热电转换效率，还 &lt;strong&gt;取决于与其配合的散热或导热装置&lt;/strong&gt;。
@@ -200,7 +704,7 @@
 极地环境温度低，自然形成了很大的温差，所以能更高效地提供更大的发电量。有条件的地方还可以利用海水和气温的温差作为辅助发电能量，这样就更加节省用于发电的燃料了。而且，燃料可以改为污染低的天然气。
 希望在不久的将来，长城站和中山站能在世界上首先使用这种高效环保的温差发电装置。&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/static/images/热电转换/46843.71.jpg&quot; alt=&quot;46843.71.jpg&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/static/images/热电转换/46843.71.jpg&quot; alt=&quot;46843.71.jpg&quot; /&gt; &lt;/p&gt;
 
 &lt;p&gt;这是我们前年试验的一种,农村用电是不多,所以交电费也很少,加上其它辅助设备会很贵,可能不会有很多人来购买的.
 “一个乡村普通家庭，只要有200瓦/时的电量就很够用了。这样，如果40*40mm的发电片有60摄氏度的温差，只需要20片左右的半导体发电片就够了。如果有100摄氏度的温差，12片左右也就够了。”
@@ -224,8 +728,8 @@
 
 </description>
         <pubDate>Wed, 2015 Sep 30 13:16:50 +0800</pubDate>
-        <link>http://jobinson.ga/%E7%83%AD%E9%87%8F%E4%BC%A0%E9%80%92/2015/09/30/%E7%83%AD%E7%94%B5%E8%BD%AC%E6%8D%A2/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E7%83%AD%E9%87%8F%E4%BC%A0%E9%80%92/2015/09/30/%E7%83%AD%E7%94%B5%E8%BD%AC%E6%8D%A2/</guid>
+        <link>http://jobinson.ga/热量传递/2015/09/30/%E7%83%AD%E7%94%B5%E8%BD%AC%E6%8D%A2/</link>
+        <guid isPermaLink="true">http://jobinson.ga/热量传递/2015/09/30/%E7%83%AD%E7%94%B5%E8%BD%AC%E6%8D%A2/</guid>
       </item>
     
       <item>
@@ -240,8 +744,8 @@
 
 </description>
         <pubDate>Thu, 2015 Sep 24 23:25:17 +0800</pubDate>
-        <link>http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/09/24/%E7%BB%88%E4%BA%8E%E7%BF%BB%E8%AF%91%E5%AE%8Cmesos%E6%96%87%E6%A1%A3%E4%BA%86/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/09/24/%E7%BB%88%E4%BA%8E%E7%BF%BB%E8%AF%91%E5%AE%8Cmesos%E6%96%87%E6%A1%A3%E4%BA%86/</guid>
+        <link>http://jobinson.ga/敦煌之路/2015/09/24/%E7%BB%88%E4%BA%8E%E7%BF%BB%E8%AF%91%E5%AE%8Cmesos%E6%96%87%E6%A1%A3%E4%BA%86/</link>
+        <guid isPermaLink="true">http://jobinson.ga/敦煌之路/2015/09/24/%E7%BB%88%E4%BA%8E%E7%BF%BB%E8%AF%91%E5%AE%8Cmesos%E6%96%87%E6%A1%A3%E4%BA%86/</guid>
       </item>
     
       <item>
@@ -262,12 +766,14 @@
   &lt;li&gt;植入root程序或者删除妨碍root的程序。&lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;p&gt;也就是，只要有内存修改器，所有手上的设备，都可以root&lt;/p&gt;
+
 &lt;p&gt;可做成一个应用：&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 2015 Sep 12 18:48:25 +0800</pubDate>
-        <link>http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2015/09/12/%E5%BC%BA%E5%88%B6%E5%86%85%E5%AD%98%E5%A4%B1%E5%BF%86%E7%A0%B4%E8%A7%A3%E4%BB%BB%E4%BD%95%E7%B3%BB%E7%BB%9F/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2015/09/12/%E5%BC%BA%E5%88%B6%E5%86%85%E5%AD%98%E5%A4%B1%E5%BF%86%E7%A0%B4%E8%A7%A3%E4%BB%BB%E4%BD%95%E7%B3%BB%E7%BB%9F/</guid>
+        <link>http://jobinson.ga/技术学习/2015/09/12/%E5%BC%BA%E5%88%B6%E5%86%85%E5%AD%98%E5%A4%B1%E5%BF%86%E7%A0%B4%E8%A7%A3%E4%BB%BB%E4%BD%95%E7%B3%BB%E7%BB%9F/</link>
+        <guid isPermaLink="true">http://jobinson.ga/技术学习/2015/09/12/%E5%BC%BA%E5%88%B6%E5%86%85%E5%AD%98%E5%A4%B1%E5%BF%86%E7%A0%B4%E8%A7%A3%E4%BB%BB%E4%BD%95%E7%B3%BB%E7%BB%9F/</guid>
       </item>
     
       <item>
@@ -444,8 +950,8 @@ ln -s /virtualos ~/virtualos
 
 </description>
         <pubDate>Thu, 2015 Jun 11 13:11:07 +0800</pubDate>
-        <link>http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2015/06/11/%E5%BC%BA%E5%88%B6%E6%A4%8D%E5%85%A5%E9%A9%B1%E5%8A%A8/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/2015/06/11/%E5%BC%BA%E5%88%B6%E6%A4%8D%E5%85%A5%E9%A9%B1%E5%8A%A8/</guid>
+        <link>http://jobinson.ga/技术学习/2015/06/11/%E5%BC%BA%E5%88%B6%E6%A4%8D%E5%85%A5%E9%A9%B1%E5%8A%A8/</link>
+        <guid isPermaLink="true">http://jobinson.ga/技术学习/2015/06/11/%E5%BC%BA%E5%88%B6%E6%A4%8D%E5%85%A5%E9%A9%B1%E5%8A%A8/</guid>
       </item>
     
       <item>
@@ -462,8 +968,8 @@ ln -s /virtualos ~/virtualos
 
 </description>
         <pubDate>Tue, 2015 May 19 13:41:39 +0800</pubDate>
-        <link>http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/05/19/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%89%8D%E9%80%94%E5%86%B3%E5%AE%9A%E5%9B%A0%E7%B4%A0/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/05/19/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%89%8D%E9%80%94%E5%86%B3%E5%AE%9A%E5%9B%A0%E7%B4%A0/</guid>
+        <link>http://jobinson.ga/敦煌之路/2015/05/19/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%89%8D%E9%80%94%E5%86%B3%E5%AE%9A%E5%9B%A0%E7%B4%A0/</link>
+        <guid isPermaLink="true">http://jobinson.ga/敦煌之路/2015/05/19/%E8%BD%AF%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%89%8D%E9%80%94%E5%86%B3%E5%AE%9A%E5%9B%A0%E7%B4%A0/</guid>
       </item>
     
       <item>
@@ -476,8 +982,8 @@ ln -s /virtualos ~/virtualos
 
 </description>
         <pubDate>Thu, 2015 May 07 13:35:56 +0800</pubDate>
-        <link>http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/05/07/%E7%BB%84%E7%BB%87%E6%B4%BB%E5%8A%9B/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/05/07/%E7%BB%84%E7%BB%87%E6%B4%BB%E5%8A%9B/</guid>
+        <link>http://jobinson.ga/敦煌之路/2015/05/07/%E7%BB%84%E7%BB%87%E6%B4%BB%E5%8A%9B/</link>
+        <guid isPermaLink="true">http://jobinson.ga/敦煌之路/2015/05/07/%E7%BB%84%E7%BB%87%E6%B4%BB%E5%8A%9B/</guid>
       </item>
     
       <item>
@@ -550,539 +1056,8 @@ ln -s /virtualos ~/virtualos
 
 </description>
         <pubDate>Sun, 2015 Apr 19 19:43:45 +0800</pubDate>
-        <link>http://jobinson.ga/%E6%8A%80%E6%9C%AF%E8%A7%86%E9%87%8E/2015/04/19/%E4%BA%94%E7%AC%94%E5%88%92%E6%99%BA%E8%83%BD%E8%BE%93%E5%85%A5%E6%B3%95%E7%9C%9F%E7%9A%84%E5%BF%AB/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E6%8A%80%E6%9C%AF%E8%A7%86%E9%87%8E/2015/04/19/%E4%BA%94%E7%AC%94%E5%88%92%E6%99%BA%E8%83%BD%E8%BE%93%E5%85%A5%E6%B3%95%E7%9C%9F%E7%9A%84%E5%BF%AB/</guid>
-      </item>
-    
-      <item>
-        <title>cygwin配置之包管理和伺服</title>
-        <description>&lt;p&gt;由于用了大概半年左右的cygwin，把使用过程中遇到的问题和解决方法整理记录下。&lt;/p&gt;
-
-&lt;h2 id=&quot;cygwin-&quot;&gt;cygwin 包管理工具&lt;/h2&gt;
-
-&lt;p&gt;cygwin有一个软件管理工具apt-cyg 类似于debian的apt-get，有了这个就方便多了。&lt;/p&gt;
-
-&lt;p&gt;安装：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;lynx -source rawgit.com/transcode-open/apt-cyg/master/apt-cyg &amp;gt; apt-cyg
-install apt-cyg /bin
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;使用：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;apt-cyg install nano
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;可用操作：&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;命令&lt;/th&gt;
-      &lt;th&gt;说明&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;apt-cyg remove&lt;/td&gt;
-      &lt;td&gt;删除&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;apt-cyg update&lt;/td&gt;
-      &lt;td&gt;升级&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;apt-cyg depends&lt;/td&gt;
-      &lt;td&gt;某软件的依赖的列表&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;apt-cyg rdepends&lt;/td&gt;
-      &lt;td&gt;依赖某软件的列表&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;apt-cyg list&lt;/td&gt;
-      &lt;td&gt;列出本地软件&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;apt-cyg listall&lt;/td&gt;
-      &lt;td&gt;列出本地和远程软件&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;apt-cyg show&lt;/td&gt;
-      &lt;td&gt;某软件信息&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;apt-cyg category&lt;/td&gt;
-      &lt;td&gt;列出某类软件列表&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;apt-cyg search&lt;/td&gt;
-      &lt;td&gt;搜寻本地软件&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;apt-cyg seacrchall&lt;/td&gt;
-      &lt;td&gt;搜寻本地和远程软件&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;cygwin--1&quot;&gt;【转】cygwin 伺服模式&lt;/h2&gt;
-
-&lt;p&gt;cygserver 服务器，用于运行大型的应用。Cygwin有一些特殊的功能, 如IPC Message Queues（消息队列）, XSI IPC Semaphores, XSI IPC Shared Memory（共享内存），默认是没有打开的，要想使用这些功能, 必须先启动cygserver程序或服务。&lt;/p&gt;
-
-&lt;p&gt;启用的方法如下：终端执行:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cygserver-config # 按照提示配置
-net start cygserver #cygserver作为Windows操作系统的一个服务运行
-net stop cygserver #停止cygserver, 也可以在Windows任务管理器里结束进程
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;在$CYGWIN/Cygwin.bat里添加下面的配置:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$set CYGWIN=server
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;当然你也可以在每次需要的时候手动启动:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;cygwinserver &amp;amp;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;或者在 ~/.bashrc 添加如下内容（或者在windows环境变量里面配置）&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;CYGWIN=server
-export CYGWIN
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;执行&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;. ~/.bashrc  #让其生效。
-cygserver-config
-net start cygserver
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&quot;cygwin&quot;&gt;cygwin崩溃信息收集&lt;/h2&gt;
-
-&lt;p&gt;在缺省的 cygwin 环境下出错时并不产生 core 文件，而是产生一个stackdump文件，该文件所含信息比core文件少，不能当作core文件使用，为了产生真正的core文件，可以配置好下面的环境变量：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;set CYGWIN=&quot;$CYGWIN error_start=dumper.exe -d %1 %2&quot;(在d:\cygwin\Cygwin.bat文件里)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;或者:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;export CYGWIN=&quot;$CYGWIN error_start=dumper.exe -d %1 %2&quot;(在.bashrc文件里)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;coredump时, cygwin会调用dumper.exe程序在当前目录下产生core文件. 但是不要对这个core文件抱太大的指望. 根据我的经验, 很多时候用bt列出的调用栈都是不可用的. 我也不知道为什么. 全局变量好像可以查看.&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;字体设定&lt;/h2&gt;
-
-&lt;p&gt;cygwin使用windows的字体：默认不使用win的字体，下面命令把win字体软链到cygwin环境下，然后刷新字体缓存（给cygwin安装新字体也需要步骤），最后列出字体看看是不是已经加进来了。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ln -s /cygdrive/c/Windows/Fonts /usr/share/fonts/win-fonts
-fc-cache
-fc-list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;mintty的字体：？？？&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;读取本地分区&lt;/h2&gt;
-
-&lt;p&gt;cygwin如何读取本地分区？在cygdrive里，有本地分区的连接。&lt;/p&gt;
-
-&lt;h2 id=&quot;cygwinbabun&quot;&gt;配置好的cygwin：babun&lt;/h2&gt;
-
-&lt;p&gt;如果自己配置觉得麻烦（其实也没啥需要配置的），可以使用已经配置好cygwin的 &lt;a href=&quot;http://babun.github.io/&quot;&gt;Babun&lt;/a&gt; ，其中有些功能，比如：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;pact – 软件包管理器&lt;/li&gt;
-  &lt;li&gt;集成oh-my-zsh&lt;/li&gt;
-  &lt;li&gt;配置好的git和shell&lt;/li&gt;
-  &lt;li&gt;自动升级&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Babun的安装也非常简单，从它的主页下载压缩包，解压，双击执行install.bat。&lt;/p&gt;
-
-&lt;p&gt;但是：在win7 babun下，emacs图形界面版有问题！！！&lt;/p&gt;
-
-</description>
-        <pubDate>Wed, 2015 Apr 15 15:59:02 +0800</pubDate>
-        <link>http://jobinson.ga/%E8%BD%AF%E4%BB%B6%E7%94%9F%E4%BA%A7%E7%BA%BF/2015/04/15/cygwin%E9%85%8D%E7%BD%AE%E4%B9%8B%E5%8C%85%E7%AE%A1%E7%90%86%E5%92%8C%E6%9C%8D%E5%8A%A1/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E8%BD%AF%E4%BB%B6%E7%94%9F%E4%BA%A7%E7%BA%BF/2015/04/15/cygwin%E9%85%8D%E7%BD%AE%E4%B9%8B%E5%8C%85%E7%AE%A1%E7%90%86%E5%92%8C%E6%9C%8D%E5%8A%A1/</guid>
-      </item>
-    
-      <item>
-        <title>跨平台开发：穿梭多个系统平台的统一开发环境【初探】</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;遇到的问题：&lt;/h2&gt;
-
-&lt;p&gt;刚好接了朋友一个烂尾工程，工程用.net开发的，很乱。&lt;/p&gt;
-
-&lt;p&gt;项目经过分析之后，因为考虑到还需要构建两个适用于 安卓和苹果 系统的应用，未来可能还需要更多的应用编译。发现其实可以：.net继续后台，前台全部换用js。&lt;/p&gt;
-
-&lt;p&gt;如果，后面如果还是我负责，那就全换了。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;我的需求和遇到的问题&lt;/h2&gt;
-
-&lt;p&gt;需要：由于本人已经好多年在linux下生存，所有的生态链全部是用linux的，我需要用命令行，需要用软链，需要用emacs等，我需要统一整齐的管理文件，我不想用盗版软件！！！&lt;/p&gt;
-
-&lt;p&gt;遇到的问题：win实在太慢了，配置那么高级的电脑用各种软件却比我十年前标准配置的电脑还慢。&lt;/p&gt;
-
-&lt;p&gt;window下搞开发实在很不方便，虽说有各种整合开发环境，但还是各种欠缺欠缺，比如iojs之类的构建、一些命令行下才可用的包，emacs之类的也很不方便……太多需要配置了。&lt;/p&gt;
-
-&lt;p&gt;还有另一个让我头疼的问题：由于开发用的电脑不是我的，没法重装系统。&lt;/p&gt;
-
-&lt;p&gt;经过几天郁闷的双电脑+双手机开发后，终于想到办法，解决这个 穿梭在各个平台设备开发的问题。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;我需要实现的功能：&lt;/h2&gt;
-
-&lt;p&gt;我的设备：一个手机（应该是两部，一部刚好换掉了），两台电脑（一台自己多年用的，所有东西都在上面，但配置低；一台是项目的，配置前沿，里面已经备有各种相应开发工具，但不适用于我）&lt;/p&gt;
-
-&lt;p&gt;工作方式：平时开发只用一台电脑（当然是性能最好的那台），碎片时间用手机，在这台电脑和手机里，使用我熟悉和方便的工具，同时，收集到的经验，可以同步到我自己的电脑上。&lt;/p&gt;
-
-&lt;p&gt;需要实现的功能：三机同步。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;解决方案&lt;/h2&gt;
-
-&lt;p&gt;自己电脑：开发所需的东西，全用 git管理起来，可公开的全部github，不好公开的全部bitbucket或者gitlab 私库。&lt;/p&gt;
-
-&lt;p&gt;项目的电脑：尽可能少用其本身软件，只用虚拟机，并且把虚拟机快照化，这样可以快速启动所需的环境。&lt;/p&gt;
-
-&lt;p&gt;更多探索：可自定义一个 &lt;strong&gt;某人开发专用 标箱&lt;/strong&gt; 一劳永逸解决。vagrant 使用 vbox或者qemu。&lt;/p&gt;
-
-&lt;p&gt;为了以备不时之需，还装了cygwin+emacs。&lt;/p&gt;
-
-&lt;p&gt;软件：
-cygwin和虚拟机都装了git 和 emacs，emacs配置全部拷自我电脑。&lt;/p&gt;
-
-&lt;p&gt;手机：一个编辑器+一个可管理git的工具。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-4&quot;&gt;项目用电脑&lt;/h2&gt;
-
-&lt;h3 id=&quot;cygwin-win&quot;&gt;初探：使用 cygwin 试图和win融合&lt;/h3&gt;
-
-&lt;p&gt;一开始是想到用cygwin或者是cygwin的集成版babun来实现，配置另文表达。&lt;/p&gt;
-
-&lt;p&gt;摸索了几天cygwin后，感觉与其在一台电脑上构建一个cygwin，还不如直接虚拟机+快照，或者闪盘系统呢！！！这样完整且统一。&lt;/p&gt;
-
-&lt;p&gt;而且，配置多了后，如果不启用伺服模式，cygwin速度非常慢，比vbox快照慢多了。&lt;/p&gt;
-
-&lt;p&gt;另外，cygwin的软件管理工具才刚起步，没有 类似 archlinux的 用户自治资源区（aur），没法方便查找和编译各种软件。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-5&quot;&gt;虚拟机模拟&lt;/h3&gt;
-
-&lt;p&gt;如果是小系统拷到内存中，反正现在内存够。&lt;/p&gt;
-
-&lt;p&gt;平台规划：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;开发用：sabayon（开发需要底层版本可控+多版本共存，所以选择了gentoo系），桌面系统使用 lxde 或者其他小型窗口管理器。开发环境emacs，编译环境node.js cordova&lt;/li&gt;
-  &lt;li&gt;运行应用用：
-    &lt;ul&gt;
-      &lt;li&gt;给php的：coreos（网络不通！！！！所以只能作罢）或者其他极简部署用系统，其他可选 ubuntu server 或者 centos等，运行php类，java类，&lt;/li&gt;
-      &lt;li&gt;给 .net的：win 2008 server运行.net类，主机极致化。&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;编译测试需要：
-    &lt;ul&gt;
-      &lt;li&gt;安卓虚拟机&lt;/li&gt;
-      &lt;li&gt;ios&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;sabayon 虽然根源于gentoo，但其内建双套软件管理工具的灵活机制，使得大部分不用编译。可支持开发经常需要的&lt;strong&gt;多版本共存&lt;/strong&gt;。&lt;/p&gt;
-
-&lt;p&gt;支持两套软件管理工具：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;entropy用来管理二进制包，相当于archlinux pacman&lt;/li&gt;
-  &lt;li&gt;portage 用来管理源码包，相当于 archlinux makepkg abs&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;安装时有问题，直接下载镜像解决。两个预定的用户名和密码： root/sabayon; sabayon/sabayon&lt;/p&gt;
-
-&lt;h4 id=&quot;vbox&quot;&gt;vbox模拟&lt;/h4&gt;
-
-&lt;h5 id=&quot;section-6&quot;&gt;准备工作：&lt;/h5&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;看看电脑主板是不是开启支持 硬件虚拟技术（Hardware Virtualization Technology (VT)），没开启就到bois开启。&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://www.virtualbox.org/wiki/Downloads&quot;&gt;vbox下载地址&lt;/a&gt;，根据宿主机操作系统类型选择下载。另外，还需要扩展下载，也就是那个&lt;a href=&quot;&quot;&gt;VirtualBox 4.3.26 Oracle VM VirtualBox Extension Pack&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;本人的宿主机是win7，安装vbox有问题，解决办法：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;路径不含中文名&lt;/li&gt;
-  &lt;li&gt;恢复系统主题&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5 id=&quot;section-7&quot;&gt;安装操作系统&lt;/h5&gt;
-
-&lt;p&gt;可以直接安装，也可直接下载已经安装好的系统镜像，节省时间。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://virtualboxes.org/tag/ova&quot;&gt;下载已有的镜像&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://kickass.to&quot;&gt;搜镜像种子&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://mirrors.neusoft.edu.cn/android/repository/&quot;&gt;开源镜像站&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5 id=&quot;section-8&quot;&gt;配置强化虚拟机系统&lt;/h5&gt;
-
-&lt;p&gt;安装完成后，就可以用了，但为了更方便使用，需要进行下面的配置，其中重点是配置：文件共享和网络服务。&lt;/p&gt;
-
-&lt;h5 id=&quot;vboxlinux&quot;&gt;vbox虚拟机里的linux配置&lt;/h5&gt;
-
-&lt;p&gt;默认安装就可以进入虚拟系统了，想要更多功能，需要进行下面配置。&lt;/p&gt;
-
-&lt;h5 id=&quot;archlinux-&quot;&gt;虚拟机 archlinux 各种服务配置：&lt;/h5&gt;
-
-&lt;p&gt;安装 virtualbox-guest-modules virtualbox-guest-utils virtualbox-guest-dkms&lt;/p&gt;
-
-&lt;p&gt;按安装后的提示，生成模块。&lt;/p&gt;
-
-&lt;p&gt;然后，加载模块：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;modprobe -a vboxguest vboxsf vboxvideo
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;启动服务&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;systemctl enable vboxservice
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;也可以手动启动vbox的各种服务：比如双向粘贴，双向拖动文件，无缝模式……&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;VBoxClient
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;也可以一次启动所有&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;VBoxClientAll
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;让其启动即可使用这些服务：不过不建议这么做，因为出问题的时候，就没法救。如果有桌面，把VBoxClientAll 加入到autostart中，如果没有，就加入到  &lt;code&gt;.xinitrc&lt;/code&gt;&lt;/p&gt;
-
-&lt;h5 id=&quot;section-9&quot;&gt;文件共享设置：&lt;/h5&gt;
-
-&lt;h5 id=&quot;section-10&quot;&gt;自动加载&lt;/h5&gt;
-
-&lt;p&gt;把用户加入到vboxsf组中。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;gpasswd -a $USER vboxsf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;查看下已经存在的共享目录&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;VboxControl sharefolder list
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;使用 &lt;code&gt;VboxControl sharefolder&lt;/code&gt; 自动加载。&lt;/p&gt;
-
-&lt;p&gt;如果：仍然无法自动加载，可手动新建一目录：/media/sf_共享文件夹名字&lt;/p&gt;
-
-&lt;h5 id=&quot;section-11&quot;&gt;手动加载&lt;/h5&gt;
-
-&lt;p&gt;也可以手动加载：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mount -t vboxsf 共享文件夹名 挂载点
-比如：
-mount -t vboxsf -o uid=1000,gid=1000 home /mnt/
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;或者：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mount.vboxsf
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;注意加载文件夹的权限：755&lt;/p&gt;
-
-&lt;p&gt;软链到桌面，方便使用。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;ln -s /media/ ~/my_documents
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;启动时自动加载：修改fstab&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;xxx   /media/xxx    vboxsf  uid=user,gid=group,rw,dmode=700,fmode=600,comment=systemd.automount 0 0
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;换漂亮点的图标&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://bitbucket.org/jobinson99/oxygen4-icons&quot;&gt;kde4.6之前的图标好看，不足的部分应该可以用之后的图标补上，我fork了一个，同时补上这个版本后更新的图标&lt;/a&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;mac-os&quot;&gt;mac os虚拟机安装手记&lt;/h4&gt;
-
-&lt;p&gt;macos 软件安装模式：拖入图标到Application，复制完成后，打开 Lauchpad ，点击该图标，根据提示安装。&lt;/p&gt;
-
-&lt;p&gt;xcode挺大的！&lt;/p&gt;
-
-&lt;h5 id=&quot;win--vbox-macos&quot;&gt;win + vbox 安装macos&lt;/h5&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://bbs.feng.com/read-htm-tid-8474315.html&quot;&gt;win7 vbox 安装 mac os 10.10 参考&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://bbs.feng.com/read-htm-tid-7625465.html&quot;&gt;win7 vbox 安装 mac os 10.9 参考&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://bbs.zol.com.cn/nbbbs/d160_148114.html&quot;&gt;win7 vbox 安装 mac os 10.7 参考&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;调整虚拟机系统分辨率：
-在引导界面，添加 &lt;code&gt;&quot;Graphics Mode&quot;=&quot;1366x768x32&quot;&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;需要引导工具&lt;/p&gt;
-
-&lt;p&gt;下载镜像后，选择导入即可。&lt;/p&gt;
-
-&lt;p&gt;因为版本本身不稳定（比如点击 Apple icon –&amp;gt; About This Mac，系统会崩溃），需要用 sw_vers 检查下版本：在启动界面，使用键盘快捷键Cmd + Space，开启命令行。（此处注意不要点按钮，会崩溃的）&lt;/p&gt;
-
-&lt;p&gt;键盘输入问题：安装 &lt;a href=&quot;http://doublecommand.sourceforge.net/&quot;&gt;DoubleCommand&lt;/a&gt;，配置适合自己的输入方式。&lt;/p&gt;
-
-&lt;p&gt;然后&lt;a href=&quot;http://developer.apple.com/programs/register/&quot;&gt;注册苹果账号&lt;/a&gt;，下载Xcode  和 iOS SDK。&lt;/p&gt;
-
-&lt;p&gt;打开工程项目文件  hello/platforms/ios/hello.xcodeproj&lt;/p&gt;
-
-&lt;h3 id=&quot;qemu&quot;&gt;qemu模拟&lt;/h3&gt;
-
-&lt;h4 id=&quot;qemulinux&quot;&gt;qemu模拟linux&lt;/h4&gt;
-
-&lt;h5 id=&quot;linux--qemu-macos&quot;&gt;linux + qemu 安装macos&lt;/h5&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://blog.definedcode.com/osx-qemu-kvm&quot;&gt;参考&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.contrib.andrew.cmu.edu/~somlo/OSXKVM/&quot;&gt;参考&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;linuxioscygwin&quot;&gt;linux系统下的ios开发环境/cygwin也类似&lt;/h3&gt;
-
-&lt;h2 id=&quot;section-12&quot;&gt;手机开发测试环境配置&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;http://www.appsfinder.fr&quot;&gt;查找应用&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;http://appcrawlr.com&quot;&gt;另一个查找应用的地方&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&quot;section-13&quot;&gt;在手机上运行各种应用&lt;/h3&gt;
-
-&lt;p&gt;有空可探索：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;android + linux deploy 或者 debkit：需要root&lt;/li&gt;
-  &lt;li&gt;Android + Linux Chroot + Node.js&lt;/li&gt;
-  &lt;li&gt;firefoxos +&lt;/li&gt;
-  &lt;li&gt;JXCore One of the key features in the recent release was the ability to run Node.js applications on mobile, both Android and iOS, while leveraging the full Node.js ecosystem on npm.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;除去直接硬刷linux系统到手机上外，还有四个软办法：&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;一是获得root权限，然后安装busybox之类的。&lt;/li&gt;
-  &lt;li&gt;另一个是编译安装 一个包管理器（等有空折腾debian的dpkg），&lt;/li&gt;
-  &lt;li&gt;比较方便的是 安卓上的编程环境 terminalIDE。&lt;/li&gt;
-  &lt;li&gt;比较自由的：不用root，直接安装一个linux到手机上：gnuroot&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;英文输入键盘：手写用 writepad&lt;/p&gt;
-
-&lt;p&gt;英文虚拟电脑键盘用：terminal ide的键盘&lt;/p&gt;
-
-&lt;h4 id=&quot;terminal-ide&quot;&gt;terminal ide&lt;/h4&gt;
-
-&lt;p&gt;terminal ide帮助比较全面，可以当linux 操作入门。&lt;/p&gt;
-
-&lt;p&gt;生成 身份认证：和linux上的ssh-keygen不同。&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;mkdir ~/.ssh        
-dropbearkey -t rsa -f ~/.ssh/id_rsa
-dropbearkey -y -f ~/.ssh/id_rsa | grep &quot;^ssh-rsa&quot; &amp;gt;&amp;gt; my_keydropbearkey -y -f ~/.ssh/id_rsa | sed -n 2p &amp;gt; ~/.ssh/id_rsa.pub
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;第一条命令是新建文件夹，第二条命令是 生成 私钥，第三条是本地安全管道开启密钥认证，第四条是把公钥拷到 &lt;em&gt;my_key&lt;/em&gt; 上，然后把 &lt;em&gt;my_key&lt;/em&gt; 拷到所需的git服务器上。&lt;/p&gt;
-
-&lt;p&gt;修改下本地的配置&lt;/p&gt;
-
-&lt;p&gt;新建一文件 ~/sssh （名字随意，只要下面相应改下对应的），内容如下：&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;#!/data/data/com.spartacusrex.spartacuside/files/system/bin/bash
-exec ssh -i ~/.ssh/id_rsa &quot;$@&quot;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;修改下执行权限和修改配置文件 ~/.bashrc&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;chmod 755 ~/sssh
-echo export GIT_SSH=~/sssh &amp;gt;&amp;gt; .bashrc
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;到这步搞定！&lt;/p&gt;
-
-&lt;h3 id=&quot;section-14&quot;&gt;三平台多终端开发环境搭建&lt;/h3&gt;
-
-&lt;p&gt;实质是两种：本地编译（编译的工具链和编译量都很大！）或者两个虚拟机（linux和mac os）里的cordova编译&lt;/p&gt;
-
-&lt;p&gt;另文说明。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-15&quot;&gt;更多探索&lt;/h3&gt;
-
-&lt;p&gt;其实这样还是不够方便的，除了开发，测试也需要类似的环境，所以，最后探索的应该是 容器类工具。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-16&quot;&gt;附带几句牢骚：&lt;/h3&gt;
-
-&lt;p&gt;这几天被苹果系统问题卡住了所有的进度了：不是因为技术难度高，而是烦，尽搞些没用的限制——就有点像当年某些游戏用了俄国某种特别变态的加密程序，导致正版玩家体验也严重不爽一样，纯粹就是防贼防过头了。&lt;/p&gt;
-
-&lt;p&gt;你牛叉系统可以说是为了提升效率，所以虽然入门有点难度，但经历过入门的不适应期后，简直如鱼得水。&lt;/p&gt;
-
-&lt;p&gt;微软的系统可以说是为了适合一般人使用电脑，是以易用为追求的——虽然这个“易用”实在做得惨不忍睹。&lt;/p&gt;
-
-&lt;p&gt;苹果呢？号称是为了设计师，可是再怎么强大的苹果电脑，再怎么定制的软件，有 电脑+云渲染牛叉么？&lt;/p&gt;
-
-&lt;p&gt;苹果操作系统是专用系统？为最大化发挥苹果电脑硬件威力而造？是为了自己兼容性差找接口吧？苹果的根bsd也是高大上，可人家兼容性一点也没荒废，甚至还有号称兼容性举世无双的netbsd，人家也不难用，更不要说难装到其他系统上。&lt;/p&gt;
-
-&lt;p&gt;设定了一堆没必要的门槛，拦的是什么人呢？好像是自己用户，制造了一堆门槛，让没事干的人去琢磨，去消耗时间，获得一定的成就感，然后用来炫……这用户心理实在把握得不错。&lt;/p&gt;
-
-&lt;p&gt;结合苹果的娱乐消费倾向，还真的是一脉相承。&lt;/p&gt;
-
-</description>
-        <pubDate>Tue, 2015 Apr 14 22:34:19 +0800</pubDate>
-        <link>http://jobinson.ga/%E8%BD%AF%E4%BB%B6%E7%94%9F%E4%BA%A7%E7%BA%BF/2015/04/14/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91%E4%B9%8B%E7%A9%BF%E6%A2%AD%E5%A4%9A%E4%B8%AA%E7%B3%BB%E7%BB%9F%E5%B9%B3%E5%8F%B0/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E8%BD%AF%E4%BB%B6%E7%94%9F%E4%BA%A7%E7%BA%BF/2015/04/14/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91%E4%B9%8B%E7%A9%BF%E6%A2%AD%E5%A4%9A%E4%B8%AA%E7%B3%BB%E7%BB%9F%E5%B9%B3%E5%8F%B0/</guid>
-      </item>
-    
-      <item>
-        <title>早干吗去了： 我缺骨干不缺项目</title>
-        <description>&lt;p&gt;今天跑了步了，步履轻快，仍然矫健。&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;有严重困难么？一般地，我给人做事都是别人有困难来找我，事情做完我就撤，继续做自己的事。&lt;/li&gt;
-  &lt;li&gt;平等合作么？以我现在实力，现在也还不到我能和你公司平起平坐谈合作的时候，既不是危机也不是合作，那是什么？你们公司有我没我不是一样的么？&lt;/li&gt;
-  &lt;li&gt;我弱点：我不是适合一般公司里平平稳稳的职位的。&lt;/li&gt;
-  &lt;li&gt;我过去：我快十年都是处于主导地位，虽然很窘迫，但到底也是开始进入收益期了。突然拱手让出主导？？？凭什么？我自己一个一个小项目都可以做起来，积累起来的。&lt;/li&gt;
-  &lt;li&gt;我会失去：以后还有这样逐步积累的机会么？以后估计都是高大上，浮在表层上创业了吧？再也没有可以同甘共苦的同志了！！！！——但目前我却也还没有合适的办法，找到合适的同等级的同伴，同样是居高临下的！！！！&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;我就是太孤单了！！！要有几个帮手，我何需愁这事。何须愁了十年！！！&lt;/p&gt;
-
-&lt;p&gt;我所有的技能和各方面的积累，都是为了自己的事业，而不是别人的事业啊。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;创业路上没有合伙人，还是我没有能力给到你支持，还是觉得亲情的缺失？&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;都是！！！&lt;/p&gt;
-
-&lt;p&gt;好多年前，我会偶尔担心找不到可发挥的平台，但十年来一直担心的是找不到同甘共苦的伙伴，也就是团队的核心骨干。&lt;/p&gt;
-
-&lt;p&gt;我更像榕树，能一颗种子随处都可生长，即使是没有任何营养光滑的瓷砖地板上，然后经过困苦的初期，艰难地生长，营造自己的生态环境，最终长成巨树，变成一片可以孕育其他生命的树林。&lt;/p&gt;
-
-&lt;p&gt;我更习惯一步步走，突然放弃自己已经看到黎明的脚步，这个让人难以接受！让人感觉早干嘛去了？
-除非是这个路子上有意外的收获。&lt;/p&gt;
-
-&lt;p&gt;不来的时候谁都嫌弃，要来的时候啥都两份以上……
-早干嘛去了啊，早几天就不一样了。～
-如果早几年，我就不用受那么多平白无故的苦。&lt;/p&gt;
-
-&lt;p&gt;是的，我一直缺的是人！！！！&lt;/p&gt;
-
-</description>
-        <pubDate>Mon, 2015 Apr 13 23:22:41 +0800</pubDate>
-        <link>http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/04/13/%E6%97%A9%E5%B9%B2%E5%90%97%E5%8E%BB%E4%BA%86/</link>
-        <guid isPermaLink="true">http://jobinson.ga/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/04/13/%E6%97%A9%E5%B9%B2%E5%90%97%E5%8E%BB%E4%BA%86/</guid>
+        <link>http://jobinson.ga/技术视野/2015/04/19/%E4%BA%94%E7%AC%94%E5%88%92%E6%99%BA%E8%83%BD%E8%BE%93%E5%85%A5%E6%B3%95%E7%9C%9F%E7%9A%84%E5%BF%AB/</link>
+        <guid isPermaLink="true">http://jobinson.ga/技术视野/2015/04/19/%E4%BA%94%E7%AC%94%E5%88%92%E6%99%BA%E8%83%BD%E8%BE%93%E5%85%A5%E6%B3%95%E7%9C%9F%E7%9A%84%E5%BF%AB/</guid>
       </item>
     
   </channel>

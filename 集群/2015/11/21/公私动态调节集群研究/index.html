@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>【整理】公私动态调节集群研究</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/集群/2015/11/21/%E5%85%AC%E7%A7%81%E5%8A%A8%E6%80%81%E8%B0%83%E8%8A%82%E9%9B%86%E7%BE%A4%E7%A0%94%E7%A9%B6/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="【整理】公私动态调节集群研究">【整理】公私动态调节集群研究</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>【摘要】：</b><br/>个人小超算实战资料汇编</p>
+      
+
+      
+      <p class="post-tag"><b>【话题】：</b>
+        
+        <a href="/话题列表/#小超算-ref">小超算
+        <sup>3</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#树莓派-ref">树莓派
+        <sup>3</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#阵列-ref">阵列
+        <sup>3</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#集群-ref">【集群】</a>
+        
+      </span>
+      
+      
+      创建时间：2015-11-21 00:00:00
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <h2 id="section">需求</h2>
+
+<h2 id="section-1">可实现的硬件方式</h2>
+
+<ul>
+  <li>多机集群：好处是可按需启动，不用的机子还可以另外给别人用。灵活，可获得无限扩容能力，当然也麻烦。
+    <ul>
+      <li>二手台式机集群</li>
+      <li>二手笔记本集群</li>
+      <li>小型版集群：实际上也会像单路使用。</li>
+    </ul>
+  </li>
+  <li>单机多路：性能强劲，但耗电太多，噪音问题。
+    <ul>
+      <li>1366双路，</li>
+      <li>1366四路</li>
+    </ul>
+  </li>
+</ul>
+
+<p>如果预算充足的话，当然是至少一台性能强劲的机子，另外再配其他的。</p>
+
+<h2 id="section-2">使用方式：灵活组队</h2>
+
+<ol>
+  <li>可以用usb制作一个好一个系统，可以克隆到内存：操作系统需要极简，只有基础的服务（比如ssh，集群注册）</li>
+  <li>真实的机子都把 引导设为usb第一，装日常系统</li>
+  <li>需要用到资源的时候，用usb插入分机，引导后拔出</li>
+  <li>主控机通过服务发现，整合所有分机的资源：mesos</li>
+</ol>
+
+<p>远程启动是否可以指定载入的系统？？？？</p>
+
+<h2 id="section-3">价格</h2>
+
+<h2 id="section-4">软件配套</h2>
+
+<h2 id="section-5">附录：</h2>
+
+<p>主板类型：</p>
+
+<ul>
+  <li>ATX 普通家用电脑的大板，长方形。尺寸为30.5厘米×24.4厘米</li>
+  <li>MicroATX有两种，一种是缩小了比例的ATX，一种是减少了长度的ATX，差不多正方形，尺寸为24.4厘米×24.4厘米。</li>
+  <li>MiniITX 更小，只有16厘米×16厘米的尺寸，适合用来建家庭影院电脑。</li>
+  <li>
+    <p>uATX 比MicroATX小，准系统或HDPC使用的迷你主板，超小型机箱用，接口和平常看到的不太一样，可插独立显卡，但插槽位置方向可能不太一样。尺寸为24.4×18.4厘米</p>
+  </li>
+  <li>EATX</li>
+  <li>手机和平板电脑的主板，则更小，不过基于其目前这两种的芯片性能仍然有限，竞争力上不是很给力。</li>
+</ul>
+
+<p>机箱：中塔可放ATX，微塔可放MicroATX</p>
+
+<p>家庭影院电脑（home theater personal computer=HTPC）一般特征是外形小，功耗低，静音，高性能，可遥控——控制媒体播放器用的，价格3000内。备有各种接口，用于电视、视频监控等，一般硬盘容量较大。——小超算的组建和家庭影院电脑的组建有些部分很接近，呵呵。要是我的话，还会增加投影部分的配置。</p>
+
+<h2 id="section-6">第四部分：多开虚拟机的配置</h2>
+
+<h2 id="section-7">更多探索</h2>
+
+<p>固态硬盘改进读写速度，PCI-E提升读写速度</p>
+
+<p>大内存+软件系统改进运算速度</p>
+
+<p>图吧200战lol系列贴</p>
+
+<p>显卡多路交火实现更高性能的渲染功能</p>
+
+<h2 id="section-8">黑传说的看法：</h2>
+
+<p>组廉价小集群的意义：</p>
+
+<ol>
+  <li>海量运算：比如大型统计、加密解密、图形运算等</li>
+  <li>灵活处理：放在自己家里或者办公室里，想用就用，不用到计算中心排队。</li>
+  <li>便宜：3000左右的价格。</li>
+  <li>性能强悍：针对个人电脑而言的，这也意味着可以用好多年，以后如果超过运算能力了，就当个人电脑用。</li>
+</ol>
+
+<p>另外，以前两例虽然使用了极其便宜的机器，但相对中国人来说，这个价格还是贵了，如果换成国内的产品的话，可以把价格做到3000人民币左右。</p>
+
+<p>咳咳，工作用小超算，娱乐用家庭影院电脑，呵呵，性能都比普通的商业产品强，逐步构建强大的工作环境和生活娱乐环境，真的是很有成就感的事情啊，最好找一个喜欢的人，这样幸福感更强，哈哈，各位一起努力吧……</p>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+  
+  <!-- 有言评论 -->
+  <div id="uyan_frame">
+    <h2>■评论</h2>
+  </div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a href="/操作系统/2015/10/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FNixOS%E5%AE%89%E8%A3%85/">操作系统NixOS：系统安装◁◀前篇</a>
+    </div>
+    
+    
+    <!--回到头部-->
+    <div class="back-top"><a href="#【整理】公私动态调节集群研究">△▲回头▲△</a></div> 
+    
+    
+    
+  </div>
+
+  <!--页面底部自动浮现-->
+  <div class="post-reletive">
+    <!--相关文章-->
+
+  </div>
+
+</div>
+
+
+  <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2015版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接，谢谢合作！</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+      <span>致谢： </br>
+        <a href="http://www.github.com">空间：github</a>，
+        <a href="http://jekyllrb.com">构建：jekyll</a>，
+        <a href="http://freenom.com/">域名：freenom</a>，
+        以及一切对本人有帮助的人事物！</span>
+      <span>
+        <!--百度统计-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+      </span>
+    </li>
+  </ul>
+</footer>
+
+
+    
+
+  
+</div>
+
+
+
+
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>

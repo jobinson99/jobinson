@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>从archlinux切换到NixOS</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/操作系统/2015/10/01/%E5%B7%A5%E4%BD%9C%E7%94%A8%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FNixOS/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="从archlinux切换到NixOS">从archlinux切换到NixOS</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>【摘要】：</b><br/></p>
+      
+
+      
+      <p class="post-tag"><b>【话题】：</b>
+        
+        <a href="/话题列表/#操作系统-ref">操作系统
+        <sup>7</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#archlinux-ref">archlinux
+        <sup>3</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#NixOS-ref">NixOS
+        <sup>2</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#还原-ref">还原
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#多版本共存-ref">多版本共存
+        <sup>1</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#操作系统-ref">【操作系统】</a>
+        
+      </span>
+      
+      
+      创建时间：2015-10-01 12:52:09
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <blockquote>
+  <p>生命不息，折腾不止，但折腾是有代价，如何最大限度降低代价呢？——黑传说</p>
+</blockquote>
+
+<p>不知不觉地，发现自己已经用了archlinux快9年，这9年，几乎每年年初和年终，都有想换了操作系统的冲动，不过最后都失败了，原因是暂时找不到更好的替代。</p>
+
+<p>对于我，archlinux有两个问题严重制约我的工作：</p>
+
+<ol>
+  <li><strong>更新后要折腾</strong>：不是怕折腾，而是需要更多精力用在其他更重要的工作上。</li>
+  <li><strong>开发需要“多版本共存”</strong>，这个就需要自己编译了，但因为arch更新太快，日常使用中，往往不仅仅是编译某个部件，而是编译整个系统，工作量极大。而且这样编译的频率一直不低，导致用在编译上的时间过多。</li>
+</ol>
+
+<p>其实吧，整个系统都自己编译了，和用gentoo区别不大了，不过懒癌晚期，最终还是没有去吃那兔子。</p>
+
+<p>前段日子，终于有机会需要重装系统了：多年前分区 <code>/</code> 分太少了，30G，根本撑不住 android-sdk+android-ndk+ant+……临时的解决办法有二：</p>
+
+<ol>
+  <li>挂载新硬盘：不过我想主硬盘换成大硬盘或者固态硬盘了。</li>
+  <li>软链到其他空闲分区。不过这样软链随着时间变迁越来越多，后面维护越来越复杂，还不如重新分区。</li>
+</ol>
+
+<p>因为之前已经对arch更新带来的问题的深刻切身肉痛体会，决定趁此机会，换主系统。候选对象初步确定为gentoo funtoo或者sabayon。</p>
+
+<p>最近这段时间，就一直在阅读这几个系统的文档，以便能够顺利切换过去。</p>
+
+<p>昨天，在把sabayon写入u盘后，准备对实体机进行开刀了。在<a href="http://www.distrowatch.com">发行版动态</a>发现了一个新奇的系统：NixOS，2003年就开始了，号称 开拓性。
+这系统目前排名65，介绍里说，这是一个完全独立开发的发行版，我就在想了，这世界上所有的linux特色大致我都了解，这个能有啥新玩法？不会又是重复造轮子吧？</p>
+
+<p>一看吓一跳，还真的是特立独行！！！</p>
+
+<p>国庆没出去泡妞的，有新玩具了。</p>
+
+<h2 id="nixos">给更新癌推荐一个折腾不死，工作用的系统：NixOS</h2>
+
+<blockquote>
+  <p>还在 更新后挂，挂了修，修完再更新，更新再挂，挂了再修……的噩梦里沉沦么？醒醒吧骚年，世界这么大，风景那么好，美女那么靓，多出去走走，感受世界  ——黑传说</p>
+</blockquote>
+
+<h3 id="section">多版本共存</h3>
+
+<p>nixos是比较特别的一个系统，可以<strong>多版本共存</strong>，可以还原回任意版本。</p>
+
+<p>为了实现多版本共存，使用了下面方式：实现方式类似 <code>npm</code>（都把相关依赖封在一个空间里，用的软链，但npm最外层的版本还是一致的，只是关联软件版本允许不一样的版本，而且包存储位置分散）。</p>
+
+<ol>
+  <li><strong>大量使用软链</strong>。</li>
+  <li><code>/bin</code> <code>/sbin</code> <code>/lib</code> <code>/usr</code>等目录里面全是软链。</li>
+  <li><code>/etc</code>里的配置 软链到 <code>/nix/store</code>，由 <code>/nixos/configuration.nix</code> 统一配置，用户级配置仍然在用户家目录 <code>~/</code> 里配置。</li>
+  <li>所有软件实际全安装在 <code>/nix/store</code>，除了 <code>/bin/sh</code>。调用全靠各个空间的软链。</li>
+  <li>同软件同版本全系统只装一份：也就是用户不同，安装的软件相同，系统智慧存一次，而不是多次。</li>
+  <li>不同版本的软件，其不同的关联软件也会同时保留。这样可以让用户可同时有多个运行环境（测试和交叉编译常见这种情况）</li>
+  <li>用户不需要root身份安装软件，安装的软件也在 <code>/nix/store</code>里。—— <code>/nix/store</code>过大的权限是否是个安全隐患呢？？？否，用户间相互隔离，用户的配置只影响用户自身。</li>
+  <li>多用户情况下：不同用户安装的软件也在<code>/nix/store</code>里，然后通过软链到各个用户的系统空间。</li>
+  <li>多用户情况下：不同用户可以有不同的软件，不同的软件版本。除了系统级软件是都有的，不同用户间的软件环境对另外的用户是不可见的。</li>
+  <li>基于多用户机制，平时安装软件不需要root身法，除非希望root也装某软件，才需要<code>sudo nix-env -i xxx</code>。</li>
+</ol>
+
+<p>这不就是传说中的绿软么？</p>
+
+<p>另外还有几个特点：</p>
+
+<ol>
+  <li><strong>软件安装方式</strong>：支持 二进制安装 或者 源码编译。编译脚本<code>xxx.nix</code>相对 <em>PKGBUILD</em> 来说，比较智能，和gentoo的差不多。</li>
+  <li>配置集中，可以方便的克隆配置。</li>
+  <li>可沙箱</li>
+  <li>文件安装路径使用 hash-名字-版本，海量软件查询速度方面相对还好。</li>
+</ol>
+
+<p>当然，<strong>保留全版本</strong>这样的设计，比较消耗磁盘空间。如果是滚动更新，且积累多年，系统将非常庞大！！！——不过可以设置清理周期。</p>
+
+<h2 id="section-1">其优势</h2>
+
+<p>结构简单清晰，系统设计稳健（实际稳健还需要时间），快速方便，一次配置终身受用。</p>
+
+<p>这样的系统（如果够稳健的话，目前应该还不算稳健），<strong>非常适合当 服务器，编程用</strong>桌面，是个干活用的好系统。</p>
+
+<h3 id="section-2">非常适合当服务器系统</h3>
+
+<ol>
+  <li>软件包独立安装的方式，结构简单，非常适合软件包不多的专用服务器！！！</li>
+  <li>随时还原：服务器更新的话，即使是安全更新，也是有失败风险的，随时可倒退回去，可以大幅度减少 服务中断 时间。</li>
+  <li>全方位还原方式：硬件不坏的情况下，遇到崩溃，如何快速还原：系统内软件还原回旧版，集群虚拟机镜像还原，主机还原……
+或者，重建软件和相关依赖——可以重装软件，或者重新编译软件。
+注：zfs、btfs类提供的是文件系统级还原。</li>
+  <li>配置集中统一，方便不同机器间克隆。</li>
+</ol>
+
+<p>非常适合追求稳定，而又必须要保持更新的服务器，这是目前其他系统仍然做不到的。</p>
+
+<h3 id="section-3">非常适合当软件开发工作平台</h3>
+
+<p>编程的话，常见的问题及其解决方式：</p>
+
+<ol>
+  <li>多版本冲突问题：开发用的和系统版本不同，项目间用的版本不同，升级后老版本和新版本不同……靠多版本共存机制，互不污染，不因其他部分升级而影响关联依赖的可用性。</li>
+  <li>需要快速编译：开发完编译测试的时候，需要不断编译同样的东西，nixos提供了语言级的沙箱环境，可缓存关联软件，这样编译时，不用重复编译该部分，加快 开发-编译-测试 流程。</li>
+  <li>需要快速测试：沙箱环境。</li>
+</ol>
+
+<h3 id="section-4">资源：</h3>
+
+<ul>
+  <li><a href="http://www.nixos.org">官网地址</a></li>
+  <li><a href="https://github.com/NixOS">开发团队</a></li>
+  <li><a href="https://github.com/NixOS/nixpkgs">源码：包括包管理器、系统、应用</a></li>
+  <li><a href="https://nixos.org/nixpkgs">软件包一览</a></li>
+  <li><a href="http://nixos.org/nixos/manual/">操作系统手册</a></li>
+  <li><a href="https://nixos.org/nixos/download.html">系统下载</a></li>
+</ul>
+
+<p>从github的统计看，目前
+系统开发：9人，
+包维护：34人，
+从更新频率上看，开发越来越活跃。</p>
+
+<p>2003年3月9日开始，管理器Nix设计者是 <a href="https://github.com/peti">Eelco Dolstra</a>，NixOS最初的设计者是<a href="http://www.tjaldur.nl/">Armijn Hemel</a>，目前最活跃的开发者是 <a href="https://github.com/edolstra">peti</a></p>
+
+<p>主基地是在荷兰阿姆斯特丹。</p>
+
+<p>目前稳定版本：15.09</p>
+
+<p>几个主要开发组织：</p>
+
+<ul>
+  <li>Nix 软件包管理器，可进行独立的包升级而不会影响其他包，而且可以回滚到以前的版本。同一个软件允许同时存在多个版本。管理所有的 内核，应用程序，系统软件包，配置文件。可升级，还原 系统配置，软件包彼此分离。</li>
+  <li>Nixpkgs：软件构建脚本库（类似于gentoo的portage），包含了大量的软件包，包括nix和nixos的源码，可通过 Nix 包管理器进行编译。</li>
+  <li>NixOS：基于 Nix管理工具 的 Linux 发行版，支持原子升级、回滚、多用户包管理，以及可轻松的在不同机器间同步配置。</li>
+  <li>Hydra：基于 Nix 的持续构建系统，一个自动编译、测试软件，编译出的二进制会供应给官方仓库。</li>
+</ul>
+
+<h2 id="section-5">使用</h2>
+
+<p>需要熟读的文档，共三份：</p>
+
+<ul>
+  <li><a href="http://nixos.org/nix/manual">nix手册</a> 包管理工具</li>
+  <li><a href="http://nixos.org/releases/nixpkgs/">nixpkg手册</a> 文件夹下的manual，包编译控制脚本</li>
+  <li><a href="http://nixos.org/nixos/manual/">nixos手册</a> 操作系统</li>
+  <li><a href="http://github.com/nixos/nixpkgs">源码</a> 源码是最好的文档。</li>
+</ul>
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+  
+  <!-- 有言评论 -->
+  <div id="uyan_frame">
+    <h2>■评论</h2>
+  </div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a href="/热量传递/2015/09/30/%E7%83%AD%E7%94%B5%E8%BD%AC%E6%8D%A2/">热电转换◁◀前篇</a>
+    </div>
+    
+    
+    <!--回到头部-->
+    <div class="back-top"><a href="#从archlinux切换到NixOS">△▲回头▲△</a></div> 
+    
+    
+    <div class="post-next">
+      <a href="/操作系统/2015/10/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FNixOS%E5%AE%89%E8%A3%85/">后篇▶▷操作系统NixOS：系统安装</a>
+    </div>
+    
+    
+  </div>
+
+  <!--页面底部自动浮现-->
+  <div class="post-reletive">
+    <!--相关文章-->
+
+  </div>
+
+</div>
+
+
+  <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2015版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接，谢谢合作！</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+      <span>致谢： </br>
+        <a href="http://www.github.com">空间：github</a>，
+        <a href="http://jekyllrb.com">构建：jekyll</a>，
+        <a href="http://freenom.com/">域名：freenom</a>，
+        以及一切对本人有帮助的人事物！</span>
+      <span>
+        <!--百度统计-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+      </span>
+    </li>
+  </ul>
+</footer>
+
+
+    
+
+  
+</div>
+
+
+
+
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>

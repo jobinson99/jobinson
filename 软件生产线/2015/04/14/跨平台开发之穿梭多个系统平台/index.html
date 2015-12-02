@@ -9,7 +9,7 @@
 <title>跨平台开发：穿梭多个系统平台的统一开发环境【初探】</title>
 <meta name="description" content="黑传说的学习笔记">
 
-<link rel="canonical" href="http://jobinson.ga/%E8%BD%AF%E4%BB%B6%E7%94%9F%E4%BA%A7%E7%BA%BF/2015/04/14/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91%E4%B9%8B%E7%A9%BF%E6%A2%AD%E5%A4%9A%E4%B8%AA%E7%B3%BB%E7%BB%9F%E5%B9%B3%E5%8F%B0/">
+<link rel="canonical" href="http://jobinson.ga/软件生产线/2015/04/14/%E8%B7%A8%E5%B9%B3%E5%8F%B0%E5%BC%80%E5%8F%91%E4%B9%8B%E7%A9%BF%E6%A2%AD%E5%A4%9A%E4%B8%AA%E7%B3%BB%E7%BB%9F%E5%B9%B3%E5%8F%B0/">
 
 <!-- 皮肤样式 -->
 <link rel="stylesheet" href="/themes/atlas/css/style.css">
@@ -95,7 +95,7 @@
   </header>
 
   <article class="post-content">
-    <h2 id="section">遇到的问题：</h2>
+    <h2 id="section">情况</h2>
 
 <p>刚好接了朋友一个烂尾工程，工程用.net开发的，很乱。</p>
 
@@ -105,13 +105,13 @@
 
 <h2 id="section-1">我的需求和遇到的问题</h2>
 
-<p>需要：由于本人已经好多年在linux下生存，所有的生态链全部是用linux的，我需要用命令行，需要用软链，需要用emacs等，我需要统一整齐的管理文件，我不想用盗版软件！！！</p>
-
-<p>遇到的问题：win实在太慢了，配置那么高级的电脑用各种软件却比我十年前标准配置的电脑还慢。</p>
+<p>遇到的问题：win实在太慢了，配置那么高级的电脑用各种软件却比我十年前标准配置的电脑还慢。——虚拟机里的linux倒是很快。</p>
 
 <p>window下搞开发实在很不方便，虽说有各种整合开发环境，但还是各种欠缺欠缺，比如iojs之类的构建、一些命令行下才可用的包，emacs之类的也很不方便……太多需要配置了。</p>
 
-<p>还有另一个让我头疼的问题：由于开发用的电脑不是我的，没法重装系统。</p>
+<p>还有另一个让我头疼的问题：由于开发用的电脑不是我的，没法重装系统，项目完后要还回去。</p>
+
+<p>需要：本人已经好多年在linux下生存，所有的生态链全部是用linux的，我需要用命令行，需要用软链，需要用emacs等，我需要统一整齐的管理文件，我不想用盗版软件！！！</p>
 
 <p>经过几天郁闷的双电脑+双手机开发后，终于想到办法，解决这个 穿梭在各个平台设备开发的问题。</p>
 
@@ -123,18 +123,24 @@
 
 <p>需要实现的功能：三机同步。</p>
 
-<h2 id="section-3">解决方案</h2>
+<h2 id="section-3">具体解决方式</h2>
 
-<p>自己电脑：开发所需的东西，全用 git管理起来，可公开的全部github，不好公开的全部bitbucket或者gitlab 私库。</p>
+<p>自用电脑：开发所需的东西，全用 git管理起来，可公开的全部github，不好公开的全部bitbucket或者gitlab 私库。</p>
 
 <p>项目的电脑：尽可能少用其本身软件，只用虚拟机，并且把虚拟机快照化，这样可以快速启动所需的环境。</p>
 
-<p>更多探索：可自定义一个 <strong>某人开发专用 标箱</strong> 一劳永逸解决。vagrant 使用 vbox或者qemu。</p>
-
-<p>为了以备不时之需，还装了cygwin+emacs。</p>
+<p>为了以备不时之需，window还装了cygwin+emacs。</p>
 
 <p>软件：
-cygwin和虚拟机都装了git 和 emacs，emacs配置全部拷自我电脑。</p>
+cygwin和虚拟机都装了git 和 emacs，emacs配置全部拷自我自用电脑。</p>
+
+<p>更多探索：可自定义一个 <strong>某人开发专用 标软箱</strong> 一劳永逸解决。跨平台需要使用的虚拟机vbox或者qemu，配置则有三种选择：</p>
+
+<ul>
+  <li>vbox导出镜像+说明：安装好了，稍微配置下。</li>
+  <li>vagrant镜像+配置：超大，因为win下还需要安装 vagrant和ssh工具。也是系统安装好了，稍微配置下。</li>
+  <li>nixos或者类似一体化系统：最小！！需要346M的安装镜像。安装时间难说（因为网速！！！）。</li>
+</ul>
 
 <p>手机：一个编辑器+一个可管理git的工具。</p>
 
@@ -157,10 +163,10 @@ cygwin和虚拟机都装了git 和 emacs，emacs配置全部拷自我电脑。</
 <p>平台规划：</p>
 
 <ul>
-  <li>开发用：sabayon（开发需要底层版本可控+多版本共存，所以选择了gentoo系），桌面系统使用 lxde 或者其他小型窗口管理器。开发环境emacs，编译环境node.js cordova</li>
+  <li>开发用：nixos（开发需要底层版本可控+多版本共存，一开始选择了gentoo系，后来遇到nixos），桌面系统使用 lxde 或者其他小型窗口管理器。开发环境emacs，编译环境node.js cordova</li>
   <li>运行应用用：
     <ul>
-      <li>给php的：coreos（网络不通！！！！所以只能作罢）或者其他极简部署用系统，其他可选 ubuntu server 或者 centos等，运行php类，java类，</li>
+      <li>给php的：本来想用coreos，无奈网络不通！！！！所以只能作罢）或者其他极简部署用系统，其他可选 ubuntu server 或者 centos等，运行php类，java类，</li>
       <li>给 .net的：win 2008 server运行.net类，主机极致化。</li>
     </ul>
   </li>
@@ -171,17 +177,6 @@ cygwin和虚拟机都装了git 和 emacs，emacs配置全部拷自我电脑。</
     </ul>
   </li>
 </ul>
-
-<p>sabayon 虽然根源于gentoo，但其内建双套软件管理工具的灵活机制，使得大部分不用编译。可支持开发经常需要的<strong>多版本共存</strong>。</p>
-
-<p>支持两套软件管理工具：</p>
-
-<ul>
-  <li>entropy用来管理二进制包，相当于archlinux pacman</li>
-  <li>portage 用来管理源码包，相当于 archlinux makepkg abs</li>
-</ul>
-
-<p>安装时有问题，直接下载镜像解决。两个预定的用户名和密码： root/sabayon; sabayon/sabayon</p>
 
 <h4 id="vbox">vbox模拟</h4>
 
@@ -238,16 +233,18 @@ cygwin和虚拟机都装了git 和 emacs，emacs配置全部拷自我电脑。</
 <pre><code>VBoxClient
 </code></pre>
 
-<p>也可以一次启动所有</p>
+<p>也可以一次启动所有 </p>
 
 <pre><code>VBoxClientAll
 </code></pre>
 
 <p>让其启动即可使用这些服务：不过不建议这么做，因为出问题的时候，就没法救。如果有桌面，把VBoxClientAll 加入到autostart中，如果没有，就加入到  <code>.xinitrc</code></p>
 
-<h5 id="section-9">文件共享设置：</h5>
+<h3 id="section-9">网络设置</h3>
 
-<h5 id="section-10">自动加载</h5>
+<h5 id="section-10">文件共享设置：</h5>
+
+<h5 id="section-11">自动加载</h5>
 
 <p>把用户加入到vboxsf组中。</p>
 
@@ -263,7 +260,7 @@ cygwin和虚拟机都装了git 和 emacs，emacs配置全部拷自我电脑。</
 
 <p>如果：仍然无法自动加载，可手动新建一目录：/media/sf_共享文件夹名字</p>
 
-<h5 id="section-11">手动加载</h5>
+<h5 id="section-12">手动加载</h5>
 
 <p>也可以手动加载：</p>
 
@@ -324,6 +321,10 @@ mount -t vboxsf -o uid=1000,gid=1000 home /mnt/
 
 <h3 id="qemu">qemu模拟</h3>
 
+<h3 id="winqemu">win上用qemu</h3>
+
+<h3 id="linuxqemu">linux上用qemu</h3>
+
 <h4 id="qemulinux">qemu模拟linux</h4>
 
 <h5 id="linux--qemu-macos">linux + qemu 安装macos</h5>
@@ -335,21 +336,21 @@ mount -t vboxsf -o uid=1000,gid=1000 home /mnt/
 
 <h3 id="linuxioscygwin">linux系统下的ios开发环境/cygwin也类似</h3>
 
-<h2 id="section-12">手机开发测试环境配置</h2>
+<h2 id="section-13">手机开发测试环境配置</h2>
 
 <ul>
   <li><a href="http://www.appsfinder.fr">查找应用</a></li>
   <li><a href="http://appcrawlr.com">另一个查找应用的地方</a></li>
 </ul>
 
-<h3 id="section-13">在手机上运行各种应用</h3>
+<h3 id="section-14">在手机上运行各种应用</h3>
 
 <p>有空可探索：</p>
 
 <ul>
   <li>android + linux deploy 或者 debkit：需要root</li>
   <li>Android + Linux Chroot + Node.js</li>
-  <li>firefoxos +</li>
+  <li>firefoxos + </li>
   <li>JXCore One of the key features in the recent release was the ability to run Node.js applications on mobile, both Android and iOS, while leveraging the full Node.js ecosystem on npm.</li>
 </ul>
 
@@ -395,17 +396,17 @@ echo export GIT_SSH=~/sssh &gt;&gt; .bashrc
 
 <p>到这步搞定！</p>
 
-<h3 id="section-14">三平台多终端开发环境搭建</h3>
+<h3 id="section-15">三平台多终端开发环境搭建</h3>
 
 <p>实质是两种：本地编译（编译的工具链和编译量都很大！）或者两个虚拟机（linux和mac os）里的cordova编译</p>
 
 <p>另文说明。</p>
 
-<h3 id="section-15">更多探索</h3>
+<h3 id="section-16">更多探索</h3>
 
 <p>其实这样还是不够方便的，除了开发，测试也需要类似的环境，所以，最后探索的应该是 容器类工具。</p>
 
-<h3 id="section-16">附带几句牢骚：</h3>
+<h3 id="section-17">附带几句牢骚：</h3>
 
 <p>这几天被苹果系统问题卡住了所有的进度了：不是因为技术难度高，而是烦，尽搞些没用的限制——就有点像当年某些游戏用了俄国某种特别变态的加密程序，导致正版玩家体验也严重不爽一样，纯粹就是防贼防过头了。</p>
 
@@ -440,7 +441,7 @@ echo export GIT_SSH=~/sssh &gt;&gt; .bashrc
     <!--上一篇 话题 下一篇-->
     
     <div class="post-pre">
-      <a href="/%E6%95%A6%E7%85%8C%E4%B9%8B%E8%B7%AF/2015/04/13/%E6%97%A9%E5%B9%B2%E5%90%97%E5%8E%BB%E4%BA%86/">早干吗去了： 我缺骨干不缺项目◁◀前篇</a>
+      <a href="/敦煌之路/2015/04/13/%E6%97%A9%E5%B9%B2%E5%90%97%E5%8E%BB%E4%BA%86/">早干吗去了： 我缺骨干不缺项目◁◀前篇</a>
     </div>
     
     
@@ -449,7 +450,7 @@ echo export GIT_SSH=~/sssh &gt;&gt; .bashrc
     
     
     <div class="post-next">
-      <a href="/%E8%BD%AF%E4%BB%B6%E7%94%9F%E4%BA%A7%E7%BA%BF/2015/04/15/cygwin%E9%85%8D%E7%BD%AE%E4%B9%8B%E5%8C%85%E7%AE%A1%E7%90%86%E5%92%8C%E6%9C%8D%E5%8A%A1/">后篇▶▷cygwin配置之包管理和伺服</a>
+      <a href="/软件生产线/2015/04/15/cygwin%E9%85%8D%E7%BD%AE%E4%B9%8B%E5%8C%85%E7%AE%A1%E7%90%86%E5%92%8C%E6%9C%8D%E5%8A%A1/">后篇▶▷cygwin配置之包管理和伺服</a>
     </div>
     
     

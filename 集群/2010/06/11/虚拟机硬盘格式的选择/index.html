@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>虚拟机硬盘格式的选择：raw、qcow2等</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/集群/2010/06/11/%E8%99%9A%E6%8B%9F%E6%9C%BA%E7%A1%AC%E7%9B%98%E6%A0%BC%E5%BC%8F%E7%9A%84%E9%80%89%E6%8B%A9/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="虚拟机硬盘格式的选择：raw、qcow2等">虚拟机硬盘格式的选择：raw、qcow2等</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>【摘要】：</b><br/></p>
+      
+
+      
+      <p class="post-tag"><b>【话题】：</b>
+        
+        <a href="/话题列表/#虚拟机-ref">虚拟机
+        <sup>3</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#硬盘格式-ref">硬盘格式
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#qemu-ref">qemu
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#qcow2-ref">qcow2
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#raw-ref">raw
+        <sup>1</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#集群-ref">【集群】</a>
+        
+      </span>
+      
+      
+      创建时间：2010-06-11 17:40:46
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <h2 id="section">2009年的印象：</h2>
+
+<p>曾经有过一段时间，徘徊于对虚拟机硬盘格式的迷惑中，2009年，终于得出了一些结论（下面的思路基本通用于其他虚拟机）</p>
+
+<p>搜了下，发现大部分用qemu或者kvm的，都默认使用qcow2来作为虚拟硬盘，但qemu官方默认是用raw。</p>
+
+<p>下面是qemu wiki对两种格式的描述：</p>
+
+<blockquote>
+  <p><strong>raw</strong>
+Raw disk image format (default). This format has the advantage of being simple and easily exportable to all other emulators. If your file system supports holes (for example in ext2 or ext3 on Linux or NTFS on Windows), then only the written sectors will reserve space. Use qemu-img info to know the real size used by the image or ls -ls on Unix/Linux.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>qcow2</strong>
+QEMU image format, the most versatile format. Use it to have smaller images (useful if your filesystem does not supports holes, for example on Windows), optional AES encryption, zlib based compression and support of multiple VM snapshots.</p>
+</blockquote>
+
+<p>raw的优势（能找到的相关资料太少，不知道是不是理解有误）：</p>
+
+<ol>
+  <li><strong>简单，并能够导出为其他虚拟机的虚拟硬盘格式</strong></li>
+  <li><strong>根据实际使用量来占用空间使用量，而非原先设定的最大值</strong>（比如设定最高20G，而实际只使用3G）。——需要宿主分区支持 散戳（随机取位 hole）（比如ext2 ext3 ntfs等）</li>
+  <li><strong>以后能够改变空间最大值</strong>（把最高值20G提高到200G，qcow2也可以，不过要先转为raw）</li>
+  <li><strong>能够直接被宿主机挂载</strong>，不用开虚拟机即可在宿主和虚拟机间进行数据传输（注意，此时虚拟机不要开）</li>
+  <li>性能优越：根据<a href="https://fedoraproject.org/wiki/Features/KVM_qcow2_Performance">fedora12的wiki</a>，说测试结果是raw比qcow2性能更好，即使是新版的qcow2。</li>
+</ol>
+
+<p>而qcow2的优势：</p>
+
+<ol>
+  <li>更小的虚拟硬盘空间（尤其是宿主分区不支持hole的情况下，比如win fat32）</li>
+  <li>加密，压缩，快照。</li>
+</ol>
+
+<p>如果单纯靠这些信息，那么raw好像更有优势，而且更方便。</p>
+
+<p>那么，为什么大家都默认使用qcow2呢？为什么？</p>
+
+<p>同样的，还有vmdk vdi等虚拟机硬盘格式的优劣表现在哪方面呢？</p>
+
+<p>又看到一个资料，说raw 格式是一种<strong>”直读直写”的格式,不具备特殊的特性</strong>。也就是说，qcow2具备的这四个特性：加密，压缩，快照，旧文件系统强化，raw就没有。</p>
+
+<h2 id="section-1">2010年更新：</h2>
+
+<p>更进一步认识，并修正上面的看法。</p>
+
+<p>但今天（2010年）再回过头来看，发现其实raw更好：
+raw相比qcow2就缺乏的四个功能，但都能通过别的方式解决：</p>
+
+<ol>
+  <li><strong>加密功能</strong>：把raw本身就当普通文件加密之搞定</li>
+  <li><strong>快照功能</strong>：把raw放在具备 磁盘版本管理（比如zfs）磁盘系统 中，具体需要的设置可能稍微有点多。</li>
+  <li><strong>硬盘压缩</strong>：就当普通电脑文件压缩之即可</li>
+  <li><strong>宿主机不支持按需扩张模式</strong>（hole：打孔机时代的术语）：这个可以一开始不要设太大，后面自己可根据使用情况来扩展raw的最大值。而且，2010后的新文件系统，几乎都已经支持hole</li>
+</ol>
+
+<p>而raw有qcow2所无法媲美的功能：</p>
+
+<ol>
+  <li><strong>效率高于qcow2</strong></li>
+  <li><strong>直接读写虚拟机硬盘里面的文件，这比较“暴力”</strong>，但既然可以这么暴力，那么也就不怕虚拟机出任何问题了。</li>
+  <li><strong>通用性好，是转为其他虚拟机的格式的通用中间格式</strong>，这样就不用担心转换虚拟机系统了。</li>
+</ol>
+
+<h3 id="section-2">补充一：</h3>
+
+<p>raw在生产环境下也这么好？并非如此！！！</p>
+
+<p>因为 raw的绝大部分优势，都是基于 <strong>虚拟机关机状态</strong>的：
+比如：直接挂载，转换格式，改空间最大值，都是需要关机状态；
+比如 加密，快照，压缩，更是需要 随时关机。（虽然不关机也可以，但这方面并没有经过多少验证，安全性稳定性如何存疑。）</p>
+
+<p>而生产环境大都需要的是：在线方式实现／不关机就可搞定（即使是硬盘分区之类底层操作，所以才会发展出lvm之类的东东）。因此，在生产环境下无法发挥其优势。</p>
+
+<p>总之，如果要 <strong>在线</strong> 具备更高级的硬盘特性／稳定性／有保障的品质追求，那么raw可能不是个好选择。</p>
+
+<h3 id="section-3">补充2：</h3>
+
+<p>qemu可支持的类型，比较全面，默认是raw。</p>
+
+<ul>
+  <li>raw 
+  (默认) the raw format is a plain binary image of the disc image, and is very portable. 当文件系统支持 散放文件(sparse files)时，可根据实际使用量占用磁盘空间大小。</li>
+  <li>cloop 
+  Compressed Loop format, mainly used for reading Knoppix and similar live CD image formats</li>
+  <li>cow 
+  copy-on-write format, 旧有格式，基于兼容方面考虑支持，但在视窗操作系统上不支持</li>
+  <li>qcow 
+  the old QEMU copy-on-write format, 旧有格式，基于兼容方面考虑支持，简易用qcow2取代。</li>
+  <li>qcow2 
+  QEMU copy-on-write format，可带多重快照；对文件系统不支持 散放文件时，仍可根据实际用量占用磁盘空间大小，从而使镜像较小；可选加密（AES），可选压缩（zlib）。 </li>
+  <li>vmdk 
+  VMware 3 &amp; 4, or 6 image format, for exchanging images with that product</li>
+  <li>vdi 
+  VirtualBox 1.1 compatible image format, for exchanging images with VirtualBox. </li>
+</ul>
+
+<h2 id="section-4">2015更新</h2>
+
+<p><strong>qcow2的快照</strong>，如果是状态快照，raw格式需要复制内存中的raw状态，才可实现 状态快照。</p>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+  
+  <!-- 有言评论 -->
+  <div id="uyan_frame">
+    <h2>■评论</h2>
+  </div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a href="/操作系统/2010/06/03/%E4%BD%A0%E7%89%9B%E5%8F%89%E5%8F%91%E8%A1%8C%E7%89%88%E9%80%89%E6%8B%A9/">你牛叉发行版选择◁◀前篇</a>
+    </div>
+    
+    
+    <!--回到头部-->
+    <div class="back-top"><a href="#虚拟机硬盘格式的选择：raw、qcow2等">△▲回头▲△</a></div> 
+    
+    
+    <div class="post-next">
+      <a href="/操作系统/2011/01/19/%E6%88%91%E8%A6%81%E6%8D%A2%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">后篇▶▷我要换操作系统</a>
+    </div>
+    
+    
+  </div>
+
+  <!--页面底部自动浮现-->
+  <div class="post-reletive">
+    <!--相关文章-->
+
+  </div>
+
+</div>
+
+
+  <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2015版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接，谢谢合作！</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+      <span>致谢： </br>
+        <a href="http://www.github.com">空间：github</a>，
+        <a href="http://jekyllrb.com">构建：jekyll</a>，
+        <a href="http://freenom.com/">域名：freenom</a>，
+        以及一切对本人有帮助的人事物！</span>
+      <span>
+        <!--百度统计-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+      </span>
+    </li>
+  </ul>
+</footer>
+
+
+    
+
+  
+</div>
+
+
+
+
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>操作系统NixOS：系统安装</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/操作系统/2015/10/02/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FNixOS%E5%AE%89%E8%A3%85/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="操作系统NixOS：系统安装">操作系统NixOS：系统安装</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>【摘要】：</b><br/></p>
+      
+
+      
+      <p class="post-tag"><b>【话题】：</b>
+        
+        <a href="/话题列表/#操作系统-ref">操作系统
+        <sup>7</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#安装-ref">安装
+        <sup>2</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#NixOS-ref">NixOS
+        <sup>2</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#操作系统-ref">【操作系统】</a>
+        
+      </span>
+      
+      
+      创建时间：2015-10-02 21:41:38
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <h2 id="section">系统安装：</h2>
+
+<ol>
+  <li>
+    <p>先分区：可使用镜像里带的gparted，如果下载的镜像没这东西，随便找张linux安装盘，利用里面的工具分区格式化之……然后退出，使用nixos镜像。</p>
+  </li>
+  <li>
+    <p>挂载和启用swap</p>
+
+    <pre><code> mount /dev/sdx1 /mnt/
+ swapon /dev/sdx2
+</code></pre>
+  </li>
+  <li>
+    <p>生成系统配置文件模板：会生成两个配置文件 configuration.nix（总控） 和 hardware-configuration.nix（分区设定）</p>
+
+    <pre><code> nixos-generate-config --root /mnt
+</code></pre>
+  </li>
+  <li>
+    <p>修改配置：行首是<code>#</code>的表示不执行，默认大部分都不执行，需要改为可执行（去掉行首的<code>#</code>）</p>
+  </li>
+</ol>
+
+<p>需要修改的项：</p>
+
+<ul>
+  <li>boot.loader.grub.device  指定引导器安装位置</li>
+  <li>networking.hostName 设定主机名</li>
+  <li>i18n 设定语言，此处暂时不改，以免终端下乱码</li>
+  <li>time.timeZone 设定时区</li>
+  <li>environment.systemPackages 设定系统级软件，默认只有wget</li>
+  <li>services.openssh.enable 启用的守护进程，有一系列，根据需要开启关闭。</li>
+  <li>设置新用户名和权限组（密码稍候设置）</li>
+</ul>
+
+<p>具体设置可<code>man configuration.nix</code> 查看。</p>
+
+<ul>
+  <li><a href="https://nixos.org/repos/nix/configurations/trunk/">简单配置示例</a></li>
+  <li><a href="https://github.com/Fuuzetsu/nix-project-defaults/blob/master/nixos-config/configuration.nix">haskel开发者的配置示例</a></li>
+  <li><a href="http://beyermatthias.de/blog/2014/12/05/first-steps-to-nixos/">多机配置</a></li>
+</ul>
+
+<ol>
+  <li>
+    <p>配置完成后，安装系统：</p>
+
+    <p>nixos-install</p>
+  </li>
+</ol>
+
+<p>若因为网络啥的问题安装失败或者更改了configuration.nix，要继续安装或者刷新配置，也是这个命令<code>nixos-install</code></p>
+
+<ol>
+  <li>
+    <p>安装到最后一步，会要求设置root密码：修改密码用 <code>passwd</code></p>
+
+    <p>setting root password…
+ Enter new UNIX password: <em>**
+ Retype new UNIX password: **</em></p>
+  </li>
+  <li>
+    <p>全部搞定后，重启</p>
+
+    <p>reboot</p>
+  </li>
+</ol>
+
+<p>进入系统后，新建用户：比如下面</p>
+
+<pre><code>useradd -c 'Eelco Dolstra' -m eelco
+passwd eelco
+</code></pre>
+
+<p>看看有啥软件可安装</p>
+
+<pre><code>nix-env -qa \*
+</code></pre>
+
+<p>安装</p>
+
+<pre><code>nix-env -i w3m
+</code></pre>
+
+<h2 id="section-1">其他</h2>
+
+<p>nixos安装操作：</p>
+
+<ul>
+  <li>alt-F1 安装图形界面</li>
+  <li>alt-F2 终端1</li>
+  <li>alt-F3 终端2</li>
+  <li>atl-F4 输出信息</li>
+</ul>
+
+<h2 id="section-2">配置示例</h2>
+
+<p>```
+# Edit this configuration file to define what should be installed on
+# your system.  Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).</p>
+
+<p>{ config, pkgs, … }:</p>
+
+<p>{
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+    ];</p>
+
+<p># Use the GRUB 2 boot loader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.version = 2;
+  # Define on which hard drive you want to install Grub.
+  boot.loader.grub.device = “/dev/sda”;</p>
+
+<h1 id="file-system-mount-point">file system mount point</h1>
+
+<p>fileSystems = [
+      { mountPoint = “/home”;
+        device = “/dev/disk/by-uuid/4955738b-a555-4e5c-8bc7-a9b42599f777”;
+        fsType = “ext4”;
+      }
+      { mountPoint = “/docs”;
+        device = “/dev/disk/by-uuid/b645272f-dad7-40aa-9701-6cd6a1657eb0d”;
+        fsType = “ext4”;
+      }
+  ];</p>
+
+<p># networking setting</p>
+
+<p>networking = {
+        # nameservers = [ “8.8.8.8” ];
+      hostName = “atlas”; # Define your hostname.
+        extraHosts = “74.125.206.93 dl-ssl.google.com”;
+      # networkmanager.enable = true;
+      wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+      enableB43Firmware = true;  # for my laptop wireless card firmware
+  };</p>
+
+<p># Select internationalisation properties.
+  i18n = {
+     consoleFont = “Lat2-Terminus16”;
+     consoleKeyMap = “us”;
+     defaultLocale = “en_US.UTF-8”;
+     supportedLocales = [ “en_US.UTF-8/UTF-8”
+                “zh_CN.UTF-8/UTF-8”
+                “zh_CN/GB2312”
+                “zh_CN.GBK/GBK”
+                “zh_CN.GB18030/GB18030”
+                “zh_TW.UTF-8/UTF-8”
+                “zh_TW/BIG5” ];
+   };</p>
+
+<p># Set your time zone.
+   time.timeZone = “Asia/Shanghai”;</p>
+
+<p># List packages installed in system profile. To search by name, run:
+  # $ nix-env -qaP | grep wget
+  environment.systemPackages = with pkgs; [
+     wget
+     openbox
+     sddm
+     git
+     w3m
+     luakit
+     firefox fcitx goldendict
+     calligra emacs libreoffice okular
+    wqy-zenhei kde-l10n-zh_CN virt-manager
+    openjdk openjre
+    android-sdk
+    gwenview gimp inkscape blender
+   ];</p>
+
+<p># allow unfree packages
+  nixpkgs.config.allowUnfree = true;</p>
+
+<p># nix mirrors
+  nix.trustedBinaryCaches = [
+      “http://cache.nixos.org”
+  ];</p>
+
+<p>boot.kernelModules = [ “kvm-amd” “wl” “tun” “virtio” ];</p>
+
+<p># 虚拟化
+  virtualisation = {
+        # qemu</p>
+
+<pre><code>    # libvirtd for virt-manager
+     libvirtd.enable = true;
+};
+</code></pre>
+
+<p># List services that you want to enable:</p>
+
+<pre><code>    # Enable the OpenSSH daemon.
+    # services.openssh.enable = true;
+
+    # Enable CUPS to print documents.
+    # services.printing.enable = true;
+</code></pre>
+
+<p># GUI configuration
+  services.xserver = {
+        # Enable the X11 windowing system.
+        enable = true;
+        layout = “us”;
+        xkbOptions = “eurosign:e”;</p>
+
+<pre><code>    ## for my ati graphics card
+    # services.xserver.videoDrivers = [ "ati_unfree" ];
+
+    # Enable the KDE Desktop Environment.
+    displayManager.sddm.enable = true;
+    # displayManager.kdm.enable = true;
+    desktopManager.kde4.enable = true;
+    # Enable openbox
+    windowManager.openbox.enable = true;    };
+</code></pre>
+
+<p>## hardware acceleration for 32-bit programs
+  # hardware.opengl.driSupport32Bit = true;
+  # Define a user account. Don’t forget to set a password with ‘passwd’.
+  # users.extraUsers.guest = {
+  #   isNormalUser = true;
+  #   uid = 1000;
+  # };
+  users.extraUsers.atlas = {
+        uid = 1000;
+        group = “users”;
+        extraGroups = [“wheel” “audio” “video” “libvirtd”];
+        home = “/home/atlas”;
+        isSystemUser = false;
+        useDefaultShell = true;
+        initialPassword = “1234567890”;
+        };</p>
+
+<p># The NixOS release to be compatible with for stateful data such as databases.
+  system.stateVersion = “15.09”;
+}
+```</p>
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+  
+  <!-- 有言评论 -->
+  <div id="uyan_frame">
+    <h2>■评论</h2>
+  </div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a href="/操作系统/2015/10/01/%E5%B7%A5%E4%BD%9C%E7%94%A8%E7%9A%84%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9FNixOS/">从archlinux切换到NixOS◁◀前篇</a>
+    </div>
+    
+    
+    <!--回到头部-->
+    <div class="back-top"><a href="#操作系统NixOS：系统安装">△▲回头▲△</a></div> 
+    
+    
+    <div class="post-next">
+      <a href="/集群/2015/11/21/%E5%85%AC%E7%A7%81%E5%8A%A8%E6%80%81%E8%B0%83%E8%8A%82%E9%9B%86%E7%BE%A4%E7%A0%94%E7%A9%B6/">后篇▶▷【整理】公私动态调节集群研究</a>
+    </div>
+    
+    
+  </div>
+
+  <!--页面底部自动浮现-->
+  <div class="post-reletive">
+    <!--相关文章-->
+
+  </div>
+
+</div>
+
+
+  <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2015版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接，谢谢合作！</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+      <span>致谢： </br>
+        <a href="http://www.github.com">空间：github</a>，
+        <a href="http://jekyllrb.com">构建：jekyll</a>，
+        <a href="http://freenom.com/">域名：freenom</a>，
+        以及一切对本人有帮助的人事物！</span>
+      <span>
+        <!--百度统计-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+      </span>
+    </li>
+  </ul>
+</footer>
+
+
+    
+
+  
+</div>
+
+
+
+
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>

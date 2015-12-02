@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>使用jekyll生成静态站点</title>
+<meta name="description" content="黑传说的学习笔记">
+
+<link rel="canonical" href="http://jobinson.ga/建站之路/2014/04/27/%E7%94%A8jekyll%E7%94%9F%E6%88%90%E9%9D%99%E6%80%81%E7%AB%99/">
+
+<!-- 皮肤样式 -->
+<link rel="stylesheet" href="/themes/atlas/css/style.css">
+
+<!-- 首页和404各站特异的样式 -->
+<link rel="stylesheet" href="/static/main.css">
+
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+
+</head>
+    
+  <body>
+
+      <div class="left-top-hook"></div><!-- 站内信息 -->
+<div class="right-top-hook"></div><!-- 页内信息 -->
+<div class="left-middle-hook"></div><!-- 页内操作 -->
+<div class="right-middle-hook"></div><!-- 页内导航 -->
+<div class="right-bottom-hook"></div><!-- 站内系统 -->
+<div class="left-bottom-hook"></div><!-- 站内栏目 -->
+
+<header class="site-header">  
+  <nav class="site-nav">
+    <ul>
+      <li><a href="/">外立面</a></li>
+      <li><a href="/分类列表/">按分类查看</a></li>
+      <li><a href="/话题列表/">按话题查看</a></li>
+      <li><a href="/时间列表/">按时间查看</a></li>
+      <li><a href="/友情链接/">好友关系</a></li>
+      <li><a href="/关于我/">关于我</a></li>
+    </ul>
+  </nav>
+  
+</header>  
+
+<nav class="outline toc">
+</nav> 
+
+      
+      <div class="post">
+  
+  <header class="post-header">
+    <h1 id="使用jekyll生成静态站点">使用jekyll生成静态站点</h1>
+
+    <div class="post-abstract">
+      
+      <p><b>【摘要】：</b><br/>使用jekyll生成静态站</p>
+      
+
+      
+      <p class="post-tag"><b>【话题】：</b>
+        
+        <a href="/话题列表/#jekyll-ref">jekyll
+        <sup>1</sup></a>
+        &nbsp;
+        
+        <a href="/话题列表/#静态站-ref">静态站
+        <sup>4</sup></a>
+        &nbsp;
+        
+      </p>
+      
+      
+    </div>
+
+    <p class="meta">
+      
+      <span class="post-categories">类别：
+        
+        <a href="/分类列表/#建站之路-ref">【建站之路】</a>
+        
+      </span>
+      
+      
+      创建时间：2014-04-27 04:34:21
+      
+      
+    </p>
+    
+  </header>
+
+  <article class="post-content">
+    <p><b style="background-color:red;">注：由于本人换用别的生成引擎，因此，此文不再更新，不足部分请参考其他文章。</b></p>
+
+<h2 id="jekyll">定制日志系统：jekyll</h2>
+
+<ul>
+  <li>jekyll：静态网站生成器，可将markdown和textile文档转为html，可使用liquid模板</li>
+  <li>github pages对于上传的文件，会用jekyll处理后再发布。</li>
+  <li>可能缺点：不适合大型网站，因为没有用到数据库，每运行一次都必须遍历全部的文本文件，网站越大，生成时间越长。——这是可以解决的</li>
+</ul>
+
+<p>两种方式：</p>
+
+<ol>
+  <li>利用github的自动生成：settings——》Automatic Page Generator——》Continue To Layouts——》选择系统提供的模板——》发布。
+之后生成一个叫gh-pages仓库，里面是生成的html文件。</li>
+  <li>利用jekyll定制，或者是别的静态站点生成工具定制</li>
+</ol>
+
+<p>下面使用jekyll来生成静态站，所需软件：ruby gem</p>
+
+<p>简单安装过程：</p>
+
+<pre><code>gem install jekyll
+cd 本地想存放站点文件夹的上级文件夹
+~/.gem/ruby/2.1.0/bin/jekyll new 站点文件夹
+cd 站点文件夹
+jekyll serve
+# =&gt; 浏览器中查看 http://localhost:4000
+</code></pre>
+
+<p>查看文件夹，结构如下：</p>
+
+<pre><code>文件夹名/
+├── _config.yml
+├── _includes
+│   ├── footer.html
+│   ├── head.html
+│   └── header.html
+├── _layouts
+│   ├── default.html
+│   ├── page.html
+│   └── post.html
+├── _posts
+│   └── 2014-08-06-welcome-to-jekyll.markdown
+├── css
+│   └── main.css
+├── feed.xml
+├── about.md
+└── index.html
+</code></pre>
+
+<p>说明：</p>
+
+<ul>
+  <li>自己写的markdown文件，放在 <em>_posts</em> 文件夹下，可用子目录（用于分类），文件命名方式必须是：<em>年-月-日-名字.md</em> 。</li>
+  <li><em>_layouts</em> 是页面模板</li>
+  <li>Jekyll会把任何不以下划线开头的文件和目录都复制/生成到网站（在本地是生成到_site/目录)。</li>
+</ul>
+
+<p>想存放静态文件，比如图片，css，js等，可以自己新建一个文件夹，比如名为： <em>static</em></p>
+
+<p><strong>注意</strong>：由于ruby2 的路径编码问题，jekyll上面的文件名不要用中文，会导致出现编码问题，jekyll站点文件里面可以utf-8。</p>
+
+<h3 id="section">测试效果：</h3>
+
+<p>本地写markdown文件，放入 <em>_post</em> 文件夹中，如果想测试下效果，可以本地使用jekyll生成，然后在浏览器中查看。</p>
+
+<pre><code>jekyll build
+# =&gt; 当前文件夹将生成到 ./_site
+</code></pre>
+
+<blockquote>
+  <p>问题：如何递增生成？可结合git的对比功能实现。</p>
+</blockquote>
+
+<h3 id="section-1">定制页面模板：</h3>
+
+<p>jekyll把 <em>_layouts</em> 目录中的文档看做是生成用的模板，如果某个文档中的头部变量声明中指定了layout，则Jekyll在生成页面时会使用该模板进行渲染，用文档的内容替换模板中的部分。模板之间可相互嵌套调用：</p>
+
+<pre><code>---
+layout: post
+...
+---
+</code></pre>
+
+<p>利用好Liquid语言的include语法能够带来很大的变量。被包含的页面部件需要放在_includes文件夹中。</p>
+
+<p>注意：不管文件的扩展名是md、html还是xml、txt，只要文件的头部包含变量声明，Jekyll的模板引擎就会对其进行处理。
+其中md和html文件都会处理为html，其他类型会保持扩展名。</p>
+
+<p>另外，liquid语法的引入，使得页面规则产生很大的变化，不能再简单的以markdown来写了。尤其是程序中带有大括号的。</p>
+
+<h3 id="section-2">写文章页面的定制</h3>
+
+<p>markdown文章可进一步定制：</p>
+
+<pre><code>---
+layout: default
+title: "这是标题"
+date: 2014-04-23 09:45:26
+description: "这是摘要"
+categories: 这是存放的目录
+tags: [话题1, 话题2]
+lastmod: 2014-04-24
+---
+
+&lt;h2&gt;{{ page.title }}&lt;/h2&gt;
+
+&lt;p&gt;我的第一篇文章天地玄黄&lt;/p&gt;
+
+&lt;p&gt;{{ page.date | date: '%Y-%m-%d' }}&lt;/p&gt;
+</code></pre>
+
+<p>说明：</p>
+
+<ul>
+  <li>每篇文章的头部，必须用一个 <em>yaml格式</em> 设置元数据。它用三根短划线 <code>---</code> ，标记开始和结束，里面每一行代表一种设置。</li>
+  <li><code>layout:default</code> ，表示该文章的模板使用 <em>_layouts</em> 目录下的 <em>default.html</em> 文件；</li>
+  <li><code>title: "这是标题"</code>，表示该文章的标题是”这是标题”，如果不设置这个值，默认嵌入文件名的标题的是”hello world”。</li>
+  <li><code>使用jekyll生成静态站点</code> 就是文件头中设置的”这是标题”，</li>
+  <li><code>2014-04-27 04:34:21 +0800</code> 则是嵌入文件名的日期（也可以在文件头重新定义date变量），</li>
+  <li><code>| date_to_string</code> 表示将 <code>page.date</code> 变量转化成人类可读的格式。
+此处我改年月日方式为 <code>| date: '%Y-%m-%d'</code> 显示。</li>
+  <li>
+    <p>此处要注意：由于加入了liquid模板语言，整个markdown语法有些变化。比如此处如果要原样输出liquid语言的话，需要加入 {/% raw %/} ，内嵌自身的话，出问题，行内呢？——至少就目前而言，这不是一个适合复杂编程的代码形式！两种形式解决这种嵌套自身出现的问题：转码，特殊规则</p>
+
+    <p>{/% raw %/}
+  raw in raw
+  {/% endraw %/}</p>
+  </li>
+</ul>
+
+<h3 id="section-3">定制导航</h3>
+
+<p>我是直接把 <em>_layout/default.html</em> 中的头部部分移到了新建文件 <em>_include/header.html</em> 中。</p>
+
+<p>下面是 心内求法 同学的的设置，更加动态：
+在 <em>_config.yml</em> 中定制</p>
+
+<pre><code>menuitems:
+    - name:         首页
+      url:          /index.html
+    - name:         分类
+      url:          /categories.html
+    - name:         话题
+      url:          /tags.html
+    - name:         归档
+      url:           /archive.html
+    - name:         读书
+      url:           /reading.html
+    - name:         工作
+      url:           /working.html
+    - name:         我是谁
+      url:           /about.html
+</code></pre>
+
+<p>然后在模板的导航部分添加：</p>
+
+<pre><code>&lt;ul class="nav"&gt;
+      {/% for item in site.menuitems %/}
+        {/% if item.url == page.url %/}
+        &lt;li class="active"&gt;
+        {/% else %/}
+        &lt;li&gt;
+        {/% endif %/}
+        &lt;a href=""&gt;&lt;/a&gt;
+        &lt;/li&gt;
+      {/% endfor %/}
+    &lt;/ul&gt;
+</code></pre>
+
+<p>注意：如果不是加入模板生成代码的话，可以直接用markdown来写，比如友情链接部分，用markdown来写明显比直接用html写来的高效。</p>
+
+<h3 id="section-4">定制首页</h3>
+
+<p>修改 <em>index.html</em> 文件，填入以下内容：</p>
+
+<h3 id="rss">分类、话题（标签）、归档和RSS</h3>
+
+<h3 id="section-5">文章摘要</h3>
+
+<p>如果有设定摘要的话，可以</p>
+
+<pre><code>{% if post.description %}&lt;span&gt;{{ post.description }}&lt;/span&gt;{% endif %}
+</code></pre>
+
+<h3 id="section-6">文章首段预览</h3>
+
+<p>如果需要文章首段预览的话，可加入：</p>
+
+<pre><code>&lt;span&gt;{{ post.excerpt }}&lt;/span&gt;
+</code></pre>
+
+<h3 id="section-7">话题（标签云）</h3>
+
+<p>js实现：</p>
+
+<pre><code>&lt;div class="tag-cloud"&gt;
+    {% for tag in site.tags %}
+    &lt;a href="/category/tags.html#{{ tag[0] }}-ref" id="{{ forloop.index }}" class="__tag" style="margin: 5px"&gt;{{ tag[0] }}&lt;/a&gt;
+    {% endfor %}
+  &lt;/div&gt;
+  &lt;script type="text/javascript"&gt;
+   $(function() {
+     var minFont = 12.0,
+     maxFont = 36.0,
+     diffFont = maxFont - minFont,
+     size = 0;
+     
+     {% assign max = 1.0 %}
+     {% for tag in site.tags %}
+     {% if tag[1].size &gt; max %}
+     {% assign max = tag[1].size %}
+     {% endif %}
+     {% endfor %}
+     
+     {% for tag in site.tags %}
+     size = (Math.log({{ tag[1].size }}) / Math.log({{ max }})) * diffFont + minFont;
+     $("#{{ forloop.index }}").css("font-size", size + "px");
+     {% endfor %}
+   });
+  &lt;/script&gt;
+</code></pre>
+
+<h3 id="section-8">分页</h3>
+
+<p>TODO: ajax分页 TODO: 浮动标题 on paginator</p>
+
+<h3 id="section-9">语法高亮</h3>
+
+<ul>
+  <li>利用外部资源，比如GitHub Gist。简单，但是需要使用外部链接或通过js嵌入到页面，不利于文档和代码的统一维护</li>
+  <li>使用js在前端渲染，比如google-code-prettify。简单高效，对语言的支持不够多</li>
+  <li>使用Jekyll插件，比如调用pygments。推荐方式，支持100多种语言。——已经默认启用！</li>
+</ul>
+
+<p>如下：其中，ruby是指定所用的代码名，linenos是显示行号</p>
+
+<pre><code>{% highlight ruby linenos %}
+def foo
+  puts 'foo'
+end
+{% endhighlight %}
+</code></pre>
+
+<p>效果如下：</p>
+
+<div>
+  <pre><code class="ruby">def foo
+    puts '长长长……长长长代码……长长长长代码……'
+    puts '长长长……长长长代码……长长长长代码……'
+    puts '长长长……长长长代码……长长长长代码……长长长……长长长代码……长长长长代码……'
+end</code></pre>
+</div>
+
+<p>更改样式，修改 <em>css</em> 文件夹下的 <em>syntax.css</em> 。</p>
+
+<p>各种格式看看： ~~双波浪线删除线~~   <em>单下划线下划线</em>  <em>单星斜体</em> <strong>双下划线加粗</strong> <strong>双星加粗</strong></p>
+
+<h3 id="section-10">页内跳转</h3>
+
+<p>回到头部：</p>
+
+<h3 id="section-11">文档目录</h3>
+
+<p>如果写比较长的文章，提供一个类似于文档大纲，进行导航可以方便阅读。</p>
+
+<p>两种方法：</p>
+
+<ul>
+  <li>静态的方法是直接生成大纲：插件实现：jekyll-toc-generator</li>
+  <li>用js来动态生成：这种方式加载东西少，但在不支持js的浏览器里，则无法使用。</li>
+</ul>
+
+<p>另外，为了兼容性，比如有的手机框架关闭了浏览器本身的跳转功能，因此，用双向连接的方式可以获得最大的兼容性。</p>
+
+<h3 id="section-12">使用公式</h3>
+
+<p>渲染引擎支持公式否？是否需要系统装有 latex？</p>
+
+<p>js渲染latex公式： <a href="http://www.mathjax.org/">Mathjax</a> ，缺点是动态加载，速度慢。</p>
+
+<p>优点：支持公式编号，这样方便引用</p>
+
+<p><a href="http://chen.yanping.me/cn/blog/2012/03/10/octopress-with-latex">参考</a></p>
+
+<p>试试 <script type="math/tex">\exp(-\frac{x^2}{2})</script> 代码 <script type="math/tex">\alpha + \beta</script></p>
+
+<div>
+  <pre><code class="js">&lt;script type=&quot;text/javascript&quot;
+       src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+    &lt;/script&gt;</code></pre>
+</div>
+
+<script type="math/tex; mode=display"> 
+e^x = \sum\_{n=0}^\infty \frac{x^n}{n!} = \lim\_{n\rightarrow\infty} (1+x/n)^n 
+</script>
+
+<h3 id="section-13">处理图片</h3>
+
+<p>设置一个 <code>IMAGE_ROOT</code> 变量，可以在post中设置，也可以在post的模板中通过指定的规则capture（或者assign）。</p>
+
+<p>则引可以使用/xxx.png的形式插入图片，便于以后的调整和管理。</p>
+
+<h3 id="section-14">处理表格</h3>
+
+<p>注：jekyll2之后，默认使用kramdown，可以自动处理表格。</p>
+
+<p>注：如果是jekyll1，使用 redcarpet引擎，需要在 <em>_config.yml</em> 中，添加下面两行：</p>
+
+<pre><code>redcarpet:
+    extensions: [tables]
+</code></pre>
+
+<p>参考并致谢：</p>
+
+<ul>
+  <li><a href="http://www.ruanyifeng.com/blog/2012/08/blogging_with_jekyll.html">Jekyll入门：阮一峰</a></li>
+  <li><a href="http://thinkinside.tk/2013/05/27/jekyll_mysite.html">Jekyll建站过程：心内求法</a></li>
+</ul>
+
+<h2 id="github-pages">使用github pages不支持的插件</h2>
+
+<h3 id="pandoc">问题：换用pandoc来渲染？</h3>
+
+<p>由于markdown+liquid会产生种种问题，因此，换用一种比较完美的转码方案。
+不知道pandoc对自身语法的支持情况如何？</p>
+
+<p>由于 Github Pages 并不支持 Pandoc，所以就需要在本地将站点完全生成好后再将它送到github上的<em>gh-pages</em>仓库里。</p>
+
+<p>为何需要本地生成好网站？</p>
+
+<ul>
+  <li>[Github Page] 不支持插件</li>
+  <li>[Github Page] 服务器上软件基于安全角度考虑，会限制较多</li>
+  <li>利用 [Github Page] 编译并发布网站相对比较耗时。
+很显然，既然已经在本地生成好了网站，再将代码上传到服务器重新编译一遍是挺多余的。</li>
+</ul>
+
+<p>虽然麻烦，但也带来几个优点：</p>
+
+<ol>
+  <li>本地生成，可以随心所欲地使用各种插件，或者换用别的静态站点生成器……</li>
+  <li>这样提交的是已经生成的成品，不用调用Github Pages生成，节省地球资源，也可以提高更新速度，不会出现今晚提交，明早才被更新好的情况。</li>
+  <li>麻烦的话，可以把操作过程封装为一条命令搞定，也就不麻烦了。</li>
+</ol>
+
+<h3 id="section-15">实现过程</h3>
+
+<ol>
+  <li>安装pandoc</li>
+  <li>安装定制过的jekyll
+定制的jekyll内容：修改 <code>lib/jekyll/converters/markdown.rb</code> 文件，在 <code>setup</code> 和 <code>convert</code> 中按照其它渲染器的格式增加一个 <code>pandoc</code> 判断即可。</li>
+  <li>
+    <p>安装pandoc的ruby接口：pandoc-ruby</p>
+  </li>
+  <li>
+    <p>修改 Jekyll 配置文件 _config.yml 如下：</p>
+
+    <pre><code> markdown: pandoc
+ pandoc:
+     extensions: [mathjax, standalone]
+</code></pre>
+  </li>
+</ol>
+
+<p>上面的 extensions 并不唯一，可以将任何 Pandoc 支持的选项加入其中。</p>
+
+
+  </article>
+
+  <!-- 文章页面尾部设定 -->
+<div class="post-end">
+  
+  <!-- 有言评论 -->
+  <div id="uyan_frame">
+    <h2>■评论</h2>
+  </div>
+  <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1921243"></script>
+
+  <!-- 结束有言评论 -->
+
+  <div class="post-shift">
+
+    <!--上一篇 话题 下一篇-->
+    
+    <div class="post-pre">
+      <a href="/建站之路/2014/04/23/%E9%BB%91%E4%BC%A0%E8%AF%B4%E4%B9%8B%E7%94%A8github%E5%BB%BA%E9%9D%99%E6%80%81%E7%AB%99%E6%89%8B%E8%AE%B0/">利用github建静态站手记——黑传说版◁◀前篇</a>
+    </div>
+    
+    
+    <!--回到头部-->
+    <div class="back-top"><a href="#使用jekyll生成静态站点">△▲回头▲△</a></div> 
+    
+    
+    <div class="post-next">
+      <a href="/技术普及/2014/04/28/%E8%BD%AF%E4%BB%B6%E6%98%AF%E5%95%A5/">后篇▶▷【公开课】软件是啥</a>
+    </div>
+    
+    
+  </div>
+
+  <!--页面底部自动浮现-->
+  <div class="post-reletive">
+    <!--相关文章-->
+
+  </div>
+
+</div>
+
+
+  <footer class="site-footer">
+  <ul>
+    <li>
+      <span>©2015版权所有：黑传说</span>
+      <span>欢迎转载，请注明出处并保留原文链接，谢谢合作！</span>
+    </li>
+    <li>
+    <span>黑传说——乌抵天明</span>
+    <span>玄鸟负日，光明万丈</span>
+    </li>    
+    <li>
+    <span><a href="mailto:gmail for jobinson99">gmail for jobinson99</a></span>
+    <span><a href="/feed.xml">戳此处关注我</a></span>
+    <span><a href="https://github.com/jobinson99">我的开发仓库</a></span>
+    </li>    
+    <li>
+      <span>致谢： </br>
+        <a href="http://www.github.com">空间：github</a>，
+        <a href="http://jekyllrb.com">构建：jekyll</a>，
+        <a href="http://freenom.com/">域名：freenom</a>，
+        以及一切对本人有帮助的人事物！</span>
+      <span>
+        <!--百度统计-->
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcc95332ab242dd5093ad15fa3eecb313' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+      </span>
+    </li>
+  </ul>
+</footer>
+
+
+    
+
+  
+</div>
+
+
+
+
+      
+    <script data-main="/themes/atlas/javascript/main" src="/themes/atlas/javascript/require.js" defer async="true"></script>
+    
+  </body>
+</html>
