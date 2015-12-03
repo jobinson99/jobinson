@@ -180,7 +180,7 @@ passwd eelco
 <pre><code>nix-env -i w3m
 </code></pre>
 
-<h2 id="section-1">其他</h2>
+<h2 id="section-1">其他技巧</h2>
 
 <p>nixos安装操作：</p>
 
@@ -191,14 +191,12 @@ passwd eelco
   <li>atl-F4 输出信息</li>
 </ul>
 
+<p>技巧二：因为网络原因，一开始安装不要试图所有软件都一次装好，而是先装好基本的，进入系统后，再根据网络情况，逐个装好。</p>
+
 <h2 id="section-2">配置示例</h2>
 
 <p>```
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).</p>
-
-<p>{ config, pkgs, … }:</p>
+{ config, pkgs, … }:</p>
 
 <p>{
   imports =
@@ -206,15 +204,16 @@ passwd eelco
       ./hardware-configuration.nix
     ];</p>
 
-<p># Use the GRUB 2 boot loader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.version = 2;
-  # Define on which hard drive you want to install Grub.
-  boot.loader.grub.device = “/dev/sda”;</p>
+<p># 使用GRUB 2引导器
+  boot.loader.grub = {
+    enable = true;
+    version = 2;
+    # 引导器安装磁盘位置
+    device = “/dev/sda”;
+  };</p>
 
-<h1 id="file-system-mount-point">file system mount point</h1>
-
-<p>fileSystems = [
+<p># 需要额外挂载的文件系统
+  fileSystems = [
       { mountPoint = “/home”;
         device = “/dev/disk/by-uuid/4955738b-a555-4e5c-8bc7-a9b42599f777”;
         fsType = “ext4”;
@@ -225,104 +224,134 @@ passwd eelco
       }
   ];</p>
 
-<p># networking setting</p>
-
-<p>networking = {
-        # nameservers = [ “8.8.8.8” ];
-      hostName = “atlas”; # Define your hostname.
-        extraHosts = “74.125.206.93 dl-ssl.google.com”;
-      # networkmanager.enable = true;
-      wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-      enableB43Firmware = true;  # for my laptop wireless card firmware
-  };</p>
-
-<p># Select internationalisation properties.
+<p># 语言支持
   i18n = {
-     consoleFont = “Lat2-Terminus16”;
-     consoleKeyMap = “us”;
-     defaultLocale = “en_US.UTF-8”;
-     supportedLocales = [ “en_US.UTF-8/UTF-8”
+    consoleFont = “Lat2-Terminus16”;
+    consoleKeyMap = “us”;
+    defaultLocale = “en_US.UTF-8”;
+    supportedLocales = [ “en_US.UTF-8/UTF-8”
                 “zh_CN.UTF-8/UTF-8”
                 “zh_CN/GB2312”
                 “zh_CN.GBK/GBK”
                 “zh_CN.GB18030/GB18030”
                 “zh_TW.UTF-8/UTF-8”
                 “zh_TW/BIG5” ];
-   };</p>
+  };</p>
 
-<p># Set your time zone.
-   time.timeZone = “Asia/Shanghai”;</p>
+<p># 时区
+  time.timeZone = “Asia/Shanghai”;</p>
 
-<p># List packages installed in system profile. To search by name, run:
-  # $ nix-env -qaP | grep wget
+<p># 系统内置软件
   environment.systemPackages = with pkgs; [
-     wget
-     openbox
-     sddm
-     git
-     w3m
-     luakit
-     firefox fcitx goldendict
-     calligra emacs libreoffice okular
-    wqy-zenhei kde-l10n-zh_CN virt-manager
+    # 文件系统
+    ntfs3g testdisk zip unzip unrar ark
+    # 桌面
+    openbox obconf
+    sddm
+    # 网络相关
+    wget networkmanager w3m bridge-utils git softether aircrack-ng reaver-wps
+    # 浏览器
+    firefox luakit
+    # 中文相关
+    wqy-zenhei fcitx goldendict
+    kde-l10n-zh_CN kde-gtk-config
+    # 编辑器
+    emacs basket
+    calligra libreoffice okular
+    # 图形处理
+    gwenview gimp inkscape blender dia
+    # 多媒体
+    k3b
+    amarok smplayer vlc
+    # 科学
+    stellarium
+    # 游戏
+    freeciv-sdl wesnoth
+    # 运行环境
+    qemu virt-manager docker virtualbox
     openjdk openjre
-    android-sdk
-    gwenview gimp inkscape blender
+    android-sdk android-udev-rules android-ndk-r10c apache-maven gradle
+    dosbox
+    # 编程语言
+    ruby rubygems libyaml
+    cabal-install 
+    python python3
    ];</p>
 
-<p># allow unfree packages
-  nixpkgs.config.allowUnfree = true;</p>
-
-<p># nix mirrors
+<p># 可用镜像
   nix.trustedBinaryCaches = [
       “http://cache.nixos.org”
   ];</p>
 
 <p>boot.kernelModules = [ “kvm-amd” “wl” “tun” “virtio” ];</p>
 
+<p># 网络
+  networking = {
+      nameservers = [ “8.8.8.8” ];
+      hostName = “atlas”; # Define your hostname.
+      extraHosts = “74.125.206.93 dl-ssl.google.com”;
+      networkmanager.enable = true; # 开启这个，需要把用户加入 networkmanager组，还需要启用nm-applet
+      # wireless.enable = true;  # 开启无线，默认管理工具为 wpa_supplicant
+      enableB43Firmware = true;  #  我笔记本无线网卡需要</p>
+
+<pre><code>  # 开启 vde2
+  localCommands =
+  ''
+    ${pkgs.vde2}/bin/vde_switch -tap tap0 -mod 660 -group kvm -daemon
+    ip addr add 10.0.2.1/24 dev tap0
+    ip link set dev tap0 up
+    ${pkgs.procps}/sbin/sysctl -w net.ipv4.ip_forward=1
+    ${pkgs.iptables}/sbin/iptables -t nat -A POSTROUTING -s 10.0.2.0/24 -j MASQUERADE
+  '';        };
+</code></pre>
+
+<p># 要开启的服务：services</p>
+
+<p>services = { 
+    # 开启 OpenSSH 守护进程
+    # openssh.enable = true;</p>
+
+<pre><code># 开启打印服务 CUPS
+# services.printing.enable = true;
+</code></pre>
+
+<p>};
+  # 图形界面
+  services.xserver = {
+      # 开启 X11
+      enable = true;
+      layout = “us”;
+      xkbOptions = “eurosign:e”;</p>
+
+<pre><code>  ## ati 显卡厂家驱动
+  # services.xserver.videoDrivers = [ "ati_unfree" ];
+
+  # 开启sddm登录器
+  displayManager.sddm.enable = true;
+  # displayManager.kdm.enable = true;
+  # 启用 kde4桌面
+  desktopManager.kde4.enable = true;
+  # 启用 openbox
+  windowManager.openbox.enable = true;   };
+</code></pre>
+
+<p>## 32位硬件加速
+  # hardware.opengl.driSupport32Bit = true;</p>
+
 <p># 虚拟化
   virtualisation = {
-        # qemu</p>
+      # qemu有关的设定</p>
 
-<pre><code>    # libvirtd for virt-manager
-     libvirtd.enable = true;
-};
+<pre><code>  # 开启libvirtd，可用virt-manager操作
+  libvirtd.enable = true;
+  
+  # vbox 要加boot.kernelModules vboxdrv vboxnetadp vboxnetflt
+  # virtualbox.host.enable = true;
 </code></pre>
 
-<p># List services that you want to enable:</p>
+<p>}; </p>
 
-<pre><code>    # Enable the OpenSSH daemon.
-    # services.openssh.enable = true;
-
-    # Enable CUPS to print documents.
-    # services.printing.enable = true;
-</code></pre>
-
-<p># GUI configuration
-  services.xserver = {
-        # Enable the X11 windowing system.
-        enable = true;
-        layout = “us”;
-        xkbOptions = “eurosign:e”;</p>
-
-<pre><code>    ## for my ati graphics card
-    # services.xserver.videoDrivers = [ "ati_unfree" ];
-
-    # Enable the KDE Desktop Environment.
-    displayManager.sddm.enable = true;
-    # displayManager.kdm.enable = true;
-    desktopManager.kde4.enable = true;
-    # Enable openbox
-    windowManager.openbox.enable = true;    };
-</code></pre>
-
-<p>## hardware acceleration for 32-bit programs
-  # hardware.opengl.driSupport32Bit = true;
-  # Define a user account. Don’t forget to set a password with ‘passwd’.
-  # users.extraUsers.guest = {
-  #   isNormalUser = true;
-  #   uid = 1000;
-  # };
+<p># 设定一个 用户级 帐号，后面可用 ‘passwd’来修改密码
   users.extraUsers.atlas = {
         uid = 1000;
         group = “users”;
@@ -333,7 +362,7 @@ passwd eelco
         initialPassword = “1234567890”;
         };</p>
 
-<p># The NixOS release to be compatible with for stateful data such as databases.
+<p># 设定nixos版本
   system.stateVersion = “15.09”;
 }
 ```</p>
